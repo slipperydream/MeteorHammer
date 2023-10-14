@@ -11,13 +11,15 @@ signal score_changed
 
 var enemy = preload("res://scenes/enemy.tscn")
 var score = 0
+var current_game_state : game_state = game_state.ATTRACT
 
 @export var columns : int = 9
 @export var rows : int = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	emit_signal("game_state_changed", game_state.NEW_GAME)
+	current_game_state = game_state.NEW_GAME
+	emit_signal("game_state_changed", current_game_state)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,7 +27,8 @@ func _process(delta):
 
 func _input(event):
 	if Input.is_action_just_pressed("pause_game"):
-		emit_signal("game_state_changed", game_state.PAUSED)
+		current_game_state = game_state.PAUSED
+		emit_signal("game_state_changed", current_game_state)
 		
 func spawn_enemies():
 	for x in range(columns):
@@ -47,16 +50,19 @@ func _on_start_pressed():
 func new_game():
 	score = 0
 	emit_signal("score_changed", score)
-	emit_signal("game_state_changed", game_state.RUNNING)
+	current_game_state = game_state.RUNNING
+	emit_signal("game_state_changed", current_game_state)
 	spawn_enemies()
 
 func _on_player_died():
 	get_tree().call_group("enemies", "queue_free")
-	emit_signal("game_state_changed", game_state.GAME_OVER)
+	current_game_state = game_state.GAME_OVER
+	emit_signal("game_state_changed", current_game_state)
 
 func _on_pause_button_pressed():
 	pause_button.hide()
-	emit_signal("game_state_changed", game_state.RUNNING)
+	current_game_state = game_state.RUNNING
+	emit_signal("game_state_changed", current_game_state)
 	
 func _on_game_state_changed(state):
 	match state:
@@ -72,7 +78,8 @@ func _on_game_state_changed(state):
 			game_over.show()
 			await get_tree().create_timer(2).timeout
 			game_over.hide()
-			emit_signal("game_state_changed", game_state.NEW_GAME)
+			current_game_state = game_state.NEW_GAME
+			emit_signal("game_state_changed", current_game_state)
 		game_state.NEW_GAME:
 			if game_over.visible:
 				game_over.hide()

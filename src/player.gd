@@ -5,7 +5,10 @@ signal shield_changed
 
 @export var max_shield = 10
 var shield = max_shield
-	
+
+@export var max_lives = 3
+var lives = max_lives
+
 @export var speed : int = 150
 @export var cooldown : float = 0.25
 @export var bullet_scene : PackedScene
@@ -27,7 +30,8 @@ func reset():
 		show()
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize * 4))
 	can_shoot = true
-	#set_shield(max_shield)
+	shield = max_shield
+	lives = max_lives
 	
 func shoot():
 	if can_shoot == false:
@@ -62,8 +66,11 @@ func set_shield(value):
 	shield = min(max_shield, value)
 	shield_changed.emit(max_shield, shield)
 	if shield <= 0:
+		lives = max(0, lives - 1)
+		print(lives)
 		hide()
 		died.emit()
+		
 
 func _on_area_entered(area):
 	if area.is_in_group("enemies"):

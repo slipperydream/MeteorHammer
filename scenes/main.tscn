@@ -1,12 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=9 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_7hmxl"]
-[ext_resource type="Texture2D" uid="uid://bjvwy01iglahh" path="res://assets/Space_BG (2 frames) (64 x 64).png" id="1_8jlqp"]
 [ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://scenes/player.tscn" id="2_ub1gs"]
 [ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://scenes/ui.tscn" id="4_fde2l"]
-[ext_resource type="Texture2D" uid="uid://phi6pls4rpke" path="res://assets/UI objects/START (48 x 8).png" id="5_osghs"]
-[ext_resource type="Texture2D" uid="uid://bu73wnbqp0tad" path="res://assets/UI objects/GAME_OVER (72 x 8).png" id="6_k71ad"]
-[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://assets/UI objects/FutureKid.ttf" id="7_ul41j"]
+[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://assets/UI_objects/FutureKid.ttf" id="5_bfp7s"]
+
+[sub_resource type="Animation" id="Animation_7oex0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 240, 320)]
+}
 
 [sub_resource type="Animation" id="Animation_h81m7"]
 resource_name = "scroll"
@@ -24,21 +36,6 @@ tracks/0/keys = {
 "values": [Rect2(0, 0, 240, 320), Rect2(0, 64, 240, 320)]
 }
 
-[sub_resource type="Animation" id="Animation_7oex0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 240, 320)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gky1u"]
 _data = {
 "RESET": SubResource("Animation_7oex0"),
@@ -53,7 +50,6 @@ script = ExtResource("1_7hmxl")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
-texture = ExtResource("1_8jlqp")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 240, 320)
@@ -76,15 +72,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartButton" type="TextureButton" parent="CanvasLayer/CenterContainer"]
+[node name="StartButton" type="Button" parent="CanvasLayer/CenterContainer"]
 visible = false
 layout_mode = 2
-texture_normal = ExtResource("5_osghs")
+theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
+theme_override_fonts/font = ExtResource("5_bfp7s")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_aip00")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_aip00")
+text = "START GAME"
 
-[node name="GameOver" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+[node name="GameOver" type="Label" parent="CanvasLayer/CenterContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("6_k71ad")
+theme_override_colors/font_color = Color(0.823529, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_bfp7s")
+theme_override_font_sizes/font_size = 8
+text = "GAME OVER"
 
 [node name="PauseButton" type="Button" parent="CanvasLayer/CenterContainer"]
 process_mode = 2
@@ -92,7 +99,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.505882, 0.341176, 0.854902, 1)
 theme_override_colors/font_pressed_color = Color(0.503949, 0.342659, 0.855201, 1)
 theme_override_colors/font_hover_color = Color(0.503949, 0.342659, 0.855201, 1)
-theme_override_fonts/font = ExtResource("7_ul41j")
+theme_override_fonts/font = ExtResource("5_bfp7s")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_aip00")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")

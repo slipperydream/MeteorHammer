@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjvwy01iglahh"
-path="res://.godot/imported/Space_BG (2 frames) (64 x 64).png-dc07f4b4c0fecb280cf1666acf6b47e2.ctex"
+uid="uid://cd2lpruabmd3y"
+path="res://.godot/imported/bar_foreground.png-73e7df1ba508e0e0fcd64ad02252220c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Space_BG (2 frames) (64 x 64).png"
-dest_files=["res://.godot/imported/Space_BG (2 frames) (64 x 64).png-dc07f4b4c0fecb280cf1666acf6b47e2.ctex"]
+source_file="res://assets/UI_objects/bar_foreground.png"
+dest_files=["res://.godot/imported/bar_foreground.png-73e7df1ba508e0e0fcd64ad02252220c.ctex"]
 
 [params]
 

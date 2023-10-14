@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci0nikqiufyhv"
-path="res://.godot/imported/Player_donut_shot (16 x 16).png-6e9a2b574bb69a221de98e85270a7f1d.ctex"
+uid="uid://bukouop4ixjkf"
+path="res://.godot/imported/Item_held_box_16x16.png-52efe75d2c281c6610a2b2da9e7aeeaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Projectiles/Player_donut_shot (16 x 16).png"
-dest_files=["res://.godot/imported/Player_donut_shot (16 x 16).png-6e9a2b574bb69a221de98e85270a7f1d.ctex"]
+source_file="res://assets/UI_objects/Item_held_box_16x16.png"
+dest_files=["res://.godot/imported/Item_held_box_16x16.png-52efe75d2c281c6610a2b2da9e7aeeaf.ctex"]
 
 [params]
 

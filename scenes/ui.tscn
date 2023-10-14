@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://du6kybeyrcmf2"]
 
 [ext_resource type="Script" path="res://src/ui.gd" id="1_n78kt"]
+[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://assets/UI_objects/PixelMechaBold.ttf" id="2_x06jq"]
 [ext_resource type="PackedScene" uid="uid://mihli40xvvd0" path="res://scenes/shield_bar.tscn" id="3_8bn4g"]
-[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://assets/UI objects/PixelMechaBold.ttf" id="5_ef2tq"]
 
 [node name="UI" type="MarginContainer"]
 anchors_preset = 10
@@ -23,7 +23,7 @@ columns = 3
 [node name="ShieldHeader" type="Label" parent="TopBars"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("5_ef2tq")
+theme_override_fonts/font = ExtResource("2_x06jq")
 text = "SHIELDS"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -31,7 +31,7 @@ vertical_alignment = 2
 [node name="ScoreHeader" type="Label" parent="TopBars"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("5_ef2tq")
+theme_override_fonts/font = ExtResource("2_x06jq")
 text = "SCORE"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -39,26 +39,29 @@ vertical_alignment = 2
 [node name="HighScoreHeader" type="Label" parent="TopBars"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("5_ef2tq")
+theme_override_colors/font_color = Color(0.847059, 0.827451, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_x06jq")
 text = "HIGH SCORE"
 horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="ShieldBar" parent="TopBars" instance=ExtResource("3_8bn4g")]
 layout_mode = 2
+value = 100.0
 
 [node name="ScoreLabel" type="Label" parent="TopBars"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("5_ef2tq")
+theme_override_fonts/font = ExtResource("2_x06jq")
 text = "00000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighScoreLabel2" type="Label" parent="TopBars"]
+[node name="HighScoreLabel" type="Label" parent="TopBars"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("5_ef2tq")
+theme_override_colors/font_color = Color(0.847059, 0.827451, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_x06jq")
 text = "00000000"
 horizontal_alignment = 1
 vertical_alignment = 1

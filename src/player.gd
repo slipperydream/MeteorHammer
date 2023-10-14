@@ -1,5 +1,11 @@
 extends Area2D
 
+signal died
+signal shield_changed
+
+@export var max_shield = 10
+var shield = max_shield
+	
 @export var speed : int = 150
 @export var cooldown : float = 0.25
 @export var bullet_scene : PackedScene
@@ -7,14 +13,22 @@ var can_shoot : bool = true
 
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var shipsize : int = $Ship.texture.get_height()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start()
 	
 func start():
-	position = Vector2(screensize.x / 2, screensize.y - (shipsize * 4))
+	reset()
 	$GunCooldown.wait_time = cooldown
 
+func reset():
+	if not visible:
+		show()
+	position = Vector2(screensize.x / 2, screensize.y - (shipsize * 4))
+	can_shoot = true
+	#set_shield(max_shield)
+	
 func shoot():
 	if can_shoot == false:
 		return
@@ -43,3 +57,19 @@ func _process(delta):
 		
 func _on_gun_cooldown_timeout():
 	can_shoot = true
+
+func set_shield(value):
+	shield = min(max_shield, value)
+	shield_changed.emit(max_shield, shield)
+	if shield <= 0:
+		hide()
+		died.emit()
+
+func _on_area_entered(area):
+	if area.is_in_group("enemies"):
+		area.explode()
+		set_shield(shield - (max_shield / 2))
+
+func _on_main_start_game():
+	start()
+	

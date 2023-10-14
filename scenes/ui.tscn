@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://du6kybeyrcmf2"]
+
+[ext_resource type="Script" path="res://src/ui.gd" id="1_n78kt"]
+[ext_resource type="PackedScene" uid="uid://mihli40xvvd0" path="res://scenes/shield_bar.tscn" id="3_8bn4g"]
+[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://assets/UI objects/PixelMechaBold.ttf" id="5_ef2tq"]
+
+[node name="UI" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_n78kt")
+
+[node name="TopBars" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="ShieldHeader" type="Label" parent="TopBars"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("5_ef2tq")
+text = "SHIELDS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ScoreHeader" type="Label" parent="TopBars"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("5_ef2tq")
+text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HighScoreHeader" type="Label" parent="TopBars"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("5_ef2tq")
+text = "HIGH SCORE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ShieldBar" parent="TopBars" instance=ExtResource("3_8bn4g")]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="TopBars"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("5_ef2tq")
+text = "00000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScoreLabel2" type="Label" parent="TopBars"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("5_ef2tq")
+text = "00000000"
+horizontal_alignment = 1
+vertical_alignment = 1

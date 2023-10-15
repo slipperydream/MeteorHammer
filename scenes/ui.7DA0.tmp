@@ -77,7 +77,6 @@ theme_override_constants/separation = 0
 [node name="TextureRect" type="TextureRect" parent="TopBars/LivesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
 texture = ExtResource("3_6nh5d")
 
 [node name="PlayerLivesLabel" type="Label" parent="TopBars/LivesContainer"]

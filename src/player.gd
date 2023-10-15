@@ -70,7 +70,6 @@ func set_shield(value):
 	shield_changed.emit(max_shield, shield)
 	if shield <= 0:
 		lives = max(0, lives - 1)
-		print(lives)
 		hide()
 		if lives > 0:
 			died.emit()
@@ -85,4 +84,6 @@ func _on_area_entered(area):
 
 func _on_main_start_game():
 	start()
-	
+
+func _on_main_stage_cleared():
+	set_shield(max_shield)

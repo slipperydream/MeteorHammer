@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cay0tw78thr7e" path="res://assets/Space_BG_2_frames_64x64.png" id="2_sbl10"]
 [ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://scenes/player.tscn" id="2_ub1gs"]
 [ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://scenes/ui.tscn" id="4_fde2l"]
-[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://assets/UI_objects/FutureKid.ttf" id="5_bfp7s"]
+[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://assets/UI_objects/PixelMechaBold.ttf" id="5_adj04"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Rect2(0, 0, 240, 320), Rect2(0, -64, 240, 320)]
+"values": [Rect2(0, 0, 300, 400), Rect2(0, -64, 300, 400)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gky1u"]
@@ -82,7 +82,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
-theme_override_fonts/font = ExtResource("5_bfp7s")
+theme_override_fonts/font = ExtResource("5_adj04")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_aip00")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")
@@ -93,9 +93,17 @@ text = "START GAME"
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.823529, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_bfp7s")
+theme_override_fonts/font = ExtResource("5_adj04")
 theme_override_font_sizes/font_size = 8
 text = "GAME OVER"
+
+[node name="StageLabel" type="Label" parent="CanvasLayer/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.823529, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_adj04")
+theme_override_font_sizes/font_size = 8
+text = "Stage"
 
 [node name="PauseButton" type="Button" parent="CanvasLayer/CenterContainer"]
 process_mode = 2
@@ -103,7 +111,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.505882, 0.341176, 0.854902, 1)
 theme_override_colors/font_pressed_color = Color(0.503949, 0.342659, 0.855201, 1)
 theme_override_colors/font_hover_color = Color(0.503949, 0.342659, 0.855201, 1)
-theme_override_fonts/font = ExtResource("5_bfp7s")
+theme_override_fonts/font = ExtResource("5_adj04")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_aip00")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")
@@ -115,6 +123,8 @@ text = "PAUSED"
 [connection signal="game_state_changed" from="." to="CanvasLayer/UI" method="_on_main_game_state_changed"]
 [connection signal="pause_game" from="." to="." method="_on_pause_game"]
 [connection signal="score_changed" from="." to="CanvasLayer/UI" method="_on_main_score_changed"]
+[connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]
+[connection signal="stage_cleared" from="." to="Player" method="_on_main_stage_cleared"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="died" from="Player" to="CanvasLayer/UI" method="_on_player_died"]
 [connection signal="gained_life" from="Player" to="CanvasLayer/UI" method="_on_player_gained_life"]

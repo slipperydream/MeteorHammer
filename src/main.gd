@@ -3,16 +3,19 @@ extends Node2D
 @onready var start_button = $CanvasLayer/CenterContainer/StartButton
 @onready var pause_button = $CanvasLayer/CenterContainer/PauseButton
 @onready var game_over = $CanvasLayer/CenterContainer/GameOver
+@onready var stage_label = $CanvasLayer/CenterContainer/StageLabel
 
 enum game_state {ATTRACT, NEW_GAME, RUNNING, PAUSED, GAME_OVER}
 signal game_state_changed
 signal pause_game
 signal score_changed
+signal stage_cleared
 
 var enemy = preload("res://scenes/enemy.tscn")
 var score = 0
 var current_game_state : game_state = game_state.ATTRACT
-
+var stage : int = 1
+var enemy_alive = false
 @export var columns : int = 9
 @export var rows : int = 3
 
@@ -23,8 +26,24 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if current_game_state == game_state.RUNNING and enemy_alive:
+		check_for_stage_clear()
 
+func new_game():
+	score = 0
+	emit_signal("score_changed", score)
+	current_game_state = game_state.RUNNING
+	emit_signal("game_state_changed", current_game_state)
+	stage = 1
+	show_stage_label()
+	spawn_enemies()
+
+func show_stage_label():
+	stage_label.text = "STAGE %d" % stage
+	stage_label.show()
+	await get_tree().create_timer(2).timeout
+	stage_label.hide()
+		
 func _input(event):
 	if Input.is_action_just_pressed("pause_game"):
 		current_game_state = game_state.PAUSED
@@ -38,6 +57,7 @@ func spawn_enemies():
 			add_child(e)
 			e.start(pos)
 			e.died.connect(_on_enemy_died)
+	enemy_alive = true
 
 func _on_enemy_died(value):
 	score += value
@@ -46,13 +66,6 @@ func _on_enemy_died(value):
 func _on_start_pressed():
 	start_button.hide()
 	new_game()
-
-func new_game():
-	score = 0
-	emit_signal("score_changed", score)
-	current_game_state = game_state.RUNNING
-	emit_signal("game_state_changed", current_game_state)
-	spawn_enemies()
 
 func _on_player_died():
 	current_game_state = game_state.PAUSED
@@ -99,6 +112,13 @@ func _on_game_state_changed(state):
 			if start_button.visible:
 				start_button.hide()
 			get_tree().paused = false
-			
 
+func check_for_stage_clear():
+	if get_tree().get_nodes_in_group("enemies").is_empty():
+		enemy_alive = false
+		stage_cleared.emit()
 
+func _on_stage_cleared():
+	stage += 1
+	show_stage_label()
+	spawn_enemies()

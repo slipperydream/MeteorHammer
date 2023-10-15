@@ -1,7 +1,9 @@
 extends Area2D
 
 signal died
+signal out_of_lives
 signal shield_changed
+signal gained_life
 
 @export var max_shield = 10
 var shield = max_shield
@@ -23,15 +25,16 @@ func _ready():
 	
 func start():
 	reset()
+	lives = max_lives
 	$GunCooldown.wait_time = cooldown
 
-func reset():
+func reset(reposition : bool = true):
 	if not visible:
 		show()
-	position = Vector2(screensize.x / 2, screensize.y - (shipsize * 4))
+	if reposition:
+		position = Vector2(screensize.x / 2, screensize.y - (shipsize * 4))
 	can_shoot = true
 	shield = max_shield
-	lives = max_lives
 	
 func shoot():
 	if can_shoot == false:
@@ -69,9 +72,12 @@ func set_shield(value):
 		lives = max(0, lives - 1)
 		print(lives)
 		hide()
-		died.emit()
+		if lives > 0:
+			died.emit()
+			reset(false)
+		else:
+			out_of_lives.emit()
 		
-
 func _on_area_entered(area):
 	if area.is_in_group("enemies"):
 		area.explode()

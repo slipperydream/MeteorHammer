@@ -55,10 +55,14 @@ func new_game():
 	spawn_enemies()
 
 func _on_player_died():
+	current_game_state = game_state.PAUSED
+	emit_signal("game_state_changed", current_game_state)
+
+func _on_player_out_of_lives():
 	get_tree().call_group("enemies", "queue_free")
 	current_game_state = game_state.GAME_OVER
 	emit_signal("game_state_changed", current_game_state)
-
+	
 func _on_pause_button_pressed():
 	pause_button.hide()
 	current_game_state = game_state.RUNNING
@@ -86,7 +90,7 @@ func _on_game_state_changed(state):
 			if pause_button.visible:
 				pause_button.hide()
 			start_button.show()
-			$Player.reset()
+			$Player.start()
 		game_state.RUNNING:
 			if game_over.visible:
 				game_over.hide()
@@ -96,3 +100,5 @@ func _on_game_state_changed(state):
 				start_button.hide()
 			get_tree().paused = false
 			
+
+

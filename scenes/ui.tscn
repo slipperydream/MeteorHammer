@@ -7,7 +7,7 @@
 [node name="UI" type="MarginContainer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 20.0
+offset_bottom = 56.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -18,7 +18,15 @@ script = ExtResource("1_n78kt")
 [node name="TopBars" type="GridContainer" parent="."]
 layout_mode = 2
 theme_override_constants/v_separation = 0
-columns = 3
+columns = 4
+
+[node name="LivesHeader" type="Label" parent="TopBars"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_x06jq")
+text = "LIVES"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="ShieldHeader" type="Label" parent="TopBars"]
 layout_mode = 2
@@ -45,7 +53,12 @@ text = "HIGH SCORE"
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="LivesContainer" type="HBoxContainer" parent="TopBars"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
 [node name="ShieldBar" parent="TopBars" instance=ExtResource("3_8bn4g")]
+custom_minimum_size = Vector2(60, 16)
 layout_mode = 2
 value = 100.0
 

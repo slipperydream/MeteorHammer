@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://c6vbsfqohldnn"]
 
-[ext_resource type="Script" path="res://src/enemy.gd" id="1_ndem7"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="2_ch2n2"]
-[ext_resource type="Texture2D" uid="uid://b0ow0qiq14saa" path="res://assets/Enemies/Bon_Bon_16x16.png" id="2_e4de5"]
+[ext_resource type="Script" path="res://src/enemies/enemy.gd" id="1_1lirv"]
+[ext_resource type="Texture2D" uid="uid://b0ow0qiq14saa" path="res://assets/Enemies/Bon_Bon_16x16.png" id="2_lr67j"]
+[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="3_rc55r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(14, 8)
@@ -43,7 +43,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_e4de5")]
+"values": [ExtResource("2_lr67j")]
 }
 
 [sub_resource type="Animation" id="Animation_msddi"]
@@ -88,7 +88,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_ch2n2")]
+"values": [ExtResource("3_rc55r")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -122,15 +122,12 @@ _data = {
 "explode": SubResource("Animation_oa838")
 }
 
-[node name="Enemy" type="Area2D" groups=["enemies"]]
+[node name="BaseEnemy" type="Area2D" groups=["enemies"]]
 position = Vector2(0, -50)
-script = ExtResource("1_ndem7")
-speed = 35
-shoot_interval_min = 3.0
-shoot_interval_max = 3.0
+script = ExtResource("1_1lirv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_e4de5")
+texture = ExtResource("2_lr67j")
 hframes = 4
 frame = 2
 

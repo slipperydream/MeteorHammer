@@ -2,16 +2,18 @@ extends Area2D
 
 signal died
 
-var bullet_scene = preload("res://scenes/enemy_bullet.tscn")
+var bullet_scene = preload("res://scenes/enemies/enemy_bullet.tscn")
 enum shot_spreads {SINGLE, DOUBLE_STACK, TRIPLE_STACK, VEE, W, SPREADSHOT, SPREADSHOT_RIPPLE, CROSS, CARDINAL,  HALF_CIRCLE, HALF_CIRCLE_RIPPLE, CIRCLE, WHIP, TWO_WHIPS, FOUR_WHIPS, PENDULUM }
 
 @export var points : int = 5
-@export var speed : int = 75
+@export var speed : int = 30
+@export var hp : int = 1
 @export var shoot_interval_min : float = 0.5
 @export var shoot_interval_max : float = 2
 @export var shot_spread : shot_spreads = shot_spreads.SINGLE
 @export var salvo : int = 1
 @export var salvo_delay : float = 0.25
+@export var required_range : int = 5
 var bullet_size = 16
 
 var start_pos = Vector2.ZERO

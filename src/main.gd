@@ -7,7 +7,7 @@ extends Node2D
 @onready var screensize : Vector2 = get_viewport_rect().size
 
 enum game_state {ATTRACT, NEW_GAME, RUNNING, PAUSED, GAME_OVER}
-enum spawn_pattern {WALL, DIAGONAL_LEFT, DIAGONAL_RIGHT, BOSS}
+enum spawn_pattern {WALL, DIAGONAL_LEFT, DIAGONAL_RIGHT, TRIANGLE, SQUARE, CIRCLE, BOSS}
 #enum spawn_pattern {WALL, LINE, LEFT_WALL, RIGHT_WALL, STAGGERED, DIAGONAL_LEFT, DIAGONAL_RIGHT, BOSS}
 
 
@@ -19,7 +19,7 @@ signal pause_game
 signal score_changed
 signal stage_cleared
 
-var enemy = preload("res://scenes/enemy.tscn")
+var enemy1 = preload(""res://scenes/enemies/base_enemy.tscn"")
 var score = 0
 var current_game_state : game_state = game_state.ATTRACT
 var stage : int = 1

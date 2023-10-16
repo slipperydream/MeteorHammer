@@ -123,7 +123,11 @@ _data = {
 }
 
 [node name="Enemy" type="Area2D" groups=["enemies"]]
+position = Vector2(0, -50)
 script = ExtResource("1_ndem7")
+speed = 35
+shoot_interval_min = 3.0
+shoot_interval_max = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_e4de5")
@@ -139,11 +143,7 @@ libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }
 
-[node name="MoveTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

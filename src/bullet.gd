@@ -12,13 +12,15 @@ func _ready():
 func _process(delta):
 	position = position + speed * delta * direction
 
-func start(pos):
+func start(pos, dir):
 	position = pos
+	direction = dir
 	
 func _on_area_entered(area):
 	if area.is_in_group("enemies"):
 		area.take_damage(power)
 		queue_free()
 
+# Possibly convert this to freeing shortly before leaving the screen
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

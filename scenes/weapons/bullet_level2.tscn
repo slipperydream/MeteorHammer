@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct5sbk7rufup4"]
+
+[ext_resource type="Script" path="res://src/bullet.gd" id="1_c452v"]
+[ext_resource type="Texture2D" uid="uid://cskdr75uwbe2c" path="res://assets/Projectiles/Player_charged_beam_16x16.png" id="2_2ytsd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
+size = Vector2(10, 9)
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_c452v")
+power = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2ytsd")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_75uv4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

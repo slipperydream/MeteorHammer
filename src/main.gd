@@ -18,12 +18,15 @@ signal pause_game
 signal score_changed
 signal stage_cleared
 
-var enemy = preload("res://scenes/enemies/battlecruiser.tscn")
-#var enemy = preload("res://scenes/enemies/scout.tscn")
+var enemy1 = preload("res://scenes/enemies/battlecruiser.tscn")
+var enemy0 = preload("res://scenes/enemies/scout.tscn")
+var enemies : Array = [enemy0, enemy1]
 var score = 0
 var current_game_state : game_state = game_state.ATTRACT
-var stage : int = 1
+var current_stage : int = 1
 var enemy_alive = false
+var wave : int = 0
+
 @export var columns : int = 9
 @export var rows : int = 3
 @export var start_lives = 3
@@ -43,24 +46,25 @@ func begin_game():
 	score = 0
 	emit_signal("score_changed", score)
 	emit_signal("start_game", start_lives)
-	current_game_state = game_state.RUNNING
-	stage = 1
+	current_stage = 1
 	show_stage_label()
-	spawn_stage_waves(stage)
+	wave = 0
+	spawn_stage_wave()
+	current_game_state = game_state.RUNNING
 
-func spawn_stage_waves(current_stage):
-	var num_waves = current_stage * waves_per_stage
-	for i in range(num_waves):
-		var pattern = randi() % spawn_pattern.size()
-		var num_mobs = columns / 4
-		spawn_enemies(num_mobs, pattern)
-		print("Spawned wave %d " % num_waves)
-		print("mobs %d" % num_mobs)
-		print("pattern %d" % pattern)
-		await get_tree().create_timer(20).timeout
+func spawn_stage_wave():	
+	wave += 1
+	var pattern = randi() % spawn_pattern.size()
+	var num_mobs = columns / 4
+	spawn_enemies(num_mobs, pattern)
+	print("Spawned wave %d " % wave)
+	print("mobs %d" % num_mobs)
+	print("pattern %d" % pattern)
+	$WaveTimer.start()
+	
 
 func show_stage_label():
-	stage_label.text = "STAGE %d" % stage
+	stage_label.text = "STAGE %d" % current_stage
 	stage_label.show()
 	await get_tree().create_timer(2).timeout
 	stage_label.hide()
@@ -85,7 +89,7 @@ func spawn_enemies(num_mobs, pattern):
 func spawn_enemies_wall(num_mobs = columns):
 	var left_buffer = screensize.x / num_mobs
 	for x in range(num_mobs):
-		var e = enemy.instantiate()
+		var e = enemies[randi() % enemies.size()].instantiate()
 		var pos = Vector2(x * left_buffer + 24, -16)
 		add_child(e)
 		e.start(pos)
@@ -94,7 +98,7 @@ func spawn_enemies_wall(num_mobs = columns):
 func spawn_enemies_diagonal(isLeft, num_mobs = columns):
 	var left_buffer = screensize.x / num_mobs
 	for x in range(num_mobs):
-		var e = enemy.instantiate()
+		var e = enemies[randi() % enemies.size()].instantiate()
 		var y =  (num_mobs-x) * -16
 		if isLeft:
 			y = -x * 16
@@ -105,7 +109,7 @@ func spawn_enemies_diagonal(isLeft, num_mobs = columns):
 		e.died.connect(_on_enemy_died)
 
 func spawn_boss():
-	var e = enemy.instantiate()
+	var e = enemies[randi() % enemies.size()].instantiate()
 	var pos = Vector2(screensize.x/2, 16)
 	add_child(e)
 	e.start(pos)
@@ -135,15 +139,15 @@ func _on_pause_button_pressed():
 	get_tree().paused = false
 
 func check_for_stage_clear():
-	if get_tree().get_nodes_in_group("enemies").is_empty():
+	if wave == (current_stage * waves_per_stage) and get_tree().get_nodes_in_group("enemies").is_empty() :
 		enemy_alive = false
-		print("cleared stage %d" % stage)
-		emit_signal("stage_cleared")
+		emit_signal("stage_cleared", current_stage)
 
-func _on_stage_cleared():
-	stage += 1
+func _on_stage_cleared(stage):
+	current_stage += 1
+	wave = 0
 	show_stage_label()
-	spawn_stage_waves(stage)
+	spawn_stage_wave()
 
 func _on_pause_game():
 	if game_over_label.visible:
@@ -168,4 +172,6 @@ func _on_new_game():
 		pause_button.hide()
 	start_button.show()
 
-
+func _on_wave_timer_timeout():
+	if wave < (current_stage * waves_per_stage):
+		spawn_stage_wave()

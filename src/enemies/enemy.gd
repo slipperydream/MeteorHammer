@@ -60,6 +60,11 @@ func _on_shoot_timer_timeout():
 	$ShootTimer.wait_time = randf_range(shoot_interval_min, shoot_interval_max)
 	$ShootTimer.start()
 
+func _on_player_died():
+	print("player died. stopping shots")
+	$ShootTimer.wait_time = 3
+	$ShootTimer.start()
+
 func shoot():
 	var pos = get_tree().get_first_node_in_group("player").position
 	var dis = pos.distance_to(position) 

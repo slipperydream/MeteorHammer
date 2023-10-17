@@ -13,8 +13,11 @@ var lives = max_lives
 
 @export var speed : int = 150
 @export var cooldown : float = 0.25
-@export var bullet_scene : PackedScene
+@export var item_recharge_time : float = 5.0
+@export var weapon_scene : PackedScene
+@export var item_scene : PackedScene
 var can_shoot : bool = true
+var num_shots : int = 1
 
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var shipsize : int = $Ship.texture.get_height()
@@ -37,8 +40,11 @@ func _process(delta):
 		$Ship/Boosters.animation = "forward"
 	position += input * speed * delta
 	position = position.clamp(Vector2(8,8), screensize - Vector2(8,8))
+	
 	if Input.is_action_pressed("shoot"):
 		shoot()
+	if $ItemCharge.is_stopped() and Input.is_action_just_pressed("use_item"):
+		use_item()
 
 func reset():
 	if not visible:
@@ -67,14 +73,18 @@ func shoot():
 		return
 	can_shoot = false
 	$GunCooldown.start()
-	var bullet = bullet_scene.instantiate()
-	get_tree().root.add_child(bullet)
-	bullet.start(position + Vector2(0, -8))
+	for i in range(num_shots):
+		var weapon = weapon_scene.instantiate()
+		get_tree().root.add_child(weapon)
+		var angle = deg_to_rad(80 + i * 20)
+		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))
 	
 func start():
 	lives = max_lives
 	reset()
 	$GunCooldown.wait_time = cooldown
+	$ItemCharge.wait_time = item_recharge_time
+	$ItemCharge.start()
 	
 func take_damage(value):
 	var new_value = max(0, shield - value)
@@ -95,6 +105,29 @@ func _on_main_start_game(start_lives):
 	max_lives = start_lives
 	start()
 	
-
-func _on_main_stage_cleared():
+func _on_main_stage_cleared(stage):
 	set_shield(max_shield)
+	upgrade_weapon(stage)
+	$ItemCharge.stop()
+
+func upgrade_weapon(stage):
+	match stage:
+		2:
+			num_shots = 2
+		3: 
+			num_shots = 1
+			weapon_scene = load("res://scenes/weapons/bullet_level2.tscn")
+		4:
+			num_shots = 2
+	
+func use_item():	
+	#var item = item_scene.instantiate()
+	#get_tree().root.add_child(item)
+	#item.execute()
+	$ItemCharge.wait_time = item_recharge_time
+	$ItemCharge.start()
+	print("using item")
+
+func _on_item_charge_timeout():
+	print("item charged")
+	#use_item()

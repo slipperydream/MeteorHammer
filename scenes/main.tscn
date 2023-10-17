@@ -50,10 +50,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7hmxl")
-columns = null
-rows = null
 start_lives = 5
-waves_per_stage = null
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2

@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://fxfv5keogijy"]
+[gd_scene load_steps=9 format=3 uid="uid://iv1q1152twqe"]
 
-[ext_resource type="Script" path="res://src/enemies/enemy.gd" id="1_hkxr3"]
-[ext_resource type="Texture2D" uid="uid://b0ow0qiq14saa" path="res://assets/Enemies/Bon_Bon_16x16.png" id="2_qrcx3"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="3_mx6k6"]
+[ext_resource type="Script" path="res://src/enemies/enemy.gd" id="1_x7v6y"]
+[ext_resource type="Texture2D" uid="uid://b0ow0qiq14saa" path="res://assets/Nairan/Weapons/Bon_Bon_16x16.png" id="2_6n6f4"]
+[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="3_f2jt0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(14, 8)
@@ -43,7 +43,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_qrcx3")]
+"values": [ExtResource("2_6n6f4")]
 }
 
 [sub_resource type="Animation" id="Animation_msddi"]
@@ -88,7 +88,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_mx6k6")]
+"values": [ExtResource("3_f2jt0")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -122,12 +122,12 @@ _data = {
 "explode": SubResource("Animation_oa838")
 }
 
-[node name="Enemy" type="Area2D" groups=["enemies"]]
+[node name="BaseEnemy" type="Area2D" groups=["enemies"]]
 position = Vector2(0, -50)
-script = ExtResource("1_hkxr3")
+script = ExtResource("1_x7v6y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qrcx3")
+texture = ExtResource("2_6n6f4")
 hframes = 4
 frame = 2
 

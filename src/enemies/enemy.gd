@@ -2,7 +2,7 @@ extends Area2D
 
 signal died
 
-var bullet_scene = preload("res://scenes/enemies/enemy_bullet.tscn")
+var bullet_scene = preload("res://scenes/enemies/nairan_bolt.tscn")
 enum shot_spreads {SINGLE, DOUBLE_STACK, TRIPLE_STACK, VEE, W, SPREADSHOT, SPREADSHOT_RIPPLE, CROSS, CARDINAL,  HALF_CIRCLE, HALF_CIRCLE_RIPPLE, CIRCLE, WHIP, TWO_WHIPS, FOUR_WHIPS, PENDULUM }
 
 @export var points : int = 5
@@ -40,6 +40,13 @@ func start(pos):
 	$ShootTimer.wait_time = randf_range(shoot_interval_min, shoot_interval_max)
 	$ShootTimer.start()
 
+func take_damage(value):
+	hp = max(0, hp - value)
+	if hp == 0:
+		explode()
+	else:
+		$AnimationPlayer.play("hit")
+		
 func explode():
 	speed = 0
 	$AnimationPlayer.play("explode")
@@ -54,6 +61,12 @@ func _on_shoot_timer_timeout():
 	$ShootTimer.start()
 
 func shoot():
+	var pos = get_tree().get_first_node_in_group("player").position
+	var dis = pos.distance_to(position) 
+	if dis < required_range:
+		print("player within sealing range")
+		return
+
 	for i in range(salvo):
 		match shot_spread:
 			shot_spreads.SINGLE:
@@ -151,6 +164,6 @@ func shoot():
 				
 		await get_tree().create_timer(salvo_delay).timeout
 
-func fire_bullet(bullet, position, angle):
+func fire_bullet(bullet, pos, angle):
 	get_tree().root.add_child(bullet)
-	bullet.start(position, Vector2.RIGHT.rotated(angle))
+	bullet.start(pos, Vector2.RIGHT.rotated(angle))

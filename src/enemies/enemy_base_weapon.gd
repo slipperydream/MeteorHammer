@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = -250
+@export var speed : int = 150
 @export var direction : Vector2 = Vector2(0, 1)
 @export var power : int = 1
 
@@ -12,13 +12,14 @@ func _ready():
 func _process(delta):
 	position = position + speed * delta * direction
 
-func start(pos):
-	position = pos
-	
 func _on_area_entered(area):
-	if area.is_in_group("enemies"):
-		area.take_damage(power)
+	if area.name == "Player":
 		queue_free()
+		area.take_damage(power)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+func start(pos, dir):
+	position = pos
+	direction = dir

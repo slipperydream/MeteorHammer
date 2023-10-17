@@ -1,11 +1,11 @@
-extends "res://src/enemies/enemy_base_weapon.gd"
+extends "res://src/enemies/enemy.gd"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
+	$Sprite2D/Boosters.animation = "forward"

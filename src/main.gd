@@ -7,8 +7,7 @@ extends Node2D
 @onready var screensize : Vector2 = get_viewport_rect().size
 
 enum game_state {ATTRACT, NEW_GAME, RUNNING, PAUSED, GAME_OVER}
-enum spawn_pattern {WALL, DIAGONAL_LEFT, DIAGONAL_RIGHT, TRIANGLE, SQUARE, CIRCLE, BOSS}
-#enum spawn_pattern {WALL, LINE, LEFT_WALL, RIGHT_WALL, STAGGERED, DIAGONAL_LEFT, DIAGONAL_RIGHT, BOSS}
+enum spawn_pattern {WALL, DIAGONAL_LEFT, DIAGONAL_RIGHT, TRIANGLE, TRAPEZOID, CIRCLE, BOSS}
 
 
 signal new_game
@@ -19,7 +18,8 @@ signal pause_game
 signal score_changed
 signal stage_cleared
 
-var enemy1 = preload(""res://scenes/enemies/base_enemy.tscn"")
+var enemy = preload("res://scenes/enemies/battlecruiser.tscn")
+#var enemy = preload("res://scenes/enemies/scout.tscn")
 var score = 0
 var current_game_state : game_state = game_state.ATTRACT
 var stage : int = 1
@@ -48,11 +48,11 @@ func begin_game():
 	show_stage_label()
 	spawn_stage_waves(stage)
 
-func spawn_stage_waves(stage):
-	var num_waves = stage * waves_per_stage
+func spawn_stage_waves(current_stage):
+	var num_waves = current_stage * waves_per_stage
 	for i in range(num_waves):
 		var pattern = randi() % spawn_pattern.size()
-		var num_mobs = columns
+		var num_mobs = columns / 4
 		spawn_enemies(num_mobs, pattern)
 		print("Spawned wave %d " % num_waves)
 		print("mobs %d" % num_mobs)

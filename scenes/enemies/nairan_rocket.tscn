@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://lyew3pdke8rh"]
+[gd_scene load_steps=4 format=3 uid="uid://dccqhpujbwsjj"]
 
-[ext_resource type="Script" path="res://src/enemies/enemy_base_weapon.gd" id="1_7hm18"]
-[ext_resource type="Texture2D" uid="uid://b78ql6ofua6h0" path="res://assets/Projectiles/shot_48.png" id="2_hwjkl"]
+[ext_resource type="Script" path="res://src/enemies/enemy_base_weapon.gd" id="1_fnftm"]
+[ext_resource type="Texture2D" uid="uid://bjuw30llvqjsu" path="res://assets/Nairan/Weapon_Effects-Projectiles/Nairan-Rocket.png" id="2_1qgsm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
 size = Vector2(6, 6)
 
-[node name="BaseEnemyWeapon" type="Area2D"]
-script = ExtResource("1_7hm18")
+[node name="EnemyBullet" type="Area2D"]
+script = ExtResource("1_fnftm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_hwjkl")
-hframes = 2
+texture = ExtResource("2_1qgsm")
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aq4jb")

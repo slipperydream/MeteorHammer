@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlib7s2rcllmp"
-path="res://.godot/imported/Lips_16x16.png-29a46079c079578b9c3680c991ee98df.ctex"
+uid="uid://pecpuuqwvfbs"
+path="res://.godot/imported/Nairan-Battlecruiser-Base.png-9fb1d2cc39781fa55e4a8be22b01f0c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/Lips_16x16.png"
-dest_files=["res://.godot/imported/Lips_16x16.png-29a46079c079578b9c3680c991ee98df.ctex"]
+source_file="res://assets/Nairan/Designs-Base/Nairan-Battlecruiser-Base.png"
+dest_files=["res://.godot/imported/Nairan-Battlecruiser-Base.png-9fb1d2cc39781fa55e4a8be22b01f0c3.ctex"]
 
 [params]
 

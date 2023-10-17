@@ -70,7 +70,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
 size = Vector2(16, 14)
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" groups=["player"]]
 script = ExtResource("1_ks4n4")
 bullet_scene = ExtResource("2_75g50")
 

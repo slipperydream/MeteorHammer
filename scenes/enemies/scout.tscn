@@ -1,0 +1,153 @@
+[gd_scene load_steps=17 format=3 uid="uid://bxbdhmcknxaxr"]
+
+[ext_resource type="Script" path="res://src/enemies/scout.gd" id="1_3uuat"]
+[ext_resource type="Texture2D" uid="uid://ct6e2mc24ibyc" path="res://assets/Nairan/Engine_Effects/Nairan-Scout-Engine.png" id="3_02wae"]
+[ext_resource type="Texture2D" uid="uid://5vlt1446l88d" path="res://assets/Nairan/Destruction/Nairan-Scout-Destruction.png" id="6_nhwdl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnrxs"]
+atlas = ExtResource("3_02wae")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg034"]
+atlas = ExtResource("3_02wae")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2oe8"]
+atlas = ExtResource("3_02wae")
+region = Rect2(128, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smlow"]
+atlas = ExtResource("3_02wae")
+region = Rect2(192, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj2s4"]
+atlas = ExtResource("3_02wae")
+region = Rect2(256, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsh7c"]
+atlas = ExtResource("3_02wae")
+region = Rect2(320, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwrkr"]
+atlas = ExtResource("3_02wae")
+region = Rect2(384, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5ux0"]
+atlas = ExtResource("3_02wae")
+region = Rect2(448, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t6w3m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnrxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg034")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2oe8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smlow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sj2s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsh7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwrkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5ux0")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
+size = Vector2(24, 21)
+
+[sub_resource type="Animation" id="Animation_4pyvs"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_oa838"]
+resource_name = "explode"
+length = 0.9
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_nhwdl")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h123k"]
+_data = {
+"RESET": SubResource("Animation_4pyvs"),
+"explode": SubResource("Animation_oa838")
+}
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+position = Vector2(0, -50)
+script = ExtResource("1_3uuat")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("6_nhwdl")
+hframes = 16
+frame = 1
+
+[node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
+position = Vector2(0, 15)
+sprite_frames = SubResource("SpriteFrames_t6w3m")
+animation = &"forward"
+autoplay = "forward"
+frame_progress = 0.333024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_n0ywb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h123k")
+}
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -28,11 +28,14 @@ var current_game_state : game_state = game_state.ATTRACT
 var current_stage : int = 1
 var enemy_alive = false
 var wave : int = 0
-
+var scoring_chain_active : bool = false
+var scoring_multiplier : float = 1.0
 @export var columns : int = 9
 @export var rows : int = 3
 @export var start_lives = 3
 @export var waves_per_stage : int = 3
+@export var scoring_timer : int = 15
+@export var max_scoring_multiplier : float = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -120,7 +123,16 @@ func spawn_boss():
 	e.died.connect(_on_enemy_died)
 	
 func _on_enemy_died(value):
-	score += value
+	if scoring_chain_active:
+		scoring_multiplier *= 1.5
+		scoring_multiplier = max(scoring_multiplier, max_scoring_multiplier)
+	else:
+		scoring_multiplier = 1
+		$ScoringTimer.wait_time = scoring_timer
+		$ScoringTimer.start()
+		scoring_chain_active = true
+	print("scoring multiplier %f" %scoring_multiplier)
+	score += value * scoring_multiplier	
 	emit_signal("score_changed", score)
 
 func _on_player_died():
@@ -179,3 +191,7 @@ func _on_new_game():
 func _on_wave_timer_timeout():
 	if wave < (current_stage * waves_per_stage):
 		spawn_stage_wave()
+
+func _on_scoring_timer_timeout():
+	scoring_chain_active = false
+	scoring_multiplier = 1

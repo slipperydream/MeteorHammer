@@ -31,9 +31,6 @@ TODOs (not in priority order yet)
 
 - Add high score saving
 
-- Add enemy chaining for score multiplier
-    - Should be able to use a timer to start and stop the chaining
-
 - Remove shield and make it an item. 
   - Add animation for shield being hit 
  

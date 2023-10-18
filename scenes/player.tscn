@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=16 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://scenes/weapons/bullet.tscn" id="2_75g50"]
+[ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://scenes/items/bomb.tscn" id="3_7kh1l"]
 [ext_resource type="Texture2D" uid="uid://c35hw3gw3gswt" path="res://assets/Player_ship/Player_ship_16x16.png" id="3_kfh3n"]
 [ext_resource type="Texture2D" uid="uid://b6aobhf1c1n66" path="res://assets/Player_ship/Boosters_16x16.png" id="4_ol774"]
 [ext_resource type="Texture2D" uid="uid://c1nor1bdhnkqq" path="res://assets/Player_ship/Boosters_left_16x16.png" id="5_a3fpr"]
@@ -73,6 +74,7 @@ size = Vector2(16, 14)
 [node name="Player" type="Area2D" groups=["player"]]
 script = ExtResource("1_ks4n4")
 weapon_scene = ExtResource("2_75g50")
+item_scene = ExtResource("3_7kh1l")
 
 [node name="Ship" type="Sprite2D" parent="."]
 texture = ExtResource("3_kfh3n")
@@ -93,6 +95,7 @@ shape = SubResource("RectangleShape2D_pq5w0")
 one_shot = true
 
 [node name="ItemCharge" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]

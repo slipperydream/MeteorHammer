@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cskdr75uwbe2c" path="res://assets/Projectiles/Player_charged_beam_16x16.png" id="2_weadr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
-size = Vector2(6, 6)
+size = Vector2(4, 11)
 
 [sub_resource type="Animation" id="Animation_cjr2n"]
 length = 0.001
@@ -53,6 +53,7 @@ texture = ExtResource("2_weadr")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_aq4jb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

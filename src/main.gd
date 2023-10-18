@@ -18,9 +18,11 @@ signal pause_game
 signal score_changed
 signal stage_cleared
 
-var enemy1 = preload("res://scenes/enemies/battlecruiser.tscn")
 var enemy0 = preload("res://scenes/enemies/scout.tscn")
-var enemies : Array = [enemy0, enemy1]
+var enemy1 = preload("res://scenes/enemies/battlecruiser.tscn")
+var enemy2 = preload("res://scenes/enemies/fighter.tscn")
+
+var enemies : Array = [enemy0, enemy1, enemy2]
 var score = 0
 var current_game_state : game_state = game_state.ATTRACT
 var current_stage : int = 1
@@ -57,11 +59,13 @@ func spawn_stage_wave():
 	var pattern = randi() % spawn_pattern.size()
 	var num_mobs = columns / 4
 	spawn_enemies(num_mobs, pattern)
+	#print_spawned_wave(num_mobs, pattern)
+	$WaveTimer.start()
+
+func print_spawned_wave(num_mobs, pattern):
 	print("Spawned wave %d " % wave)
 	print("mobs %d" % num_mobs)
-	print("pattern %d" % pattern)
-	$WaveTimer.start()
-	
+	print("pattern %d" % pattern)	
 
 func show_stage_label():
 	stage_label.text = "STAGE %d" % current_stage
@@ -143,7 +147,7 @@ func check_for_stage_clear():
 		enemy_alive = false
 		emit_signal("stage_cleared", current_stage)
 
-func _on_stage_cleared(stage):
+func _on_stage_cleared(_stage):
 	current_stage += 1
 	wave = 0
 	show_stage_label()

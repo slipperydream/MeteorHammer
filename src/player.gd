@@ -4,6 +4,11 @@ signal died
 signal out_of_lives
 signal shield_changed
 signal gained_life
+signal item_charging
+signal item_recharged
+signal item_used
+signal weapon_changed
+signal item_changed
 
 @export var max_shield = 10
 var shield = max_shield
@@ -24,7 +29,7 @@ var num_shots : int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	start()
+	reset()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -41,22 +46,25 @@ func _process(delta):
 	position += input * speed * delta
 	position = position.clamp(Vector2(8,8), screensize - Vector2(8,8))
 	
+	
+		
+func _input(event):	
+	if event.is_action_pressed("use_item"):
+		use_item()
+		
 	if Input.is_action_pressed("shoot"):
 		shoot()
-	if $ItemCharge.is_stopped() and Input.is_action_just_pressed("use_item"):
-		use_item()
-
+		
 func reset():
 	if not visible:
 		show()
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize * 4))
 	can_shoot = true
-	#set_shield(max_shield)
 	shield = max_shield
 			
 func set_shield(value):
 	shield = min(max_shield, value)
-	shield_changed.emit(max_shield, shield)	
+	emit_signal("shield_changed",max_shield, shield)	
 	
 	# check health
 	if shield <= 0:
@@ -72,19 +80,19 @@ func shoot():
 	if can_shoot == false:
 		return
 	can_shoot = false
-	$GunCooldown.start()
+	$GunCooldown.start()	
 	for i in range(num_shots):
 		var weapon = weapon_scene.instantiate()
 		get_tree().root.add_child(weapon)
-		var angle = deg_to_rad(80 + i * 20)
+		var angle = deg_to_rad(90)
+		if num_shots % 2 == 0:
+			angle = deg_to_rad(80 + i * 20)		
 		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))
 	
-func start():
+func new_game():
 	lives = max_lives
-	reset()
 	$GunCooldown.wait_time = cooldown
-	$ItemCharge.wait_time = item_recharge_time
-	$ItemCharge.start()
+	emit_signal("weapon_changed", "beam")
 	
 func take_damage(value):
 	var new_value = max(0, shield - value)
@@ -99,16 +107,18 @@ func _on_area_entered(area):
 		set_shield(shield - (max_shield / 2))
 
 func _on_main_new_game():
-	start()
+	new_game()
 	
 func _on_main_start_game(start_lives):
 	max_lives = start_lives
-	start()
+	$ItemCharge.wait_time = item_recharge_time
+	$ItemCharge.start()
+	emit_signal("item_charging")
+	
 	
 func _on_main_stage_cleared(stage):
 	set_shield(max_shield)
 	upgrade_weapon(stage)
-	$ItemCharge.stop()
 
 func upgrade_weapon(stage):
 	match stage:
@@ -117,17 +127,21 @@ func upgrade_weapon(stage):
 		3: 
 			num_shots = 1
 			weapon_scene = load("res://scenes/weapons/bullet_level2.tscn")
+			emit_signal("weapon_changed", "charged_beam")
 		4:
 			num_shots = 2
 	
 func use_item():	
-	#var item = item_scene.instantiate()
-	#get_tree().root.add_child(item)
-	#item.execute()
-	$ItemCharge.wait_time = item_recharge_time
-	$ItemCharge.start()
-	print("using item")
+	if $ItemCharge.is_stopped():
+		var item = item_scene.instantiate()
+		get_tree().root.add_child(item)
+		item.execute(position)
+		emit_signal("item_used")
+		$ItemCharge.wait_time = item_recharge_time
+		$ItemCharge.start()
+		emit_signal("item_charging")
+	else:
+		print("waiting on item timer to recharge")
 
 func _on_item_charge_timeout():
-	print("item charged")
-	#use_item()
+	emit_signal("item_recharged")

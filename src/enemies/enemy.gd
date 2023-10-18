@@ -33,10 +33,6 @@ func _process(delta):
 func start(pos):
 	position = Vector2(pos.x, pos.y)
 	start_pos = pos
-	#await get_tree().create_timer(randf_range(0.25, 0.55)).timeout
-	#var tween = create_tween().set_trans(Tween.TRANS_BACK)
-	#tween.tween_property(self, "position:y", start_pos.y, 1.4)
-	#await tween.finished
 	$ShootTimer.wait_time = randf_range(shoot_interval_min, shoot_interval_max)
 	$ShootTimer.start()
 
@@ -72,6 +68,7 @@ func shoot():
 		print("player within sealing range")
 		return
 
+	# TODO: Move all this into individual enemies shot patterns
 	for i in range(salvo):
 		match shot_spread:
 			shot_spreads.SINGLE:

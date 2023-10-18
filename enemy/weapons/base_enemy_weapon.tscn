@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://lyew3pdke8rh"]
 
-[ext_resource type="Script" path="res://src/enemies/enemy_base_weapon.gd" id="1_7hm18"]
-[ext_resource type="Texture2D" uid="uid://b7f6tmuaqrht6" path="res://enemy/weapons/shell.png" id="2_5f3ho"]
+[ext_resource type="Script" path="res://enemy/weapons/base_enemy_weapon.gd" id="1_ytmcg"]
+[ext_resource type="Texture2D" uid="uid://b7f6tmuaqrht6" path="res://enemy/weapons/shell.png" id="2_80g21"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
 size = Vector2(7, 15)
 
 [node name="BaseEnemyWeapon" type="Area2D"]
-script = ExtResource("1_7hm18")
+script = ExtResource("1_ytmcg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("2_5f3ho")
+texture = ExtResource("2_80g21")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)

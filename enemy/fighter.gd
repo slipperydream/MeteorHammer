@@ -1,14 +1,15 @@
-extends "res://src/enemies/enemy.gd"
+extends "res://enemy/enemy.gd"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-		bullet_scene = preload("res://scenes/enemies/enemy_bullet.tscn")
+		bullet_scene = preload("res://enemy/weapons/enemy_bullet.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
+	$Sprite2D/Boosters.animation = "forward"
 
 func shoot():
 	for point in range(12):

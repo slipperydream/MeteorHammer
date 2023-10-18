@@ -17,7 +17,7 @@ func start(pos, dir):
 	direction = dir
 	
 func _on_area_entered(area):
-	if area.is_in_group("enemies"):
+	if area.is_in_group("enemy"):
 		area.take_damage(power)
 		queue_free()
 

@@ -1,41 +1,41 @@
 [gd_scene load_steps=21 format=3 uid="uid://dnd3jgl6lomdw"]
 
-[ext_resource type="Script" path="res://src/enemies/battlecruiser.gd" id="1_60pye"]
-[ext_resource type="Texture2D" uid="uid://pecpuuqwvfbs" path="res://assets/Nairan/Designs-Base/Nairan-Battlecruiser-Base.png" id="2_3u6vq"]
-[ext_resource type="Texture2D" uid="uid://dpc4j1it4lcpl" path="res://assets/Nairan/Engine_Effects/Nairan-Battlecruiser-Engine.png" id="3_hj3af"]
-[ext_resource type="Texture2D" uid="uid://crdp3l8xcymt4" path="res://assets/Nairan/Destruction/Nairan-Battlecruiser-Destruction.png" id="4_gweko"]
-[ext_resource type="Texture2D" uid="uid://dnxudwtnxyb4v" path="res://assets/Nairan/Weapons/Nairan-Battlecruiser-Weapons.png" id="5_xnwex"]
+[ext_resource type="Script" path="res://enemy/battlecruiser.gd" id="1_17m3t"]
+[ext_resource type="Texture2D" uid="uid://pecpuuqwvfbs" path="res://assets/Nairan/Designs-Base/Nairan-Battlecruiser-Base.png" id="2_w4oh3"]
+[ext_resource type="Texture2D" uid="uid://dpc4j1it4lcpl" path="res://assets/Nairan/Engine_Effects/Nairan-Battlecruiser-Engine.png" id="3_m57je"]
+[ext_resource type="Texture2D" uid="uid://crdp3l8xcymt4" path="res://assets/Nairan/Destruction/Nairan-Battlecruiser-Destruction.png" id="4_rt0xk"]
+[ext_resource type="Texture2D" uid="uid://dnxudwtnxyb4v" path="res://assets/Nairan/Weapons/Nairan-Battlecruiser-Weapons.png" id="5_qy103"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7y3kw"]
-atlas = ExtResource("3_hj3af")
+atlas = ExtResource("3_m57je")
 region = Rect2(0, 64, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7a7s"]
-atlas = ExtResource("3_hj3af")
+atlas = ExtResource("3_m57je")
 region = Rect2(128, 64, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0mlj"]
-atlas = ExtResource("3_hj3af")
+atlas = ExtResource("3_m57je")
 region = Rect2(256, 64, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhxmc"]
-atlas = ExtResource("3_hj3af")
+atlas = ExtResource("3_m57je")
 region = Rect2(384, 64, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjwn5"]
-atlas = ExtResource("3_hj3af")
+atlas = ExtResource("3_m57je")
 region = Rect2(512, 64, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ncr2"]
-atlas = ExtResource("3_hj3af")
+atlas = ExtResource("3_m57je")
 region = Rect2(640, 64, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnhxo"]
-atlas = ExtResource("3_hj3af")
+atlas = ExtResource("3_m57je")
 region = Rect2(768, 64, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k15s4"]
-atlas = ExtResource("3_hj3af")
+atlas = ExtResource("3_m57je")
 region = Rect2(896, 64, 128, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t6w3m"]
@@ -97,7 +97,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_3u6vq")]
+"values": [ExtResource("2_w4oh3")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -125,7 +125,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_gweko")]
+"values": [ExtResource("4_rt0xk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -181,7 +181,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_xnwex")]
+"values": [ExtResource("5_qy103")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -204,9 +204,10 @@ _data = {
 "shooting": SubResource("Animation_158ad")
 }
 
-[node name="Enemy" type="Area2D" groups=["enemies"]]
+[node name="Enemy" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
-script = ExtResource("1_60pye")
+script = ExtResource("1_17m3t")
+title = "Battlecruiser"
 points = 20
 hp = 5
 shoot_interval_min = 2.0
@@ -215,7 +216,7 @@ required_range = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
-texture = ExtResource("2_3u6vq")
+texture = ExtResource("2_w4oh3")
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
 position = Vector2(-1.0001, 40)

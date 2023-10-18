@@ -18,9 +18,9 @@ signal pause_game
 signal score_changed
 signal stage_cleared
 
-var enemy0 = preload("res://scenes/enemies/scout.tscn")
-var enemy1 = preload("res://scenes/enemies/battlecruiser.tscn")
-var enemy2 = preload("res://scenes/enemies/fighter.tscn")
+var enemy0 = preload("res://enemy/scout.tscn")
+var enemy1 = preload("res://enemy/battlecruiser.tscn")
+var enemy2 = preload("res://enemy/fighter.tscn")
 
 var enemies : Array = [enemy0, enemy1, enemy2]
 var score = 0
@@ -157,7 +157,7 @@ func _on_pause_button_pressed():
 	get_tree().paused = false
 
 func check_for_stage_clear():
-	if wave == (current_stage * waves_per_stage) and get_tree().get_nodes_in_group("enemies").is_empty() :
+	if wave == (current_stage * waves_per_stage) and get_tree().get_nodes_in_group("enemy").is_empty() :
 		enemy_alive = false
 		emit_signal("stage_cleared", current_stage)
 

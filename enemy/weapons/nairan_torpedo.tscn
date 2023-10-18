@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://cl3s0rygv5kop"]
 
-[ext_resource type="Script" path="res://src/enemies/enemy_base_weapon.gd" id="1_44r3l"]
-[ext_resource type="Texture2D" uid="uid://bfxsc2y2kti0n" path="res://assets/Nairan/Weapon_Effects-Projectiles/Nairan-Torpedo.png" id="2_3pdvw"]
+[ext_resource type="Script" path="res://enemy/weapons/base_enemy_weapon.gd" id="1_hm3tg"]
+[ext_resource type="Texture2D" uid="uid://bfxsc2y2kti0n" path="res://assets/Nairan/Weapon_Effects-Projectiles/Nairan-Torpedo.png" id="2_8460w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
 size = Vector2(6, 6)
 
 [node name="EnemyBullet" type="Area2D"]
-script = ExtResource("1_44r3l")
+script = ExtResource("1_hm3tg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("2_3pdvw")
+texture = ExtResource("2_8460w")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -16,7 +16,7 @@ func execute(pos):
 	self.visible = true
 	position = pos
 	$AnimationPlayer.play("explode")
-	var potential_targets = get_tree().get_nodes_in_group("enemies")
+	var potential_targets = get_tree().get_nodes_in_group("enemy")
 	for tgt in potential_targets:
 		var tgt_pos = tgt.position
 		var dis = tgt_pos.distance_to(position) 

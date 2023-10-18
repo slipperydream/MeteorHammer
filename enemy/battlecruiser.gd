@@ -1,9 +1,9 @@
-extends "res://src/enemies/enemy.gd"
+extends "res://enemy/enemy.gd"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bullet_scene = preload("res://scenes/enemies/enemy_beam.tscn")
+	bullet_scene = preload("res://enemy/weapons/enemy_beam.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

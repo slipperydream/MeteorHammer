@@ -10,6 +10,7 @@ size = Vector2(6, 6)
 script = ExtResource("1_44r3l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("2_3pdvw")
 hframes = 3
 

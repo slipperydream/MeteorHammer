@@ -29,13 +29,14 @@ var current_stage : int = 1
 var enemy_alive = false
 var wave : int = 0
 var scoring_chain_active : bool = false
-var scoring_multiplier : float = 1.0
+var scoring_multiplier : int = 1
+
 @export var columns : int = 9
 @export var rows : int = 3
 @export var start_lives = 3
 @export var waves_per_stage : int = 3
-@export var scoring_timer : int = 15
-@export var max_scoring_multiplier : float = 30
+@export var scoring_timer : int = 5
+@export var max_scoring_multiplier : int = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -124,8 +125,9 @@ func spawn_boss():
 	
 func _on_enemy_died(value):
 	if scoring_chain_active:
-		scoring_multiplier *= 1.5
-		scoring_multiplier = max(scoring_multiplier, max_scoring_multiplier)
+		scoring_multiplier += 1
+		if scoring_multiplier > max_scoring_multiplier:
+			scoring_multiplier = max_scoring_multiplier;
 	else:
 		scoring_multiplier = 1
 		$ScoringTimer.wait_time = scoring_timer

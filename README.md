@@ -50,3 +50,4 @@ TODOs (not in priority order yet)
 
 - add focused shot for player with holding down the button
 
+- Add UI indication of scoring chain: either timer or "x Multiplier" UI element?

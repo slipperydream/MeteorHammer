@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjsxyohvmi47w"]
 
 [ext_resource type="Script" path="res://src/enemies/enemy_bullet.gd" id="1_l6m28"]
-[ext_resource type="Texture2D" uid="uid://cskdr75uwbe2c" path="res://assets/Projectiles/Player_charged_beam_16x16.png" id="2_weadr"]
+[ext_resource type="Texture2D" uid="uid://bj6i6kldn7qc1" path="res://player/weapons/charged_beam_red_16x16.png" id="2_bd5ud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
 size = Vector2(4, 11)
@@ -48,8 +48,9 @@ _data = {
 script = ExtResource("1_l6m28")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 rotation = 3.14159
-texture = ExtResource("2_weadr")
+texture = ExtResource("2_bd5ud")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

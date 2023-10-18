@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cravdd1vvhaa4"]
 
 [ext_resource type="Script" path="res://src/enemies/enemy_bullet.gd" id="1_rpmdv"]
-[ext_resource type="Texture2D" uid="uid://b7f6tmuaqrht6" path="res://assets/Projectiles/shell.png" id="2_bksoh"]
+[ext_resource type="Texture2D" uid="uid://b7f6tmuaqrht6" path="res://enemy/weapons/shell.png" id="2_wehqj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
 size = Vector2(7, 14)
@@ -48,8 +48,9 @@ _data = {
 script = ExtResource("1_rpmdv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 rotation = 3.14159
-texture = ExtResource("2_bksoh")
+texture = ExtResource("2_wehqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -1)

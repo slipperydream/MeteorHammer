@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://fbftoe7f7ca3"]
+[gd_scene load_steps=5 format=3 uid="uid://fbftoe7f7ca3"]
 
 [ext_resource type="Script" path="res://player/items/base_item.gd" id="1_fw5r8"]
+[ext_resource type="AudioStream" uid="uid://i6ekra65r3fc" path="res://sound/sfx/Power ups and power downs/Power_up_7.wav" id="2_awut5"]
 [ext_resource type="Texture2D" uid="uid://bi17dts8p4npd" path="res://player/items/item.png" id="2_hx728"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
@@ -8,6 +9,7 @@ size = Vector2(25, 9)
 
 [node name="item" type="Area2D"]
 script = ExtResource("1_fw5r8")
+activation_sound = ExtResource("2_awut5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cob7rnhv2vc6s"]
+[gd_scene load_steps=20 format=3 uid="uid://cob7rnhv2vc6s"]
 
 [ext_resource type="Script" path="res://enemy/scout.gd" id="1_fqucx"]
 [ext_resource type="Texture2D" uid="uid://bb280gh637ydk" path="res://assets/Nairan/Designs-Base/Nairan-Scout-Base.png" id="2_eiou3"]
+[ext_resource type="AudioStream" uid="uid://c7hns1ax26mv1" path="res://sound/sfx/Explosions/Explosion_9.wav" id="2_tqpup"]
 [ext_resource type="Texture2D" uid="uid://ct6e2mc24ibyc" path="res://assets/Nairan/Engine_Effects/Nairan-Scout-Engine.png" id="3_02wae"]
 [ext_resource type="Texture2D" uid="uid://5vlt1446l88d" path="res://assets/Nairan/Destruction/Nairan-Scout-Destruction.png" id="6_nhwdl"]
 
@@ -74,6 +75,42 @@ size = Vector2(24, 21)
 
 [sub_resource type="Animation" id="Animation_4pyvs"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_eiou3")]
+}
 
 [sub_resource type="Animation" id="Animation_oa838"]
 resource_name = "explode"
@@ -140,26 +177,27 @@ _data = {
 
 [node name="Enemy" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
+audio_bus_name = &"SFX"
 script = ExtResource("1_fqucx")
 title = "Scout"
+explosion_sound = ExtResource("2_tqpup")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
 texture = ExtResource("2_eiou3")
-frame = 2
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
 position = Vector2(1.31134e-06, 15)
 sprite_frames = SubResource("SpriteFrames_kw4s0")
 animation = &"forward"
-frame_progress = 0.284986
+frame_progress = 0.7755
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_n0ywb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "bounce"
+autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }

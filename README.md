@@ -12,10 +12,10 @@ TODOs (not in priority order yet)
     - add in spawn pattern following 5-7 lanes with alternating sides of the screen
         - move the other spawn patterns to a randomizer spawn node
 - Remove enemy warp back to start
-- Add sound effects
 - Figure out how to play more than one song
 - make pickup system
 - make different items and weapons as pickups
+  - slashing effect, super cannon shot, screen wide weak bullets, meteor hammer (meteor crashing down in front of player)
 
 - add environmental hazards like asteroids
 
@@ -51,3 +51,12 @@ TODOs (not in priority order yet)
 - add focused shot for player with holding down the button
 
 - Add UI indication of scoring chain: either timer or "x Multiplier" UI element?
+
+- look into sound pools for sound effects
+- look into object pools for spawning enemies and bullets
+
+- Possibly replace player weaposn with firing modes that can be unlocked throughout play
+ - options Stack, Spread, Tailfan, 
+
+ - possibly add drones that fly around the player that do damage:
+    - firing modes: spread, tail, front, ring, rolling (always forward firing, but rotate around player)

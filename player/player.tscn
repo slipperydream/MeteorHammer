@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=17 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/bullet.tscn" id="2_75g50"]
 [ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://player/items/bomb.tscn" id="3_0duad"]
 [ext_resource type="Texture2D" uid="uid://c35hw3gw3gswt" path="res://player/ships/Player_ship_16x16.png" id="4_gx51a"]
+[ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
 [ext_resource type="Texture2D" uid="uid://b6aobhf1c1n66" path="res://player/ships/Boosters_16x16.png" id="5_kpxme"]
 [ext_resource type="Texture2D" uid="uid://c1nor1bdhnkqq" path="res://player/ships/Boosters_left_16x16.png" id="6_af20e"]
 [ext_resource type="Texture2D" uid="uid://cex32e7o8g7xe" path="res://player/ships/Boosters_right_16x16.png" id="7_phs4y"]
@@ -75,6 +76,7 @@ size = Vector2(16, 14)
 script = ExtResource("1_ks4n4")
 weapon_scene = ExtResource("2_75g50")
 item_scene = ExtResource("3_0duad")
+explosion_sound = ExtResource("4_pug3w")
 
 [node name="Ship" type="Sprite2D" parent="."]
 texture = ExtResource("4_gx51a")

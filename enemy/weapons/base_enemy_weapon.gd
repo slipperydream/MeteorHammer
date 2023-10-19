@@ -1,8 +1,10 @@
 extends Area2D
 
+@export var title : String = 'enemy weapon'
 @export var speed : int = 150
 @export var direction : Vector2 = Vector2(0, 1)
 @export var power : int = 1
+@export var firing_sound : AudioStreamWAV
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,5 +23,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func start(pos, dir):
+	AudioStreamManager.play(firing_sound.resource_path, true)
 	position = pos
 	direction = dir

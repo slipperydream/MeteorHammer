@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://dnd3jgl6lomdw"]
+[gd_scene load_steps=22 format=3 uid="uid://dnd3jgl6lomdw"]
 
 [ext_resource type="Script" path="res://enemy/battlecruiser.gd" id="1_17m3t"]
+[ext_resource type="AudioStream" uid="uid://b4txmwe7jncxj" path="res://sound/sfx/Explosions/Explosion_5.wav" id="2_hynhf"]
 [ext_resource type="Texture2D" uid="uid://pecpuuqwvfbs" path="res://assets/Nairan/Designs-Base/Nairan-Battlecruiser-Base.png" id="2_w4oh3"]
 [ext_resource type="Texture2D" uid="uid://dpc4j1it4lcpl" path="res://assets/Nairan/Engine_Effects/Nairan-Battlecruiser-Engine.png" id="3_m57je"]
 [ext_resource type="Texture2D" uid="uid://crdp3l8xcymt4" path="res://assets/Nairan/Destruction/Nairan-Battlecruiser-Destruction.png" id="4_rt0xk"]
@@ -111,6 +112,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_oa838"]
 resource_name = "explode"
@@ -206,6 +219,8 @@ _data = {
 
 [node name="Enemy" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
+audio_bus_override = true
+audio_bus_name = &"SFX"
 script = ExtResource("1_17m3t")
 title = "Battlecruiser"
 points = 20
@@ -213,10 +228,12 @@ hp = 5
 shoot_interval_min = 2.0
 shot_spread = 6
 required_range = 100
+explosion_sound = ExtResource("2_hynhf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
 texture = ExtResource("2_w4oh3")
+frame = 14
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
 position = Vector2(-1.0001, 40)
@@ -229,6 +246,7 @@ position = Vector2(-0.5, 6)
 shape = SubResource("RectangleShape2D_n0ywb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }

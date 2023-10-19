@@ -24,6 +24,7 @@ var lives = max_lives
 var can_shoot : bool = true
 var num_shots : int = 1
 
+@export var explosion_sound : AudioStreamWAV
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var shipsize : int = $Ship.texture.get_height()
 
@@ -72,6 +73,7 @@ func set_shield(value):
 		hide()
 		if lives > 0:
 			died.emit()
+			AudioStreamManager.play(explosion_sound.resource_path)
 			reset()			
 		else:
 			out_of_lives.emit()
@@ -88,7 +90,8 @@ func shoot():
 		if num_shots % 2 == 0:
 			angle = deg_to_rad(80 + i * 20)		
 		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))
-	
+		
+		
 func new_game():
 	lives = max_lives
 	$GunCooldown.wait_time = cooldown

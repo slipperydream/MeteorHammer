@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=10 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_7hmxl"]
 [ext_resource type="Texture2D" uid="uid://cay0tw78thr7e" path="res://assets/Space_BG_2_frames_64x64.png" id="2_sbl10"]
 [ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://player/player.tscn" id="2_ub1gs"]
 [ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://scenes/ui.tscn" id="4_fde2l"]
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://assets/UI_objects/PixelMechaBold.ttf" id="5_adj04"]
-[ext_resource type="AudioStream" uid="uid://dh2abwcnep3qh" path="res://music/Wave_After_Wave.mp3" id="6_eyvax"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -119,11 +118,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_aip00")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_aip00")
 text = "PAUSED"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_eyvax")
-autoplay = true
-bus = &"Music"
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0

@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://csxyutdsan0d7"]
+[gd_scene load_steps=5 format=3 uid="uid://csxyutdsan0d7"]
 
 [ext_resource type="Script" path="res://player/weapons/bullet.gd" id="1_t5fo0"]
+[ext_resource type="AudioStream" uid="uid://df6fckelch2n" path="res://sound/sfx/lasers/Laser_3.wav" id="2_1tayu"]
 [ext_resource type="Texture2D" uid="uid://dta1re6e5vxm6" path="res://player/weapons/beam_magenta_16x16.png" id="2_4ohic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
 size = Vector2(10, 10)
 
-[node name="Bullet" type="Area2D"]
+[node name="Weapon" type="Area2D"]
 script = ExtResource("1_t5fo0")
+title = "Bullet"
+firing_sound = ExtResource("2_1tayu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

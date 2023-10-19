@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://6t7gq1rbqydp"]
+
+[ext_resource type="Script" path="res://enemy/weapons/enemy_bolt.gd" id="1_w23no"]
+[ext_resource type="AudioStream" uid="uid://xrq7t11ehqsh" path="res://sound/sfx/lasers/Laser-weapon7.wav" id="2_er6pn"]
+[ext_resource type="Texture2D" uid="uid://b553pg5p6ovli" path="res://assets/Nairan/Weapon_Effects-Projectiles/Nairan-Bolt.png" id="2_mnsob"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
+size = Vector2(6, 8)
+
+[sub_resource type="Animation" id="Animation_x4hx1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_18lte"]
+resource_name = "flying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7h7y"]
+_data = {
+"RESET": SubResource("Animation_x4hx1"),
+"flying": SubResource("Animation_18lte")
+}
+
+[node name="EnemyWeapon" type="Area2D"]
+z_index = 1
+rotation = 3.14159
+audio_bus_name = &"SFX"
+script = ExtResource("1_w23no")
+title = "enemy bolt"
+speed = null
+direction = null
+power = null
+firing_sound = ExtResource("2_er6pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mnsob")
+hframes = 5
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.19209e-07, -1)
+shape = SubResource("RectangleShape2D_aq4jb")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "flying"
+libraries = {
+"": SubResource("AnimationLibrary_k7h7y")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

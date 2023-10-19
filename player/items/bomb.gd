@@ -13,6 +13,7 @@ func _process(delta):
 	pass
 
 func execute(pos):
+	super.execute(pos)
 	self.visible = true
 	position = pos
 	$AnimationPlayer.play("explode")

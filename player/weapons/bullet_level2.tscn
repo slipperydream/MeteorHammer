@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct5sbk7rufup4"]
+[gd_scene load_steps=5 format=3 uid="uid://ct5sbk7rufup4"]
 
-[ext_resource type="Script" path="res://player/weapons/bullet.gd" id="1_c452v"]
+[ext_resource type="Script" path="res://player/weapons/bullet_level2.gd" id="1_1lrks"]
 [ext_resource type="Texture2D" uid="uid://b3o5osckn0wh7" path="res://player/weapons/charged_beam_yellow_16x16.png" id="2_h7oj3"]
+[ext_resource type="AudioStream" uid="uid://bj14q457xum58" path="res://sound/sfx/lasers/Laser_4.wav" id="2_oqp6j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
 size = Vector2(10, 9)
 
-[node name="Bullet" type="Area2D"]
-script = ExtResource("1_c452v")
+[node name="Weapon" type="Area2D"]
+script = ExtResource("1_1lrks")
+title = "Bullet Level 2"
 power = 2
+firing_sound = ExtResource("2_oqp6j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_h7oj3")

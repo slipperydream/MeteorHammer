@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://h5y8ei0n8e6c"
+path="res://.godot/imported/Scifi waves_fast.wav-dbbb8b5af4bcb700770883dfe66e6492.sample"
+
+[deps]
+
+source_file="res://sound/sfx/Scifi/Scifi waves_fast.wav"
+dest_files=["res://.godot/imported/Scifi waves_fast.wav-dbbb8b5af4bcb700770883dfe66e6492.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

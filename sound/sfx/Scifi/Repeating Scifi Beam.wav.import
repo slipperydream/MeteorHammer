@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bhffs1ggu81hb"
+path="res://.godot/imported/Repeating Scifi Beam.wav-ae9fc6cb9ee9fd382c4a7ca93193e9b8.sample"
+
+[deps]
+
+source_file="res://sound/sfx/Scifi/Repeating Scifi Beam.wav"
+dest_files=["res://.godot/imported/Repeating Scifi Beam.wav-ae9fc6cb9ee9fd382c4a7ca93193e9b8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

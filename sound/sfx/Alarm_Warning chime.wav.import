@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bo4frrneun1vj"
+path="res://.godot/imported/Alarm_Warning chime.wav-fc070c59325e8121f984313a2f4c52e5.sample"
+
+[deps]
+
+source_file="res://sound/sfx/Alarm_Warning chime.wav"
+dest_files=["res://.godot/imported/Alarm_Warning chime.wav-fc070c59325e8121f984313a2f4c52e5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

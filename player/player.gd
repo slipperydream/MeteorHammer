@@ -54,8 +54,6 @@ func _input(event):
 	if event.is_action_pressed("use_item"):
 		use_item()
 		
-
-		
 func reset():
 	if not visible:
 		show()
@@ -88,7 +86,7 @@ func shoot():
 		get_tree().root.add_child(weapon)
 		var angle = deg_to_rad(90)
 		if num_shots % 3 == 0:
-			angle = deg_to_rad(80 + i * 10)		
+			angle = deg_to_rad(70 + i * 20)		
 		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))
 		
 		
@@ -110,9 +108,10 @@ func _on_area_entered(area):
 		set_shield(shield - (max_shield / 2))
 
 func _on_main_new_game():
+	self.visible = true
 	new_game()
 	
-func _on_main_start_game(start_lives):
+func _on_main_start_game(start_lives, stage):
 	max_lives = start_lives
 	$ItemCharge.wait_time = item_recharge_time
 	$ItemCharge.start()

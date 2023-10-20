@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 
 @onready var score_counter = $TopBarLeft/ScoreLabel
 @onready var lives_counter = $BottomBar/PlayerLivesLabel
@@ -7,10 +7,10 @@ extends MarginContainer
 
 var num_lives = 0
 var weapon : String = 'Beam'
-var item : String = ''
+var item : String = 'Bomb'
 
 func _ready():
-	pass
+	$BossLabel.visible = false
 	
 func _on_main_score_changed(score):
 	update_score(score)
@@ -33,7 +33,9 @@ func _on_player_gained_life():
 func _on_player_out_of_lives():
 	update_lives(0)
 	
-func _on_main_start_game(lives):
+func _on_main_start_game(lives, stage):
+	$TopBarLeft.show()
+	$BottomBar.show()
 	update_lives(lives)
 
 func _on_player_item_recharged():
@@ -52,3 +54,6 @@ func _on_player_weapon_changed(new_weapon):
 
 func _on_player_item_charging():
 	$AnimationPlayer.play("item_charging")
+
+func _on_enemy_spawner_boss_spawned():
+	$AnimationPlayer.play("boss_warning")

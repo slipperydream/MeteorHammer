@@ -74,6 +74,8 @@ size = Vector2(16, 14)
 
 [node name="Player" type="Area2D" groups=["player"]]
 script = ExtResource("1_ks4n4")
+max_shield = 1
+max_lives = 1
 weapon_scene = ExtResource("2_75g50")
 item_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")

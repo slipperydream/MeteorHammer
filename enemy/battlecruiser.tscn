@@ -217,7 +217,7 @@ _data = {
 "shooting": SubResource("Animation_158ad")
 }
 
-[node name="Enemy" type="Area2D" groups=["enemy"]]
+[node name="Enemy" type="Area2D" groups=["boss", "enemy"]]
 position = Vector2(0, -50)
 audio_bus_override = true
 audio_bus_name = &"SFX"
@@ -226,14 +226,13 @@ title = "Battlecruiser"
 points = 20
 hp = 5
 shoot_interval_min = 2.0
-shot_spread = 6
 required_range = 100
 explosion_sound = ExtResource("2_hynhf")
+is_boss = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
 texture = ExtResource("2_w4oh3")
-frame = 14
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
 position = Vector2(-1.0001, 40)

@@ -18,8 +18,7 @@ var boss_spawned = false
 var scoring_chain_active : bool = false
 var scoring_multiplier : int = 1
 
-@export var columns : int = 9
-@export var rows : int = 3
+
 @export var start_lives = 3
 @export var scoring_timer : int = 5
 @export var max_scoring_multiplier : int = 30
@@ -103,7 +102,8 @@ func _on_scoring_timer_timeout():
 
 func _on_boss_spawned():
 	boss_spawned = true
-
+	$Background.set_speed(0)
+	
 func _on_center_container_game_unpaused():
 	current_game_state = game_state.RUNNING
 	get_tree().paused = false

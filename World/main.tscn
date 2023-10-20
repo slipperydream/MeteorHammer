@@ -1,42 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=10 format=3 uid="uid://ds1srgc15xh70"]
 
-[ext_resource type="Script" path="res://src/main.gd" id="1_7hmxl"]
-[ext_resource type="Texture2D" uid="uid://cay0tw78thr7e" path="res://assets/Space_BG_2_frames_64x64.png" id="2_sbl10"]
-[ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://player/player.tscn" id="2_ub1gs"]
-[ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://ui/ui.tscn" id="4_v0yfy"]
-[ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="9_qqs2x"]
+[ext_resource type="Script" path="res://World/main.gd" id="1_40pi7"]
+[ext_resource type="Script" path="res://World/Background.gd" id="2_egrtt"]
+[ext_resource type="Texture2D" uid="uid://c1qqmndqpuirq" path="res://assets/space_300x800.png" id="3_8ylvn"]
+[ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://player/player.tscn" id="4_kjngg"]
+[ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://ui/ui.tscn" id="5_r43jo"]
+[ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="6_5jg3u"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 240, 320)]
-}
 
 [sub_resource type="Animation" id="Animation_h81m7"]
 resource_name = "scroll"
 length = 2.0
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Rect2(0, 0, 300, 400), Rect2(0, -64, 300, 400)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gky1u"]
 _data = {
@@ -45,17 +22,22 @@ _data = {
 }
 
 [node name="Main" type="Node2D" groups=["main"]]
-script = ExtResource("1_7hmxl")
+script = ExtResource("1_40pi7")
 start_lives = 5
 
-[node name="Background" type="Sprite2D" parent="."]
-texture_repeat = 2
-texture = ExtResource("2_sbl10")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 240, 320)
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource("2_egrtt")
+speed = 30.0
 
-[node name="Player" parent="." instance=ExtResource("2_ub1gs")]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(2.08165e-12, 800)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(2.08165e-12, -400)
+texture = ExtResource("3_8ylvn")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("4_kjngg")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "scroll"
@@ -65,9 +47,9 @@ libraries = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource("4_v0yfy")]
+[node name="UI" parent="CanvasLayer" instance=ExtResource("5_r43jo")]
 
-[node name="CenterContainer" parent="CanvasLayer" instance=ExtResource("9_qqs2x")]
+[node name="CenterContainer" parent="CanvasLayer" instance=ExtResource("6_5jg3u")]
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0

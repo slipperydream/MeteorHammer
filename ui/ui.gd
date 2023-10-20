@@ -11,6 +11,9 @@ var item : String = 'Bomb'
 
 func _ready():
 	$BossLabel.visible = false
+
+func _process(delta):
+	pass
 	
 func update_score(value):
 	var s = "%08d" % value
@@ -24,17 +27,17 @@ func update_lives(value):
 func _on_main_score_changed(score):
 	update_score(score)
 	
-	
 func _on_player_died():
-	update_lives(-1)
+	update_lives(-1)	
 
 func _on_player_gained_life():
 	update_lives(1)
-
+	
 func _on_player_out_of_lives():
 	update_lives(0)
+	$Stopwatch.reset()
 	
-func _on_main_start_game(lives, _level):
+func _on_main_start_game(lives, _stage):
 	$TopBarLeft.show()
 	$BottomBar.show()
 	update_lives(lives)
@@ -58,3 +61,17 @@ func _on_player_item_charging():
 
 func _on_boss_spawned():
 	$AnimationPlayer.play("boss_warning")
+
+func _on_main_stage_cleared():
+	$Stopwatch.stop()
+	var time_spent = $Stopwatch.time_elapsed
+
+func _on_main_new_stage(_stage):
+	$Stopwatch.reset()
+	$Stopwatch.start()
+
+func _on_main_pause_game():
+	$Stopwatch.pause(true)
+
+func _on_center_container_game_unpaused():
+	$Stopwatch.pause(false)

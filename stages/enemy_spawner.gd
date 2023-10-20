@@ -9,10 +9,9 @@ extends Node2D
 @onready var screensize : Vector2 = get_viewport_rect().size
 @export var time = 0
 
-var last_lane : int = 1
 var gutter_size : int = 30
 @export var num_lanes : int = 5
-var pos_y = 5
+var pos_y = -10
 var spawn_count : int = 0
 var total_enemies : int = 0
 var all_spawned : bool = false
@@ -41,42 +40,33 @@ func _on_timer_timeout():
 				var counter = 0
 				while counter < i.enemy_num:
 					var enemy_spawn = new_enemy.instantiate()
-					if enemy_spawn.is_boss:
-						enemy_spawn.global_position = get_spawn_position(true)
-						
-						emit_signal("boss_spawned")
-					else:
-						enemy_spawn.global_position = get_spawn_position()
+					enemy_spawn.global_position = get_spawn_position(i.lane)
 					add_child(enemy_spawn)
 					enemy_spawn.start(enemy_spawn.global_position)
 					counter += 1
 					enemy_spawn.died.connect(main._on_enemy_died)
 					spawn_count += 1
-					
+					if enemy_spawn.is_boss:						
+						emit_signal("boss_spawned")
 				i.spawned = true
 		if spawn_count >= total_enemies:
 			all_spawned = true
 	else:
 		$Timer.stop()
 			
-func get_spawn_position(is_boss : bool = false):
-	
-	if is_boss:
-		return Vector2 (screensize.x/2, pos_y)
-		
+func get_spawn_position(lane):
+	if lane > 5 or lane < 0:
+		lane = randi_range(0,5)
 	var lane_size = (screensize.x - (2 * gutter_size)) / num_lanes
 	
-	if last_lane >= num_lanes:
-		last_lane = 1
-	var pos_x = last_lane * lane_size + gutter_size
-	last_lane +=1 
+	var pos_x = lane * lane_size + gutter_size
 	return Vector2(pos_x, pos_y)
 
-func _on_main_start_game(_start_lives, _current_level):
+func _on_main_start_game(_start_lives, _current_stage):
 	start()
 
 func _on_main_game_over():
 	queue_free()
 	
-func _on_main_new_level():
+func _on_main_new_stage():
 	start()

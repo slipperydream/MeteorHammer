@@ -16,6 +16,7 @@ var shield = max_shield
 @export var max_lives = 3
 var lives = max_lives
 
+@export var sensitivity : float = 2.0
 @export var speed : int = 150
 @export var cooldown : float = 0.25
 @export var item_recharge_time : float = 5.0
@@ -31,10 +32,12 @@ var num_shots : int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset()
+	sensitivity = max(0.5, sensitivity)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	input /= sensitivity
 	if input.x > 0:
 		$Ship.frame = 2
 		$Ship/Boosters.animation = "right"
@@ -100,8 +103,8 @@ func take_damage(value):
 	var new_value = max(0, shield - value)
 	set_shield(new_value)
 
-func upgrade_weapon(level):
-	match level:
+func upgrade_weapon(stage):
+	match stage:
 		1:
 			num_shots = 3
 		2: 
@@ -134,15 +137,15 @@ func _on_area_entered(area):
 func _on_main_new_game():
 	new_game()
 		
-func _on_main_start_game(start_lives, level):
+func _on_main_start_game(start_lives, _stage):
 	max_lives = start_lives
 	$ItemCharge.wait_time = item_recharge_time
 	$ItemCharge.start()
 	emit_signal("item_charging")
 		
-func _on_main_level_cleared(level):
+func _on_main_stage_cleared(stage):
 	set_shield(max_shield)
-	upgrade_weapon(level)
+	upgrade_weapon(stage)
 
 func _on_item_charge_timeout():
 	emit_signal("item_recharged")

@@ -113,10 +113,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_158ad"]
-resource_name = "shooting"
-length = 1.8
-
 [sub_resource type="Animation" id="Animation_fvprm"]
 resource_name = "idle"
 loop_mode = 1
@@ -156,6 +152,10 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 0]
 }
+
+[sub_resource type="Animation" id="Animation_158ad"]
+resource_name = "shooting"
+length = 1.8
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h123k"]
 _data = {

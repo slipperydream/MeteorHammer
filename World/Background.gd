@@ -17,5 +17,5 @@ func resume():
 	speed = saved_speed
 	print(speed)
 
-func _on_main_level_cleared(_level):
+func _on_main_stage_cleared(_stage):
 	resume()

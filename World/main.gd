@@ -9,12 +9,12 @@ signal start_game
 signal game_over
 signal pause_game
 signal score_changed
-signal level_cleared
-signal new_level
+signal stage_cleared
+signal new_stage
 
 var score = 0
 var current_game_state : game_state = game_state.ATTRACT
-var current_level : int = 0
+var current_stage : int = 0
 var boss_spawned = false
 var scoring_chain_active : bool = false
 var scoring_multiplier : int = 1
@@ -23,7 +23,7 @@ var scoring_multiplier : int = 1
 @export var start_lives = 3
 @export var scoring_timer : int = 5
 @export var max_scoring_multiplier : int = 30
-var levels : Array = ["res://levels/Level_1.tscn", "res://levels/Level_2.tscn"]
+var stages : Array = ["res://stages/Stage_1.tscn", "res://stages/Stage_2.tscn"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,30 +33,30 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if current_game_state == game_state.RUNNING and boss_spawned:
-		check_for_level_clear()
+		check_for_stage_clear()
 
 func begin_game():
 	score = 0
 	emit_signal("score_changed", score)
-	current_level = 0
-	emit_signal("start_game", start_lives, current_level)
+	current_stage = 0
+	emit_signal("start_game", start_lives, current_stage)
 	current_game_state = game_state.RUNNING
-	load_level(current_level)
+	load_stage(current_stage)
 
-func check_for_level_clear():
+func check_for_stage_clear():
 	if get_tree().get_nodes_in_group("boss").is_empty():
 		boss_spawned = false
-		emit_signal("level_cleared", current_level)
+		emit_signal("stage_cleared", current_stage)
 		
-func load_level(num):
-	var last_level = get_tree().get_first_node_in_group("level")
-	if last_level:
-		last_level.queue_free()
-	var level = load(levels[num])
-	var level_instance = level.instantiate()
-	add_child(level_instance)
-	level_instance.start()
-	emit_signal("new_level", num)
+func load_stage(num):
+	var last_stage = get_tree().get_first_node_in_group("stage")
+	if last_stage:
+		last_stage.queue_free()
+	var stage = load(stages[num])
+	var stage_instance = stage.instantiate()
+	add_child(stage_instance)
+	stage_instance.start()
+	emit_signal("new_stage", num)
 	
 func _input(event):
 	if Input.is_action_just_pressed("pause_game"):
@@ -86,18 +86,19 @@ func _on_player_out_of_lives():
 	current_game_state = game_state.GAME_OVER
 	emit_signal("game_over")
 
-func _on_level_cleared(_level):
-	if current_level < levels.size():
-		current_level += 1
-		load_level(current_level)
-	else:
+func _on_stage_cleared(_stage):
+	if current_stage + 1 >= stages.size():
 		print("You beat the game")
+		emit_signal("game_over")
+	else:
+		current_stage += 1
+		load_stage(current_stage)
 
 func _on_pause_game():
 	get_tree().paused = true
 
 func _on_game_over():
-	get_tree().call_group("levels", "queue_free")
+	get_tree().call_group("stages", "queue_free")
 	await get_tree().create_timer(2).timeout
 	current_game_state = game_state.NEW_GAME
 	emit_signal("new_game")

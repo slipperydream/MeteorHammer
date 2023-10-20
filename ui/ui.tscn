@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://du6kybeyrcmf2"]
+[gd_scene load_steps=12 format=3 uid="uid://du6kybeyrcmf2"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_ieqr5"]
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="2_85hi6"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://ui/stopwatch.tscn" id="3_0adte"]
 [ext_resource type="Texture2D" uid="uid://c51x11uc8hxhg" path="res://ui/Player_life_icon_16x16.png" id="3_mcobu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8lrl"]
@@ -278,3 +279,14 @@ vertical_alignment = 2
 libraries = {
 "": SubResource("AnimationLibrary_32n0a")
 }
+
+[node name="Stopwatch" parent="." instance=ExtResource("3_0adte")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -66.0
+offset_top = 30.0
+offset_right = 0.0
+offset_bottom = 56.0
+grow_horizontal = 0

@@ -6,6 +6,6 @@ class_name Spawn_info
 var spawned : bool = false
 @export var enemy : Resource
 @export var enemy_num : int
-@export var enemy_spawn_delay : int
+@export var lane : int
 
 var spawn_delay_counter = 0

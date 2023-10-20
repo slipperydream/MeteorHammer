@@ -45,6 +45,7 @@ func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)
 	$AnimationPlayer.play("explode")
 	emit_signal("died", points)
+	get_tree().call_group("enemy_weapon", "queue_free")
 	await $AnimationPlayer.animation_finished
 	remove()
 

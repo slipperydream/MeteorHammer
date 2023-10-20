@@ -217,7 +217,7 @@ _data = {
 "shooting": SubResource("Animation_158ad")
 }
 
-[node name="Enemy" type="Area2D" groups=["boss", "enemy"]]
+[node name="Enemy" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
 audio_bus_override = true
 audio_bus_name = &"SFX"

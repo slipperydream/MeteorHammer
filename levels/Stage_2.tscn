@@ -1,0 +1,59 @@
+[gd_scene load_steps=13 format=3 uid="uid://n4wr7hkiskex"]
+
+[ext_resource type="Script" path="res://levels/enemy_spawner.gd" id="1_itrr3"]
+[ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="2_ipmrl"]
+[ext_resource type="Script" path="res://levels/spawn_info.gd" id="3_qsqur"]
+[ext_resource type="PackedScene" uid="uid://iv1q1152twqe" path="res://enemy/fighter.tscn" id="4_h35kf"]
+[ext_resource type="PackedScene" uid="uid://dnd3jgl6lomdw" path="res://enemy/battlecruiser.tscn" id="5_h0inl"]
+[ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://enemy/circle_boss.tscn" id="6_mu3vw"]
+
+[sub_resource type="Resource" id="Resource_hesv0"]
+script = ExtResource("3_qsqur")
+spawn_time = 0
+enemy = ExtResource("2_ipmrl")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_wr1t3"]
+script = ExtResource("3_qsqur")
+spawn_time = 5
+enemy = ExtResource("4_h35kf")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_jfsjj"]
+script = ExtResource("3_qsqur")
+spawn_time = 5
+enemy = ExtResource("2_ipmrl")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_1c82x"]
+script = ExtResource("3_qsqur")
+spawn_time = 10
+enemy = ExtResource("5_h0inl")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_la3la"]
+script = ExtResource("3_qsqur")
+spawn_time = 10
+enemy = ExtResource("4_h35kf")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_d5fc2"]
+script = ExtResource("3_qsqur")
+spawn_time = 20
+enemy = ExtResource("6_mu3vw")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[node name="EnemySpawner" type="Area2D" groups=["stage"]]
+script = ExtResource("1_itrr3")
+title = "Escape from Base"
+spawns = Array[ExtResource("3_qsqur")]([SubResource("Resource_hesv0"), SubResource("Resource_wr1t3"), SubResource("Resource_jfsjj"), SubResource("Resource_1c82x"), SubResource("Resource_la3la"), SubResource("Resource_d5fc2")])
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=13 format=3 uid="uid://8bwqwxoxjr48"]
+
+[ext_resource type="Script" path="res://levels/enemy_spawner.gd" id="1_o3ymc"]
+[ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="2_dvy3i"]
+[ext_resource type="Script" path="res://levels/spawn_info.gd" id="3_6apjw"]
+[ext_resource type="PackedScene" uid="uid://iv1q1152twqe" path="res://enemy/fighter.tscn" id="4_wyhfq"]
+[ext_resource type="PackedScene" uid="uid://dnd3jgl6lomdw" path="res://enemy/battlecruiser.tscn" id="5_m11ip"]
+[ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://enemy/circle_boss.tscn" id="6_45dwb"]
+
+[sub_resource type="Resource" id="Resource_hesv0"]
+script = ExtResource("3_6apjw")
+spawn_time = 0
+enemy = ExtResource("2_dvy3i")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_wr1t3"]
+script = ExtResource("3_6apjw")
+spawn_time = 5
+enemy = ExtResource("4_wyhfq")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_jfsjj"]
+script = ExtResource("3_6apjw")
+spawn_time = 5
+enemy = ExtResource("2_dvy3i")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_1c82x"]
+script = ExtResource("3_6apjw")
+spawn_time = 10
+enemy = ExtResource("5_m11ip")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_la3la"]
+script = ExtResource("3_6apjw")
+spawn_time = 10
+enemy = ExtResource("4_wyhfq")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_d5fc2"]
+script = ExtResource("3_6apjw")
+spawn_time = 20
+enemy = ExtResource("6_45dwb")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[node name="EnemySpawner" type="Area2D" groups=["stage"]]
+script = ExtResource("1_o3ymc")
+title = "Attack on Yz"
+spawns = Array[ExtResource("3_6apjw")]([SubResource("Resource_hesv0"), SubResource("Resource_wr1t3"), SubResource("Resource_jfsjj"), SubResource("Resource_1c82x"), SubResource("Resource_la3la"), SubResource("Resource_d5fc2")])
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -13,7 +13,7 @@ signal stage_cleared
 
 var score = 0
 var current_game_state : game_state = game_state.ATTRACT
-var current_stage : int = 1
+var current_stage : int = 0
 var boss_spawned = false
 var scoring_chain_active : bool = false
 var scoring_multiplier : int = 1
@@ -23,11 +23,13 @@ var scoring_multiplier : int = 1
 @export var start_lives = 3
 @export var scoring_timer : int = 5
 @export var max_scoring_multiplier : int = 30
+var levels : Array = ["res://levels/Stage_1.tscn", "res://levels/Stage_2.tscn"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_game_state = game_state.NEW_GAME
 	emit_signal("new_game")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -40,7 +42,15 @@ func begin_game():
 	current_stage = 1
 	emit_signal("start_game", start_lives, current_stage)
 	current_game_state = game_state.RUNNING
-		
+	load_level(current_stage)
+
+func load_level(stage):
+	var level = load(levels[stage])
+	var level_instance = level.instantiate()
+	add_child(level_instance)
+	
+	level_instance.start()
+	
 func _input(event):
 	if Input.is_action_just_pressed("pause_game"):
 		current_game_state = game_state.PAUSED
@@ -76,12 +86,13 @@ func check_for_stage_clear():
 
 func _on_stage_cleared(_stage):
 	current_stage += 1
-	#show_stage_label()
+	load_level(current_stage)
 
 func _on_pause_game():
 	get_tree().paused = true
 
 func _on_game_over():
+	get_tree().call_group("stage", "queue_free")
 	await get_tree().create_timer(2).timeout
 	current_game_state = game_state.NEW_GAME
 	emit_signal("new_game")
@@ -90,7 +101,7 @@ func _on_scoring_timer_timeout():
 	scoring_chain_active = false
 	scoring_multiplier = 1
 
-func _on_enemy_spawner_boss_spawned():
+func _on_boss_spawned():
 	boss_spawned = true
 
 func _on_center_container_game_unpaused():

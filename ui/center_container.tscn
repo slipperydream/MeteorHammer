@@ -1,15 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2fwlf8gf57ym"]
 
 [ext_resource type="Script" path="res://ui/center_container.gd" id="1_1goru"]
-[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://assets/UI_objects/PixelMechaBold.ttf" id="1_36fss"]
+[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="2_8hht7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aip00"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="CenterContainer" type="CenterContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.5
+offset_top = -4.0
+offset_right = 10.5
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1goru")
@@ -20,7 +26,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
-theme_override_fonts/font = ExtResource("1_36fss")
+theme_override_fonts/font = ExtResource("2_8hht7")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_aip00")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")
@@ -31,7 +37,7 @@ text = "START GAME"
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.823529, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_36fss")
+theme_override_fonts/font = ExtResource("2_8hht7")
 theme_override_font_sizes/font_size = 8
 text = "GAME OVER"
 
@@ -39,7 +45,7 @@ text = "GAME OVER"
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.823529, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_36fss")
+theme_override_fonts/font = ExtResource("2_8hht7")
 theme_override_font_sizes/font_size = 12
 text = "Stage"
 
@@ -49,7 +55,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.505882, 0.341176, 0.854902, 1)
 theme_override_colors/font_pressed_color = Color(0.503949, 0.342659, 0.855201, 1)
 theme_override_colors/font_hover_color = Color(0.503949, 0.342659, 0.855201, 1)
-theme_override_fonts/font = ExtResource("1_36fss")
+theme_override_fonts/font = ExtResource("2_8hht7")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_aip00")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")

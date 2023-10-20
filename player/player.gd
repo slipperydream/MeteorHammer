@@ -94,33 +94,11 @@ func new_game():
 	lives = max_lives
 	$GunCooldown.wait_time = cooldown
 	emit_signal("weapon_changed", "beam")
+	reset()
 	
 func take_damage(value):
 	var new_value = max(0, shield - value)
 	set_shield(new_value)
-
-func _on_gun_cooldown_timeout():
-	can_shoot = true
-	
-func _on_area_entered(area):
-	if area.is_in_group("enemy"):
-		area.explode()
-		set_shield(shield - (max_shield / 2))
-
-func _on_main_new_game():
-	self.visible = true
-	new_game()
-	
-func _on_main_start_game(start_lives, stage):
-	max_lives = start_lives
-	$ItemCharge.wait_time = item_recharge_time
-	$ItemCharge.start()
-	emit_signal("item_charging")
-	
-	
-func _on_main_stage_cleared(stage):
-	set_shield(max_shield)
-	upgrade_weapon(stage)
 
 func upgrade_weapon(stage):
 	match stage:
@@ -144,6 +122,27 @@ func use_item():
 		emit_signal("item_charging")
 	else:
 		print("waiting on item timer to recharge")
+		
+func _on_gun_cooldown_timeout():
+	can_shoot = true
+	
+func _on_area_entered(area):
+	if area.is_in_group("enemy"):
+		area.explode()
+		set_shield(shield - (max_shield / 2))
+
+func _on_main_new_game():
+	new_game()
+		
+func _on_main_start_game(start_lives, stage):
+	max_lives = start_lives
+	$ItemCharge.wait_time = item_recharge_time
+	$ItemCharge.start()
+	emit_signal("item_charging")
+		
+func _on_main_stage_cleared(stage):
+	set_shield(max_shield)
+	upgrade_weapon(stage)
 
 func _on_item_charge_timeout():
 	emit_signal("item_recharged")

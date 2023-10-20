@@ -228,7 +228,6 @@ hp = 5
 shoot_interval_min = 2.0
 required_range = 100
 explosion_sound = ExtResource("2_hynhf")
-is_boss = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159

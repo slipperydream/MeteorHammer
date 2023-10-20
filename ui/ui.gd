@@ -12,9 +12,6 @@ var item : String = 'Bomb'
 func _ready():
 	$BossLabel.visible = false
 	
-func _on_main_score_changed(score):
-	update_score(score)
-	
 func update_score(value):
 	var s = "%08d" % value
 	score_counter.text = str(s)
@@ -23,6 +20,10 @@ func update_lives(value):
 	num_lives += value
 	if lives_counter:
 		lives_counter.text = "x%s" % str(num_lives)
+	
+func _on_main_score_changed(score):
+	update_score(score)
+	
 	
 func _on_player_died():
 	update_lives(-1)

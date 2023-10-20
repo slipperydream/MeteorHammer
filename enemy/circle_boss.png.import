@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drkw2vyuhkika"
-path="res://.godot/imported/Power_+_charge_bars_full+empty_2x16.png-713f2fc696a9252c772488b3cb7eef8f.ctex"
+uid="uid://dlholuxpiqcq7"
+path="res://.godot/imported/circle_boss.png-1840d6761231448574afaa89e30d80e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI_objects/Power_+_charge_bars_full+empty_2x16.png"
-dest_files=["res://.godot/imported/Power_+_charge_bars_full+empty_2x16.png-713f2fc696a9252c772488b3cb7eef8f.ctex"]
+source_file="res://enemy/circle_boss.png"
+dest_files=["res://.godot/imported/circle_boss.png-1840d6761231448574afaa89e30d80e9.ctex"]
 
 [params]
 

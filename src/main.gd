@@ -97,6 +97,5 @@ func _on_center_container_game_unpaused():
 	current_game_state = game_state.RUNNING
 	get_tree().paused = false
 
-
 func _on_center_container_start_pressed():
 	begin_game()

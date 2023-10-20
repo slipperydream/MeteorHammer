@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://du6kybeyrcmf2"]
 
-[ext_resource type="Script" path="res://src/ui.gd" id="1_n78kt"]
-[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://assets/UI_objects/PixelMechaBold.ttf" id="2_x06jq"]
-[ext_resource type="Texture2D" uid="uid://c51x11uc8hxhg" path="res://assets/UI_objects/Player_life_icon_16x16.png" id="3_6nh5d"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_ieqr5"]
+[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="2_85hi6"]
+[ext_resource type="Texture2D" uid="uid://c51x11uc8hxhg" path="res://ui/Player_life_icon_16x16.png" id="3_mcobu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8lrl"]
 bg_color = Color(0.694118, 0.596078, 0.12549, 0)
@@ -63,6 +63,34 @@ tracks/3/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_ax065"]
+resource_name = "boss_warning"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.498039), Color(1, 1, 1, 1), Color(1, 1, 1, 0.537255), Color(1, 1, 1, 1), Color(1, 1, 1, 0.486275), Color(1, 1, 1, 1), Color(1, 1, 1, 0.45098), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.454902), Color(1, 1, 1, 1), Color(1, 1, 1, 0.584314), Color(1, 1, 1, 1), Color(1, 1, 1, 0.415686), Color(1, 1, 1, 1), Color(1, 1, 1, 0.368627), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_0wnln"]
 resource_name = "item_charging"
 length = 5.0
@@ -121,34 +149,6 @@ tracks/0/keys = {
 "values": [Color(0.8, 0.8, 0.156863, 0.921569), Color(0.8, 0.8, 0.156863, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ax065"]
-resource_name = "boss_warning"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BossLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.498039), Color(1, 1, 1, 1), Color(1, 1, 1, 0.537255), Color(1, 1, 1, 1), Color(1, 1, 1, 0.486275), Color(1, 1, 1, 1), Color(1, 1, 1, 0.45098), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.454902), Color(1, 1, 1, 1), Color(1, 1, 1, 0.584314), Color(1, 1, 1, 1), Color(1, 1, 1, 0.415686), Color(1, 1, 1, 1), Color(1, 1, 1, 0.368627), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BossLabel:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_32n0a"]
 _data = {
 "RESET": SubResource("Animation_cgqaq"),
@@ -165,7 +165,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_n78kt")
+script = ExtResource("1_ieqr5")
 
 [node name="TopBarLeft" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -179,13 +179,13 @@ size_flags_vertical = 0
 [node name="ScoreHeader" type="Label" parent="TopBarLeft"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_x06jq")
+theme_override_fonts/font = ExtResource("2_85hi6")
 text = "SCORE"
 
 [node name="ScoreLabel" type="Label" parent="TopBarLeft"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_x06jq")
+theme_override_fonts/font = ExtResource("2_85hi6")
 text = "00000000"
 
 [node name="TopBarRight" type="HBoxContainer" parent="."]
@@ -205,7 +205,7 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.847059, 0.827451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_x06jq")
+theme_override_fonts/font = ExtResource("2_85hi6")
 text = "HIGH SCORE"
 horizontal_alignment = 1
 
@@ -213,7 +213,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.847059, 0.827451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_x06jq")
+theme_override_fonts/font = ExtResource("2_85hi6")
 text = "00000000"
 horizontal_alignment = 1
 
@@ -228,7 +228,7 @@ offset_right = 64.5
 offset_bottom = 160.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.913725, 0.847059, 0.380392, 1)
-theme_override_fonts/font = ExtResource("2_x06jq")
+theme_override_fonts/font = ExtResource("2_85hi6")
 theme_override_font_sizes/font_size = 40
 text = "WARNING!"
 horizontal_alignment = 1
@@ -248,18 +248,18 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture = ExtResource("3_6nh5d")
+texture = ExtResource("3_mcobu")
 
 [node name="PlayerLivesLabel" type="Label" parent="BottomBar"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_x06jq")
+theme_override_fonts/font = ExtResource("2_85hi6")
 text = "x3"
 vertical_alignment = 2
 
 [node name="Weapon" type="Label" parent="BottomBar"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_x06jq")
+theme_override_fonts/font = ExtResource("2_85hi6")
 text = "Beam"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -267,7 +267,7 @@ vertical_alignment = 1
 [node name="Item" type="Label" parent="BottomBar"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_x06jq")
+theme_override_fonts/font = ExtResource("2_85hi6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_r8lrl")
 text = "Bomb"
 horizontal_alignment = 1

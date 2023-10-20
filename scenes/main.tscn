@@ -1,14 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=21 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_7hmxl"]
 [ext_resource type="Texture2D" uid="uid://cay0tw78thr7e" path="res://assets/Space_BG_2_frames_64x64.png" id="2_sbl10"]
 [ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://player/player.tscn" id="2_ub1gs"]
-[ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://scenes/ui.tscn" id="4_fde2l"]
-[ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="5_5e4md"]
+[ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://ui/ui.tscn" id="4_v0yfy"]
 [ext_resource type="PackedScene" uid="uid://cq0qbts2mi4lh" path="res://levels/enemy_spawner.tscn" id="6_s6qpq"]
+[ext_resource type="PackedScene" uid="uid://iv1q1152twqe" path="res://enemy/fighter.tscn" id="7_8rpu5"]
 [ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="7_j20eb"]
 [ext_resource type="Script" path="res://levels/spawn_info.gd" id="8_o4t75"]
 [ext_resource type="PackedScene" uid="uid://dnd3jgl6lomdw" path="res://enemy/battlecruiser.tscn" id="9_byxty"]
+[ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="9_qqs2x"]
+[ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://enemy/circle_boss.tscn" id="11_c4vcv"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -58,7 +60,35 @@ enemy_spawn_delay = 0
 [sub_resource type="Resource" id="Resource_wr1t3"]
 script = ExtResource("8_o4t75")
 spawn_time = 5
+enemy = ExtResource("7_8rpu5")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_jfsjj"]
+script = ExtResource("8_o4t75")
+spawn_time = 5
+enemy = ExtResource("7_j20eb")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_1c82x"]
+script = ExtResource("8_o4t75")
+spawn_time = 10
 enemy = ExtResource("9_byxty")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_la3la"]
+script = ExtResource("8_o4t75")
+spawn_time = 10
+enemy = ExtResource("7_8rpu5")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_d5fc2"]
+script = ExtResource("8_o4t75")
+spawn_time = 20
+enemy = ExtResource("11_c4vcv")
 enemy_num = 1
 enemy_spawn_delay = 0
 
@@ -83,9 +113,9 @@ libraries = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource("4_fde2l")]
+[node name="UI" parent="CanvasLayer" instance=ExtResource("4_v0yfy")]
 
-[node name="CenterContainer" parent="CanvasLayer" instance=ExtResource("5_5e4md")]
+[node name="CenterContainer" parent="CanvasLayer" instance=ExtResource("9_qqs2x")]
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -94,7 +124,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_s6qpq")]
-spawns = Array[ExtResource("8_o4t75")]([SubResource("Resource_hesv0"), SubResource("Resource_wr1t3")])
+spawns = Array[ExtResource("8_o4t75")]([SubResource("Resource_hesv0"), SubResource("Resource_wr1t3"), SubResource("Resource_jfsjj"), SubResource("Resource_1c82x"), SubResource("Resource_la3la"), SubResource("Resource_d5fc2")])
 
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/CenterContainer" method="_on_main_game_over"]

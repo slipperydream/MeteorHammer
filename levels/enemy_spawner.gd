@@ -36,23 +36,28 @@ func _on_timer_timeout():
 				var counter = 0
 				while counter < i.enemy_num:
 					var enemy_spawn = new_enemy.instantiate()
-					enemy_spawn.global_position = get_spawn_position()
+					if enemy_spawn.is_boss:
+						enemy_spawn.global_position = get_spawn_position(true)
+						emit_signal("boss_spawned")
+					else:
+						enemy_spawn.global_position = get_spawn_position()
 					add_child(enemy_spawn)
 					enemy_spawn.start(enemy_spawn.global_position)
 					counter += 1
 					enemy_spawn.died.connect(main._on_enemy_died)
 					spawn_count += 1
-					if enemy_spawn.is_boss:
-						emit_signal("boss_spawned")
+					
 				i.spawned = true
 		if spawn_count >= total_enemies:
 			all_spawned = true
 	else:
 		$Timer.stop()
-		
-
+			
+func get_spawn_position(is_boss : bool = false):
 	
-func get_spawn_position():
+	if is_boss:
+		return Vector2 (screensize.x/2, pos_y)
+		
 	var lane_size = (screensize.x - (2 * gutter_size)) / num_lanes
 	
 	if last_lane >= num_lanes:

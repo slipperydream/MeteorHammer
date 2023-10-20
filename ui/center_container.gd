@@ -6,7 +6,7 @@ signal start_pressed
 @onready var start_button = $StartButton
 @onready var pause_button = $PauseButton
 @onready var game_over_label = $GameOver
-@onready var stage_label = $StageLabel
+@onready var level_label = $LevelLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,11 +17,11 @@ func _ready():
 func _process(delta):
 	pass
 
-func show_stage_label(stage):
-	stage_label.text = "STAGE %d" % (stage + 1)
-	stage_label.show()
+func show_level_label(level):
+	level_label.text = "Level %d" % (level + 1)
+	level_label.show()
 	await get_tree().create_timer(2).timeout
-	stage_label.hide()
+	level_label.hide()
 
 func _on_start_button_pressed():
 	start_button.hide()
@@ -50,3 +50,6 @@ func _on_main_game_over():
 func _on_pause_button_pressed():
 	emit_signal("game_unpaused")
 	pause_button.hide()
+
+func _on_main_new_level(level):
+	show_level_label(level)

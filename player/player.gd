@@ -100,15 +100,15 @@ func take_damage(value):
 	var new_value = max(0, shield - value)
 	set_shield(new_value)
 
-func upgrade_weapon(stage):
-	match stage:
-		2:
+func upgrade_weapon(level):
+	match level:
+		1:
 			num_shots = 3
-		3: 
+		2: 
 			num_shots = 1
 			weapon_scene = load("res://player/weapons/bullet_level2.tscn")
 			emit_signal("weapon_changed", "charged_beam")
-		4:
+		3:
 			num_shots = 3
 	
 func use_item():	
@@ -134,15 +134,15 @@ func _on_area_entered(area):
 func _on_main_new_game():
 	new_game()
 		
-func _on_main_start_game(start_lives, stage):
+func _on_main_start_game(start_lives, level):
 	max_lives = start_lives
 	$ItemCharge.wait_time = item_recharge_time
 	$ItemCharge.start()
 	emit_signal("item_charging")
 		
-func _on_main_stage_cleared(stage):
+func _on_main_level_cleared(level):
 	set_shield(max_shield)
-	upgrade_weapon(stage)
+	upgrade_weapon(level)
 
 func _on_item_charge_timeout():
 	emit_signal("item_recharged")

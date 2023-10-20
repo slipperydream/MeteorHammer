@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var main = get_tree().get_first_node_in_group("main")
+@onready var ui = get_tree().get_first_node_in_group("ui")
 @onready var screensize : Vector2 = get_viewport_rect().size
 @export var time = 0
 
@@ -22,7 +23,10 @@ func ready():
 	pass
 	
 func start():
+	print(title)
 	$Timer.start()
+	boss_spawned.connect(main._on_boss_spawned)
+	boss_spawned.connect(ui._on_boss_spawned)
 	var enemy_spawns = spawns
 	for i in enemy_spawns:
 		total_enemies += i.enemy_num
@@ -39,6 +43,7 @@ func _on_timer_timeout():
 					var enemy_spawn = new_enemy.instantiate()
 					if enemy_spawn.is_boss:
 						enemy_spawn.global_position = get_spawn_position(true)
+						
 						emit_signal("boss_spawned")
 					else:
 						enemy_spawn.global_position = get_spawn_position()
@@ -67,9 +72,11 @@ func get_spawn_position(is_boss : bool = false):
 	last_lane +=1 
 	return Vector2(pos_x, pos_y)
 
-
-func _on_main_start_game(_start_lives, _current_stage):
+func _on_main_start_game(_start_lives, _current_level):
 	start()
 
 func _on_main_game_over():
 	queue_free()
+	
+func _on_main_new_level():
+	start()

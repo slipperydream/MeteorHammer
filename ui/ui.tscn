@@ -158,7 +158,7 @@ _data = {
 "item_used": SubResource("Animation_y4u8q")
 }
 
-[node name="UI" type="Control"]
+[node name="UI" type="Control" groups=["ui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

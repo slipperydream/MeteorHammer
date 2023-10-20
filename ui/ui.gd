@@ -34,7 +34,7 @@ func _on_player_gained_life():
 func _on_player_out_of_lives():
 	update_lives(0)
 	
-func _on_main_start_game(lives, stage):
+func _on_main_start_game(lives, _level):
 	$TopBarLeft.show()
 	$BottomBar.show()
 	update_lives(lives)
@@ -56,5 +56,5 @@ func _on_player_weapon_changed(new_weapon):
 func _on_player_item_charging():
 	$AnimationPlayer.play("item_charging")
 
-func _on_enemy_spawner_boss_spawned():
+func _on_boss_spawned():
 	$AnimationPlayer.play("boss_warning")

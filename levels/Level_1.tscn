@@ -49,7 +49,7 @@ enemy = ExtResource("6_45dwb")
 enemy_num = 1
 enemy_spawn_delay = 0
 
-[node name="EnemySpawner" type="Area2D" groups=["stage"]]
+[node name="EnemySpawner" type="Area2D" groups=["levels"]]
 script = ExtResource("1_o3ymc")
 title = "Attack on Yz"
 spawns = Array[ExtResource("3_6apjw")]([SubResource("Resource_hesv0"), SubResource("Resource_wr1t3"), SubResource("Resource_jfsjj"), SubResource("Resource_1c82x"), SubResource("Resource_la3la"), SubResource("Resource_d5fc2")])

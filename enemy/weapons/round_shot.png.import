@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkb4i0vkqt7cf"
-path="res://.godot/imported/space.png-366f2eced5ed185d38673519b9369f6a.ctex"
+uid="uid://bbwrd7wu8byul"
+path="res://.godot/imported/round_shot.png-1eb0e1f4f9817610022ec34ec32de3a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/space.png"
-dest_files=["res://.godot/imported/space.png-366f2eced5ed185d38673519b9369f6a.ctex"]
+source_file="res://enemy/weapons/round_shot.png"
+dest_files=["res://.godot/imported/round_shot.png-1eb0e1f4f9817610022ec34ec32de3a0.ctex"]
 
 [params]
 

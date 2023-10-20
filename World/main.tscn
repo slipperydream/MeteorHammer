@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/main.gd" id="1_40pi7"]
 [ext_resource type="Script" path="res://World/Background.gd" id="2_egrtt"]
-[ext_resource type="Texture2D" uid="uid://c1qqmndqpuirq" path="res://assets/space_300x800.png" id="3_8ylvn"]
+[ext_resource type="Texture2D" uid="uid://c1qqmndqpuirq" path="res://World/space_300x800.png" id="3_2dna5"]
 [ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://player/player.tscn" id="4_kjngg"]
 [ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://ui/ui.tscn" id="5_r43jo"]
 [ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="6_5jg3u"]
@@ -34,7 +34,7 @@ motion_mirroring = Vector2(2.08165e-12, 800)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
 position = Vector2(2.08165e-12, -400)
-texture = ExtResource("3_8ylvn")
+texture = ExtResource("3_2dna5")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("4_kjngg")]

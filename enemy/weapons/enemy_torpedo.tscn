@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
 size = Vector2(6, 6)
 
-[node name="EnemyWeapon" type="Area2D"]
+[node name="EnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
 audio_bus_name = &"SFX"
 script = ExtResource("1_v3hkh")
 title = "enemy torpedo"

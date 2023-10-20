@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=16 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_7hmxl"]
 [ext_resource type="Texture2D" uid="uid://cay0tw78thr7e" path="res://assets/Space_BG_2_frames_64x64.png" id="2_sbl10"]
 [ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://player/player.tscn" id="2_ub1gs"]
 [ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://scenes/ui.tscn" id="4_fde2l"]
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://assets/UI_objects/PixelMechaBold.ttf" id="5_adj04"]
+[ext_resource type="PackedScene" uid="uid://cq0qbts2mi4lh" path="res://enemy/enemy_spawner.tscn" id="6_s6qpq"]
+[ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="7_j20eb"]
+[ext_resource type="Script" path="res://enemy/spawn_info.gd" id="8_o4t75"]
+[ext_resource type="PackedScene" uid="uid://dnd3jgl6lomdw" path="res://enemy/battlecruiser.tscn" id="9_byxty"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -47,7 +51,21 @@ _data = {
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aip00"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="Main" type="Node2D"]
+[sub_resource type="Resource" id="Resource_hesv0"]
+script = ExtResource("8_o4t75")
+spawn_time = 0
+enemy = ExtResource("7_j20eb")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_wr1t3"]
+script = ExtResource("8_o4t75")
+spawn_time = 5
+enemy = ExtResource("9_byxty")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[node name="Main" type="Node2D" groups=["main"]]
 script = ExtResource("1_7hmxl")
 start_lives = 5
 
@@ -124,6 +142,9 @@ wait_time = 5.0
 
 [node name="ScoringTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="EnemySpawner" parent="." instance=ExtResource("6_s6qpq")]
+spawns = Array[ExtResource("8_o4t75")]([SubResource("Resource_hesv0"), SubResource("Resource_wr1t3")])
 
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="new_game" from="." to="." method="_on_new_game"]

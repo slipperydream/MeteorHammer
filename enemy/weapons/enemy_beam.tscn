@@ -45,7 +45,7 @@ _data = {
 "moving": SubResource("Animation_imq0u")
 }
 
-[node name="EnemyWeapon" type="Area2D"]
+[node name="EnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
 script = ExtResource("1_urqty")
 title = "enemy beam"
 firing_sound = ExtResource("2_n1tf7")

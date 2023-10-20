@@ -43,7 +43,7 @@ _data = {
 "flying": SubResource("Animation_18lte")
 }
 
-[node name="EnemyWeapon" type="Area2D"]
+[node name="EnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
 z_index = 1
 rotation = 3.14159
 audio_bus_name = &"SFX"

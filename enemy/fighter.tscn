@@ -202,7 +202,6 @@ explosion_sound = ExtResource("2_fq87v")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
 texture = ExtResource("2_men5b")
-frame = 12
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
 position = Vector2(-4.29789e-05, 17)

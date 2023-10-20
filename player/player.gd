@@ -87,8 +87,8 @@ func shoot():
 		var weapon = weapon_scene.instantiate()
 		get_tree().root.add_child(weapon)
 		var angle = deg_to_rad(90)
-		if num_shots % 2 == 0:
-			angle = deg_to_rad(80 + i * 20)		
+		if num_shots % 3 == 0:
+			angle = deg_to_rad(80 + i * 10)		
 		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))
 		
 		
@@ -126,13 +126,13 @@ func _on_main_stage_cleared(stage):
 func upgrade_weapon(stage):
 	match stage:
 		2:
-			num_shots = 2
+			num_shots = 3
 		3: 
 			num_shots = 1
 			weapon_scene = load("res://player/weapons/bullet_level2.tscn")
 			emit_signal("weapon_changed", "charged_beam")
 		4:
-			num_shots = 2
+			num_shots = 3
 	
 func use_item():	
 	if $ItemCharge.is_stopped():

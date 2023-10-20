@@ -44,7 +44,7 @@ shape = SubResource("RectangleShape2D_aq4jb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["enemy_weapon"]]
 libraries = {
 "": SubResource("AnimationLibrary_1hoq6")
 }

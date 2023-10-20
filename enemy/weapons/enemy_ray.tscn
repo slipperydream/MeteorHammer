@@ -45,7 +45,7 @@ _data = {
 "moving": SubResource("Animation_f28g8")
 }
 
-[node name="EnemyWeapon" type="Area2D"]
+[node name="EnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
 z_index = 1
 audio_bus_name = &"SFX"
 script = ExtResource("1_xnxtc")

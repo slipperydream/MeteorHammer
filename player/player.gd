@@ -10,7 +10,7 @@ signal item_used
 signal weapon_changed
 signal item_changed
 
-@export var max_shield = 10
+@export var max_shield : int = 1
 var shield = max_shield
 
 @export var max_lives = 3
@@ -67,7 +67,7 @@ func reset():
 func set_shield(value):
 	shield = min(max_shield, value)
 	emit_signal("shield_changed",max_shield, shield)	
-	
+		
 	# check health
 	if shield <= 0:
 		lives = max(0, lives - 1)
@@ -78,7 +78,7 @@ func set_shield(value):
 			reset()			
 		else:
 			out_of_lives.emit()
-			
+		
 func shoot():
 	if can_shoot == false:
 		return
@@ -132,7 +132,7 @@ func _on_gun_cooldown_timeout():
 func _on_area_entered(area):
 	if area.is_in_group("enemy"):
 		area.explode()
-		set_shield(shield - (max_shield / 2))
+		take_damage(1)
 
 func _on_main_new_game():
 	new_game()

@@ -12,7 +12,7 @@ var item : String = 'Bomb'
 func _ready():
 	$BossLabel.visible = false
 
-func _process(delta):
+func _process(_delta):
 	pass
 	
 func update_score(value):
@@ -65,6 +65,7 @@ func _on_boss_spawned():
 func _on_main_stage_cleared(_stage):
 	$Stopwatch.stop()
 	var time_spent = $Stopwatch.time_elapsed
+	#show_stage_results()
 
 func _on_main_new_stage(_stage):
 	$Stopwatch.reset()

@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
 size = Vector2(10, 9)
 
-[node name="Weapon" type="Area2D"]
+[node name="BulletLevel2" type="Area2D" groups=["bullets"]]
 script = ExtResource("1_1lrks")
 title = "Bullet Level 2"
 power = 2

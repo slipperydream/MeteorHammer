@@ -87,7 +87,7 @@ frame = 1
 [node name="Boosters" type="AnimatedSprite2D" parent="Ship"]
 position = Vector2(0, 15)
 sprite_frames = SubResource("SpriteFrames_05fw1")
-animation = &"right"
+animation = &"forward"
 autoplay = "forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

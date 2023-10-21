@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
 size = Vector2(10, 10)
 
-[node name="Weapon" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["bullets"]]
 script = ExtResource("1_t5fo0")
 title = "Bullet"
 firing_sound = ExtResource("2_1tayu")

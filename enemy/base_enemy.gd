@@ -6,7 +6,7 @@ var bullet_scene : Array = []
 
 @export var title : String = "Enemy"
 @export var is_boss : bool = false
-@export var points : int = 5
+@export var points : int = 100
 @export var speed : int = 30
 @export var hp : int = 1
 @export var shoot_interval_min : float = 0.5

@@ -31,7 +31,7 @@ func _ready():
 	emit_signal("new_game")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if current_game_state == game_state.RUNNING and boss_spawned:
 		check_for_stage_clear()
 
@@ -58,7 +58,7 @@ func load_stage(num):
 	stage_instance.start()
 	emit_signal("new_stage", num)
 	
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("pause_game"):
 		current_game_state = game_state.PAUSED
 		emit_signal("pause_game")

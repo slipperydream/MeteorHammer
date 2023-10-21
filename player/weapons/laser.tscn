@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5gjata5tywxj"]
+
+[ext_resource type="Script" path="res://player/weapons/Laser.gd" id="1_py5i5"]
+
+[node name="Laser" type="RayCast2D"]
+rotation = 3.14159
+collide_with_areas = true
+script = ExtResource("1_py5i5")
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color(0.196078, 0.498039, 0.901961, 1)

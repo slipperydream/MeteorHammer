@@ -34,7 +34,7 @@ func play(sound_path, randomize_pitch : bool = false):
 	sound_queue.append(sound)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# Play queued sound if any AudioStreamPlayers are available
 	if not sound_queue.is_empty() and not available_players.is_empty():
 		var sound = sound_queue.pop_front()

@@ -3,7 +3,7 @@ extends ParallaxBackground
 @export var speed = 50.0
 
 @export var direction = Vector2.DOWN
-var saved_speed : int 
+var saved_speed : float 
 	
 func _process(delta):
 	scroll_base_offset += (speed * direction) * delta

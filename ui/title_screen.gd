@@ -14,12 +14,23 @@ signal boss_mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Popup.hide()
-
+	hide_everything()
+	var tween = create_tween()
+	tween.tween_property($Panel/Title, "position", Vector2(21.5, 84), 2)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
+func _input(event):
+	if event.is_action("ui_accept"):
+		$MenuTimer.stop()
+		
+func hide_everything():
+	$Popup.hide()
+	$StageSelect.hide()
+	$Panel/MainMenu.hide()
+	
 func _on_story_mode_button_pressed():
 	emit_signal("story_mode")
 
@@ -27,7 +38,8 @@ func _on_attack_mode_button_pressed():
 	emit_signal("attack_mode")
 	
 func _on_stage_select_button_pressed():
-	emit_signal("stage_mode", randi_range(1,2))
+	not_implemented()
+	#$StageSelect.show()
 
 func _on_boss_select_button_pressed():
 	#not_implemented()
@@ -45,3 +57,5 @@ func _on_close_button_pressed():
 func not_implemented():
 	$Popup.show()
 
+func _on_menu_timer_timeout():
+	$Panel/MainMenu.show()

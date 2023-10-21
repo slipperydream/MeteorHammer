@@ -50,3 +50,6 @@ TODOs (not in priority order yet)
 
  - possibly add drones that fly around the player that do damage:
     - firing modes: spread, tail, front, ring, rolling (always forward firing, but rotate around player)
+
+
+Make a stage struct that defines the number, name, and other things

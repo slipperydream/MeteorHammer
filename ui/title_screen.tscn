@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://be1e8nb1py4ti"]
+[gd_scene load_steps=11 format=3 uid="uid://be1e8nb1py4ti"]
 
 [ext_resource type="Script" path="res://ui/title_screen.gd" id="1_e7kcj"]
+[ext_resource type="Texture2D" uid="uid://dvha8ay58ejx3" path="res://ui/titlescreen_background.PNG" id="2_88e1g"]
 [ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="2_n3jpo"]
+[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="3_2wlel"]
 [ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="3_vfonr"]
+[ext_resource type="PackedScene" uid="uid://borv5q636p3x1" path="res://ui/stage_select/stage_select.tscn" id="4_jed41"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjcqh"]
 bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
@@ -33,7 +36,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="TitleScreen" type="PanelContainer"]
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,27 +47,41 @@ script = ExtResource("1_e7kcj")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jjcqh")
-
-[node name="Title" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -116.0
-offset_bottom = -84.0
+offset_right = 300.0
+offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jjcqh")
+
+[node name="Background" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_88e1g")
+
+[node name="Title" type="Label" parent="Panel"]
+modulate = Color(1, 1, 1, 0.992157)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.5
+offset_right = 128.5
+offset_bottom = 32.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0.862745, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.443137, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_n3jpo")
+theme_override_fonts/font = ExtResource("3_2wlel")
 theme_override_font_sizes/font_size = 28
 text = "End of an Empire"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MainMenu" type="GridContainer" parent="Panel"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -152,7 +170,19 @@ text = "HIGH SCORES"
 
 [node name="Popup" type="Panel" parent="."]
 visible = false
-layout_mode = 2
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -36.0
+offset_right = 84.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_py8jp")
 
 [node name="Warning" type="Label" parent="Popup"]
@@ -193,6 +223,15 @@ theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_8jokb")
 text = "Close"
 
+[node name="StageSelect" parent="." instance=ExtResource("4_jed41")]
+visible = false
+layout_mode = 1
+
+[node name="MenuTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
 [connection signal="pressed" from="Panel/MainMenu/StoryModeButton" to="." method="_on_story_mode_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/AttackModeButton" to="." method="_on_attack_mode_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/StageSelectButton" to="." method="_on_stage_select_button_pressed"]
@@ -200,3 +239,4 @@ text = "Close"
 [connection signal="pressed" from="Panel/MainMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/HighScoresButton" to="." method="_on_high_scores_button_pressed"]
 [connection signal="pressed" from="Popup/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="timeout" from="MenuTimer" to="." method="_on_menu_timer_timeout"]

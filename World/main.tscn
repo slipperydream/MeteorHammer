@@ -59,6 +59,7 @@ one_shot = true
 
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/CenterContainer" method="_on_main_game_over"]
+[connection signal="multiplier_active" from="." to="CanvasLayer/UI" method="_on_main_multiplier_active"]
 [connection signal="new_game" from="." to="Player" method="_on_main_new_game"]
 [connection signal="new_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_new_game"]
 [connection signal="new_stage" from="." to="CanvasLayer/UI" method="_on_main_new_stage"]

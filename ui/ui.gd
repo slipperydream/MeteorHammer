@@ -1,6 +1,7 @@
 extends Control
 
 @onready var score_counter = $TopBarLeft/ScoreLabel
+@onready var multiplier_label = $TopBarRight/MultiplierLabel
 @onready var lives_counter = $BottomBar/PlayerLivesLabel
 @onready var weapon_label = $BottomBar/Weapon
 @onready var item_label = $BottomBar/Item
@@ -8,6 +9,7 @@ extends Control
 var num_lives = 0
 var weapon : String = 'Beam'
 var item : String = 'Bomb'
+var default_multiplier_font_size = 18
 
 func _ready():
 	$BossLabel.visible = false
@@ -76,3 +78,13 @@ func _on_main_pause_game():
 
 func _on_center_container_game_unpaused():
 	$Stopwatch.pause(false)
+
+func _on_main_multiplier_active(multiplier):
+	if multiplier > 1:
+		multiplier_label.show()
+		multiplier_label.text = "MULTIPLIER\nx%d" % multiplier
+		if multiplier > 5:
+			multiplier_label.add_theme_font_size_override(default_multiplier_font_size+5)
+	else:
+		multiplier_label.hide()
+		multiplier_label.add_theme_font_size_override(default_multiplier_font_size)

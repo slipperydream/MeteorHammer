@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://be1e8nb1py4ti"]
+
+[ext_resource type="Script" path="res://ui/title_screen.gd" id="1_e7kcj"]
+[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="1_l1ao3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjcqh"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4sjx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e7kcj")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jjcqh")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -116.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.862745, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.443137, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_font_sizes/font_size = 30
+text = "End of an Empire"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenu" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -53.0
+offset_right = 46.5
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StoryModeButton" type="Button" parent="Panel/MainMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
+theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
+text = "STORY MODE"
+
+[node name="StageSelectButton" type="Button" parent="Panel/MainMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
+theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
+text = "STAGE SELECT"
+
+[node name="BossSelectButton" type="Button" parent="Panel/MainMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
+theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
+text = "BOSS SELECT"
+
+[node name="SettingsButton" type="Button" parent="Panel/MainMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
+theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
+text = "SETTINGS"
+
+[node name="HighScoresButton" type="Button" parent="Panel/MainMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
+theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
+text = "HIGH SCORES"
+
+[connection signal="pressed" from="Panel/MainMenu/StoryModeButton" to="." method="_on_story_mode_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/StageSelectButton" to="." method="_on_stage_select_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/BossSelectButton" to="." method="_on_boss_select_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/HighScoresButton" to="." method="_on_high_scores_button_pressed"]

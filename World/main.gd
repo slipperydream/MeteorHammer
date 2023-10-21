@@ -9,6 +9,7 @@ signal start_game
 signal game_over
 signal pause_game
 signal score_changed
+signal multiplier_active
 signal stage_cleared
 signal new_stage
 
@@ -68,12 +69,12 @@ func _on_enemy_died(value):
 		scoring_multiplier += 1
 		if scoring_multiplier > max_scoring_multiplier:
 			scoring_multiplier = max_scoring_multiplier;
+		emit_signal("multiplier_active", scoring_multiplier)
 	else:
 		scoring_multiplier = 1
 		$ScoringTimer.wait_time = scoring_timer
 		$ScoringTimer.start()
 		scoring_chain_active = true
-	#print("scoring multiplier %f" %scoring_multiplier)
 	score += value * scoring_multiplier	
 	emit_signal("score_changed", score)
 

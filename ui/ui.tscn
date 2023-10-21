@@ -201,22 +201,18 @@ offset_bottom = 28.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
+alignment = 2
 
-[node name="HighScoreHeader" type="Label" parent="TopBarRight"]
+[node name="MultiplierLabel" type="Label" parent="TopBarRight"]
+visible = false
 layout_mode = 2
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(0.847059, 0.827451, 0.419608, 1)
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.988235, 0.156863, 0.247059, 1)
 theme_override_fonts/font = ExtResource("2_85hi6")
-text = "HIGH SCORE"
-horizontal_alignment = 1
-
-[node name="HighScoreLabel" type="Label" parent="TopBarRight"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(0.847059, 0.827451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_85hi6")
-text = "00000000"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+text = "Multiplier
+x1"
+horizontal_alignment = 2
 
 [node name="BossLabel" type="Label" parent="."]
 layout_mode = 1

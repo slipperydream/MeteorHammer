@@ -27,7 +27,7 @@ var scoring_multiplier : int = 1
 @export var start_lives = 3
 @export var scoring_timer : int = 5
 @export var max_scoring_multiplier : int = 30
-var stages : Array = ["res://stages/Stage_1.tscn", "res://stages/Stage_2.tscn"]
+var stages : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -122,5 +122,31 @@ func _on_center_container_game_unpaused():
 
 func _on_title_screen_story_mode():
 	$CanvasLayer/TitleScreen.hide()
+	stages.append("res://stages/Stage_1.tscn")
+	stages.append("res://stages/Stage_2.tscn")
+	await get_tree().create_timer(2).timeout
+	begin_game()
+
+
+func _on_title_screen_boss_mode():
+	$CanvasLayer/TitleScreen.hide()
+	stages.append("res://stages/Stage_1Boss.tscn")
+	await get_tree().create_timer(2).timeout
+	begin_game()
+
+
+func _on_title_screen_attack_mode():
+	$CanvasLayer/TitleScreen.hide()
+	stages.append("res://stages/Stage_1.tscn")
+	stages.append("res://stages/Stage_2.tscn")
+	await get_tree().create_timer(2).timeout
+	begin_game()
+
+
+func _on_title_screen_stage_mode(stage):
+	$CanvasLayer/TitleScreen.hide()
+	match stage:
+		1: stages.append("res://stages/Stage_1.tscn")
+		2: stages.append("res://stages/Stage_2.tscn")
 	await get_tree().create_timer(2).timeout
 	begin_game()

@@ -24,13 +24,14 @@ func _on_story_mode_button_pressed():
 	emit_signal("story_mode")
 
 func _on_attack_mode_button_pressed():
-	not_implemented()
+	emit_signal("attack_mode")
 	
 func _on_stage_select_button_pressed():
-	not_implemented()
+	emit_signal("stage_mode", randi_range(1,2))
 
 func _on_boss_select_button_pressed():
-	not_implemented()
+	#not_implemented()
+	emit_signal("boss_mode")
 
 func _on_settings_button_pressed():
 	not_implemented()

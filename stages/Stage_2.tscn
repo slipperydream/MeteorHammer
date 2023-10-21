@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://n4wr7hkiskex"]
+[gd_scene load_steps=6 format=3 uid="uid://n4wr7hkiskex"]
 
 [ext_resource type="Script" path="res://stages/enemy_spawner.gd" id="1_itrr3"]
 [ext_resource type="Script" path="res://stages/spawn_info.gd" id="3_qsqur"]
@@ -7,13 +7,19 @@
 [sub_resource type="Resource" id="Resource_7xdjx"]
 script = ExtResource("3_qsqur")
 spawn_time = 0
-spawns = ExtResource("5_h0inl")
-lane = 0
+spawn = ExtResource("5_h0inl")
+lane = 1
+
+[sub_resource type="Resource" id="Resource_xg40k"]
+script = ExtResource("3_qsqur")
+spawn_time = 3
+spawn = ExtResource("5_h0inl")
+lane = 2
 
 [node name="Stage_2" type="Area2D" groups=["levels"]]
 script = ExtResource("1_itrr3")
 title = "Escape from Base"
-spawns = Array[ExtResource("3_qsqur")]([SubResource("Resource_7xdjx")])
+spawns = Array[ExtResource("3_qsqur")]([SubResource("Resource_7xdjx"), SubResource("Resource_xg40k")])
 
 [node name="Timer" type="Timer" parent="."]
 

@@ -2,14 +2,14 @@ extends "res://enemy/base_enemy.gd"
 
 @export var shoot_interval_min : float = 0.5
 @export var shoot_interval_max : float = 2
-@export var FiringSequence : Array[Firing_pattern] = []
+@export var FiringSequence : Array[Bullet_pattern] = []
 @export var required_range : int = 5
 
 var bullet_scene : Array = [] 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bullet_scene.append(preload("res://enemy/weapons/base_enemy_weapon.tscn"))
+	bullet_scene.append(preload("res://enemy/weapons/base_enemy_projectile.tscn"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://lyew3pdke8rh"]
 
-[ext_resource type="Script" path="res://enemy/weapons/base_enemy_weapon.gd" id="1_ytmcg"]
-[ext_resource type="AudioStream" uid="uid://cix0slt0nw02u" path="res://sound/sfx/lasers/Laser-weapon10.wav" id="2_bdslb"]
-[ext_resource type="Texture2D" uid="uid://bbwrd7wu8byul" path="res://enemy/weapons/bullet_32x32.png" id="3_0x3ht"]
+[ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_cjdo1"]
+[ext_resource type="AudioStream" uid="uid://cix0slt0nw02u" path="res://sound/sfx/lasers/Laser-weapon10.wav" id="2_qu11m"]
+[ext_resource type="Texture2D" uid="uid://bbwrd7wu8byul" path="res://enemy/weapons/bullet_32x32.png" id="3_khxns"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e6lcf"]
 radius = 13.0384
 
 [node name="BaseEnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
 audio_bus_name = &"SFX"
-script = ExtResource("1_ytmcg")
-firing_sound = ExtResource("2_bdslb")
+script = ExtResource("1_cjdo1")
+firing_sound = ExtResource("2_qu11m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("3_0x3ht")
+texture = ExtResource("3_khxns")
 hframes = 7
 frame = 2
 

@@ -90,8 +90,7 @@ func shoot():
 		var angle = deg_to_rad(90)
 		if num_shots % 3 == 0:
 			angle = deg_to_rad(70 + i * 20)		
-		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))
-		
+		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
 		
 func new_game():
 	lives = max_lives
@@ -138,6 +137,7 @@ func _on_main_new_game():
 	new_game()
 		
 func _on_main_start_game(start_lives, _stage):
+	new_game()
 	max_lives = start_lives
 	$ItemCharge.wait_time = item_recharge_time
 	$ItemCharge.start()

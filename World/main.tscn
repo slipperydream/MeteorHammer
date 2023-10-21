@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=11 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://World/main.gd" id="1_40pi7"]
 [ext_resource type="Script" path="res://World/Background.gd" id="2_egrtt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://player/player.tscn" id="4_kjngg"]
 [ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://ui/ui.tscn" id="5_r43jo"]
 [ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="6_5jg3u"]
+[ext_resource type="PackedScene" uid="uid://be1e8nb1py4ti" path="res://ui/title_screen.tscn" id="7_vrvlr"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -51,6 +52,8 @@ libraries = {
 
 [node name="CenterContainer" parent="CanvasLayer" instance=ExtResource("6_5jg3u")]
 
+[node name="TitleScreen" parent="CanvasLayer" instance=ExtResource("7_vrvlr")]
+
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -60,8 +63,6 @@ one_shot = true
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/CenterContainer" method="_on_main_game_over"]
 [connection signal="multiplier_active" from="." to="CanvasLayer/UI" method="_on_main_multiplier_active"]
-[connection signal="new_game" from="." to="Player" method="_on_main_new_game"]
-[connection signal="new_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_new_game"]
 [connection signal="new_stage" from="." to="CanvasLayer/UI" method="_on_main_new_stage"]
 [connection signal="new_stage" from="." to="CanvasLayer/CenterContainer" method="_on_main_new_stage"]
 [connection signal="pause_game" from="." to="." method="_on_pause_game"]
@@ -73,6 +74,7 @@ one_shot = true
 [connection signal="stage_cleared" from="." to="CanvasLayer/UI" method="_on_main_stage_cleared"]
 [connection signal="start_game" from="." to="Player" method="_on_main_start_game"]
 [connection signal="start_game" from="." to="CanvasLayer/UI" method="_on_main_start_game"]
+[connection signal="start_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_start_game"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="died" from="Player" to="CanvasLayer/UI" method="_on_player_died"]
 [connection signal="gained_life" from="Player" to="CanvasLayer/UI" method="_on_player_gained_life"]
@@ -86,5 +88,6 @@ one_shot = true
 [connection signal="game_unpaused" from="CanvasLayer/CenterContainer" to="." method="_on_center_container_game_unpaused"]
 [connection signal="game_unpaused" from="CanvasLayer/CenterContainer" to="CanvasLayer/UI" method="_on_center_container_game_unpaused"]
 [connection signal="start_pressed" from="CanvasLayer/CenterContainer" to="." method="_on_center_container_start_pressed"]
+[connection signal="story_mode" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_story_mode"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="ScoringTimer" to="." method="_on_scoring_timer_timeout"]

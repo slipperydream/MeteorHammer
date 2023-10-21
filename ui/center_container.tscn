@@ -20,19 +20,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1goru")
 
-[node name="StartButton" type="Button" parent="."]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
-theme_override_fonts/font = ExtResource("2_8hht7")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_aip00")
-theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_aip00")
-text = "START GAME"
-
 [node name="GameOver" type="Label" parent="."]
 visible = false
 layout_mode = 2
@@ -63,5 +50,4 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_aip00")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_aip00")
 text = "PAUSED"
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

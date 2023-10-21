@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://be1e8nb1py4ti"]
+[gd_scene load_steps=8 format=3 uid="uid://be1e8nb1py4ti"]
 
 [ext_resource type="Script" path="res://ui/title_screen.gd" id="1_e7kcj"]
-[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="1_l1ao3"]
+[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="2_n3jpo"]
+[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="3_vfonr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjcqh"]
 bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
@@ -9,8 +10,30 @@ bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4sjx"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="TitleScreen" type="Control"]
-layout_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py8jp"]
+bg_color = Color(0.188235, 0.317647, 0.509804, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jokb"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="TitleScreen" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,15 +42,10 @@ grow_vertical = 2
 script = ExtResource("1_e7kcj")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jjcqh")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Title" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -39,8 +57,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.862745, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.443137, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_l1ao3")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_n3jpo")
+theme_override_font_sizes/font_size = 28
 text = "End of an Empire"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -61,22 +79,35 @@ grow_vertical = 2
 
 [node name="StoryModeButton" type="Button" parent="Panel/MainMenu"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
-theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_colors/font_color = Color(0.639216, 0.635294, 0.635294, 1)
+theme_override_colors/font_pressed_color = Color(0.188235, 0.317647, 0.509804, 1)
+theme_override_colors/font_hover_color = Color(0.254902, 0.572549, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_vfonr")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "STORY MODE"
 
+[node name="AttackModeButton" type="Button" parent="Panel/MainMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.635294, 0.635294, 1)
+theme_override_colors/font_pressed_color = Color(0.380392, 0.0627451, 0.635294, 1)
+theme_override_colors/font_hover_color = Color(0.254902, 0.572549, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_vfonr")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
+text = "SCORE ATTACK
+"
+
 [node name="StageSelectButton" type="Button" parent="Panel/MainMenu"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
-theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_colors/font_color = Color(0.639216, 0.635294, 0.635294, 1)
+theme_override_colors/font_pressed_color = Color(0.254902, 0.380392, 0.984314, 1)
+theme_override_colors/font_hover_color = Color(0.254902, 0.572549, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_vfonr")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
@@ -85,10 +116,10 @@ text = "STAGE SELECT"
 
 [node name="BossSelectButton" type="Button" parent="Panel/MainMenu"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
-theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_colors/font_color = Color(0.639216, 0.635294, 0.635294, 1)
+theme_override_colors/font_pressed_color = Color(0.380392, 0.0627451, 0.635294, 1)
+theme_override_colors/font_hover_color = Color(0.254902, 0.572549, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_vfonr")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
@@ -97,10 +128,10 @@ text = "BOSS SELECT"
 
 [node name="SettingsButton" type="Button" parent="Panel/MainMenu"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
-theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_colors/font_color = Color(0.639216, 0.635294, 0.635294, 1)
+theme_override_colors/font_pressed_color = Color(0.380392, 0.0627451, 0.635294, 1)
+theme_override_colors/font_hover_color = Color(0.254902, 0.572549, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_vfonr")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
@@ -109,18 +140,63 @@ text = "SETTINGS"
 
 [node name="HighScoresButton" type="Button" parent="Panel/MainMenu"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.662745, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0.662745, 0, 1)
-theme_override_fonts/font = ExtResource("1_l1ao3")
+theme_override_colors/font_color = Color(0.639216, 0.635294, 0.635294, 1)
+theme_override_colors/font_pressed_color = Color(0.380392, 0.0627451, 0.635294, 1)
+theme_override_colors/font_hover_color = Color(0.254902, 0.572549, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_vfonr")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "HIGH SCORES"
 
+[node name="Popup" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_py8jp")
+
+[node name="Warning" type="Label" parent="Popup"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -29.0
+offset_right = -5.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("3_vfonr")
+theme_override_font_sizes/font_size = 14
+text = "Sorry, the selected feature is not implemented."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="Popup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.5
+offset_top = -23.0
+offset_right = 20.5
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("2_n3jpo")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_8jokb")
+text = "Close"
+
 [connection signal="pressed" from="Panel/MainMenu/StoryModeButton" to="." method="_on_story_mode_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/AttackModeButton" to="." method="_on_attack_mode_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/StageSelectButton" to="." method="_on_stage_select_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/BossSelectButton" to="." method="_on_boss_select_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/HighScoresButton" to="." method="_on_high_scores_button_pressed"]
+[connection signal="pressed" from="Popup/CloseButton" to="." method="_on_close_button_pressed"]

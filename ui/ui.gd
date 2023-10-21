@@ -83,8 +83,5 @@ func _on_main_multiplier_active(multiplier):
 	if multiplier > 1:
 		multiplier_label.show()
 		multiplier_label.text = "MULTIPLIER\nx%d" % multiplier
-		if multiplier > 5:
-			multiplier_label.add_theme_font_size_override(default_multiplier_font_size+5)
 	else:
 		multiplier_label.hide()
-		multiplier_label.add_theme_font_size_override(default_multiplier_font_size)

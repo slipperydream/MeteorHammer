@@ -57,7 +57,7 @@ func get_spawn_position(lane):
 	var lane_size = (screensize.x - (2 * gutter_size)) / num_lanes
 	
 	var pos_x = lane * lane_size + lane_size
-	print("screen width %d lane size %d lane %d pos_x %d" % [screensize.x, lane_size, lane, pos_x])
+
 	return Vector2(pos_x, pos_y)
 
 func _on_main_start_game(_start_lives, _current_stage):

@@ -1,33 +1,46 @@
 extends Control
 
-signal new_game
+signal story_mode
+signal attack_mode
 signal stage_mode
 signal boss_mode
 
+@onready var story_mode_button = $Panel/MainMenu/StoryModeButton
+@onready var attack_mode_button = $Panel/MainMenu/AttackModeButton
+@onready var stage_select_button = $Panel/MainMenu/StageSelectButton
+@onready var boss_select_button = $Panel/MainMenu/BossSelectButton
+@onready var settings_button = $Panel/MainMenu/SettingsButton
+@onready var high_scores_button = $Panel/MainMenu/HighScoresButton
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	$Popup.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func _on_story_mode_button_pressed():
-	pass # Replace with function body.
+	emit_signal("story_mode")
 
-
+func _on_attack_mode_button_pressed():
+	not_implemented()
+	
 func _on_stage_select_button_pressed():
-	pass # Replace with function body.
-
+	not_implemented()
 
 func _on_boss_select_button_pressed():
-	pass # Replace with function body.
-
+	not_implemented()
 
 func _on_settings_button_pressed():
-	pass # Replace with function body.
-
+	not_implemented()
 
 func _on_high_scores_button_pressed():
-	pass # Replace with function body.
+	not_implemented()
+
+func _on_close_button_pressed():
+	$Popup.hide()
+
+func not_implemented():
+	$Popup.show()
+

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var screensize : Vector2 = get_viewport_rect().size
 
-enum game_state {ATTRACT, NEW_GAME, RUNNING, PAUSED, GAME_OVER}
+enum game_state {ATTRACT, TITLE, RUNNING, PAUSED, GAME_OVER}
 
 signal new_game
 signal start_game
@@ -28,8 +28,8 @@ var stages : Array = ["res://stages/Stage_1.tscn", "res://stages/Stage_2.tscn"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_game_state = game_state.NEW_GAME
-	emit_signal("new_game")
+	current_game_state = game_state.TITLE
+	$CanvasLayer/TitleScreen.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -101,8 +101,7 @@ func _on_pause_game():
 func _on_game_over():
 	get_tree().call_group("stages", "queue_free")
 	await get_tree().create_timer(2).timeout
-	current_game_state = game_state.NEW_GAME
-	emit_signal("new_game")
+	$CanvasLayer/TitleScreen.show()
 
 func _on_scoring_timer_timeout():
 	scoring_chain_active = false
@@ -116,5 +115,6 @@ func _on_center_container_game_unpaused():
 	current_game_state = game_state.RUNNING
 	get_tree().paused = false
 
-func _on_center_container_start_pressed():
+func _on_title_screen_story_mode():
+	$CanvasLayer/TitleScreen.hide()
 	begin_game()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdyucqt4v8edp"
-path="res://.godot/imported/slice.png-289cae596180aa564a037bea34527d07.ctex"
+uid="uid://heglul6b074k"
+path="res://.godot/imported/asteroids.png-726aa617fd45f5e621c411458f2f5b25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/slice.png"
-dest_files=["res://.godot/imported/slice.png-289cae596180aa564a037bea34527d07.ctex"]
+source_file="res://enemy/asteroids.png"
+dest_files=["res://.godot/imported/asteroids.png-726aa617fd45f5e621c411458f2f5b25.ctex"]
 
 [params]
 

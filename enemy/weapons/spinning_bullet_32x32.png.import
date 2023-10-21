@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl0rehmuqhthr"
-path="res://.godot/imported/shell.png-5490659c4ce023069b3bedb465904cbe.ctex"
+uid="uid://cvvjycb8ej521"
+path="res://.godot/imported/spinning_bullet_32x32.png-61b74c07d9a747a2008af4b32b40468e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/shell.png"
-dest_files=["res://.godot/imported/shell.png-5490659c4ce023069b3bedb465904cbe.ctex"]
+source_file="res://enemy/weapons/spinning_bullet_32x32.png"
+dest_files=["res://.godot/imported/spinning_bullet_32x32.png-61b74c07d9a747a2008af4b32b40468e.ctex"]
 
 [params]
 

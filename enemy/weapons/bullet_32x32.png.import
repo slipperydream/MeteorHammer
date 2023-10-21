@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckfflpnnssqwj"
-path="res://.godot/imported/elipse.png-2327fdba0f77a4f5a7f283f700ac8c63.ctex"
+uid="uid://bbwrd7wu8byul"
+path="res://.godot/imported/bullet_32x32.png-7dfd2de89cdf63c8f764aacc816d1183.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/elipse.png"
-dest_files=["res://.godot/imported/elipse.png-2327fdba0f77a4f5a7f283f700ac8c63.ctex"]
+source_file="res://enemy/weapons/bullet_32x32.png"
+dest_files=["res://.godot/imported/bullet_32x32.png-7dfd2de89cdf63c8f764aacc816d1183.ctex"]
 
 [params]
 

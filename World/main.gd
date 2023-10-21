@@ -4,7 +4,6 @@ extends Node2D
 
 enum game_state {ATTRACT, TITLE, RUNNING, PAUSED, GAME_OVER}
 
-signal new_game
 signal start_game
 signal game_over
 signal pause_game
@@ -13,8 +12,12 @@ signal multiplier_active
 signal stage_cleared
 signal new_stage
 
+# achievement signals
+signal max_multiplier
+signal beat_game
+
 var score = 0
-var current_game_state : game_state = game_state.ATTRACT
+var current_game_state : game_state = game_state.TITLE
 var current_stage : int = 0
 var boss_spawned = false
 var scoring_chain_active : bool = false
@@ -69,6 +72,7 @@ func _on_enemy_died(value):
 		scoring_multiplier += 1
 		if scoring_multiplier > max_scoring_multiplier:
 			scoring_multiplier = max_scoring_multiplier;
+			emit_signal("max_multiplier")
 		emit_signal("multiplier_active", scoring_multiplier)
 	else:
 		scoring_multiplier = 1
@@ -91,6 +95,7 @@ func _on_stage_cleared(_stage):
 	if current_stage + 1 >= stages.size():
 		print("You beat the game")
 		emit_signal("game_over")
+		emit_signal("beat_game")
 	else:
 		current_stage += 1
 		load_stage(current_stage)
@@ -100,7 +105,7 @@ func _on_pause_game():
 
 func _on_game_over():
 	get_tree().call_group("stages", "queue_free")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(5).timeout
 	$CanvasLayer/TitleScreen.show()
 
 func _on_scoring_timer_timeout():
@@ -117,4 +122,5 @@ func _on_center_container_game_unpaused():
 
 func _on_title_screen_story_mode():
 	$CanvasLayer/TitleScreen.hide()
+	await get_tree().create_timer(2).timeout
 	begin_game()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqhg5cmjqcmdx"
-path="res://.godot/imported/heart.png-193efc1d5d8b14d582581804b0bccd9c.ctex"
+uid="uid://clx8u7a8xy4h"
+path="res://.godot/imported/arrow_ball_32x32.png-5d3f10b8605dd2060ca4dfab2f9e9627.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/heart.png"
-dest_files=["res://.godot/imported/heart.png-193efc1d5d8b14d582581804b0bccd9c.ctex"]
+source_file="res://enemy/weapons/arrow_ball_32x32.png"
+dest_files=["res://.godot/imported/arrow_ball_32x32.png-5d3f10b8605dd2060ca4dfab2f9e9627.ctex"]
 
 [params]
 

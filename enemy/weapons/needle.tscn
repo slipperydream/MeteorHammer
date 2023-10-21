@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://enemy/weapons/needle.gd" id="1_i50o1"]
 [ext_resource type="AudioStream" uid="uid://xrq7t11ehqsh" path="res://sound/sfx/lasers/Laser-weapon7.wav" id="2_jx783"]
-[ext_resource type="Texture2D" uid="uid://hfhk1jhfhr2i" path="res://enemy/weapons/needle.png" id="3_xm52j"]
+[ext_resource type="Texture2D" uid="uid://hfhk1jhfhr2i" path="res://enemy/weapons/needle_32x32.png" id="3_age7v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d6uug"]
 radius = 5.0
@@ -54,14 +54,12 @@ firing_sound = ExtResource("2_jx783")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_xm52j")
+texture = ExtResource("3_age7v")
 hframes = 7
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
-scale = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_d6uug")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

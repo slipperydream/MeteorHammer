@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl7t685jig8mr"
-path="res://.godot/imported/diamonds.png-80ab09bcd6577180a2169e231d419ceb.ctex"
+uid="uid://bqhg5cmjqcmdx"
+path="res://.godot/imported/heart_32x32.png-3d5921b58d043c3eb6be78d34b31cf81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/diamonds.png"
-dest_files=["res://.godot/imported/diamonds.png-80ab09bcd6577180a2169e231d419ceb.ctex"]
+source_file="res://enemy/weapons/heart_32x32.png"
+dest_files=["res://.godot/imported/heart_32x32.png-3d5921b58d043c3eb6be78d34b31cf81.ctex"]
 
 [params]
 

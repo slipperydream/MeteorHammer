@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bubnr5tsbvw6g"
-path="res://.godot/imported/charged_shot.png-e0dbbd2e719bb40a2e09a76f1b7aa577.ctex"
+uid="uid://w6dtuybhvx72"
+path="res://.godot/imported/cross_shot_32x32.png-32861118ee354abf5a49d90bffd5b3f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/charged_shot.png"
-dest_files=["res://.godot/imported/charged_shot.png-e0dbbd2e719bb40a2e09a76f1b7aa577.ctex"]
+source_file="res://enemy/weapons/cross_shot_32x32.png"
+dest_files=["res://.godot/imported/cross_shot_32x32.png-32861118ee354abf5a49d90bffd5b3f5.ctex"]
 
 [params]
 

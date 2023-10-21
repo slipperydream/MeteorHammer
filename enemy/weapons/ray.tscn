@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://enemy/weapons/ray.gd" id="1_xnxtc"]
 [ext_resource type="AudioStream" uid="uid://dvv0wqrouj00b" path="res://sound/sfx/Scifi/Repeating Scifi Beam_2.wav" id="2_7k88u"]
-[ext_resource type="Texture2D" uid="uid://bqmu3v5vwcopf" path="res://enemy/weapons/ray.png" id="3_lpew7"]
+[ext_resource type="Texture2D" uid="uid://bqmu3v5vwcopf" path="res://enemy/weapons/ray_32x32.png" id="3_lpew7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
-size = Vector2(18, 64)
+size = Vector2(19, 64)
 
 [sub_resource type="Animation" id="Animation_f07uj"]
 length = 0.001
@@ -54,14 +54,12 @@ speed = 30
 firing_sound = ExtResource("2_7k88u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_lpew7")
 hframes = 28
 frame = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
-scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_aq4jb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

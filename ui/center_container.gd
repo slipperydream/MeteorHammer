@@ -40,8 +40,7 @@ func _on_pause_button_pressed():
 func _on_main_new_stage(stage):
 	show_stage_label(stage)
 
-
-func _on_main_start_game():
+func _on_main_start_game(_start_lives, _current_stage):
 	if game_over_label.visible:
 		game_over_label.hide()
 	if pause_button.visible:

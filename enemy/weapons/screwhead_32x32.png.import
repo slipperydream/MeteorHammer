@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clx8u7a8xy4h"
-path="res://.godot/imported/arrow_ball.png-a13f066300ddcb68aa70a80378d47341.ctex"
+uid="uid://bobb0o6muhinb"
+path="res://.godot/imported/screwhead_32x32.png-b7030c2e44c8c8b5af5ae0d2e8aaae80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/arrow_ball.png"
-dest_files=["res://.godot/imported/arrow_ball.png-a13f066300ddcb68aa70a80378d47341.ctex"]
+source_file="res://enemy/weapons/screwhead_32x32.png"
+dest_files=["res://.godot/imported/screwhead_32x32.png-b7030c2e44c8c8b5af5ae0d2e8aaae80.ctex"]
 
 [params]
 

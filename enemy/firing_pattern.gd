@@ -1,6 +1,6 @@
 extends Resource
 
-class_name Spawn_info
+class_name Firing_pattern
 
 @export var spawn_time : int
 var spawned : bool = false

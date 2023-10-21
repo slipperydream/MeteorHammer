@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://enemy/weapons/slice.gd" id="1_7nkxh"]
 [ext_resource type="AudioStream" uid="uid://dm6xkjmsq65us" path="res://sound/sfx/lasers/Laser-weapon6.wav" id="2_yqueg"]
-[ext_resource type="Texture2D" uid="uid://bdyucqt4v8edp" path="res://enemy/weapons/slice.png" id="3_w0ute"]
+[ext_resource type="Texture2D" uid="uid://bdyucqt4v8edp" path="res://enemy/weapons/slice_32x32.png" id="3_wyhsv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xco7j"]
 radius = 12.1655
@@ -37,13 +37,12 @@ firing_sound = ExtResource("2_yqueg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_w0ute")
+texture = ExtResource("3_wyhsv")
 hframes = 7
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.5, 0.5)
+position = Vector2(2.53518e-06, -1)
 shape = SubResource("CircleShape2D_xco7j")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

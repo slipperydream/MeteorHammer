@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjsxyohvmi47w"]
 
 [ext_resource type="Script" path="res://enemy/weapons/shell.gd" id="1_n6tt5"]
-[ext_resource type="Texture2D" uid="uid://bl0rehmuqhthr" path="res://enemy/weapons/shell.png" id="2_5mwhb"]
 [ext_resource type="AudioStream" uid="uid://cocrqag81vq8f" path="res://sound/sfx/lasers/Laser_5.wav" id="2_e3712"]
+[ext_resource type="Texture2D" uid="uid://bl0rehmuqhthr" path="res://enemy/weapons/shell_32x32.png" id="3_nsqpa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d6uug"]
 radius = 6.0
@@ -54,7 +54,7 @@ firing_sound = ExtResource("2_e3712")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("2_5mwhb")
+texture = ExtResource("3_nsqpa")
 hframes = 7
 frame = 1
 

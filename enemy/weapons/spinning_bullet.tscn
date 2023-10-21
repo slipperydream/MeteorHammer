@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://enemy/weapons/spinning_bullet.gd" id="1_4l0au"]
 [ext_resource type="AudioStream" uid="uid://xrq7t11ehqsh" path="res://sound/sfx/lasers/Laser-weapon7.wav" id="2_jua0k"]
-[ext_resource type="Texture2D" uid="uid://cvvjycb8ej521" path="res://enemy/weapons/spinning_bullet.png" id="3_7c5hr"]
+[ext_resource type="Texture2D" uid="uid://cvvjycb8ej521" path="res://enemy/weapons/spinning_bullet_32x32.png" id="3_56141"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_66sgq"]
 radius = 13.0
@@ -56,13 +56,11 @@ title = "enemy bolt"
 firing_sound = ExtResource("2_jua0k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_7c5hr")
+texture = ExtResource("3_56141")
 hframes = 28
 frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_66sgq")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

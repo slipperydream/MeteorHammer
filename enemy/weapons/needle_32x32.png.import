@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbwrd7wu8byul"
-path="res://.godot/imported/bullet.png-7fe682a2320dfb6b4694784c62d1136f.ctex"
+uid="uid://hfhk1jhfhr2i"
+path="res://.godot/imported/needle_32x32.png-a336232b99897981034292683bd49c28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-7fe682a2320dfb6b4694784c62d1136f.ctex"]
+source_file="res://enemy/weapons/needle_32x32.png"
+dest_files=["res://.godot/imported/needle_32x32.png-a336232b99897981034292683bd49c28.ctex"]
 
 [params]
 

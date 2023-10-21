@@ -4,11 +4,9 @@ Heavily modified now
 TODOs (not in priority order yet)
 -----
 - Add firing station and order to enemies
-- Make shot patterns a part of each enemy/weapon
 - Start building 30 to 60 second long stages
     - add song changes with the stage changes
     - update spawner to specify location
-- Figure out how to play more than one song
 - make pickup system
 - make different items and weapons as pickups
   - slashing effect, super cannon shot, screen wide weak bullets, meteor hammer (meteor crashing down in front of player)
@@ -18,10 +16,6 @@ TODOs (not in priority order yet)
 - Start adding flags to different functionality that I eventually want to be able to turn off/change
 
 - Add settings menu
-
-- Add splash screen
-
-- Add start screen
 
 - Add game over screen
 

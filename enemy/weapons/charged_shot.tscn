@@ -1,25 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5m4gqsiirs8i"]
+[gd_scene load_steps=5 format=3 uid="uid://b5m4gqsiirs8i"]
 
 [ext_resource type="Script" path="res://enemy/weapons/charged_shot.gd" id="1_sin3t"]
-[ext_resource type="Texture2D" uid="uid://bubnr5tsbvw6g" path="res://enemy/weapons/charged_shot.png" id="3_3y5dh"]
+[ext_resource type="AudioStream" uid="uid://dgkeg81j01kfv" path="res://sound/sfx/Power ups and power downs/Power_Up_2.wav" id="2_c3frf"]
+[ext_resource type="Texture2D" uid="uid://bubnr5tsbvw6g" path="res://enemy/weapons/charged_shot_32x32.png" id="3_3y5dh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qa6bu"]
-size = Vector2(6, 11)
+size = Vector2(15, 21)
 
 [node name="ChargedShot" type="Area2D" groups=["enemy_weapon"]]
 audio_bus_name = &"SFX"
 script = ExtResource("1_sin3t")
+title = "Charged Shot"
+firing_sound = ExtResource("2_c3frf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_3y5dh")
 hframes = 7
 frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
-position = Vector2(0, 1.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_qa6bu")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bobb0o6muhinb"
-path="res://.godot/imported/screwhead.png-b5f272a060d2085b1ea9ff9dcc4ce712.ctex"
+uid="uid://bdyucqt4v8edp"
+path="res://.godot/imported/slice_32x32.png-dc13ecb4f660e6f4469a1063d2fd86fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/screwhead.png"
-dest_files=["res://.godot/imported/screwhead.png-b5f272a060d2085b1ea9ff9dcc4ce712.ctex"]
+source_file="res://enemy/weapons/slice_32x32.png"
+dest_files=["res://.godot/imported/slice_32x32.png-dc13ecb4f660e6f4469a1063d2fd86fc.ctex"]
 
 [params]
 

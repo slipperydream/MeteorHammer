@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w6dtuybhvx72"
-path="res://.godot/imported/cross_shot.png-a4845333230f59b9616826ceac98cf0b.ctex"
+uid="uid://bqmu3v5vwcopf"
+path="res://.godot/imported/ray_32x32.png-a468dfedd89ae3ade894dfd20e4dbf9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/cross_shot.png"
-dest_files=["res://.godot/imported/cross_shot.png-a4845333230f59b9616826ceac98cf0b.ctex"]
+source_file="res://enemy/weapons/ray_32x32.png"
+dest_files=["res://.godot/imported/ray_32x32.png-a468dfedd89ae3ade894dfd20e4dbf9b.ctex"]
 
 [params]
 

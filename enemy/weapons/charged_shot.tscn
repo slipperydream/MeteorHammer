@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5m4gqsiirs8i"]
+
+[ext_resource type="Script" path="res://enemy/weapons/charged_shot.gd" id="1_sin3t"]
+[ext_resource type="Texture2D" uid="uid://bubnr5tsbvw6g" path="res://enemy/weapons/charged_shot.png" id="3_3y5dh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qa6bu"]
+size = Vector2(6, 11)
+
+[node name="ChargedShot" type="Area2D" groups=["enemy_weapon"]]
+audio_bus_name = &"SFX"
+script = ExtResource("1_sin3t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_3y5dh")
+hframes = 7
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_qa6bu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

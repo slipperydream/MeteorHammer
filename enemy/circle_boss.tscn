@@ -174,9 +174,10 @@ script = ExtResource("1_okmro")
 title = "Circle"
 is_boss = true
 points = 20
-hp = 15
-shoot_interval_min = 2.0
-required_range = 100
+hp = 30
+shoot_interval_min = 4.0
+shoot_interval_max = 4.0
+required_range = 200
 explosion_sound = ExtResource("2_hjtfe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

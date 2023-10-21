@@ -1,13 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjsxyohvmi47w"]
+[gd_scene load_steps=8 format=3 uid="uid://dur3i28t5idoy"]
 
-[ext_resource type="Script" path="res://enemy/weapons/enemy_bullet.gd" id="1_urqty"]
-[ext_resource type="Texture2D" uid="uid://bj6i6kldn7qc1" path="res://player/weapons/charged_beam_red_16x16.png" id="2_5854w"]
-[ext_resource type="AudioStream" uid="uid://h5y8ei0n8e6c" path="res://sound/sfx/Scifi/Scifi waves_fast.wav" id="2_n1tf7"]
+[ext_resource type="Script" path="res://enemy/weapons/ray.gd" id="1_xnxtc"]
+[ext_resource type="AudioStream" uid="uid://dvv0wqrouj00b" path="res://sound/sfx/Scifi/Repeating Scifi Beam_2.wav" id="2_7k88u"]
+[ext_resource type="Texture2D" uid="uid://bqmu3v5vwcopf" path="res://enemy/weapons/ray.png" id="3_lpew7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
-size = Vector2(4, 11)
+size = Vector2(18, 64)
 
-[sub_resource type="Animation" id="Animation_cjr2n"]
+[sub_resource type="Animation" id="Animation_f07uj"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -19,10 +19,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [16]
 }
 
-[sub_resource type="Animation" id="Animation_imq0u"]
+[sub_resource type="Animation" id="Animation_f28g8"]
 resource_name = "moving"
 length = 0.4
 loop_mode = 1
@@ -36,35 +36,40 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [16, 17, 18, 19]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hoq6"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bctuv"]
 _data = {
-"RESET": SubResource("Animation_cjr2n"),
-"moving": SubResource("Animation_imq0u")
+"RESET": SubResource("Animation_f07uj"),
+"moving": SubResource("Animation_f28g8")
 }
 
-[node name="EnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
-script = ExtResource("1_urqty")
-title = "enemy beam"
-firing_sound = ExtResource("2_n1tf7")
+[node name="EnemyRay" type="Area2D" groups=["enemy_weapon"]]
+z_index = 1
+audio_bus_name = &"SFX"
+script = ExtResource("1_xnxtc")
+title = "enemy ray"
+speed = 30
+firing_sound = ExtResource("2_7k88u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-rotation = 3.14159
-texture = ExtResource("2_5854w")
-hframes = 4
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_lpew7")
+hframes = 28
+frame = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(-0.5, 0)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_aq4jb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "moving"
 libraries = {
-"": SubResource("AnimationLibrary_1hoq6")
+"": SubResource("AnimationLibrary_bctuv")
 }
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

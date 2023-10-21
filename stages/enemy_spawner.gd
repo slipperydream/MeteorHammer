@@ -27,8 +27,7 @@ func start():
 	boss_spawned.connect(main._on_boss_spawned)
 	boss_spawned.connect(ui._on_boss_spawned)
 	var enemy_spawns = spawns
-	for i in enemy_spawns:
-		total_enemies += i.enemy_num
+	total_enemies = enemy_spawns.size()
 	
 func _on_timer_timeout():
 	time += 1
@@ -37,17 +36,15 @@ func _on_timer_timeout():
 		for i in enemy_spawns:
 			if time >= i.spawn_time and i.spawned == false:
 				var new_enemy = i.enemy
-				var counter = 0
-				while counter < i.enemy_num:
-					var enemy_spawn = new_enemy.instantiate()
-					enemy_spawn.global_position = get_spawn_position(i.lane)
-					add_child(enemy_spawn)
-					enemy_spawn.start(enemy_spawn.global_position)
-					counter += 1
-					enemy_spawn.died.connect(main._on_enemy_died)
-					spawn_count += 1
-					if enemy_spawn.is_boss:						
-						emit_signal("boss_spawned")
+				var enemy_spawn = new_enemy.instantiate()
+				enemy_spawn.global_position = get_spawn_position(i.lane)
+				add_child(enemy_spawn)
+				enemy_spawn.start(enemy_spawn.global_position)
+				
+				enemy_spawn.died.connect(main._on_enemy_died)
+				spawn_count += 1
+				if enemy_spawn.is_boss:						
+					emit_signal("boss_spawned")
 				i.spawned = true
 		if spawn_count >= total_enemies:
 			all_spawned = true
@@ -55,11 +52,12 @@ func _on_timer_timeout():
 		$Timer.stop()
 			
 func get_spawn_position(lane):
-	if lane > 5 or lane < 0:
-		lane = randi_range(0,5)
+	if lane > num_lanes-1 or lane < 0:
+		lane = randi_range(0, num_lanes-1)
 	var lane_size = (screensize.x - (2 * gutter_size)) / num_lanes
 	
-	var pos_x = lane * lane_size + gutter_size
+	var pos_x = lane * lane_size + lane_size
+	print("screen width %d lane size %d lane %d pos_x %d" % [screensize.x, lane_size, lane, pos_x])
 	return Vector2(pos_x, pos_y)
 
 func _on_main_start_game(_start_lives, _current_stage):

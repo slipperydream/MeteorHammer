@@ -1,10 +1,8 @@
 extends "res://enemy/base_enemy.gd"
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-		bullet_scene = preload("res://enemy/weapons/enemy_bullet.tscn")
-
+	bullet_scene.append(preload("res://enemy/weapons/shell.tscn"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -12,9 +10,12 @@ func _process(delta):
 	$Sprite2D/Boosters.animation = "forward"
 
 func shoot():
-	for point in range(12):
-		#shape more into a whip, 
-		#or make a line2d to do that?
-		var bullet = bullet_scene.instantiate()
-		fire_bullet(bullet, position, deg_to_rad(point * 15))
-		await get_tree().create_timer(0.1).timeout
+	var spacing = enemy_size.x / 3
+	
+	# firing six shots in bursts of 2, moving outwards from the chassis
+	for shot in range(3):
+		var bullet = bullet_scene[0].instantiate()
+		fire_bullet(bullet, Vector2(position.x - (spacing + (shot * 10)), position.y), deg_to_rad(90))
+		bullet = bullet_scene[0].instantiate()
+		fire_bullet(bullet, Vector2(position.x + (spacing + (shot * 10)), position.y), deg_to_rad(90))
+		await get_tree().create_timer(0.2).timeout

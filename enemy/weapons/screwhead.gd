@@ -1,5 +1,4 @@
-extends "res://enemy/weapons/base_enemy_weapon.gd"
-
+extends "res://enemy/weapons/bullet.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,8 +8,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
-	if $AnimationPlayer.is_playing() == false:
-		$AnimationPlayer.play("moving")
-	var tween = create_tween()
-	tween.tween_property(Sprite2D, "scale.y", 4, 0.25)
-
+	if animate and $AnimationPlayer.is_playing() == false:
+		$AnimationPlayer.play("spin")

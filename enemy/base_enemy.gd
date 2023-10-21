@@ -2,7 +2,7 @@ extends Area2D
 
 signal died
 
-var bullet_scene = preload("res://enemy/weapons/base_enemy_weapon.tscn")
+var bullet_scene : Array = [] 
 
 @export var title : String = "Enemy"
 @export var is_boss : bool = false
@@ -20,7 +20,7 @@ var bullet_scene = preload("res://enemy/weapons/base_enemy_weapon.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	bullet_scene.append(preload("res://enemy/weapons/base_enemy_weapon.tscn"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -70,7 +70,7 @@ func shoot():
 		print("player within sealing range")
 		return
 		
-	var bullet = bullet_scene.instantiate()
+	var bullet = bullet_scene[0].instantiate()
 	fire_bullet(bullet, position, deg_to_rad(90))
 	
 	# TODO: Move all this into individual enemies shot patterns

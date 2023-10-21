@@ -1,14 +1,16 @@
 extends Area2D
 
 @export var title : String = 'enemy weapon'
-@export var speed : int = 150
+@export var speed : int = 75
 @export var direction : Vector2 = Vector2(0, 1)
 @export var power : int = 1
 @export var firing_sound : AudioStreamWAV
+@export var animate : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	audio_bus_override = true
+	audio_bus_name = 'SFX'
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

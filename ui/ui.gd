@@ -62,7 +62,7 @@ func _on_player_item_charging():
 func _on_boss_spawned():
 	$AnimationPlayer.play("boss_warning")
 
-func _on_main_stage_cleared():
+func _on_main_stage_cleared(_stage):
 	$Stopwatch.stop()
 	var time_spent = $Stopwatch.time_elapsed
 

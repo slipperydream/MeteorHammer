@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://cl3s0rygv5kop"]
 
-[ext_resource type="Script" path="res://enemy/weapons/enemy_torpedo.gd" id="1_v3hkh"]
+[ext_resource type="Script" path="res://enemy/weapons/torpedo.gd" id="1_v3hkh"]
 [ext_resource type="AudioStream" uid="uid://clapk68mrjjmq" path="res://sound/sfx/Scifi/Booster_static_2.wav" id="2_4j143"]
 [ext_resource type="Texture2D" uid="uid://bfxsc2y2kti0n" path="res://assets/Nairan/Weapon_Effects-Projectiles/Nairan-Torpedo.png" id="2_ewqw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
-size = Vector2(6, 6)
+size = Vector2(6, 8)
 
-[node name="EnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
+[node name="Torpedo" type="Area2D" groups=["enemy_weapon"]]
+audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_v3hkh")
 title = "enemy torpedo"
@@ -19,6 +20,7 @@ texture = ExtResource("2_ewqw4")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_aq4jb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

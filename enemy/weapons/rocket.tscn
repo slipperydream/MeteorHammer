@@ -1,22 +1,24 @@
 [gd_scene load_steps=5 format=3 uid="uid://dccqhpujbwsjj"]
 
-[ext_resource type="Script" path="res://enemy/weapons/base_enemy_weapon.gd" id="1_1n4vp"]
-[ext_resource type="AudioStream" uid="uid://bfp18e75mhkyv" path="res://sound/sfx/Scifi/Booster.wav" id="2_oayib"]
-[ext_resource type="Texture2D" uid="uid://bjuw30llvqjsu" path="res://assets/Nairan/Weapon_Effects-Projectiles/Nairan-Rocket.png" id="3_yjgxy"]
+[ext_resource type="Script" path="res://enemy/weapons/rocket.gd" id="1_l7wdr"]
+[ext_resource type="AudioStream" uid="uid://bfp18e75mhkyv" path="res://sound/sfx/Scifi/Booster.wav" id="2_642u3"]
+[ext_resource type="Texture2D" uid="uid://bjuw30llvqjsu" path="res://assets/Nairan/Weapon_Effects-Projectiles/Nairan-Rocket.png" id="2_to3m5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
 size = Vector2(6, 6)
 
-[node name="EnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
+[node name="Rocket" type="Area2D" groups=["enemy_weapon"]]
+audio_bus_override = true
 audio_bus_name = &"SFX"
-script = ExtResource("1_1n4vp")
+script = ExtResource("1_l7wdr")
 title = "enemy rocket"
 power = 5
-firing_sound = ExtResource("2_oayib")
+firing_sound = ExtResource("2_642u3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("3_yjgxy")
+rotation = 3.14159
+texture = ExtResource("2_to3m5")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

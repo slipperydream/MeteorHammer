@@ -187,7 +187,7 @@ _data = {
 "hit": SubResource("Animation_bjodb")
 }
 
-[node name="Enemy" type="Area2D" groups=["enemy"]]
+[node name="Fighter" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
 audio_bus_override = true
 audio_bus_name = &"SFX"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbwrd7wu8byul"
-path="res://.godot/imported/round_shot.png-1eb0e1f4f9817610022ec34ec32de3a0.ctex"
+uid="uid://cvvjycb8ej521"
+path="res://.godot/imported/spinning_bullet.png-8fea1905fb8061d2dc02845ff25b3459.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/weapons/round_shot.png"
-dest_files=["res://.godot/imported/round_shot.png-1eb0e1f4f9817610022ec34ec32de3a0.ctex"]
+source_file="res://enemy/weapons/spinning_bullet.png"
+dest_files=["res://.godot/imported/spinning_bullet.png-8fea1905fb8061d2dc02845ff25b3459.ctex"]
 
 [params]
 

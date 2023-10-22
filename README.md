@@ -28,7 +28,7 @@ TODOs (not in priority order yet)
 
 - Add invincibility after respawn
 
-- Cancel bullets of dead enemies?
+- Code bullet cancelling - dead enemies bullet disappear or fly to the player and become scoring items. Need to investigate who owns the bullets
 
 - Add attract mode
 
@@ -40,8 +40,6 @@ TODOs (not in priority order yet)
 
 - add focused shot for player with holding down the button
 
-- Add UI indication of scoring chain: either timer or "x Multiplier" UI element?
-
 - look into sound pools for sound effects
 - look into object pools for spawning enemies and bullets
 
@@ -52,4 +50,71 @@ TODOs (not in priority order yet)
     - firing modes: spread, tail, front, ring, rolling (always forward firing, but rotate around player)
 
 
-Make a stage struct that defines the number, name, and other things
+- create options (drones) that add power to the player
+
+ - Make a stage struct that defines the number, name, and other things
+
+Redo code to make components instead of inheritance.
+- Attack
+    - Firing
+- Health
+- Hitbox
+- Movement?
+
+Add auto bombing feature: spends bomb when hit to prevent death. Make it player toggleable
+Assign firing locations to the animated sprites & order
+
+Replace shield UI with shield around player that flashes when hit and dissolves when destroyed
+
+Time out stages to be 2ish minutes
+
+Add level spawner including pickups
+
+Weapons: single, double, triple, quad beams, missiles, screen clearers
+
+Power ups:
+- Shot power increase by 10% not 100%
+- Increase width
+- Increase speed
+- Add effects
+- Increase sounda
+
+Items: bombs, mines, power ups, shields, lives
+
+Enemies: bosses, sprites, animations, aimed shots. Fix double & triple stack to offer lanes wide enough to move into. Increase explosion size to larger than enemy. Have multiple deaths. Have hit indicators visual & audio
+
+Enemy types:
+- scout ship (long range shot, fast, low Hp)
+- Fighter (fast, close range, slashing attack)
+- Dreadnought (slow, multi-shot, high hp)
+- Orbital platform (stationary, aimed shot)
+- Torpedo ship (med speed, ripple shot, mid hp)
+- Carrier (slow, spawns fighters, cannon shot)
+- Space fence - constant barrier horizontally across screen
+- Space tank
+- Homing droids - chase after the player
+
+Bosses:
+1. Ivory Dragon
+2. Sable Hawk
+3. The Damned Pearl - opens it clamshell firing a spread shot, but reveals a white orb that can be damaged
+4. Giant Orbital Platform: fires slew of small bullets then rotates to fire giant beam cannon
+5. Quasar - rotates and fires cannons out both ends
+6. Super Quasar - fires out in X-pattern
+7. Mecha - alternating whip attacks and also a chest barrage of missiles
+8. Shield Bearer & Reaper - shield bearer projects shield in front of them & the reaper. Drops shield when Reaper launches slashing shot
+9. Big Girl - former colleague
+10. Mega Space fence: series of smaller fences that open and close to release small waves of foes.
+11. Space Carrier Argus: launches a bunch of small mobs to attack you
+12. Citrine Dream: does sweeping electric attacks (like Crono’s attack). Alternates direction
+
+High scores
+
+
+After death cancel enemy shots for a few seconds, but leave existing bullets on screen. Give player a few seconds of invincibility, remove pause & repositioning
+
+Adjustable difficulty by widening shot patterns, increasing number of waves, bullet speed, spread, damage
+
+Add enemy ai/pathing
+
+Ceasefire zone - when an enemy nears the bottom of the screen disable their ability to shoot to minimize frustration

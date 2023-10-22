@@ -8,6 +8,7 @@
 size = Vector2(15, 21)
 
 [node name="ChargedShot" type="Area2D" groups=["enemy_weapon"]]
+collision_layer = 2
 audio_bus_name = &"SFX"
 script = ExtResource("1_sin3t")
 title = "Charged Shot"

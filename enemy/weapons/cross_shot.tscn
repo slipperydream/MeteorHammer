@@ -47,6 +47,7 @@ _data = {
 }
 
 [node name="CrossShot" type="Area2D" groups=["enemy_weapon"]]
+collision_layer = 2
 audio_bus_name = &"SFX"
 script = ExtResource("1_8ykc2")
 title = "Cross Shot"

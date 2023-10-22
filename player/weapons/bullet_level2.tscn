@@ -8,6 +8,7 @@
 size = Vector2(10, 9)
 
 [node name="BulletLevel2" type="Area2D" groups=["bullets"]]
+collision_mask = 26
 script = ExtResource("1_1lrks")
 title = "Bullet Level 2"
 power = 2

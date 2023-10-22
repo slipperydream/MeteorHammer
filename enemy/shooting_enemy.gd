@@ -3,7 +3,8 @@ extends "res://enemy/base_enemy.gd"
 @export var shoot_interval_min : float = 0.5
 @export var shoot_interval_max : float = 2
 @export var FiringSequence : Array[Bullet_pattern] = []
-@export var required_range : int = 5
+@export var is_GOB : bool = false
+var sealing_range = 50
 
 var bullet_scene : Array = [] 
 
@@ -25,12 +26,12 @@ func fire_bullet(bullet, pos, angle):
 	
 
 func shoot():
-	var pos = get_tree().get_first_node_in_group("player").position
-	var dis = pos.distance_to(position) 
-	if dis < required_range:
-		print("player within sealing range")
-		return
-		
+	if is_GOB:
+		var pos = get_tree().get_first_node_in_group("player").position
+		var dis = pos.distance_to(position) 
+		if dis < sealing_range:
+			print("player within sealing range")
+			return
 	var bullet = bullet_scene[0].instantiate()
 	fire_bullet(bullet, position, deg_to_rad(90))
 	

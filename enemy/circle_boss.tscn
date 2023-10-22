@@ -174,15 +174,15 @@ _data = {
 
 [node name="CircleBoss" type="Area2D" groups=["boss", "enemy"]]
 position = Vector2(0, -50)
+collision_layer = 10
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_okmro")
 shoot_interval_min = 4.0
 shoot_interval_max = 4.0
-required_range = 200
 title = "Circle"
 is_boss = true
-hp = 30
+hp = 100
 explosion_sound = ExtResource("2_hjtfe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -357,8 +357,10 @@ _data = {
 
 [node name="Tank" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
+collision_layer = 18
 audio_bus_name = &"SFX"
 script = ExtResource("1_amb35")
+is_GOB = true
 speed = 0
 explosion_sound = ExtResource("2_fjpjg")
 

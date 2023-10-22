@@ -49,6 +49,7 @@ _data = {
 [node name="SpinningBullet" type="Area2D" groups=["enemy_weapon"]]
 z_index = 1
 rotation = 3.14159
+collision_layer = 2
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_4l0au")

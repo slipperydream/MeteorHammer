@@ -8,6 +8,7 @@
 size = Vector2(6, 8)
 
 [node name="Torpedo" type="Area2D" groups=["enemy_weapon"]]
+collision_layer = 2
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_v3hkh")

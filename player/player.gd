@@ -2,16 +2,12 @@ extends Area2D
 
 signal died
 signal out_of_lives
-signal shield_changed
 signal gained_life
 signal item_charging
 signal item_recharged
 signal item_used
 signal weapon_changed
 signal item_changed
-
-@export var max_shield : int = 1
-var shield = max_shield
 
 @export var max_lives = 3
 var lives = max_lives
@@ -23,6 +19,7 @@ var lives = max_lives
 @export var weapon_scene : PackedScene
 @export var item_scene : PackedScene
 var can_shoot : bool = true
+var invulnerable : bool = false
 var num_shots : int = 5
 
 @export var explosion_sound : AudioStreamWAV
@@ -56,28 +53,17 @@ func _process(delta):
 func _input(event):	
 	if event.is_action_pressed("use_item"):
 		use_item()
-		
+
+func make_invulnerable():
+	invulnerable = true
+	$AnimationPlayer.play("invlunerable")
+	$InvulnerabilityTimer.start()
+			
 func reset():
 	if not visible:
 		show()
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize * 4))
 	can_shoot = true
-	shield = max_shield
-			
-func set_shield(value):
-	shield = min(max_shield, value)
-	emit_signal("shield_changed",max_shield, shield)	
-		
-	# check health
-	if shield <= 0:
-		lives = max(0, lives - 1)
-		hide()
-		if lives > 0:
-			died.emit()
-			AudioStreamManager.play(explosion_sound.resource_path)
-			reset()			
-		else:
-			out_of_lives.emit()
 		
 func shoot():
 	if can_shoot == false:
@@ -98,9 +84,19 @@ func new_game():
 	emit_signal("weapon_changed", "beam")
 	reset()
 	
-func take_damage(value):
-	var new_value = max(0, shield - value)
-	set_shield(new_value)
+func take_damage(_value):
+	if invulnerable: 
+		return
+	if $ItemCharge.is_stopped():
+		use_item()
+		return
+	lives = max(0, lives - 1)
+	if lives > 0:
+		died.emit()
+		AudioStreamManager.play(explosion_sound.resource_path)
+		make_invulnerable()	
+	else:
+		out_of_lives.emit()
 
 func upgrade_weapon(stage):
 	match stage:
@@ -110,6 +106,7 @@ func upgrade_weapon(stage):
 	
 func use_item():	
 	if $ItemCharge.is_stopped():
+		make_invulnerable()
 		var item = item_scene.instantiate()
 		get_tree().root.add_child(item)
 		item.execute(position)
@@ -139,8 +136,11 @@ func _on_main_start_game(start_lives, _stage):
 	emit_signal("item_charging")
 		
 func _on_main_stage_cleared(stage):
-	set_shield(max_shield)
 	upgrade_weapon(stage)
 
 func _on_item_charge_timeout():
 	emit_signal("item_recharged")
+
+func _on_invulnerability_timer_timeout():
+	$AnimationPlayer.stop()
+	invulnerable = false

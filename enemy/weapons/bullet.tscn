@@ -58,6 +58,7 @@ _data = {
 }
 
 [node name="Bullet" type="Area2D"]
+collision_layer = 2
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_scx0o")

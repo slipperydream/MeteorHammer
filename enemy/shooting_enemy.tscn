@@ -52,6 +52,7 @@ _data = {
 
 [node name="ShootingEnemy" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
+collision_layer = 10
 audio_bus_name = &"SFX"
 script = ExtResource("1_31k17")
 

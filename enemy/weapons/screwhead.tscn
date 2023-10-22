@@ -46,6 +46,7 @@ _data = {
 }
 
 [node name="Screwhead" type="Area2D"]
+collision_layer = 2
 audio_bus_name = &"SFX"
 script = ExtResource("1_k764y")
 title = "enemy bullet"

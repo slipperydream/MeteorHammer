@@ -213,6 +213,7 @@ _data = {
 
 [node name="Scout" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
+collision_layer = 10
 audio_bus_name = &"SFX"
 script = ExtResource("1_fqucx")
 title = "Scout"

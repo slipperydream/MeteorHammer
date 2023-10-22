@@ -24,6 +24,7 @@ _data = {
 }
 
 [node name="Elipse" type="Area2D" groups=["enemy_weapon"]]
+collision_layer = 2
 audio_bus_name = &"SFX"
 script = ExtResource("1_i2ovi")
 firing_sound = ExtResource("2_phs4i")

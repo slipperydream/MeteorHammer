@@ -47,10 +47,10 @@ _data = {
 
 [node name="EnemyRay" type="Area2D" groups=["enemy_weapon"]]
 z_index = 1
+collision_layer = 2
 audio_bus_name = &"SFX"
 script = ExtResource("1_xnxtc")
 title = "enemy ray"
-speed = 30
 firing_sound = ExtResource("2_7k88u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -83,8 +83,7 @@ func _on_enemy_died(value):
 	emit_signal("score_changed", score)
 
 func _on_player_died():
-	current_game_state = game_state.PAUSED
-	pause_game.emit()
+	pass
 
 func _on_player_out_of_lives():
 	get_tree().call_group("enemies", "queue_free")

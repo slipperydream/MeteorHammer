@@ -242,11 +242,11 @@ _data = {
 
 [node name="Battlecruiser" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
+collision_layer = 10
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_17m3t")
 shoot_interval_min = 2.0
-required_range = 100
 title = "Battlecruiser"
 hp = 20
 explosion_sound = ExtResource("2_hynhf")

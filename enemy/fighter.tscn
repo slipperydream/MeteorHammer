@@ -225,11 +225,11 @@ _data = {
 
 [node name="Fighter" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
+collision_layer = 10
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_7ktg1")
 shoot_interval_min = 2.0
-required_range = 30
 title = "Fighter"
 hp = 2
 explosion_sound = ExtResource("2_fq87v")
@@ -237,7 +237,6 @@ explosion_sound = ExtResource("2_fq87v")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
 texture = ExtResource("2_men5b")
-frame = 5
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
 position = Vector2(-4.29789e-05, 17)

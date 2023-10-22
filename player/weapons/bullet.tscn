@@ -8,6 +8,7 @@
 size = Vector2(4, 10)
 
 [node name="Bullet" type="Area2D" groups=["bullets"]]
+collision_mask = 26
 script = ExtResource("1_t5fo0")
 title = "Bullet"
 firing_sound = ExtResource("2_1tayu")

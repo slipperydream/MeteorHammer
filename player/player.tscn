@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=21 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/bullet.tscn" id="2_75g50"]
@@ -70,9 +70,53 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
-size = Vector2(16, 14)
+size = Vector2(6, 5)
+
+[sub_resource type="Animation" id="Animation_uvkd3"]
+resource_name = "invlunerable"
+length = 3.0
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1), Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1), Color(1, 1, 1, 0.556863), Color(1, 1, 1, 1), Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1), Color(1, 1, 1, 0.572549), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_awwn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_acr8n"]
+resource_name = "explode"
+length = 0.6
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qmkdq"]
+_data = {
+"RESET": SubResource("Animation_awwn7"),
+"explode": SubResource("Animation_acr8n"),
+"invlunerable": SubResource("Animation_uvkd3")
+}
 
 [node name="Player" type="Area2D" groups=["player"]]
+collision_mask = 31
 script = ExtResource("1_ks4n4")
 cooldown = 0.1
 weapon_scene = ExtResource("2_75g50")
@@ -91,14 +135,26 @@ animation = &"forward"
 autoplay = "forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_pq5w0")
 
 [node name="GunCooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="ItemCharge" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qmkdq")
+}
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="ItemCharge" to="." method="_on_item_charge_timeout"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]

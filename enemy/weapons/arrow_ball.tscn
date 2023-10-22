@@ -46,9 +46,9 @@ _data = {
 }
 
 [node name="ArrowBall" type="Area2D" groups=["enemy_weapon"]]
+collision_layer = 2
 audio_bus_name = &"SFX"
 script = ExtResource("1_xs5u2")
-direction = null
 firing_sound = ExtResource("2_o4su7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

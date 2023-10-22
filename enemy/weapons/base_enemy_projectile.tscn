@@ -8,6 +8,7 @@
 radius = 13.0384
 
 [node name="BaseEnemyWeapon" type="Area2D" groups=["enemy_weapon"]]
+collision_layer = 2
 audio_bus_name = &"SFX"
 script = ExtResource("1_cjdo1")
 firing_sound = ExtResource("2_qu11m")

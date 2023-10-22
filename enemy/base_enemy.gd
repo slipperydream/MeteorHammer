@@ -37,6 +37,7 @@ func take_damage(value):
 		
 func explode():
 	speed = 0
+	set_deferred("monitoring", false)
 	AudioStreamManager.play(explosion_sound.resource_path)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("explode")
@@ -45,7 +46,6 @@ func explode():
 	remove()
 
 func remove():
-	set_deferred("monitoring", false)
 	queue_free()	
 
 func _on_player_died():

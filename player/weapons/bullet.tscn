@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dta1re6e5vxm6" path="res://player/weapons/beam_magenta_16x16.png" id="2_4ohic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
-size = Vector2(10, 10)
+size = Vector2(4, 10)
 
 [node name="Bullet" type="Area2D" groups=["bullets"]]
 script = ExtResource("1_t5fo0")
@@ -15,6 +15,7 @@ firing_sound = ExtResource("2_1tayu")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_4ohic")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_75uv4")

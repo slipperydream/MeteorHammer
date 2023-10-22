@@ -39,6 +39,8 @@ func _on_timer_timeout():
 				var new_enemy = i.spawn
 				var enemy_spawn = new_enemy.instantiate()
 				enemy_spawn.global_position = get_spawn_position(i.lane)
+				if enemy_spawn.speed == 0:
+					enemy_spawn.global_position.y = randi_range(50, 150)
 				add_child(enemy_spawn)
 				enemy_spawn.start(enemy_spawn.global_position)
 				

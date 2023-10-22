@@ -1,5 +1,6 @@
 extends "res://enemy/shooting_enemy.gd"
 
+var entered_screen : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,10 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
-	var pos = get_tree().get_first_node_in_group("player").position
-	var dis = pos.distance_to(position) 
-	if dis < required_range:
-		speed = 0
+	
 
 func shoot():
 	# keep pushing the player out to the sides then up
@@ -47,3 +45,10 @@ func shoot():
 	
 	$AnimationPlayer.play("RESET")
 	await $AnimationPlayer.animation_finished
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	entered_screen = true
+	$MovementTimer.start()
+
+func _on_movement_timer_timeout():
+	speed = 0

@@ -23,8 +23,10 @@ func _process(_delta):
 	pass
 
 func _input(event):
-	if event.is_action("ui_accept"):
-		$MenuTimer.stop()
+	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_cancel"):
+		# real hacky way to get around timer not triggering timeout when stopped
+		$MenuTimer.wait_time = 0.1
+		$MenuTimer.start()
 		
 func hide_everything():
 	$Popup.hide()
@@ -59,3 +61,4 @@ func not_implemented():
 
 func _on_menu_timer_timeout():
 	$Panel/MainMenu.show()
+	

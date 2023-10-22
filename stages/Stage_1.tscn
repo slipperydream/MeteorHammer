@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://8bwqwxoxjr48"]
+[gd_scene load_steps=16 format=3 uid="uid://8bwqwxoxjr48"]
 
 [ext_resource type="Script" path="res://stages/enemy_spawner.gd" id="1_ogr1b"]
+[ext_resource type="PackedScene" uid="uid://c5vy5tww5so1i" path="res://enemy/tank.tscn" id="3_ekfak"]
 [ext_resource type="PackedScene" uid="uid://bsctabtw3j43n" path="res://enemy/asteroid.tscn" id="3_kjn62"]
 [ext_resource type="Script" path="res://stages/spawn_info.gd" id="3_qlv0g"]
 [ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="4_3l3xu"]
@@ -11,7 +12,7 @@
 [sub_resource type="Resource" id="Resource_4kc2p"]
 script = ExtResource("3_qlv0g")
 spawn_time = 0
-spawn = ExtResource("3_kjn62")
+spawn = ExtResource("3_ekfak")
 lane = 0
 
 [sub_resource type="Resource" id="Resource_klfkj"]

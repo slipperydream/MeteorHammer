@@ -33,10 +33,12 @@ func take_damage(value):
 		explode()
 	else:
 		$AnimationPlayer.play("hit")
+			
 		
 func explode():
 	speed = 0
 	AudioStreamManager.play(explosion_sound.resource_path)
+	$AnimationPlayer.stop()
 	$AnimationPlayer.play("explode")
 	emit_signal("died", points)
 	await $AnimationPlayer.animation_finished

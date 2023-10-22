@@ -228,7 +228,7 @@ visible = false
 layout_mode = 1
 
 [node name="MenuTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 2.1
 one_shot = true
 autostart = true
 

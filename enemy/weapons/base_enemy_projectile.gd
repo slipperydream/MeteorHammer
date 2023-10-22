@@ -13,6 +13,7 @@ var added_rotation : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	z_index = 2
 	audio_bus_override = true
 	audio_bus_name = 'SFX'
 

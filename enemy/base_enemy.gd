@@ -7,6 +7,8 @@ signal died
 @export var points : int = 100
 @export var speed : int = 30
 @export var hp : int = 1
+@export var is_GOB : bool = false
+var is_alive : bool = true
 
 @export var explosion_sound : AudioStreamWAV
 
@@ -16,7 +18,10 @@ signal died
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	if is_GOB:
+		z_index = 0
+	else:
+		z_index = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -28,23 +33,29 @@ func start(pos):
 	position = Vector2(pos.x, pos.y)
 
 func take_damage(value):
+	if is_alive == false:
+		return
 	hp = max(0, hp - value)
 	if hp == 0:
-		explode()
+		is_alive = false
+		die()
 	else:
 		$AnimationPlayer.play("hit")
 			
 		
-func explode():
+func die():
 	speed = 0
 	set_deferred("monitoring", false)
+	emit_signal("died", points)
+	explode()
+	remove()
+
+func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("explode")
-	emit_signal("died", points)
 	await $AnimationPlayer.animation_finished
-	remove()
-
+	
 func remove():
 	queue_free()	
 

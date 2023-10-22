@@ -1,0 +1,81 @@
+[gd_scene load_steps=13 format=3 uid="uid://dbfq50bqur0kx"]
+
+[ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="1_qus3j"]
+[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="2_na8v6"]
+[ext_resource type="PackedScene" uid="uid://bsctabtw3j43n" path="res://enemy/asteroid.tscn" id="3_ix8ww"]
+
+[sub_resource type="Resource" id="Resource_e14iy"]
+script = ExtResource("2_na8v6")
+spawn_time = 0
+spawn = ExtResource("3_ix8ww")
+lane = 0
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_nvtqf"]
+script = ExtResource("2_na8v6")
+spawn_time = 1
+spawn = ExtResource("3_ix8ww")
+lane = 1
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_m65xr"]
+script = ExtResource("2_na8v6")
+spawn_time = 2
+spawn = ExtResource("3_ix8ww")
+lane = 2
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_sg6hd"]
+script = ExtResource("2_na8v6")
+spawn_time = 3
+spawn = ExtResource("3_ix8ww")
+lane = 3
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_mhjsa"]
+script = ExtResource("2_na8v6")
+spawn_time = 4
+spawn = ExtResource("3_ix8ww")
+lane = 5
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_g6x4f"]
+script = ExtResource("2_na8v6")
+spawn_time = 5
+spawn = ExtResource("3_ix8ww")
+lane = 3
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_h5vaq"]
+script = ExtResource("2_na8v6")
+spawn_time = 6
+spawn = ExtResource("3_ix8ww")
+lane = 2
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_nwxsb"]
+script = ExtResource("2_na8v6")
+spawn_time = 7
+spawn = ExtResource("3_ix8ww")
+lane = 1
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_s76yu"]
+script = ExtResource("2_na8v6")
+spawn_time = 8
+spawn = ExtResource("3_ix8ww")
+lane = 0
+spawn_on_screen = false
+screen_y = 200
+
+[node name="Asteroid_field" type="Node"]
+script = ExtResource("1_qus3j")
+spawns = Array[ExtResource("2_na8v6")]([SubResource("Resource_e14iy"), SubResource("Resource_nvtqf"), SubResource("Resource_m65xr"), SubResource("Resource_sg6hd"), SubResource("Resource_mhjsa"), SubResource("Resource_g6x4f"), SubResource("Resource_h5vaq"), SubResource("Resource_nwxsb"), SubResource("Resource_s76yu")])

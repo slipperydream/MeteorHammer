@@ -3,7 +3,7 @@ extends "res://enemy/base_enemy.gd"
 @export var shoot_interval_min : float = 0.5
 @export var shoot_interval_max : float = 2
 @export var FiringSequence : Array[Bullet_pattern] = []
-@export var is_GOB : bool = false
+
 var sealing_range = 50
 
 var bullet_scene : Array = [] 

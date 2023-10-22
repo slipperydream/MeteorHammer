@@ -8,6 +8,7 @@ signal item_recharged
 signal item_used
 signal weapon_changed
 signal item_changed
+signal player_hit
 
 @export var max_lives = 3
 var lives = max_lives
@@ -85,6 +86,7 @@ func new_game():
 	reset()
 	
 func take_damage(_value):
+	emit_signal("player_hit")
 	if invulnerable: 
 		return
 	if $ItemCharge.is_stopped():

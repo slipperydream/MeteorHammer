@@ -360,8 +360,8 @@ position = Vector2(0, -50)
 collision_layer = 18
 audio_bus_name = &"SFX"
 script = ExtResource("1_amb35")
+speed = 10
 is_GOB = true
-speed = 0
 explosion_sound = ExtResource("2_fjpjg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

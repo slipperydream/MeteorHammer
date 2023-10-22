@@ -84,6 +84,7 @@ one_shot = true
 [connection signal="item_used" from="Player" to="CanvasLayer/UI" method="_on_player_item_used"]
 [connection signal="out_of_lives" from="Player" to="." method="_on_player_out_of_lives"]
 [connection signal="out_of_lives" from="Player" to="CanvasLayer/UI" method="_on_player_out_of_lives"]
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
 [connection signal="weapon_changed" from="Player" to="CanvasLayer/UI" method="_on_player_weapon_changed"]
 [connection signal="game_unpaused" from="CanvasLayer/CenterContainer" to="." method="_on_center_container_game_unpaused"]
 [connection signal="game_unpaused" from="CanvasLayer/CenterContainer" to="CanvasLayer/UI" method="_on_center_container_game_unpaused"]

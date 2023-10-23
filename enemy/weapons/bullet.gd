@@ -1,11 +1,12 @@
-extends "res://enemy/weapons/base_enemy_projectile.gd"
+extends Resource
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	super._ready()
+class_name Bullet
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	super._process(delta)
-	if animate and $AnimationPlayer.is_playing() == false:
-		$AnimationPlayer.play("wobble")
+@export var bullet_type : BulletConstants.BulletTypes = BulletConstants.BulletTypes.STRAIGHT
+@export var bullet_pattern: BulletConstants.BulletPatterns = BulletConstants.BulletPatterns.SINGLE
+@export var bullet_shape : PackedScene 
+@export var position : Vector2 
+@export var speed : int = 30
+@export var angle : float = 90
+@export var shot_delay : float = 0.0
+@export var aimed : bool = false

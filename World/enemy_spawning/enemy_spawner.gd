@@ -69,6 +69,7 @@ func _on_timer_timeout():
 			all_spawned = true
 	else:
 		$Timer.stop()
+		await get_tree().create_timer(2).timeout
 		spawn_boss()
 				
 func _on_main_game_over():

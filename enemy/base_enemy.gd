@@ -6,12 +6,10 @@ signal died
 @export var is_boss : bool = false
 @export var points : int = 100
 @export var speed : int = 30
-@export var hp : int = 1
+@export var hp : int = 5
 @export var is_GOB : bool = false
-var is_alive : bool = true
-
 @export var explosion_sound : AudioStreamWAV
-
+var is_alive : bool = true
 
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var enemy_size : Vector2 = $Sprite2D.get_rect().size

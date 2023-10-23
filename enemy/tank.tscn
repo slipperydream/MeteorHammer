@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5vy5tww5so1i"]
+[gd_scene load_steps=19 format=3 uid="uid://c5vy5tww5so1i"]
 
 [ext_resource type="Script" path="res://enemy/tank.gd" id="1_amb35"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="2_fjpjg"]
 [ext_resource type="Texture2D" uid="uid://dvpyci50syrwj" path="res://assets/tank.png" id="2_oryfj"]
+[ext_resource type="AudioStream" uid="uid://dpiqs4ed4gfg0" path="res://sound/sfx/lasers/Laser-weapon2.wav" id="2_x7631"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="3_2hb0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
@@ -360,6 +361,7 @@ position = Vector2(0, -50)
 collision_layer = 18
 audio_bus_name = &"SFX"
 script = ExtResource("1_amb35")
+firing_sound = ExtResource("2_x7631")
 speed = 10
 is_GOB = true
 explosion_sound = ExtResource("2_fjpjg")

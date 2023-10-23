@@ -1,15 +1,15 @@
 extends Area2D
 
 @export var title : String = 'enemy weapon'
-@export var power : int = 1
-@export var firing_sound : AudioStreamWAV
 @export var animate : bool = true
-
+@export var bullet_type : BulletConstants.BulletTypes = BulletConstants.BulletTypes.STRAIGHT
 
 # Vector2(0, 1) is down 
 var direction : Vector2 = Vector2(0, 1)
-var speed : int = 75
-var added_rotation : float = 0.0
+var speed : int = 60
+var added_rotation : Vector2 = Vector2(0, 1)
+var power : int = 1
+var time : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,8 +19,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position = position + speed * delta * direction
-	rotate(deg_to_rad(added_rotation))
+	match bullet_type:
+		BulletConstants.BulletTypes.STRAIGHT:
+			position = position + speed * delta * direction 
+		BulletConstants.BulletTypes.CURVED:
+			position = position + speed * delta * (direction + added_rotation)
+		BulletConstants.BulletTypes.SPIRALING:
+			position = position + speed * delta * direction
+		BulletConstants.BulletTypes.WAVY:
+			time += delta
+			var frequency = 5
+			var amplitude = 10
+			direction.x = cos(time * frequency * amplitude)
+			position = position + speed * delta * direction 
+	
+	if animate and $AnimationPlayer.is_playing() == false:
+		$AnimationPlayer.play("moving")
 
 func _on_area_entered(area):
 	if area.name == "Player":
@@ -30,11 +44,21 @@ func _on_area_entered(area):
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
-func start(pos, dir, velocity, rot = 0.0, size = Vector2(0.5,0.5)):
-	AudioStreamManager.play(firing_sound.resource_path, true)
-	position = pos
-	direction = dir
-	speed = velocity
-	added_rotation = rot
+func set_size(size = Vector2(0.5, 0.5)):
 	$Sprite2D.apply_scale(size)
 	$CollisionShape2D.apply_scale(size)
+
+func set_type(type):
+	bullet_type = type
+
+func add_rotation(new_value):
+	added_rotation = Vector2.RIGHT.rotated(new_value)
+	
+func set_speed(new_value):
+	speed = new_value
+	
+func start(pos, dir):
+	position = pos
+	direction = dir
+	
+	

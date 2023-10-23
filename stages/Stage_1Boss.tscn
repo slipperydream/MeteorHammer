@@ -1,19 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi3uketd7dy76"]
+[gd_scene load_steps=3 format=3 uid="uid://bi3uketd7dy76"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_voxsg"]
-[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="2_8il32"]
 [ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://enemy/circle_boss.tscn" id="7_0jvp7"]
-
-[sub_resource type="Resource" id="Resource_w42qv"]
-script = ExtResource("2_8il32")
-spawn_time = 1
-spawn = ExtResource("7_0jvp7")
-lane = 2
 
 [node name="Stage_1" type="Area2D" groups=["levels"]]
 script = ExtResource("1_voxsg")
 title = "Attack on Yz"
-spawns = Array[ExtResource("2_8il32")]([SubResource("Resource_w42qv")])
+end_boss = ExtResource("7_0jvp7")
 
 [node name="Timer" type="Timer" parent="."]
 

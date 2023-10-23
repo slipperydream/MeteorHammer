@@ -1,7 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbtps6a6vw6vw"]
+[gd_scene load_steps=10 format=3 uid="uid://bbtps6a6vw6vw"]
 
 [ext_resource type="Script" path="res://enemy/shooting_enemy.gd" id="1_31k17"]
+[ext_resource type="AudioStream" uid="uid://pvi2uyaheuwj" path="res://sound/sfx/lasers/Laser-weapon3.wav" id="2_r8xbb"]
+[ext_resource type="PackedScene" uid="uid://bthvww1tlvr4y" path="res://enemy/weapons/bullet_shapes/slice.tscn" id="2_svn76"]
+[ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="3_ceveb"]
 [ext_resource type="Texture2D" uid="uid://lhbfv1g66r0e" path="res://assets/Nairan/Designs-Base/Nairan-SupportShip-Base.png" id="3_dip1q"]
+
+[sub_resource type="Resource" id="Resource_dx176"]
+script = ExtResource("3_ceveb")
+bullet_type = 0
+bullet_pattern = 0
+bullet_shape = ExtResource("2_svn76")
+position = Vector2(0, 0)
+speed = 30
+angle = 90.0
+shot_delay = 0.0
+aimed = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(14, 8)
@@ -55,6 +69,8 @@ position = Vector2(0, -50)
 collision_layer = 10
 audio_bus_name = &"SFX"
 script = ExtResource("1_31k17")
+Attacks = Array[ExtResource("3_ceveb")]([SubResource("Resource_dx176")])
+firing_sound = ExtResource("2_r8xbb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_dip1q")

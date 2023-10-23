@@ -2,7 +2,8 @@ extends "res://enemy/base_enemy.gd"
 
 @export var shoot_interval_min : float = 0.5
 @export var shoot_interval_max : float = 2
-@export var FiringSequence : Array[Bullet_pattern] = []
+@export var Attacks : Array[Attack] = []
+@export var firing_sound : AudioStreamWAV
 
 var sealing_range = 50
 
@@ -22,18 +23,31 @@ func explode():
 
 func fire_bullet(bullet, pos, angle):
 	get_tree().root.add_child(bullet)
-	bullet.start(pos, Vector2.RIGHT.rotated(angle), 75)
+	bullet.start(pos, Vector2.RIGHT.rotated(angle))
+	AudioStreamManager.play(firing_sound.resource_path, true)
 	
 
 func shoot():
-	if is_GOB:
-		var pos = get_tree().get_first_node_in_group("player").position
-		var dis = pos.distance_to(position) 
-		if dis < sealing_range:
-			print("player within sealing range")
-			return
-	var bullet = bullet_scene[0].instantiate()
-	fire_bullet(bullet, position, deg_to_rad(90))
+	$AnimationPlayer.play("shooting")
+	await get_tree().create_timer(0.15).timeout
+	var attack = Attacks[randi() % Attacks.size()]
+	for shot in attack.Firing_Sequence:
+		match shot.bullet_pattern:
+			BulletConstants.BulletPatterns.SINGLE:
+				single_shot(shot)
+				
+func single_shot(new_shot):
+	var shot = new_shot.bullet_shape.instantiate()
+	shot.set_type(new_shot.bullet_type)
+	shot.set_size()
+	fire_bullet(shot, position, deg_to_rad(new_shot.angle))
+	shot.set_speed(new_shot.speed)
+	match new_shot.bullet_type:
+		BulletConstants.BulletTypes.CURVED:
+			shot.add_rotation(20)
+		BulletConstants.BulletTypes.SPIRALING:
+			shot.add_rotation(20)
+	
 	
 	# TODO: Move all this into individual enemies shot patterns
 				

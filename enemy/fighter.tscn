@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://iv1q1152twqe"]
+[gd_scene load_steps=21 format=3 uid="uid://iv1q1152twqe"]
 
 [ext_resource type="Script" path="res://enemy/fighter.gd" id="1_7ktg1"]
 [ext_resource type="AudioStream" uid="uid://c0xuay0yvb014" path="res://sound/sfx/Explosions/Explosion_6.wav" id="2_fq87v"]
 [ext_resource type="Texture2D" uid="uid://cegot2yvfipbj" path="res://assets/Nairan/Designs-Base/Nairan-Fighter-Base.png" id="2_men5b"]
+[ext_resource type="AudioStream" uid="uid://hu63xcx0qu15" path="res://sound/sfx/lasers/Laser-weapon1.wav" id="2_s7pse"]
 [ext_resource type="Texture2D" uid="uid://cu8j558idih2l" path="res://assets/Nairan/Engine_Effects/Nairan-Fighter-Engine.png" id="3_0mkme"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="5_g6033"]
 
@@ -230,6 +231,7 @@ audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_7ktg1")
 shoot_interval_min = 2.0
+firing_sound = ExtResource("2_s7pse")
 title = "Fighter"
 hp = 2
 explosion_sound = ExtResource("2_fq87v")

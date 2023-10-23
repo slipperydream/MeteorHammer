@@ -21,7 +21,7 @@ var lives = max_lives
 @export var item_scene : PackedScene
 var can_shoot : bool = true
 var invulnerable : bool = false
-var num_shots : int = 5
+var num_shots : int = 3
 
 @export var explosion_sound : AudioStreamWAV
 @onready var screensize : Vector2 = get_viewport_rect().size
@@ -77,6 +77,8 @@ func shoot():
 		var angle = deg_to_rad(90)
 		if num_shots % 5 == 0:
 			angle = deg_to_rad(70 + i * 10)		
+		elif num_shots % 3 == 0:
+			angle = deg_to_rad(80 + i * 10)	
 		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
 		
 func new_game():

@@ -1,9 +1,45 @@
-[gd_scene load_steps=13 format=3 uid="uid://cojkicds8uf8c"]
+[gd_scene load_steps=21 format=3 uid="uid://cojkicds8uf8c"]
 
-[ext_resource type="Script" path="res://enemy/circle_boss.gd" id="1_okmro"]
-[ext_resource type="AudioStream" uid="uid://dc0pm3gmnb134" path="res://sound/sfx/Explosions/Repeating_explosion.wav" id="2_hjtfe"]
+[ext_resource type="Script" path="res://enemy/boss.gd" id="1_m1li8"]
+[ext_resource type="PackedScene" uid="uid://bthvww1tlvr4y" path="res://enemy/weapons/bullet_shapes/slice.tscn" id="2_175li"]
+[ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="3_km3fg"]
 [ext_resource type="Texture2D" uid="uid://dlholuxpiqcq7" path="res://enemy/circle_boss.png" id="4_2bc68"]
+[ext_resource type="AudioStream" uid="uid://4ufymnnqi2ni" path="res://sound/sfx/lasers/Laser-weapon5.wav" id="4_2vhea"]
+[ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="4_nn3en"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="4_t0exc"]
+[ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="5_5x416"]
+
+[sub_resource type="Resource" id="Resource_2lfxa"]
+script = ExtResource("3_km3fg")
+bullet_type = 0
+bullet_pattern = 0
+bullet_shape = ExtResource("2_175li")
+position = Vector2(0, 0)
+speed = 30
+angle = 90.0
+shot_delay = 0.0
+aimed = false
+
+[sub_resource type="Resource" id="Resource_gm6yx"]
+script = ExtResource("4_nn3en")
+attack_name = "Katana of Death"
+Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_2lfxa")])
+
+[sub_resource type="Resource" id="Resource_aw3sq"]
+script = ExtResource("3_km3fg")
+bullet_type = 1
+bullet_pattern = 0
+bullet_shape = ExtResource("5_5x416")
+position = Vector2(0, 0)
+speed = 30
+angle = 90.0
+shot_delay = 0.0
+aimed = false
+
+[sub_resource type="Resource" id="Resource_qo2vl"]
+script = ExtResource("4_nn3en")
+attack_name = "Spin shot"
+Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_aw3sq")])
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rgpy"]
 radius = 18.0
@@ -177,13 +213,12 @@ position = Vector2(0, -50)
 collision_layer = 10
 audio_bus_override = true
 audio_bus_name = &"SFX"
-script = ExtResource("1_okmro")
-shoot_interval_min = 4.0
-shoot_interval_max = 4.0
+script = ExtResource("1_m1li8")
+Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_gm6yx"), SubResource("Resource_qo2vl")])
+firing_sound = ExtResource("4_2vhea")
 title = "Circle"
 is_boss = true
 hp = 100
-explosion_sound = ExtResource("2_hjtfe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_2bc68")
@@ -201,14 +236,18 @@ libraries = {
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="BossTimer" type="Timer" parent="."]
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -5)
 
 [node name="MovementTimer" type="Timer" parent="."]
 wait_time = 4.5
 
+[node name="MilkingTimer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
+[connection signal="timeout" from="MilkingTimer" to="." method="_on_milking_timer_timeout"]

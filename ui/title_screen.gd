@@ -22,7 +22,7 @@ func _ready():
 func _process(_delta):
 	pass
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_cancel"):
 		# real hacky way to get around timer not triggering timeout when stopped
 		$MenuTimer.wait_time = 0.1

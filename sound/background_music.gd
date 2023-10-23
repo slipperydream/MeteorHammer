@@ -2,7 +2,7 @@ extends AudioStreamPlayer2D
 
 signal new_song
 
-@onready var bg_music_volume : int = -15
+@onready var bg_music_volume : int = -35
 
 var playlist : Array[AudioStreamMP3] = []
 var song0 = preload("res://sound/music/Blue_Space.mp3")

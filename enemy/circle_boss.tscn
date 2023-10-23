@@ -1,18 +1,55 @@
-[gd_scene load_steps=21 format=3 uid="uid://cojkicds8uf8c"]
+[gd_scene load_steps=39 format=3 uid="uid://cojkicds8uf8c"]
 
 [ext_resource type="Script" path="res://enemy/boss.gd" id="1_m1li8"]
 [ext_resource type="PackedScene" uid="uid://bthvww1tlvr4y" path="res://enemy/weapons/bullet_shapes/slice.tscn" id="2_175li"]
+[ext_resource type="Script" path="res://enemy/weapons/patterns/single_pattern.gd" id="2_uo6l4"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="3_km3fg"]
 [ext_resource type="Texture2D" uid="uid://dlholuxpiqcq7" path="res://enemy/circle_boss.png" id="4_2bc68"]
 [ext_resource type="AudioStream" uid="uid://4ufymnnqi2ni" path="res://sound/sfx/lasers/Laser-weapon5.wav" id="4_2vhea"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="4_nn3en"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="4_t0exc"]
-[ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="5_5x416"]
+[ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="5_pqwyk"]
+[ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_u1xm0"]
+[ext_resource type="PackedScene" uid="uid://bgvlm78bigb4b" path="res://enemy/weapons/bullet_shapes/cross_shot.tscn" id="9_7a5tc"]
+[ext_resource type="PackedScene" uid="uid://bs1kpoi5efod5" path="res://enemy/weapons/bullet_shapes/elipse.tscn" id="10_8u6ix"]
+[ext_resource type="Script" path="res://enemy/weapons/patterns/flower_pattern.gd" id="11_vyxw7"]
+[ext_resource type="PackedScene" uid="uid://bfem0x37r3fr" path="res://enemy/weapons/bullet_shapes/heart.tscn" id="12_mctt6"]
+
+[sub_resource type="Resource" id="Resource_nnu4i"]
+script = ExtResource("11_vyxw7")
+firing_points = 24
+bloom_delay = 5.0
+blooms = 4
+ripple = false
+ripple_delay = 0.0
+title = ""
+
+[sub_resource type="Resource" id="Resource_rd6ip"]
+script = ExtResource("3_km3fg")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_nnu4i")
+bullet_shape = ExtResource("12_mctt6")
+position = Vector2(0, 0)
+speed = 30
+angle = 90.0
+shot_delay = 0.0
+aimed = false
+
+[sub_resource type="Resource" id="Resource_6idws"]
+script = ExtResource("4_nn3en")
+attack_name = "Flower of Death"
+Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_rd6ip")])
+salvos = 1
+salvo_delay = 0.3
+
+[sub_resource type="Resource" id="Resource_u3fxh"]
+script = ExtResource("2_uo6l4")
+title = ""
 
 [sub_resource type="Resource" id="Resource_2lfxa"]
 script = ExtResource("3_km3fg")
 bullet_type = 0
-bullet_pattern = 0
+bullet_pattern = SubResource("Resource_u3fxh")
 bullet_shape = ExtResource("2_175li")
 position = Vector2(0, 0)
 speed = 30
@@ -24,22 +61,90 @@ aimed = false
 script = ExtResource("4_nn3en")
 attack_name = "Katana of Death"
 Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_2lfxa")])
+salvos = 5
+salvo_delay = 0.3
 
-[sub_resource type="Resource" id="Resource_aw3sq"]
+[sub_resource type="Resource" id="Resource_srt0g"]
+script = ExtResource("6_u1xm0")
+firing_points = 5
+separation_angle = 10.0
+ripple = false
+ripple_delay = 0.0
+title = ""
+
+[sub_resource type="Resource" id="Resource_6egmf"]
 script = ExtResource("3_km3fg")
-bullet_type = 1
-bullet_pattern = 0
-bullet_shape = ExtResource("5_5x416")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_srt0g")
+bullet_shape = ExtResource("5_pqwyk")
 position = Vector2(0, 0)
 speed = 30
-angle = 90.0
+angle = 30.0
+shot_delay = 0.0
+aimed = false
+
+[sub_resource type="Resource" id="Resource_t080e"]
+script = ExtResource("6_u1xm0")
+firing_points = 5
+separation_angle = 10.0
+ripple = false
+ripple_delay = 0.0
+title = ""
+
+[sub_resource type="Resource" id="Resource_jx5xs"]
+script = ExtResource("3_km3fg")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_t080e")
+bullet_shape = ExtResource("5_pqwyk")
+position = Vector2(0, 0)
+speed = 30
+angle = 120.0
 shot_delay = 0.0
 aimed = false
 
 [sub_resource type="Resource" id="Resource_qo2vl"]
 script = ExtResource("4_nn3en")
 attack_name = "Spin shot"
-Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_aw3sq")])
+Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_6egmf"), SubResource("Resource_jx5xs")])
+salvos = 2
+salvo_delay = 0.3
+
+[sub_resource type="Resource" id="Resource_80x1k"]
+script = ExtResource("2_uo6l4")
+title = ""
+
+[sub_resource type="Resource" id="Resource_lshdt"]
+script = ExtResource("3_km3fg")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_80x1k")
+bullet_shape = ExtResource("9_7a5tc")
+position = Vector2(0, 0)
+speed = 30
+angle = 90.0
+shot_delay = 0.5
+aimed = false
+
+[sub_resource type="Resource" id="Resource_lox06"]
+script = ExtResource("2_uo6l4")
+title = ""
+
+[sub_resource type="Resource" id="Resource_dpq24"]
+script = ExtResource("3_km3fg")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_lox06")
+bullet_shape = ExtResource("10_8u6ix")
+position = Vector2(0, 0)
+speed = 30
+angle = 95.0
+shot_delay = 0.0
+aimed = false
+
+[sub_resource type="Resource" id="Resource_t4dje"]
+script = ExtResource("4_nn3en")
+attack_name = "Get Away From Me"
+Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_lshdt"), SubResource("Resource_dpq24")])
+salvos = 1
+salvo_delay = 0.3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rgpy"]
 radius = 18.0
@@ -214,7 +319,8 @@ collision_layer = 10
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_m1li8")
-Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_gm6yx"), SubResource("Resource_qo2vl")])
+shoot_interval_min = 2.0
+Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_6idws"), SubResource("Resource_gm6yx"), SubResource("Resource_qo2vl"), SubResource("Resource_t4dje")])
 firing_sound = ExtResource("4_2vhea")
 title = "Circle"
 is_boss = true

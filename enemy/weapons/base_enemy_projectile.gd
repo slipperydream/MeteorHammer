@@ -38,8 +38,8 @@ func _process(delta):
 
 func _on_area_entered(area):
 	if area.name == "Player":
-		queue_free()
 		area.take_damage(power)
+		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
@@ -56,9 +56,16 @@ func add_rotation(new_value):
 	
 func set_speed(new_value):
 	speed = new_value
+
+func set_bloom_timer(wait_time):
+	$BloomTimer.wait_time = wait_time
+	$BloomTimer.start()
 	
 func start(pos, dir):
 	position = pos
 	direction = dir
-	
-	
+	look_at(global_position - direction)
+
+func _on_bloom_timer_timeout():
+	print("blooming")
+	queue_free()

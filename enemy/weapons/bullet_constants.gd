@@ -10,7 +10,7 @@ enum BulletTypes{
 	LASER
 }
 
-enum BulletPatterns{
+enum Patterns{
 	SINGLE,
 	CIRCLE,
 	SPREAD,

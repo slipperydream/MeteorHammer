@@ -23,10 +23,5 @@ shape = SubResource("CircleShape2D_e6lcf")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="BloomTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="timeout" from="BloomTimer" to="." method="_on_bloom_timer_timeout"]

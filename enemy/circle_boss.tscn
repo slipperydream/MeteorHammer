@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cojkicds8uf8c"]
+[gd_scene load_steps=32 format=3 uid="uid://cojkicds8uf8c"]
 
 [ext_resource type="Script" path="res://enemy/boss.gd" id="1_m1li8"]
 [ext_resource type="PackedScene" uid="uid://bthvww1tlvr4y" path="res://enemy/weapons/bullet_shapes/slice.tscn" id="2_175li"]
@@ -10,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="4_t0exc"]
 [ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="5_pqwyk"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_u1xm0"]
-[ext_resource type="PackedScene" uid="uid://bgvlm78bigb4b" path="res://enemy/weapons/bullet_shapes/cross_shot.tscn" id="9_7a5tc"]
-[ext_resource type="PackedScene" uid="uid://bs1kpoi5efod5" path="res://enemy/weapons/bullet_shapes/elipse.tscn" id="10_8u6ix"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/flower_pattern.gd" id="11_vyxw7"]
 [ext_resource type="PackedScene" uid="uid://bfem0x37r3fr" path="res://enemy/weapons/bullet_shapes/heart.tscn" id="12_mctt6"]
 
@@ -29,7 +27,8 @@ script = ExtResource("3_km3fg")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_nnu4i")
 bullet_shape = ExtResource("12_mctt6")
-position = Vector2(0, 0)
+emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":true,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, -23),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
+
 speed = 30
 angle = 90.0
 shot_delay = 0.0
@@ -51,7 +50,8 @@ script = ExtResource("3_km3fg")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_u3fxh")
 bullet_shape = ExtResource("2_175li")
-position = Vector2(0, 0)
+emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 24),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
+
 speed = 30
 angle = 90.0
 shot_delay = 0.0
@@ -77,7 +77,8 @@ script = ExtResource("3_km3fg")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_srt0g")
 bullet_shape = ExtResource("5_pqwyk")
-position = Vector2(0, 0)
+emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(26, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
+
 speed = 30
 angle = 30.0
 shot_delay = 0.0
@@ -96,7 +97,8 @@ script = ExtResource("3_km3fg")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_t080e")
 bullet_shape = ExtResource("5_pqwyk")
-position = Vector2(0, 0)
+emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-26, 1),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
+
 speed = 30
 angle = 120.0
 shot_delay = 0.0
@@ -107,43 +109,6 @@ script = ExtResource("4_nn3en")
 attack_name = "Spin shot"
 Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_6egmf"), SubResource("Resource_jx5xs")])
 salvos = 2
-salvo_delay = 0.3
-
-[sub_resource type="Resource" id="Resource_80x1k"]
-script = ExtResource("2_uo6l4")
-title = ""
-
-[sub_resource type="Resource" id="Resource_lshdt"]
-script = ExtResource("3_km3fg")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_80x1k")
-bullet_shape = ExtResource("9_7a5tc")
-position = Vector2(0, 0)
-speed = 30
-angle = 90.0
-shot_delay = 0.5
-aimed = false
-
-[sub_resource type="Resource" id="Resource_lox06"]
-script = ExtResource("2_uo6l4")
-title = ""
-
-[sub_resource type="Resource" id="Resource_dpq24"]
-script = ExtResource("3_km3fg")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_lox06")
-bullet_shape = ExtResource("10_8u6ix")
-position = Vector2(0, 0)
-speed = 30
-angle = 95.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_t4dje"]
-script = ExtResource("4_nn3en")
-attack_name = "Get Away From Me"
-Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_lshdt"), SubResource("Resource_dpq24")])
-salvos = 1
 salvo_delay = 0.3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rgpy"]
@@ -314,13 +279,12 @@ _data = {
 }
 
 [node name="CircleBoss" type="Area2D" groups=["boss", "enemy"]]
-position = Vector2(0, -50)
 collision_layer = 10
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_m1li8")
 shoot_interval_min = 2.0
-Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_6idws"), SubResource("Resource_gm6yx"), SubResource("Resource_qo2vl"), SubResource("Resource_t4dje")])
+Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_6idws"), SubResource("Resource_gm6yx"), SubResource("Resource_qo2vl")])
 firing_sound = ExtResource("4_2vhea")
 title = "Circle"
 is_boss = true
@@ -351,6 +315,19 @@ wait_time = 4.5
 [node name="MilkingTimer" type="Timer" parent="."]
 wait_time = 45.0
 one_shot = true
+
+[node name="NorthEmitter" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -23)
+
+[node name="SouthEmitter" type="Marker2D" parent="."]
+position = Vector2(0, 24)
+
+[node name="EastEmitter" type="Marker2D" parent="."]
+position = Vector2(26, 0)
+
+[node name="WestEmitter" type="Marker2D" parent="."]
+position = Vector2(-26, 1)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

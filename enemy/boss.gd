@@ -10,7 +10,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	super._process(delta)		
+	super._process(delta)
+	
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	entered_screen = true

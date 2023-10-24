@@ -23,7 +23,7 @@ func _process(delta):
 		BulletConstants.BulletTypes.STRAIGHT:
 			position = position + speed * delta * direction 
 		BulletConstants.BulletTypes.CURVED:
-			position = position + speed * delta * (direction + added_rotation)
+			position = position + speed * delta * (direction * added_rotation)
 		BulletConstants.BulletTypes.SPIRALING:
 			position = position + speed * delta * direction
 		BulletConstants.BulletTypes.WAVY:
@@ -58,14 +58,13 @@ func set_speed(new_value):
 	speed = new_value
 
 func set_bloom_timer(wait_time):
-	$BloomTimer.wait_time = wait_time
-	$BloomTimer.start()
+	await get_tree().create_timer(wait_time).timeout
+	print("blooming")
+	queue_free()
 	
 func start(pos, dir):
 	position = pos
 	direction = dir
 	look_at(global_position - direction)
 
-func _on_bloom_timer_timeout():
-	print("blooming")
-	queue_free()
+	

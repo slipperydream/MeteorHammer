@@ -39,12 +39,15 @@ func shoot():
 		for shot in attack.Firing_Sequence:
 			if shot.bullet_pattern is Circle_pattern:
 				circle_pattern(shot)
+				
 			elif shot.bullet_pattern is Single_pattern:
 				single_shot(shot)
 			elif shot.bullet_pattern is Spread_pattern:
 				spread_pattern(shot)
 			elif shot.bullet_pattern is Flower_pattern:
 				flower_pattern(shot)
+				print(shot.aimed)
+				print(shot.emitter.name)
 			if shot.shot_delay > 0:
 				await get_tree().create_timer(shot.shot_delay).timeout
 		await get_tree().create_timer(attack.salvo_delay).timeout
@@ -53,7 +56,7 @@ func single_shot(new_shot):
 	var shot = new_shot.bullet_shape.instantiate()
 	shot.set_type(new_shot.bullet_type)
 	shot.set_size()
-	fire_bullet(shot, position, deg_to_rad(new_shot.angle))
+	fire_bullet(shot, new_shot.emitter.global_position, deg_to_rad(new_shot.angle))
 	shot.set_speed(new_shot.speed)
 	match new_shot.bullet_type:
 		BulletConstants.BulletTypes.CURVED:
@@ -62,12 +65,12 @@ func single_shot(new_shot):
 			shot.add_rotation(20)
 
 func circle_pattern(new_shot):
-	var points = new_shot.bullet_pattern.firing_points
+	var firing_points = new_shot.bullet_pattern.firing_points
 	for point in range(points):
 		var shot = new_shot.bullet_shape.instantiate()
 		shot.set_type(new_shot.bullet_type)
 		shot.set_size()
-		fire_bullet(shot, position, deg_to_rad(point * (360.0/points) + new_shot.angle))
+		fire_bullet(shot, new_shot.emitter.global_position, deg_to_rad(point * (360.0/firing_points) + new_shot.angle))
 		shot.set_speed(new_shot.speed)
 		match new_shot.bullet_type:
 			BulletConstants.BulletTypes.CURVED:
@@ -78,12 +81,12 @@ func circle_pattern(new_shot):
 			await get_tree().create_timer(new_shot.bullet_pattern.ripple_delay).timeout
 
 func flower_pattern(new_shot):
-	var points = new_shot.bullet_pattern.firing_points
+	var firing_points = new_shot.bullet_pattern.firing_points
 	for point in range(points):
 		var shot = new_shot.bullet_shape.instantiate()
 		shot.set_type(new_shot.bullet_type)
 		shot.set_size()
-		fire_bullet(shot, position, deg_to_rad(point * (360.0/points) + new_shot.angle))
+		fire_bullet(shot, new_shot.emitter.global_position, deg_to_rad(point * (360.0/firing_points) + new_shot.angle))
 		shot.set_speed(new_shot.speed)
 		shot.set_bloom_timer(new_shot.bullet_pattern.bloom_delay)
 		match new_shot.bullet_type:
@@ -95,12 +98,12 @@ func flower_pattern(new_shot):
 			await get_tree().create_timer(new_shot.bullet_pattern.ripple_delay).timeout
 				
 func spread_pattern(new_shot):
-	var points = new_shot.bullet_pattern.firing_points
+	var firing_points = new_shot.bullet_pattern.firing_points
 	for point in range(points):
 		var shot = new_shot.bullet_shape.instantiate()
 		shot.set_type(new_shot.bullet_type)
 		shot.set_size()
-		fire_bullet(shot, position, deg_to_rad(point * new_shot.bullet_pattern.separation_angle + new_shot.angle))
+		fire_bullet(shot, new_shot.emitter.global_position, deg_to_rad(firing_points * new_shot.bullet_pattern.separation_angle + new_shot.angle))
 		shot.set_speed(new_shot.speed)
 		match new_shot.bullet_type:
 			BulletConstants.BulletTypes.CURVED:

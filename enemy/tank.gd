@@ -27,9 +27,9 @@ func _process(delta):
 	$AnimationPlayer.play(anim_direction)
 	
 func shoot():
-	var bullet = bullet_scene[0].instantiate()
+	super.shoot()
 	var angle = vec_to_player.angle()
-	fire_bullet(bullet, position, angle)
+	
 
 func get_facing_vector(vtp):
 	var min_angle = 360

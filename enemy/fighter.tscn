@@ -1,98 +1,15 @@
-[gd_scene load_steps=33 format=3 uid="uid://iv1q1152twqe"]
+[gd_scene load_steps=28 format=3 uid="uid://iv1q1152twqe"]
 
-[ext_resource type="Script" path="res://enemy/fighter.gd" id="1_7ktg1"]
-[ext_resource type="AudioStream" uid="uid://c0xuay0yvb014" path="res://sound/sfx/Explosions/Explosion_6.wav" id="2_fq87v"]
-[ext_resource type="Script" path="res://enemy/weapons/patterns/single_pattern.gd" id="2_hgleh"]
+[ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_cja1d"]
+[ext_resource type="AudioStream" uid="uid://b81ote4ejuuha" path="res://sound/sfx/Explosions/Explosion_4.wav" id="2_enotn"]
 [ext_resource type="Texture2D" uid="uid://cegot2yvfipbj" path="res://assets/Nairan/Designs-Base/Nairan-Fighter-Base.png" id="2_men5b"]
-[ext_resource type="AudioStream" uid="uid://hu63xcx0qu15" path="res://sound/sfx/lasers/Laser-weapon1.wav" id="2_s7pse"]
 [ext_resource type="Texture2D" uid="uid://cu8j558idih2l" path="res://assets/Nairan/Engine_Effects/Nairan-Fighter-Engine.png" id="3_0mkme"]
 [ext_resource type="PackedScene" uid="uid://cnt8jlxc1o2co" path="res://enemy/weapons/bullet_shapes/needle.tscn" id="3_fnmmr"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="4_fc43p"]
+[ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_66wlm"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="5_g6033"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_uhask"]
-
-[sub_resource type="Resource" id="Resource_3jds1"]
-script = ExtResource("2_hgleh")
-title = ""
-
-[sub_resource type="Resource" id="Resource_826aw"]
-script = ExtResource("4_fc43p")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_3jds1")
-bullet_shape = ExtResource("3_fnmmr")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-7, 6),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_og43s"]
-script = ExtResource("4_fc43p")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_3jds1")
-bullet_shape = ExtResource("3_fnmmr")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(7, 6),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.2
-aimed = false
-
-[sub_resource type="Resource" id="Resource_d4ati"]
-script = ExtResource("4_fc43p")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_3jds1")
-bullet_shape = ExtResource("3_fnmmr")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-9, 6),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_1vuhs"]
-script = ExtResource("4_fc43p")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_3jds1")
-bullet_shape = ExtResource("3_fnmmr")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(10, 6),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.2
-aimed = false
-
-[sub_resource type="Resource" id="Resource_r0qbs"]
-script = ExtResource("4_fc43p")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_3jds1")
-bullet_shape = ExtResource("3_fnmmr")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-12, 5),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_37xnc"]
-script = ExtResource("4_fc43p")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_3jds1")
-bullet_shape = ExtResource("3_fnmmr")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(12, 5),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_luqjk"]
-script = ExtResource("5_uhask")
-attack_name = "6-gun Glory"
-Firing_Sequence = Array[ExtResource("4_fc43p")]([SubResource("Resource_826aw"), SubResource("Resource_og43s"), SubResource("Resource_d4ati"), SubResource("Resource_1vuhs"), SubResource("Resource_r0qbs"), SubResource("Resource_37xnc")])
-salvos = 2
-salvo_delay = 0.5
+[ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_sq7r8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v0dkl"]
 atlas = ExtResource("3_0mkme")
@@ -311,18 +228,40 @@ _data = {
 "hit": SubResource("Animation_bjodb")
 }
 
+[sub_resource type="Resource" id="Resource_roxgy"]
+script = ExtResource("6_sq7r8")
+firing_points = 5
+separation_angle = 10.0
+ripple = false
+ripple_delay = 0.0
+title = ""
+
+[sub_resource type="Resource" id="Resource_ntpav"]
+script = ExtResource("4_fc43p")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_roxgy")
+bullet_shape = ExtResource("3_fnmmr")
+speed = 30
+angle = 60.0
+shot_delay = 0.0
+aimed = false
+station = 0
+
+[sub_resource type="Resource" id="Resource_brra5"]
+script = ExtResource("5_uhask")
+attack_name = "Attack"
+Firing_Sequence = Array[ExtResource("4_fc43p")]([SubResource("Resource_ntpav")])
+salvos = 1
+salvo_delay = 0.3
+
 [node name="Fighter" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
 collision_layer = 10
 audio_bus_override = true
 audio_bus_name = &"SFX"
-script = ExtResource("1_7ktg1")
-shoot_interval_min = 2.0
-Attacks = Array[ExtResource("5_uhask")]([SubResource("Resource_luqjk")])
-firing_sound = ExtResource("2_s7pse")
-title = "Fighter"
-hp = 2
-explosion_sound = ExtResource("2_fq87v")
+script = ExtResource("1_cja1d")
+hp = 8
+explosion_sound = ExtResource("2_enotn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
@@ -344,10 +283,6 @@ libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }
 
-[node name="ShootTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="Station1" type="Marker2D" parent="."]
 position = Vector2(-12, 5)
 
@@ -366,4 +301,10 @@ position = Vector2(10, 6)
 [node name="Station6" type="Marker2D" parent="."]
 position = Vector2(12, 5)
 
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[node name="ShootingComponent" parent="." instance=ExtResource("5_66wlm")]
+Attacks = Array[ExtResource("5_uhask")]([SubResource("Resource_brra5")])
+
+[node name="ShootingComponent2" parent="." instance=ExtResource("5_66wlm")]
+Attacks = Array[ExtResource("5_uhask")]([SubResource("Resource_brra5")])
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

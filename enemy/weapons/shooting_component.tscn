@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbtps6a6vw6vw"]
+
+[ext_resource type="Script" path="res://enemy/weapons/shooting_component.gd" id="1_q8adn"]
+[ext_resource type="AudioStream" uid="uid://pvi2uyaheuwj" path="res://sound/sfx/lasers/Laser-weapon3.wav" id="2_35f2j"]
+
+[node name="ShootingComponent" type="Node2D" groups=["enemy"]]
+position = Vector2(0, -50)
+script = ExtResource("1_q8adn")
+firing_sound = ExtResource("2_35f2j")
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

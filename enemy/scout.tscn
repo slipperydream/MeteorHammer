@@ -1,50 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://cob7rnhv2vc6s"]
+[gd_scene load_steps=28 format=3 uid="uid://cob7rnhv2vc6s"]
 
-[ext_resource type="Script" path="res://enemy/scout.gd" id="1_fqucx"]
+[ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_je8v6"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="2_7167e"]
 [ext_resource type="Texture2D" uid="uid://bb280gh637ydk" path="res://assets/Nairan/Designs-Base/Nairan-Scout-Base.png" id="2_eiou3"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/single_pattern.gd" id="2_n0eyg"]
-[ext_resource type="AudioStream" uid="uid://c7hns1ax26mv1" path="res://sound/sfx/Explosions/Explosion_9.wav" id="2_tqpup"]
+[ext_resource type="AudioStream" uid="uid://dgqsqufwnerkc" path="res://sound/sfx/Explosions/Explosion_2.wav" id="2_xlork"]
 [ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="3_2rb8e"]
 [ext_resource type="Texture2D" uid="uid://ct6e2mc24ibyc" path="res://assets/Nairan/Engine_Effects/Nairan-Scout-Engine.png" id="3_02wae"]
-[ext_resource type="AudioStream" uid="uid://764lwh1h2gb1" path="res://sound/sfx/lasers/Laser-weapon4.wav" id="3_psc8q"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="5_gbr6t"]
+[ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_gygaj"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_r0vnt"]
-
-[sub_resource type="Resource" id="Resource_j16xl"]
-script = ExtResource("2_n0eyg")
-title = ""
-
-[sub_resource type="Resource" id="Resource_1u7sw"]
-script = ExtResource("2_7167e")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_j16xl")
-bullet_shape = ExtResource("3_2rb8e")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-10, 5),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_lfo6h"]
-script = ExtResource("2_7167e")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_j16xl")
-bullet_shape = ExtResource("3_2rb8e")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(10, 5),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_008n5"]
-script = ExtResource("5_r0vnt")
-attack_name = "Default"
-Firing_Sequence = Array[ExtResource("2_7167e")]([SubResource("Resource_1u7sw"), SubResource("Resource_lfo6h")])
-salvos = 1
-salvo_delay = 0.3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0c06a"]
 atlas = ExtResource("3_02wae")
@@ -251,15 +216,34 @@ _data = {
 "hit": SubResource("Animation_gbsme")
 }
 
+[sub_resource type="Resource" id="Resource_aoie2"]
+script = ExtResource("2_n0eyg")
+title = ""
+
+[sub_resource type="Resource" id="Resource_370c3"]
+script = ExtResource("2_7167e")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_aoie2")
+bullet_shape = ExtResource("3_2rb8e")
+speed = 30
+angle = 45.0
+shot_delay = 0.0
+aimed = false
+station = 0
+
+[sub_resource type="Resource" id="Resource_4nyni"]
+script = ExtResource("5_r0vnt")
+attack_name = "Attack"
+Firing_Sequence = Array[ExtResource("2_7167e")]([SubResource("Resource_370c3")])
+salvos = 1
+salvo_delay = 0.3
+
 [node name="Scout" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
 collision_layer = 10
 audio_bus_name = &"SFX"
-script = ExtResource("1_fqucx")
-Attacks = Array[ExtResource("5_r0vnt")]([SubResource("Resource_008n5")])
-firing_sound = ExtResource("3_psc8q")
-title = "Scout"
-explosion_sound = ExtResource("2_tqpup")
+script = ExtResource("1_je8v6")
+explosion_sound = ExtResource("2_xlork")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
@@ -281,13 +265,13 @@ libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }
 
-[node name="ShootTimer" type="Timer" parent="."]
-one_shot = true
+[node name="ShootingComponent" parent="." instance=ExtResource("5_gygaj")]
+Attacks = Array[ExtResource("5_r0vnt")]([SubResource("Resource_4nyni")])
 
 [node name="Station1" type="Marker2D" parent="."]
-position = Vector2(-10, 5)
+position = Vector2(-10, 6)
 
 [node name="Station2" type="Marker2D" parent="."]
 position = Vector2(10, 5)
 
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

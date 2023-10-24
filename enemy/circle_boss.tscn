@@ -1,115 +1,14 @@
-[gd_scene load_steps=32 format=3 uid="uid://cojkicds8uf8c"]
+[gd_scene load_steps=21 format=3 uid="uid://cojkicds8uf8c"]
 
 [ext_resource type="Script" path="res://enemy/boss.gd" id="1_m1li8"]
-[ext_resource type="PackedScene" uid="uid://bthvww1tlvr4y" path="res://enemy/weapons/bullet_shapes/slice.tscn" id="2_175li"]
-[ext_resource type="Script" path="res://enemy/weapons/patterns/single_pattern.gd" id="2_uo6l4"]
+[ext_resource type="AudioStream" uid="uid://dc0pm3gmnb134" path="res://sound/sfx/Explosions/Repeating_explosion.wav" id="2_veit0"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="3_km3fg"]
 [ext_resource type="Texture2D" uid="uid://dlholuxpiqcq7" path="res://enemy/circle_boss.png" id="4_2bc68"]
-[ext_resource type="AudioStream" uid="uid://4ufymnnqi2ni" path="res://sound/sfx/lasers/Laser-weapon5.wav" id="4_2vhea"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="4_nn3en"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="4_t0exc"]
-[ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="5_pqwyk"]
-[ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_u1xm0"]
-[ext_resource type="Script" path="res://enemy/weapons/patterns/flower_pattern.gd" id="11_vyxw7"]
-[ext_resource type="PackedScene" uid="uid://bfem0x37r3fr" path="res://enemy/weapons/bullet_shapes/heart.tscn" id="12_mctt6"]
-
-[sub_resource type="Resource" id="Resource_nnu4i"]
-script = ExtResource("11_vyxw7")
-firing_points = 24
-bloom_delay = 5.0
-blooms = 4
-ripple = false
-ripple_delay = 0.0
-title = ""
-
-[sub_resource type="Resource" id="Resource_rd6ip"]
-script = ExtResource("3_km3fg")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_nnu4i")
-bullet_shape = ExtResource("12_mctt6")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":true,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, -23),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_6idws"]
-script = ExtResource("4_nn3en")
-attack_name = "Flower of Death"
-Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_rd6ip")])
-salvos = 1
-salvo_delay = 0.3
-
-[sub_resource type="Resource" id="Resource_u3fxh"]
-script = ExtResource("2_uo6l4")
-title = ""
-
-[sub_resource type="Resource" id="Resource_2lfxa"]
-script = ExtResource("3_km3fg")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_u3fxh")
-bullet_shape = ExtResource("2_175li")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 24),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_gm6yx"]
-script = ExtResource("4_nn3en")
-attack_name = "Katana of Death"
-Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_2lfxa")])
-salvos = 5
-salvo_delay = 0.3
-
-[sub_resource type="Resource" id="Resource_srt0g"]
-script = ExtResource("6_u1xm0")
-firing_points = 5
-separation_angle = 10.0
-ripple = false
-ripple_delay = 0.0
-title = ""
-
-[sub_resource type="Resource" id="Resource_6egmf"]
-script = ExtResource("3_km3fg")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_srt0g")
-bullet_shape = ExtResource("5_pqwyk")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(26, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 30.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_t080e"]
-script = ExtResource("6_u1xm0")
-firing_points = 5
-separation_angle = 10.0
-ripple = false
-ripple_delay = 0.0
-title = ""
-
-[sub_resource type="Resource" id="Resource_jx5xs"]
-script = ExtResource("3_km3fg")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_t080e")
-bullet_shape = ExtResource("5_pqwyk")
-emitter = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-26, 1),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-speed = 30
-angle = 120.0
-shot_delay = 0.0
-aimed = false
-
-[sub_resource type="Resource" id="Resource_qo2vl"]
-script = ExtResource("4_nn3en")
-attack_name = "Spin shot"
-Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_6egmf"), SubResource("Resource_jx5xs")])
-salvos = 2
-salvo_delay = 0.3
+[ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="4_wa46r"]
+[ext_resource type="Script" path="res://enemy/weapons/patterns/circle_pattern.gd" id="5_ri64t"]
+[ext_resource type="PackedScene" uid="uid://bgvlm78bigb4b" path="res://enemy/weapons/bullet_shapes/cross_shot.tscn" id="6_a280h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rgpy"]
 radius = 18.0
@@ -278,17 +177,40 @@ _data = {
 "shooting_3": SubResource("Animation_oxk5s")
 }
 
+[sub_resource type="Resource" id="Resource_lnbkd"]
+script = ExtResource("5_ri64t")
+firing_points = 24
+ripple = false
+ripple_delay = 0.0
+title = ""
+
+[sub_resource type="Resource" id="Resource_1a5ne"]
+script = ExtResource("3_km3fg")
+bullet_type = 1
+bullet_pattern = SubResource("Resource_lnbkd")
+bullet_shape = ExtResource("6_a280h")
+speed = 30
+angle = 90.0
+shot_delay = 0.0
+aimed = false
+station = 0
+
+[sub_resource type="Resource" id="Resource_1eptv"]
+script = ExtResource("4_nn3en")
+attack_name = "Attack"
+Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_1a5ne")])
+salvos = 3
+salvo_delay = 0.4
+
 [node name="CircleBoss" type="Area2D" groups=["boss", "enemy"]]
 collision_layer = 10
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_m1li8")
-shoot_interval_min = 2.0
-Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_6idws"), SubResource("Resource_gm6yx"), SubResource("Resource_qo2vl")])
-firing_sound = ExtResource("4_2vhea")
-title = "Circle"
-is_boss = true
+points = 1000
 hp = 100
+is_boss = true
+explosion_sound = ExtResource("2_veit0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_2bc68")
@@ -302,9 +224,6 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }
-
-[node name="ShootTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -5)
@@ -329,8 +248,13 @@ position = Vector2(26, 0)
 [node name="WestEmitter" type="Marker2D" parent="."]
 position = Vector2(-26, 1)
 
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("4_wa46r")]
+shot_timer = 4.0
+Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_1eptv")])
+stations = [NodePath("../NorthEmitter"), NodePath("../SouthEmitter"), NodePath("../EastEmitter"), NodePath("../WestEmitter")]
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="MilkingTimer" to="." method="_on_milking_timer_timeout"]
+[connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]

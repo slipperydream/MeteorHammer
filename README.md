@@ -3,7 +3,6 @@ Heavily modified now
 
 TODOs (not in priority order yet)
 -----
-- Add firing station and order to enemies
 - Start building 30 to 60 second long stages
     - add song changes with the stage changes
     - update spawner to specify location
@@ -56,19 +55,12 @@ TODOs (not in priority order yet)
 
 Redo code to make components instead of inheritance.
 - Attack
-    - Firing
 - Health
 - Hitbox
 - Movement?
 
-Add auto bombing feature: spends bomb when hit to prevent death. Make it player toggleable
-Assign firing locations to the animated sprites & order
 
-Replace shield UI with shield around player that flashes when hit and dissolves when destroyed
-
-Time out stages to be 2ish minutes
-
-Add level spawner including pickups
+Add pickups to level spawner
 
 Weapons: single, double, triple, quad beams, missiles, screen clearers
 

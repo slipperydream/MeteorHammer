@@ -47,7 +47,6 @@ func shoot():
 		return
 	
 	emit_signal("shooting")
-	print(get_station_position(0))
 	var attack = Attacks[attack_index]
 	
 	attack_index += 1
@@ -63,8 +62,6 @@ func shoot():
 				spread_pattern(shot)
 			elif shot.bullet_pattern is Flower_pattern:
 				flower_pattern(shot)
-				print(shot.aimed)
-				print(shot.emitter.name)
 			if shot.shot_delay > 0:
 				await get_tree().create_timer(shot.shot_delay).timeout
 		await get_tree().create_timer(attack.salvo_delay).timeout

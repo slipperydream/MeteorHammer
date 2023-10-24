@@ -11,7 +11,11 @@ signal died
 @export var is_boss : bool = false
 @export var is_GOB : bool = false
 @export var faces_player : bool = false
+@export var direction : Vector2 = Vector2(0,1)
+@export var homing : bool = false
+@export var steer_force = 50.0
 @export var explosion_sound : AudioStreamWAV
+
 var is_alive : bool = true
 var vec_to_player : Vector2 = Vector2(0,1)
 
@@ -29,12 +33,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.y += speed * delta
+	position = position + speed * delta * direction + steer_towards_player()
 	if position.y > screensize.y + enemy_size.y:
 		remove()
 	if faces_player:
-		vec_to_player = player.global_position - global_position
-		vec_to_player = vec_to_player.normalized()
+		vec_to_player = (player.global_position - global_position).normalized()
 		var anim_direction = get_facing_direction(vec_to_player)
 		$AnimationPlayer.play(anim_direction)
 
@@ -78,14 +81,25 @@ func explode():
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("explode")
 	await $AnimationPlayer.animation_finished
-	
+
+		
 func remove():
 	queue_free()	
 
+func steer_towards_player():
+	var steer = Vector2.ZERO
+	if homing:
+		if player:
+			var desired = vec_to_player * speed
+			steer = (desired - direction).normalized() * steer_force
+	return steer
+
+	
 func _on_player_died():
 	pass
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
+	print(name)
 	for child in get_children():
 		if child is Shooting_component:
 			child.start()

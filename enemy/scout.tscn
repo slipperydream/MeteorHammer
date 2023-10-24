@@ -265,8 +265,9 @@ libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }
 
-[node name="ShootingComponent" parent="." instance=ExtResource("5_gygaj")]
+[node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_gygaj")]
 Attacks = Array[ExtResource("5_r0vnt")]([SubResource("Resource_4nyni")])
+stations = [NodePath("../Station1"), NodePath("../Station2")]
 
 [node name="Station1" type="Marker2D" parent="."]
 position = Vector2(-10, 6)
@@ -275,3 +276,5 @@ position = Vector2(-10, 6)
 position = Vector2(10, 5)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]

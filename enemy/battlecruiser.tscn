@@ -300,8 +300,15 @@ libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }
 
-[node name="ShootingComponent" parent="." instance=ExtResource("5_ofcya")]
+[node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_ofcya")]
 Attacks = Array[ExtResource("5_4rkk6")]([SubResource("Resource_0ykxp")])
+stations = [NodePath("../MainGunRight"), NodePath("../MainGunLeft"), NodePath("../Station1"), NodePath("../Station2"), NodePath("../Station3"), NodePath("../Station4"), NodePath("../Station5"), NodePath("../Station6"), NodePath("../Station7"), NodePath("../Station8")]
+
+[node name="MainGunRight" type="Marker2D" parent="."]
+position = Vector2(-8, 29)
+
+[node name="MainGunLeft" type="Marker2D" parent="."]
+position = Vector2(6, 29)
 
 [node name="Station1" type="Marker2D" parent="."]
 position = Vector2(-15, 3)
@@ -327,10 +334,6 @@ position = Vector2(11, 19)
 [node name="Station8" type="Marker2D" parent="."]
 position = Vector2(14, 3)
 
-[node name="MainGunRight" type="Marker2D" parent="."]
-position = Vector2(-8, 29)
-
-[node name="MainGunLeft" type="Marker2D" parent="."]
-position = Vector2(6, 29)
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]

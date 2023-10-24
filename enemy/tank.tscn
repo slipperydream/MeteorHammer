@@ -414,3 +414,5 @@ sealing_range = 100
 position = Vector2(-11, -4)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]

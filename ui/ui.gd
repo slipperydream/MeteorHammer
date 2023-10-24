@@ -63,6 +63,8 @@ func _on_player_item_charging():
 
 func _on_boss_spawned():
 	$AnimationPlayer.play("boss_warning")
+	await $AnimationPlayer.animation_finished
+	$BossLabel.visible = false
 
 func _on_main_stage_cleared(_stage):
 	$Stopwatch.stop()

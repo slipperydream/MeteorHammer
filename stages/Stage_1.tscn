@@ -1,12 +1,84 @@
-[gd_scene load_steps=31 format=3 uid="uid://8bwqwxoxjr48"]
+[gd_scene load_steps=39 format=3 uid="uid://8bwqwxoxjr48"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_p1jaf"]
 [ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_dgbhq"]
 [ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="3_ht83h"]
+[ext_resource type="PackedScene" uid="uid://0qhcdp0yxqy3" path="res://enemy/space_mine.tscn" id="4_5g06q"]
 [ext_resource type="PackedScene" uid="uid://bsctabtw3j43n" path="res://enemy/asteroid.tscn" id="4_jjikb"]
 [ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="5_arunl"]
+[ext_resource type="PackedScene" uid="uid://glp73e1wvqq8" path="res://enemy/homing_space_mine.tscn" id="5_vk7n4"]
 [ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://enemy/circle_boss.tscn" id="5_vrr8f"]
 [ext_resource type="PackedScene" uid="uid://c5vy5tww5so1i" path="res://enemy/tank.tscn" id="6_lw1sw"]
+
+[sub_resource type="Resource" id="Resource_xuvu2"]
+script = ExtResource("3_ht83h")
+spawn_time = 0
+spawn = ExtResource("5_arunl")
+lane = 0
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_fjbbb"]
+script = ExtResource("3_ht83h")
+spawn_time = 1
+spawn = ExtResource("5_arunl")
+lane = 1
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_ri5r7"]
+script = ExtResource("3_ht83h")
+spawn_time = 8
+spawn = ExtResource("6_lw1sw")
+lane = 2
+spawn_on_screen = true
+screen_y = 60
+
+[sub_resource type="Resource" id="Resource_nfjc7"]
+script = ExtResource("3_ht83h")
+spawn_time = 8
+spawn = ExtResource("6_lw1sw")
+lane = 1
+spawn_on_screen = true
+screen_y = 60
+
+[sub_resource type="Resource" id="Resource_1llk5"]
+script = ExtResource("3_ht83h")
+spawn_time = 8
+spawn = ExtResource("6_lw1sw")
+lane = 3
+spawn_on_screen = true
+screen_y = 60
+
+[sub_resource type="Resource" id="Resource_qs1te"]
+script = ExtResource("3_ht83h")
+spawn_time = 9
+spawn = ExtResource("6_lw1sw")
+lane = 4
+spawn_on_screen = true
+screen_y = 60
+
+[sub_resource type="Resource" id="Resource_nrbm2"]
+script = ExtResource("3_ht83h")
+spawn_time = 10
+spawn = ExtResource("6_lw1sw")
+lane = 5
+spawn_on_screen = true
+screen_y = 60
+
+[sub_resource type="Resource" id="Resource_pk48q"]
+script = ExtResource("3_ht83h")
+spawn_time = 11
+spawn = ExtResource("6_lw1sw")
+lane = 6
+spawn_on_screen = true
+screen_y = 60
+
+[sub_resource type="Resource" id="Resource_78suo"]
+script = ExtResource("2_dgbhq")
+wave_name = "probe and defense"
+wave_start_time = 0
+spawns = Array[ExtResource("3_ht83h")]([SubResource("Resource_xuvu2"), SubResource("Resource_fjbbb"), SubResource("Resource_ri5r7"), SubResource("Resource_nfjc7"), SubResource("Resource_1llk5"), SubResource("Resource_qs1te"), SubResource("Resource_nrbm2"), SubResource("Resource_pk48q")])
 
 [sub_resource type="Resource" id="Resource_cs0xi"]
 script = ExtResource("3_ht83h")
@@ -115,83 +187,59 @@ screen_y = 200
 [sub_resource type="Resource" id="Resource_pcpba"]
 script = ExtResource("2_dgbhq")
 wave_name = "Asteroid Field"
-wave_start_time = 0
+wave_start_time = 15
 spawns = Array[ExtResource("3_ht83h")]([SubResource("Resource_cs0xi"), SubResource("Resource_qqal0"), SubResource("Resource_junj4"), SubResource("Resource_5l5il"), SubResource("Resource_vk340"), SubResource("Resource_5tabx"), SubResource("Resource_fo6gb"), SubResource("Resource_wpjcy"), SubResource("Resource_uew1v"), SubResource("Resource_pywgo"), SubResource("Resource_4yyet"), SubResource("Resource_1oggq"), SubResource("Resource_lt1wt")])
 
-[sub_resource type="Resource" id="Resource_xuvu2"]
+[sub_resource type="Resource" id="Resource_5vilv"]
 script = ExtResource("3_ht83h")
 spawn_time = 0
-spawn = ExtResource("5_arunl")
+spawn = ExtResource("4_5g06q")
+lane = 1
+spawn_on_screen = true
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_re6hh"]
+script = ExtResource("3_ht83h")
+spawn_time = 0
+spawn = ExtResource("4_5g06q")
+lane = 3
+spawn_on_screen = true
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_a2j7s"]
+script = ExtResource("3_ht83h")
+spawn_time = 3
+spawn = ExtResource("5_vk7n4")
 lane = 0
 spawn_on_screen = false
 screen_y = 200
 
-[sub_resource type="Resource" id="Resource_fjbbb"]
+[sub_resource type="Resource" id="Resource_ea5ve"]
 script = ExtResource("3_ht83h")
-spawn_time = 1
-spawn = ExtResource("5_arunl")
-lane = 1
+spawn_time = 3
+spawn = ExtResource("5_vk7n4")
+lane = 2
 spawn_on_screen = false
 screen_y = 200
 
-[sub_resource type="Resource" id="Resource_ri5r7"]
-script = ExtResource("3_ht83h")
-spawn_time = 4
-spawn = ExtResource("6_lw1sw")
-lane = 2
-spawn_on_screen = true
-screen_y = 60
-
-[sub_resource type="Resource" id="Resource_nfjc7"]
+[sub_resource type="Resource" id="Resource_n573u"]
 script = ExtResource("3_ht83h")
 spawn_time = 3
-spawn = ExtResource("6_lw1sw")
-lane = 1
-spawn_on_screen = true
-screen_y = 60
-
-[sub_resource type="Resource" id="Resource_1llk5"]
-script = ExtResource("3_ht83h")
-spawn_time = 4
-spawn = ExtResource("6_lw1sw")
-lane = 3
-spawn_on_screen = true
-screen_y = 60
-
-[sub_resource type="Resource" id="Resource_qs1te"]
-script = ExtResource("3_ht83h")
-spawn_time = 5
-spawn = ExtResource("6_lw1sw")
+spawn = ExtResource("5_vk7n4")
 lane = 4
-spawn_on_screen = true
-screen_y = 60
+spawn_on_screen = false
+screen_y = 200
 
-[sub_resource type="Resource" id="Resource_nrbm2"]
-script = ExtResource("3_ht83h")
-spawn_time = 6
-spawn = ExtResource("6_lw1sw")
-lane = 5
-spawn_on_screen = true
-screen_y = 60
-
-[sub_resource type="Resource" id="Resource_pk48q"]
-script = ExtResource("3_ht83h")
-spawn_time = 7
-spawn = ExtResource("6_lw1sw")
-lane = 6
-spawn_on_screen = true
-screen_y = 60
-
-[sub_resource type="Resource" id="Resource_78suo"]
+[sub_resource type="Resource" id="Resource_2p0i8"]
 script = ExtResource("2_dgbhq")
-wave_name = "probe and defense"
-wave_start_time = 16
-spawns = Array[ExtResource("3_ht83h")]([SubResource("Resource_xuvu2"), SubResource("Resource_fjbbb"), SubResource("Resource_ri5r7"), SubResource("Resource_nfjc7"), SubResource("Resource_1llk5"), SubResource("Resource_qs1te"), SubResource("Resource_nrbm2"), SubResource("Resource_pk48q")])
+wave_name = "mines"
+wave_start_time = 25
+spawns = Array[ExtResource("3_ht83h")]([SubResource("Resource_5vilv"), SubResource("Resource_re6hh"), SubResource("Resource_a2j7s"), SubResource("Resource_ea5ve"), SubResource("Resource_n573u")])
 
 [node name="Stage_1" type="Area2D" groups=["levels"]]
 script = ExtResource("1_p1jaf")
 title = "Attack on Yz"
-waves = Array[ExtResource("2_dgbhq")]([SubResource("Resource_pcpba"), SubResource("Resource_78suo")])
+waves = Array[ExtResource("2_dgbhq")]([SubResource("Resource_78suo"), SubResource("Resource_pcpba"), SubResource("Resource_2p0i8")])
 end_boss = ExtResource("5_vrr8f")
 
 [node name="Timer" type="Timer" parent="."]

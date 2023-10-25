@@ -81,7 +81,7 @@ func _on_main_pause_game():
 func _on_center_container_game_unpaused():
 	$Stopwatch.pause(false)
 
-func _on_main_multiplier_active(multiplier):
+func _on_main_score_multiplier(multiplier):
 	if multiplier > 1:
 		multiplier_label.show()
 		multiplier_label.text = "MULTIPLIER\nx%d" % multiplier

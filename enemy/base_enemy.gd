@@ -29,17 +29,18 @@ func _ready():
 		z_index = 0
 	else:
 		z_index = 1
-		$Sprite2D/Boosters.animation = "forward"
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position = position + speed * delta * direction + steer_towards_player()
+	position = position + speed * delta * direction + steer_towards_player(delta)
 	if position.y > screensize.y + enemy_size.y:
 		remove()
 	if faces_player:
 		vec_to_player = (player.global_position - global_position).normalized()
 		var anim_direction = get_facing_direction(vec_to_player)
-		$AnimationPlayer.play(anim_direction)
+		if $AnimationPlayer.has_animation(anim_direction):
+			$AnimationPlayer.play(anim_direction)
 
 func get_facing_vector(vtp):
 	var min_angle = 360
@@ -81,17 +82,16 @@ func explode():
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("explode")
 	await $AnimationPlayer.animation_finished
-
 		
 func remove():
 	queue_free()	
 
-func steer_towards_player():
+func steer_towards_player(delta):
 	var steer = Vector2.ZERO
 	if homing:
 		if player:
 			var desired = vec_to_player * speed
-			steer = (desired - direction).normalized() * steer_force
+			steer = (desired - direction).normalized() * steer_force * delta
 	return steer
 
 	
@@ -99,11 +99,10 @@ func _on_player_died():
 	pass
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
-	print(name)
 	for child in get_children():
 		if child is Shooting_component:
 			child.start()
 
 func _on_shooting_component_shooting():
-	if $AnimationPlayer.get_animation("shooting"):
+	if $AnimationPlayer.has_animation("shooting"):
 		$AnimationPlayer.play("shooting")

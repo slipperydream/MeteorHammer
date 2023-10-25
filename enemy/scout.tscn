@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cob7rnhv2vc6s"]
+[gd_scene load_steps=30 format=3 uid="uid://cob7rnhv2vc6s"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_je8v6"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="2_7167e"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="5_gbr6t"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_gygaj"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_r0vnt"]
+[ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_y84sk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0c06a"]
 atlas = ExtResource("3_02wae")
@@ -117,46 +118,6 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_oa838"]
-resource_name = "explode"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_gbr6t")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
 [sub_resource type="Animation" id="Animation_gbsme"]
 resource_name = "hit"
 length = 0.4
@@ -209,10 +170,49 @@ tracks/3/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_rw8h2"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_gbr6t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h123k"]
 _data = {
 "RESET": SubResource("Animation_4pyvs"),
-"explode": SubResource("Animation_oa838"),
+"explode": SubResource("Animation_rw8h2"),
 "hit": SubResource("Animation_gbsme")
 }
 
@@ -225,16 +225,27 @@ script = ExtResource("2_7167e")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_aoie2")
 bullet_shape = ExtResource("3_2rb8e")
-speed = 30
-angle = 45.0
+speed = 50
+angle = 90.0
 shot_delay = 0.0
 aimed = false
 station = 0
 
+[sub_resource type="Resource" id="Resource_ko1fg"]
+script = ExtResource("2_7167e")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_aoie2")
+bullet_shape = ExtResource("3_2rb8e")
+speed = 50
+angle = 90.0
+shot_delay = 0.0
+aimed = false
+station = 1
+
 [sub_resource type="Resource" id="Resource_4nyni"]
 script = ExtResource("5_r0vnt")
 attack_name = "Attack"
-Firing_Sequence = Array[ExtResource("2_7167e")]([SubResource("Resource_370c3")])
+Firing_Sequence = Array[ExtResource("2_7167e")]([SubResource("Resource_370c3"), SubResource("Resource_ko1fg")])
 salvos = 1
 salvo_delay = 0.3
 
@@ -254,6 +265,7 @@ position = Vector2(1.31134e-06, 15)
 sprite_frames = SubResource("SpriteFrames_kw4s0")
 animation = &"forward"
 frame_progress = 0.7755
+script = ExtResource("5_y84sk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)
@@ -266,6 +278,7 @@ libraries = {
 }
 
 [node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_gygaj")]
+shot_timer = 1.0
 Attacks = Array[ExtResource("5_r0vnt")]([SubResource("Resource_4nyni")])
 stations = [NodePath("../Station1"), NodePath("../Station2")]
 
@@ -278,3 +291,4 @@ position = Vector2(10, 5)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

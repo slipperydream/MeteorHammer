@@ -8,7 +8,7 @@ signal start_game
 signal game_over
 signal pause_game
 signal score_changed
-signal multiplier_active
+signal score_multiplier
 signal stage_cleared
 signal new_stage
 
@@ -91,17 +91,18 @@ func _on_enemy_died(value):
 		scoring_multiplier += 1
 		if scoring_multiplier > stage_results.biggest_multiplier:
 			stage_results.biggest_multiplier = scoring_multiplier;
-		emit_signal("multiplier_active", scoring_multiplier)
 		
 		# achievement check
 		if scoring_multiplier >= high_scoring_multiplier:
 			emit_signal("high_multiplier")
 	else:
 		scoring_multiplier = 1
+		
 		$ScoringTimer.wait_time = scoring_timer
 		$ScoringTimer.start()
 		scoring_chain_active = true
 	score += value * scoring_multiplier	
+	emit_signal("score_multiplier", scoring_multiplier)
 	stage_results.enemy_killed += 1
 	emit_signal("score_changed", score)
 
@@ -135,6 +136,7 @@ func _on_game_over():
 func _on_scoring_timer_timeout():
 	scoring_chain_active = false
 	scoring_multiplier = 1
+	emit_signal("score_multiplier", scoring_multiplier)
 
 func _on_boss_spawned():
 	boss_spawned = true

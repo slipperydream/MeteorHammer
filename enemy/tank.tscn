@@ -93,46 +93,6 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_0osx1"]
-resource_name = "explode"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_2hb0p")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
 [sub_resource type="Animation" id="Animation_v6aud"]
 resource_name = "hit"
 length = 0.5
@@ -345,11 +305,50 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_n5mec"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_2hb0p")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_axh05"]
 _data = {
 "RESET": SubResource("Animation_hdjc4"),
 "east": SubResource("Animation_rufyc"),
-"explode": SubResource("Animation_0osx1"),
+"explode": SubResource("Animation_n5mec"),
 "hit": SubResource("Animation_v6aud"),
 "north": SubResource("Animation_j6riu"),
 "northeast": SubResource("Animation_u1q4f"),
@@ -369,7 +368,7 @@ script = ExtResource("4_6gfax")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_veynh")
 bullet_shape = ExtResource("3_c5ljc")
-speed = 30
+speed = 50
 angle = 90.0
 shot_delay = 0.0
 aimed = true
@@ -379,8 +378,8 @@ station = 0
 script = ExtResource("5_52fho")
 attack_name = "Attack"
 Firing_Sequence = Array[ExtResource("4_6gfax")]([SubResource("Resource_4jl70")])
-salvos = 1
-salvo_delay = 0.3
+salvos = 3
+salvo_delay = 0.4
 
 [node name="Tank" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
@@ -406,9 +405,10 @@ libraries = {
 "": SubResource("AnimationLibrary_axh05")
 }
 
-[node name="ShootingComponent" parent="." instance=ExtResource("4_rwaqa")]
+[node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("4_rwaqa")]
 Attacks = Array[ExtResource("5_52fho")]([SubResource("Resource_wiy8m")])
 sealing_range = 100
+stations = [NodePath("../Turret")]
 
 [node name="Turret" type="Marker2D" parent="."]
 position = Vector2(-11, -4)
@@ -416,3 +416,4 @@ position = Vector2(-11, -4)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

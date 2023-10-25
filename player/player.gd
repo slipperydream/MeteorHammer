@@ -17,13 +17,18 @@ var lives = max_lives
 @export var speed : int = 150
 @export var cooldown : float = 0.25
 @export var item_recharge_time : float = 5.0
-@export var weapon_scene : PackedScene
+@export var player_weapon : PackedScene
+@export var num_shots : int = 3
+@export var option_weapon : PackedScene
 @export var item_scene : PackedScene
+@export var explosion_sound : AudioStreamWAV
+
 var can_shoot : bool = true
 var invulnerable : bool = false
-var num_shots : int = 3
 
-@export var explosion_sound : AudioStreamWAV
+
+
+
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var shipsize : int = $Ship.texture.get_height()
 
@@ -38,12 +43,18 @@ func _process(delta):
 	input /= sensitivity
 	if input.x > 0:
 		$Ship.frame = 2
+		$Ship/LeftOption.frame = 2
+		$Ship/RightOption.frame = 2
 		$Ship/Boosters.animation = "right"
 	elif input.x < 0:
 		$Ship.frame = 0
+		$Ship/LeftOption.frame = 1
+		$Ship/RightOption.frame = 1
 		$Ship/Boosters.animation = "left"
 	else:
 		$Ship.frame = 1
+		$Ship/LeftOption.frame = 0
+		$Ship/RightOption.frame = 0
 		$Ship/Boosters.animation = "forward"
 	position += input * speed * delta
 	position = position.clamp(Vector2(8,8), screensize - Vector2(8,8))
@@ -72,7 +83,7 @@ func shoot():
 	can_shoot = false
 	$GunCooldown.start()	
 	for i in range(num_shots):
-		var weapon = weapon_scene.instantiate()
+		var weapon = player_weapon.instantiate()
 		get_tree().root.add_child(weapon)
 		var angle = deg_to_rad(90)
 		if num_shots % 5 == 0:
@@ -80,6 +91,16 @@ func shoot():
 		elif num_shots % 3 == 0:
 			angle = deg_to_rad(80 + i * 10)	
 		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
+	shoot_options()
+
+func shoot_options():
+	var weapon = option_weapon.instantiate()
+	get_tree().root.add_child(weapon)
+	var angle = deg_to_rad(90)
+	weapon.start($Ship/LeftOption.global_position, Vector2.RIGHT.rotated(angle))	
+	weapon = option_weapon.instantiate()
+	get_tree().root.add_child(weapon)
+	weapon.start($Ship/RightOption.global_position, Vector2.RIGHT.rotated(angle))	
 		
 func new_game():
 	lives = max_lives
@@ -105,7 +126,7 @@ func take_damage(_value):
 func upgrade_weapon(stage):
 	match stage:
 		1:
-			weapon_scene = load("res://player/weapons/bullet_level2.tscn")
+			player_weapon = load("res://player/weapons/bullet_level2.tscn")
 			emit_signal("weapon_changed", "charged_beam")
 	
 func use_item():	

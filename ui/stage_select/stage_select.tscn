@@ -1,24 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://borv5q636p3x1"]
+[gd_scene load_steps=8 format=3 uid="uid://borv5q636p3x1"]
 
 [ext_resource type="Script" path="res://ui/stage_select/stage_select.gd" id="1_ecuyr"]
+[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="2_4dqn1"]
 [ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="2_fbpvc"]
+[ext_resource type="Texture2D" uid="uid://dqk5cpl3h6p17" path="res://ui/stage_select/galaxy.png" id="2_fjdhx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd0wk"]
 bg_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py8jp"]
-bg_color = Color(0.188235, 0.317647, 0.509804, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4mk2"]
 content_margin_left = 1.0
 content_margin_top = 1.0
 content_margin_right = 1.0
 content_margin_bottom = 1.0
-bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+bg_color = Color(0.752941, 0.796078, 0.862745, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -28,6 +23,14 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py8jp"]
+bg_color = Color(0.0705882, 0.305882, 0.537255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.752941, 0.796078, 0.862745, 1)
 
 [node name="StageSelect" type="Panel"]
 anchors_preset = 15
@@ -39,6 +42,40 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yd0wk")
 script = ExtResource("1_ecuyr")
 stages_dir = "res://stages"
 
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.580392)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fjdhx")
+expand_mode = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("2_4dqn1")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_w4mk2")
+text = "<< Back To Title Screen
+"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -49,12 +86,17 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.862745, 0, 0, 1)
-text = "Select stage to play"
+theme_override_colors/font_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_shadow_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_constants/shadow_outline_size = 1
+text = "Select stage to play
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -63,17 +105,16 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ErrorPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -55.0
-offset_top = -50.0
-offset_right = 79.0
-offset_bottom = 28.0
+offset_left = -67.0
+offset_top = -39.0
+offset_right = 67.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_py8jp")
@@ -88,6 +129,7 @@ offset_top = -7.5
 offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_fonts/font = ExtResource("2_fbpvc")
 theme_override_font_sizes/font_size = 12
 text = "An error occurred
@@ -107,8 +149,10 @@ offset_right = 20.5
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
-theme_override_fonts/font = ExtResource("2_fbpvc")
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("2_4dqn1")
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_w4mk2")
 text = "Close"

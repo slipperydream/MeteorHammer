@@ -49,8 +49,6 @@ TODOs (not in priority order yet)
     - firing modes: spread, tail, front, ring, rolling (always forward firing, but rotate around player)
 
 
-- create options (drones) that add power to the player
-
  - Make a stage struct that defines the number, name, and other things
 
 Redo code to make components instead of inheritance.
@@ -76,15 +74,15 @@ Items: bombs, mines, power ups, shields, lives
 Enemies: bosses, sprites, animations, aimed shots. Fix double & triple stack to offer lanes wide enough to move into. Increase explosion size to larger than enemy. Have multiple deaths. Have hit indicators visual & audio
 
 Enemy types:
-- scout ship (long range shot, fast, low Hp)
-- Fighter (fast, close range, slashing attack)
-- Dreadnought (slow, multi-shot, high hp)
-- Orbital platform (stationary, aimed shot)
-- Torpedo ship (med speed, ripple shot, mid hp)
-- Carrier (slow, spawns fighters, cannon shot)
-- Space fence - constant barrier horizontally across screen
-- Space tank
-- Homing droids - chase after the player
+[X] scout ship (long range shot, fast, low Hp)
+[X] Fighter (fast, close range, slashing attack)
+[X] Dreadnought (slow, multi-shot, high hp)
+[] Orbital platform (stationary, aimed shot)
+[] Torpedo ship (med speed, ripple shot, mid hp)
+[] Carrier (slow, spawns fighters, cannon shot)
+[] Space fence - constant barrier horizontally across screen
+[X] Space tank
+[X] Homing droids - chase after the player
 
 Bosses:
 1. Ivory Dragon

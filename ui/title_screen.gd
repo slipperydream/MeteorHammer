@@ -5,9 +5,8 @@ signal attack_mode
 signal stage_mode
 signal boss_mode
 
-@onready var story_mode_button = $Panel/MainMenu/StoryModeButton
+@onready var start_game_button = $Panel/MainMenu/StartGameButton
 @onready var attack_mode_button = $Panel/MainMenu/AttackModeButton
-@onready var stage_select_button = $Panel/MainMenu/StageSelectButton
 @onready var boss_select_button = $Panel/MainMenu/BossSelectButton
 @onready var settings_button = $Panel/MainMenu/SettingsButton
 @onready var high_scores_button = $Panel/MainMenu/HighScoresButton
@@ -33,15 +32,12 @@ func hide_everything():
 	$StageSelect.hide()
 	$Panel/MainMenu.hide()
 	
-func _on_story_mode_button_pressed():
-	emit_signal("story_mode")
+func _on_start_game_button_pressed():
+	#not_implemented()
+	$StageSelect.show()
 
 func _on_attack_mode_button_pressed():
 	emit_signal("attack_mode")
-	
-func _on_stage_select_button_pressed():
-	not_implemented()
-	#$StageSelect.show()
 
 func _on_boss_select_button_pressed():
 	#not_implemented()

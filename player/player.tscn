@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=22 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/bullet.tscn" id="2_75g50"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b6aobhf1c1n66" path="res://player/ships/Boosters_16x16.png" id="5_kpxme"]
 [ext_resource type="Texture2D" uid="uid://c1nor1bdhnkqq" path="res://player/ships/Boosters_left_16x16.png" id="6_af20e"]
 [ext_resource type="Texture2D" uid="uid://cex32e7o8g7xe" path="res://player/ships/Boosters_right_16x16.png" id="7_phs4y"]
+[ext_resource type="Texture2D" uid="uid://v1asm43f1vm7" path="res://player/ships/options.png" id="9_81rj8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ow32t"]
 atlas = ExtResource("5_kpxme")
@@ -119,7 +120,8 @@ _data = {
 collision_mask = 31
 script = ExtResource("1_ks4n4")
 cooldown = 0.1
-weapon_scene = ExtResource("2_75g50")
+num_shots = 1
+option_weapon = ExtResource("2_75g50")
 item_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")
 
@@ -133,6 +135,18 @@ position = Vector2(0, 15)
 sprite_frames = SubResource("SpriteFrames_05fw1")
 animation = &"forward"
 autoplay = "forward"
+
+[node name="LeftOption" type="Sprite2D" parent="Ship"]
+position = Vector2(-35, 8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_81rj8")
+hframes = 3
+
+[node name="RightOption" type="Sprite2D" parent="Ship"]
+position = Vector2(32, 8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_81rj8")
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)

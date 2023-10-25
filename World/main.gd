@@ -119,7 +119,6 @@ func _on_stage_cleared(_stage):
 	print_results()
 	if current_stage + 1 >= stages.size():
 		print("You beat the game")
-		emit_signal("game_over")
 		emit_signal("beat_game")
 	else:
 		current_stage += 1
@@ -174,3 +173,6 @@ func _on_player_player_hit():
 
 func _on_new_background(file):
 	$Background/ParallaxLayer/Sprite2D.texture = file
+
+func _on_beat_game():
+	_on_game_over()

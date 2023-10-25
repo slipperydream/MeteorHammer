@@ -32,6 +32,7 @@ func _process(delta):
 			var amplitude = 10
 			direction.x = cos(time * frequency * amplitude)
 			position = position + speed * delta * direction 
+	look_at(position)
 	
 	if animate and $AnimationPlayer.is_playing() == false:
 		$AnimationPlayer.play("moving")
@@ -65,6 +66,7 @@ func set_bloom_timer(wait_time):
 func start(pos, dir):
 	position = pos
 	direction = dir
-	look_at(global_position - direction)
+	var angle = get_angle_to(position)
+	$Sprite2D.rotation = angle
 
 	

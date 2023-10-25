@@ -58,6 +58,8 @@ wait_time = 5.0
 [node name="ScoringTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="beat_game" from="." to="." method="_on_beat_game"]
+[connection signal="beat_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_beat_game"]
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/CenterContainer" method="_on_main_game_over"]
 [connection signal="new_stage" from="." to="CanvasLayer/UI" method="_on_main_new_stage"]

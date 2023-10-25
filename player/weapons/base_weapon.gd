@@ -13,11 +13,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position = position + speed * delta * direction
+	look_at(position)
 
 func start(pos, dir):
 	AudioStreamManager.play(firing_sound.resource_path, true)
 	position = pos
 	direction = dir
+	var angle = get_angle_to(position)
+	$Sprite2D.rotation = angle
 	
 func _on_area_entered(area):
 	if area.is_in_group("enemy"):

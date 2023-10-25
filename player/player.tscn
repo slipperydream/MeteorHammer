@@ -121,9 +121,10 @@ _data = {
 collision_mask = 31
 script = ExtResource("1_ks4n4")
 cooldown = 0.1
-player_weapon = ExtResource("2_td1ue")
+primary_weapon = ExtResource("2_75g50")
+secondary_weapon = ExtResource("2_td1ue")
 num_shots = 1
-option_weapon = ExtResource("2_75g50")
+option_weapons = Array[PackedScene]([ExtResource("2_75g50"), ExtResource("2_td1ue"), ExtResource("2_td1ue"), ExtResource("2_75g50")])
 item_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")
 
@@ -139,13 +140,15 @@ animation = &"forward"
 autoplay = "forward"
 
 [node name="LeftOption" type="Sprite2D" parent="Ship"]
-position = Vector2(-35, 8)
+position = Vector2(-16, 8)
+rotation = -0.261799
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("9_81rj8")
 hframes = 3
 
 [node name="RightOption" type="Sprite2D" parent="Ship"]
-position = Vector2(32, 8)
+position = Vector2(16, 8)
+rotation = 0.261799
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("9_81rj8")
 hframes = 3

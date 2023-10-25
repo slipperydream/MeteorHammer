@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://8bwqwxoxjr48"]
+[gd_scene load_steps=40 format=3 uid="uid://8bwqwxoxjr48"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_p1jaf"]
 [ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_dgbhq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://glp73e1wvqq8" path="res://enemy/homing_space_mine.tscn" id="5_vk7n4"]
 [ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://enemy/circle_boss.tscn" id="5_vrr8f"]
 [ext_resource type="PackedScene" uid="uid://c5vy5tww5so1i" path="res://enemy/tank.tscn" id="6_lw1sw"]
+[ext_resource type="Texture2D" uid="uid://c1qqmndqpuirq" path="res://World/space_300x800.png" id="10_52h8g"]
 
 [sub_resource type="Resource" id="Resource_xuvu2"]
 script = ExtResource("3_ht83h")
@@ -241,6 +242,7 @@ script = ExtResource("1_p1jaf")
 title = "Attack on Yz"
 waves = Array[ExtResource("2_dgbhq")]([SubResource("Resource_78suo"), SubResource("Resource_pcpba"), SubResource("Resource_2p0i8")])
 end_boss = ExtResource("5_vrr8f")
+background = ExtResource("10_52h8g")
 
 [node name="Timer" type="Timer" parent="."]
 

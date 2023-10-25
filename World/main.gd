@@ -146,13 +146,6 @@ func _on_center_container_game_unpaused():
 	current_game_state = game_state.RUNNING
 	get_tree().paused = false
 
-func _on_title_screen_story_mode():
-	$CanvasLayer/TitleScreen.hide()
-	stages.append("res://stages/Stage_1.tscn")
-	stages.append("res://stages/Stage_2.tscn")
-	await get_tree().create_timer(2).timeout
-	begin_game()
-
 
 func _on_title_screen_boss_mode():
 	$CanvasLayer/TitleScreen.hide()
@@ -164,8 +157,7 @@ func _on_title_screen_boss_mode():
 func _on_title_screen_attack_mode():
 	$CanvasLayer/TitleScreen.hide()
 	stages.append("res://stages/Stage_1.tscn")
-	stages.append("res://stages/Stage_2.tscn")
-	await get_tree().create_timer(2).timeout
+	#stages.append("res://stages/Stage_2.tscn")
 	begin_game()
 
 
@@ -179,3 +171,6 @@ func _on_title_screen_stage_mode(stage):
 
 func _on_player_player_hit():
 	stage_results.times_hit += 0
+
+func _on_new_background(file):
+	$Background/ParallaxLayer/Sprite2D.texture = file

@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://ct5sbk7rufup4"]
 
 [ext_resource type="Script" path="res://player/weapons/bullet_level2.gd" id="1_1lrks"]
-[ext_resource type="Texture2D" uid="uid://b3o5osckn0wh7" path="res://player/weapons/charged_beam_yellow_16x16.png" id="2_h7oj3"]
 [ext_resource type="AudioStream" uid="uid://bj14q457xum58" path="res://sound/sfx/lasers/Laser_4.wav" id="2_oqp6j"]
+[ext_resource type="Texture2D" uid="uid://bl1npxd0xv7nt" path="res://player/weapons/charged_beam_blue_16x16.png" id="3_q4emt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
-size = Vector2(10, 9)
+size = Vector2(12, 10)
 
 [node name="BulletLevel2" type="Area2D" groups=["bullets"]]
 collision_mask = 26
@@ -15,11 +15,10 @@ power = 2
 firing_sound = ExtResource("2_oqp6j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_h7oj3")
+texture = ExtResource("3_q4emt")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_75uv4")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

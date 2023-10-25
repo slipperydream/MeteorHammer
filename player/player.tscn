@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=23 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/bullet.tscn" id="2_75g50"]
+[ext_resource type="PackedScene" uid="uid://beetodue8y0vi" path="res://player/weapons/slice.tscn" id="2_td1ue"]
 [ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://player/items/bomb.tscn" id="3_0duad"]
 [ext_resource type="Texture2D" uid="uid://c35hw3gw3gswt" path="res://player/ships/Player_ship_16x16.png" id="4_gx51a"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
@@ -120,6 +121,7 @@ _data = {
 collision_mask = 31
 script = ExtResource("1_ks4n4")
 cooldown = 0.1
+player_weapon = ExtResource("2_td1ue")
 num_shots = 1
 option_weapon = ExtResource("2_75g50")
 item_scene = ExtResource("3_0duad")

@@ -1,10 +1,14 @@
 extends Node2D
 
+signal new_background
+
 @export var title : String = ''
 @export var waves : Array[Enemy_wave] = []
 var stage_spawns : Array = []
 @export var mid_boss : PackedScene 
 @export var end_boss : Resource 
+@export var background : Texture
+
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var main = get_tree().get_first_node_in_group("main")
 @onready var ui = get_tree().get_first_node_in_group("ui")
@@ -37,6 +41,10 @@ func get_spawn_position(lane):
 	return Vector2(pos_x, default_pos_y)
 	
 func start():
+	new_background.connect(main._on_new_background)
+	emit_signal("new_background", background)
+	# give the player a few seconds to fly around before the level actually starts
+	await get_tree().create_timer(2).timeout
 	$Timer.start()
 	boss_spawned.connect(main._on_boss_spawned)
 	boss_spawned.connect(ui._on_boss_spawned)

@@ -4,13 +4,13 @@ extends Node2D
 
 enum game_state {ATTRACT, TITLE, RUNNING, PAUSED, GAME_OVER}
 
-signal start_game
 signal game_over
 signal pause_game
 signal score_changed
 signal score_multiplier
 signal stage_cleared
 signal new_stage
+signal player_start
 
 # achievement signals
 signal high_multiplier
@@ -31,6 +31,7 @@ var stage_results = {
 	
 
 @export var start_lives = 3
+@export var credits = 3
 @export var scoring_timer : int = 5
 @export var high_scoring_multiplier : int = 30
 var stages : Array = []
@@ -49,7 +50,7 @@ func begin_game():
 	score = 0
 	emit_signal("score_changed", score)
 	current_stage = 0
-	emit_signal("start_game", start_lives, current_stage)
+	emit_signal("player_start",start_lives, credits)
 	current_game_state = game_state.RUNNING
 	load_stage(current_stage)
 
@@ -58,16 +59,16 @@ func check_for_stage_clear():
 		boss_spawned = false
 		emit_signal("stage_cleared", current_stage)
 		
-func load_stage(num):
+func load_stage(selected_stage):
 	reset_stage_results()
 	var last_stage = get_tree().get_first_node_in_group("stage")
 	if last_stage:
 		last_stage.queue_free()
-	var stage = load(stages[num])
+	var stage = load(stages[selected_stage])
 	var stage_instance = stage.instantiate()
 	add_child(stage_instance)
 	stage_instance.start()
-	emit_signal("new_stage", num)
+	emit_signal("new_stage", selected_stage)
 
 func print_results():
 	print("enemy killed %d" % stage_results.enemy_killed)
@@ -112,13 +113,17 @@ func _on_player_died():
 func _on_player_out_of_lives():
 	print_results()
 	get_tree().call_group("enemies", "queue_free")
-	current_game_state = game_state.GAME_OVER
-	emit_signal("game_over")
+	credits -= 1
+	credits = max(0, credits)
+	emit_signal("player_start", start_lives, credits)
+	if credits == 0:
+		current_game_state = game_state.GAME_OVER
+		emit_signal("game_over")
+	
 
 func _on_stage_cleared(_stage):
 	print_results()
 	if current_stage + 1 >= stages.size():
-		print("You beat the game")
 		emit_signal("beat_game")
 	else:
 		current_stage += 1
@@ -176,3 +181,4 @@ func _on_new_background(file):
 
 func _on_beat_game():
 	_on_game_over()
+

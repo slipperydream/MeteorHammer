@@ -3,6 +3,7 @@ extends Control
 @onready var score_counter = $TopBarLeft/ScoreLabel
 @onready var multiplier_label = $TopBarRight/MultiplierLabel
 @onready var lives_counter = $BottomBar/PlayerLivesLabel
+@onready var credits_counter = $BottomBar/PlayerCreditsLabel
 @onready var weapon_label = $BottomBar/Weapon
 @onready var item_label = $BottomBar/Item
 
@@ -26,6 +27,10 @@ func update_lives(value):
 	if lives_counter:
 		lives_counter.text = "x%s" % str(num_lives)
 	
+func update_credits(value):
+	if credits_counter:
+		credits_counter.text = "Credits: x%s" % str(value)
+	
 func _on_main_score_changed(score):
 	update_score(score)
 	
@@ -37,12 +42,12 @@ func _on_player_gained_life():
 	
 func _on_player_out_of_lives():
 	update_lives(0)
-	$Stopwatch.reset()
-	
-func _on_main_start_game(lives, _stage):
-	$TopBarLeft.show()
-	$BottomBar.show()
+
+func _on_main_player_start(lives, credits):
 	update_lives(lives)
+	update_credits(credits)
+	if credits <= 0:
+		$Stopwatch.stop()
 
 func _on_player_item_recharged():
 	$AnimationPlayer.play("item_recharged")
@@ -72,6 +77,8 @@ func _on_main_stage_cleared(_stage):
 	#show_stage_results()
 
 func _on_main_new_stage(_stage):
+	$TopBarLeft.show()
+	$BottomBar.show()
 	$Stopwatch.reset()
 	$Stopwatch.start()
 

@@ -23,7 +23,6 @@ _data = {
 
 [node name="Main" type="Node2D" groups=["main"]]
 script = ExtResource("1_40pi7")
-start_lives = 5
 
 [node name="Background" type="ParallaxBackground" parent="."]
 script = ExtResource("2_egrtt")
@@ -67,14 +66,14 @@ one_shot = true
 [connection signal="pause_game" from="." to="." method="_on_pause_game"]
 [connection signal="pause_game" from="." to="CanvasLayer/UI" method="_on_main_pause_game"]
 [connection signal="pause_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_pause_game"]
+[connection signal="player_start" from="." to="Player" method="_on_main_player_start"]
+[connection signal="player_start" from="." to="CanvasLayer/UI" method="_on_main_player_start"]
 [connection signal="score_changed" from="." to="CanvasLayer/UI" method="_on_main_score_changed"]
 [connection signal="score_multiplier" from="." to="CanvasLayer/UI" method="_on_main_score_multiplier"]
 [connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]
 [connection signal="stage_cleared" from="." to="Background" method="_on_main_stage_cleared"]
+[connection signal="stage_cleared" from="." to="Player" method="_on_main_stage_cleared"]
 [connection signal="stage_cleared" from="." to="CanvasLayer/UI" method="_on_main_stage_cleared"]
-[connection signal="start_game" from="." to="Player" method="_on_main_start_game"]
-[connection signal="start_game" from="." to="CanvasLayer/UI" method="_on_main_start_game"]
-[connection signal="start_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_start_game"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="died" from="Player" to="CanvasLayer/UI" method="_on_player_died"]
 [connection signal="gained_life" from="Player" to="CanvasLayer/UI" method="_on_player_gained_life"]

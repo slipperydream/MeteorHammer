@@ -10,8 +10,7 @@ signal weapon_changed
 signal item_changed
 signal player_hit
 
-@export var max_lives = 3
-var lives = max_lives
+var lives = 3
 
 @export var sensitivity : float = 2.0
 @export var speed : int = 150
@@ -81,7 +80,6 @@ func make_invulnerable():
 	$InvulnerabilityTimer.start()
 
 func new_game():
-	lives = max_lives
 	$GunCooldown.wait_time = cooldown
 	emit_signal("weapon_changed", "beam")
 	reset()
@@ -182,13 +180,17 @@ func switch_option_formation():
 			$Ship/RightOption.global_position.x = global_position.x + (shipsize.x/2)
 			$Ship/RightOption.global_position.y = global_position.y
 			$Ship/RightOption.set_rotation_degrees(90)
+			
 func take_damage(_value):
 	emit_signal("player_hit")
+	
 	if invulnerable: 
 		return
+		
 	if $ItemCharge.is_stopped():
 		use_item()
 		return
+		
 	lives = max(0, lives - 1)
 	if lives > 0:
 		died.emit()
@@ -223,13 +225,10 @@ func _on_area_entered(area):
 	if area.is_in_group("enemy"):
 		area.explode()
 		take_damage(1)
-
-func _on_main_new_game():
-	new_game()
 		
-func _on_main_start_game(start_lives, _stage):
+func _on_main_player_start(num_lives, _credits):
+	lives = num_lives
 	new_game()
-	max_lives = start_lives
 	$ItemCharge.wait_time = item_recharge_time
 	$ItemCharge.start()
 	emit_signal("item_charging")
@@ -243,3 +242,4 @@ func _on_item_charge_timeout():
 func _on_invulnerability_timer_timeout():
 	$AnimationPlayer.stop()
 	invulnerable = false
+

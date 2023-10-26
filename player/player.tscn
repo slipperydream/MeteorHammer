@@ -121,6 +121,7 @@ _data = {
 collision_mask = 31
 script = ExtResource("1_ks4n4")
 cooldown = 0.1
+item_recharge_time = 20.0
 primary_weapon = ExtResource("2_75g50")
 secondary_weapon = ExtResource("2_td1ue")
 num_shots = 1

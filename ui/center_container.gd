@@ -9,8 +9,12 @@ signal start_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	if game_over_label.visible:
+		game_over_label.hide()
+	if pause_button.visible:
+		pause_button.hide()
+	if stage_label.visible:
+		stage_label.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -36,13 +40,12 @@ func _on_pause_button_pressed():
 	pause_button.hide()
 
 func _on_main_new_stage(stage):
-	show_stage_label(stage)
-
-func _on_main_start_game(_start_lives, _current_stage):
 	if game_over_label.visible:
 		game_over_label.hide()
 	if pause_button.visible:
 		pause_button.hide()
+	show_stage_label(stage)
+	
 
 func _on_main_beat_game():
 	display_game_end("You Win!")

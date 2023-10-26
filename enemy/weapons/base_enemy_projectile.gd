@@ -66,7 +66,7 @@ func set_bloom_timer(wait_time):
 func start(pos, dir):
 	position = pos
 	direction = dir
-	var angle = get_angle_to(position)
-	$Sprite2D.rotation = angle
+#	var angle = get_angle_to(position)
+#	$Sprite2D.rotation = angle
 
 	

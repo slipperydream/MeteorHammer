@@ -70,11 +70,11 @@ func single_shot(new_shot):
 	var shot = new_shot.bullet_shape.instantiate()
 	shot.set_type(new_shot.bullet_type)
 	shot.set_size()
-	var angle = new_shot.angle
-	if new_shot.aimed:
-		angle = get_angle_to_player()
 	var pos = get_station_position(new_shot.station)
-	fire_bullet(shot, pos, deg_to_rad(angle))
+	var angle = deg_to_rad(new_shot.angle)
+	if new_shot.aimed:
+		angle = get_angle_to(player.position) # already in radians
+	fire_bullet(shot, pos, angle)
 	shot.set_speed(new_shot.speed)
 	match new_shot.bullet_type:
 		BulletConstants.BulletTypes.CURVED:
@@ -88,10 +88,8 @@ func circle_pattern(new_shot):
 		var shot = new_shot.bullet_shape.instantiate()
 		shot.set_type(new_shot.bullet_type)
 		shot.set_size()
-		var angle = new_shot.angle
-		if new_shot.aimed:
-			angle = get_angle_to_player()
 		var pos = get_station_position(new_shot.station)
+		var angle = new_shot.angle
 		fire_bullet(shot, pos, deg_to_rad(point * (360.0/firing_points) + angle))
 		shot.set_speed(new_shot.speed)
 		match new_shot.bullet_type:
@@ -108,10 +106,8 @@ func flower_pattern(new_shot):
 		var shot = new_shot.bullet_shape.instantiate()
 		shot.set_type(new_shot.bullet_type)
 		shot.set_size()
-		var angle = new_shot.angle
-		if new_shot.aimed:
-			angle = get_angle_to_player()
 		var pos = get_station_position(new_shot.station)
+		var angle = new_shot.angle
 		fire_bullet(shot, pos, deg_to_rad(point * (360.0/firing_points) + angle))
 		shot.set_speed(new_shot.speed)
 		shot.set_bloom_timer(new_shot.bullet_pattern.bloom_delay)

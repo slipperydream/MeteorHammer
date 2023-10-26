@@ -22,6 +22,7 @@ var vec_to_player : Vector2 = Vector2(0,1)
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var enemy_size : Vector2 = $Sprite2D.get_rect().size
+@onready var ceasefire_line : int = screensize.y * 0.9
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,8 +35,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position = position + speed * delta * direction + steer_towards_player(delta)
+	
+	# ceasefire once in the bottom 10% of the screen to prevent frustration
+	if position.y > ceasefire_line:
+		for child in get_children():
+			if child is Shooting_component:
+				child.stop_shooting()
+	
+	# left the screen so remove
 	if position.y > screensize.y + enemy_size.y:
 		remove()
+		
 	if faces_player:
 		vec_to_player = (player.global_position - global_position).normalized()
 		var anim_direction = get_facing_direction(vec_to_player)

@@ -10,8 +10,6 @@ TODOs (not in priority order yet)
 - make different items and weapons as pickups
   - slashing effect, super cannon shot, screen wide weak bullets, meteor hammer (meteor crashing down in front of player)
 
-- add environmental hazards like asteroids
-
 - Start adding flags to different functionality that I eventually want to be able to turn off/change
 
 - Add settings menu
@@ -25,13 +23,13 @@ TODOs (not in priority order yet)
  
 - Add checkpoints / restart
 
-- Add invincibility after respawn
-
 - Code bullet cancelling - dead enemies bullet disappear or fly to the player and become scoring items. Need to investigate who owns the bullets
+- After death cancel enemy shots for a few seconds, but leave existing bullets on screen. Give player a few seconds of invincibility, remove pause & repositioning
 
 - Add attract mode
 
 - Add more shot patterns to each enemy for difficulty increase
+- Adjustable difficulty by widening shot patterns, increasing number of waves, bullet speed, spread, damage
 
 - make modes: story, attack (remove cutscenes), level select, boss select
 
@@ -59,8 +57,6 @@ Redo code to make components instead of inheritance.
 
 
 Add pickups to level spawner
-
-Weapons: single, double, triple, quad beams, missiles, screen clearers
 
 Power ups:
 - Shot power increase by 10% not 100%
@@ -98,13 +94,5 @@ Bosses:
 11. Space Carrier Argus: launches a bunch of small mobs to attack you
 12. Citrine Dream: does sweeping electric attacks (like Crono’s attack). Alternates direction
 
-High scores
-
-
-After death cancel enemy shots for a few seconds, but leave existing bullets on screen. Give player a few seconds of invincibility, remove pause & repositioning
-
-Adjustable difficulty by widening shot patterns, increasing number of waves, bullet speed, spread, damage
 
 Add enemy ai/pathing
-
-Ceasefire zone - when an enemy nears the bottom of the screen disable their ability to shoot to minimize frustration

@@ -35,7 +35,9 @@ var option_index = Option_Formation.SPREAD
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset()
+	emit_signal("weapon_changed", "beam")
 	sensitivity = max(0.5, sensitivity)
+	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -77,17 +79,12 @@ func _input(event):
 func make_invulnerable():
 	invulnerable = true
 	$AnimationPlayer.play("invlunerable")
-	$InvulnerabilityTimer.start()
-
-func new_game():
-	$GunCooldown.wait_time = cooldown
-	emit_signal("weapon_changed", "beam")
-	reset()
+	$InvulnerabilityTimer.start()	
 			
 func reset():
+	$GunCooldown.wait_time = cooldown
 	if not visible:
 		show()
-	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
 	can_shoot = true
 
 func secondary_fire():	
@@ -146,6 +143,9 @@ func options_fire():
 	get_tree().root.add_child(weapon)	
 	weapon.start($Ship/RightOption.global_position, Vector2.RIGHT.rotated(deg_to_rad(right_option_angle)))
 
+func remove_bullets():
+	get_tree().call_group("bullets", "queue_free")
+
 func switch_option_formation():		
 	option_index += 1
 	if option_index >= Option_Formation.size():
@@ -194,9 +194,11 @@ func take_damage(_value):
 	lives = max(0, lives - 1)
 	if lives > 0:
 		died.emit()
+		remove_bullets()
 		AudioStreamManager.play(explosion_sound.resource_path)
 		make_invulnerable()	
 	else:
+		remove_bullets()
 		out_of_lives.emit()
 
 func upgrade_weapon(stage):
@@ -227,14 +229,16 @@ func _on_area_entered(area):
 		take_damage(1)
 		
 func _on_main_player_start(num_lives, _credits):
+	remove_bullets()
 	lives = num_lives
-	new_game()
+	reset()
 	$ItemCharge.wait_time = item_recharge_time
 	$ItemCharge.start()
 	emit_signal("item_charging")
 		
 func _on_main_stage_cleared(stage):
 	upgrade_weapon(stage)
+	remove_bullets()
 
 func _on_item_charge_timeout():
 	emit_signal("item_recharged")

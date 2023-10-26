@@ -25,7 +25,8 @@ var all_spawned : bool = false
 signal boss_spawned
 
 func ready():
-	pass
+	self.connect(main.stage_cleared, _on_main_stage_cleared)
+	self.connect(main.game_over, _on_main_game_over)
 
 func build_spawns():
 	for w in waves:
@@ -79,6 +80,9 @@ func _on_timer_timeout():
 		$Timer.stop()
 		await get_tree().create_timer(2).timeout
 		spawn_boss()
+
+func _on_main_stage_cleared():
+	queue_free()
 				
 func _on_main_game_over():
 	queue_free()

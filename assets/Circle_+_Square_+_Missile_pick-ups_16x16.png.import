@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c51x11uc8hxhg"
-path="res://.godot/imported/Player_life_icon_16x16.png-39ba243cefe35ff1aef551b38876e13e.ctex"
+uid="uid://dtpg7yntu2ixb"
+path="res://.godot/imported/Circle_+_Square_+_Missile_pick-ups_16x16.png-40e11d640f5cb6fd11487291f21def87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/Player_life_icon_16x16.png"
-dest_files=["res://.godot/imported/Player_life_icon_16x16.png-39ba243cefe35ff1aef551b38876e13e.ctex"]
+source_file="res://assets/Circle_+_Square_+_Missile_pick-ups_16x16.png"
+dest_files=["res://.godot/imported/Circle_+_Square_+_Missile_pick-ups_16x16.png-40e11d640f5cb6fd11487291f21def87.ctex"]
 
 [params]
 

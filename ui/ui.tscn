@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_ieqr5"]
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="2_85hi6"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://ui/stopwatch.tscn" id="3_0adte"]
-[ext_resource type="Texture2D" uid="uid://c51x11uc8hxhg" path="res://ui/Player_life_icon_16x16.png" id="3_mcobu"]
+[ext_resource type="Texture2D" uid="uid://c51x11uc8hxhg" path="res://assets/Player_life_icon_16x16.png" id="3_mc66j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8lrl"]
 bg_color = Color(0.694118, 0.596078, 0.12549, 0)
@@ -222,7 +222,7 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture = ExtResource("3_mcobu")
+texture = ExtResource("3_mc66j")
 
 [node name="PlayerLivesLabel" type="Label" parent="BottomBar"]
 layout_mode = 2

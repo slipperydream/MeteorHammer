@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dejrii5b6gde6"
-path="res://.godot/imported/Power_item_16x16.png-4b3976266376ff484741b33821268939.ctex"
+path="res://.godot/imported/Power_item_16x16.png-b9b8aa2c684689cbf3d4dbc2fa81aa16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/items/Power_item_16x16.png"
-dest_files=["res://.godot/imported/Power_item_16x16.png-4b3976266376ff484741b33821268939.ctex"]
+source_file="res://assets/Power_item_16x16.png"
+dest_files=["res://.godot/imported/Power_item_16x16.png-b9b8aa2c684689cbf3d4dbc2fa81aa16.ctex"]
 
 [params]
 

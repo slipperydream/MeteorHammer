@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cex32e7o8g7xe"
-path="res://.godot/imported/Boosters_right_16x16.png-a481d8358c6d5b654c56b7bad8d09614.ctex"
+uid="uid://c1nor1bdhnkqq"
+path="res://.godot/imported/Boosters_left_16x16.png-d4ba9db8a9ea6346fcc29656cbc8551a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ships/Boosters_right_16x16.png"
-dest_files=["res://.godot/imported/Boosters_right_16x16.png-a481d8358c6d5b654c56b7bad8d09614.ctex"]
+source_file="res://assets/Boosters_left_16x16.png"
+dest_files=["res://.godot/imported/Boosters_left_16x16.png-d4ba9db8a9ea6346fcc29656cbc8551a.ctex"]
 
 [params]
 

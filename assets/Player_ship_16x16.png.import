@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtpg7yntu2ixb"
-path="res://.godot/imported/Circle_+_Square_+_Missile_pick-ups_16x16.png-380926cce1e1b453e062e09f2fd03e81.ctex"
+uid="uid://c35hw3gw3gswt"
+path="res://.godot/imported/Player_ship_16x16.png-d26dfe5399d0b03f0598290d79ae6f72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/items/Circle_+_Square_+_Missile_pick-ups_16x16.png"
-dest_files=["res://.godot/imported/Circle_+_Square_+_Missile_pick-ups_16x16.png-380926cce1e1b453e062e09f2fd03e81.ctex"]
+source_file="res://assets/Player_ship_16x16.png"
+dest_files=["res://.godot/imported/Player_ship_16x16.png-d26dfe5399d0b03f0598290d79ae6f72.ctex"]
 
 [params]
 

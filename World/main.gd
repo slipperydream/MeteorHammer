@@ -119,7 +119,6 @@ func _on_player_out_of_lives():
 	if credits == 0:
 		current_game_state = game_state.GAME_OVER
 		emit_signal("game_over")
-	
 
 func _on_stage_cleared(_stage):
 	print_results()
@@ -134,8 +133,6 @@ func _on_pause_game():
 
 func _on_game_over():
 	get_tree().call_group("stages", "queue_free")
-	await get_tree().create_timer(5).timeout
-	$CanvasLayer/TitleScreen.show()
 
 func _on_scoring_timer_timeout():
 	scoring_chain_active = false

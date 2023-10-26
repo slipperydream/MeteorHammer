@@ -58,3 +58,6 @@ func not_implemented():
 func _on_menu_timer_timeout():
 	$Panel/MainMenu.show()
 	
+func _on_main_game_over():
+	await get_tree().create_timer(5).timeout
+	show()

@@ -23,11 +23,14 @@ var boss_spawned = false
 var scoring_chain_active : bool = false
 var scoring_multiplier : int = 1
 var stage_results = {
-	enemy_killed = 0,
+	score = 0,
+	enemies_killed = 0,
 	times_hit = 0,
 	times_died = 0,
 	credits_used = 0,
-	biggest_multiplier = 0
+	biggest_multiplier = 0,
+	progress = 0,
+	boss_killed = false,
 }
 	
 
@@ -58,6 +61,7 @@ func begin_game():
 func check_for_stage_clear():
 	if get_tree().get_nodes_in_group("boss").is_empty():
 		boss_spawned = false
+		stage_results.boss_killed = true
 		emit_signal("stage_cleared", current_stage, stage_results)
 		
 func load_stage(selected_stage):
@@ -72,10 +76,13 @@ func load_stage(selected_stage):
 	emit_signal("new_stage", selected_stage)
 	
 func reset_stage_results():
-	stage_results.enemy_killed = 0
+	stage_results.score = 0
+	stage_results.enemies_killed = 0
 	stage_results.times_hit = 0
 	stage_results.times_killed = 0
 	stage_results.biggest_multiplier = 0
+	stage_results.progress = 0
+	stage_results.boss_killed = 0
 	
 func _input(_event):
 	if Input.is_action_just_pressed("pause_game"):
@@ -99,7 +106,7 @@ func _on_enemy_died(value):
 		scoring_chain_active = true
 	score += value * scoring_multiplier	
 	emit_signal("score_multiplier", scoring_multiplier)
-	stage_results.enemy_killed += 1
+	stage_results.enemies_killed += 1
 	emit_signal("score_changed", score)
 
 func _on_player_died():
@@ -131,6 +138,7 @@ func _on_scoring_timer_timeout():
 func _on_boss_spawned():
 	boss_spawned = true
 	$Background.stop()
+	stage_results.progress = 100
 	
 func _on_center_container_game_unpaused():
 	current_game_state = game_state.RUNNING
@@ -146,7 +154,6 @@ func _on_title_screen_boss_mode():
 func _on_title_screen_attack_mode():
 	$CanvasLayer/TitleScreen.hide()
 	stages.append("res://stages/Stage_1.tscn")
-	#stages.append("res://stages/Stage_2.tscn")
 	begin_game()
 
 func _on_player_player_hit():

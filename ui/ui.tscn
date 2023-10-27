@@ -184,6 +184,7 @@ size_flags_vertical = 0
 alignment = 2
 
 [node name="MultiplierLabel" type="Label" parent="TopBarRight"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.894118, 0.231373, 0.266667, 1)

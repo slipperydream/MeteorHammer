@@ -6,7 +6,7 @@ class SoundEffect:
 
 @onready var sfx_volume : int = -30
 	
-var num_players = 8
+var num_players = 12
 var bus = "SFX"
 
 var available_players = []

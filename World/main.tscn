@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=11 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://World/main.gd" id="1_40pi7"]
 [ext_resource type="Script" path="res://World/Background.gd" id="2_egrtt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://ui/ui.tscn" id="5_r43jo"]
 [ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="6_5jg3u"]
 [ext_resource type="PackedScene" uid="uid://duxu01d7kskfo" path="res://ui/title_screen/title_screen.tscn" id="6_d1ygs"]
+[ext_resource type="PackedScene" uid="uid://dyqxqv1ayua2r" path="res://ui/stage_results/stage_results.tscn" id="7_5pgji"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -45,11 +46,13 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_r43jo")]
-visible = false
 
 [node name="CenterContainer" parent="CanvasLayer" instance=ExtResource("6_5jg3u")]
 
 [node name="TitleScreen" parent="CanvasLayer" instance=ExtResource("6_d1ygs")]
+
+[node name="StageResults" parent="CanvasLayer" instance=ExtResource("7_5pgji")]
+visible = false
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -73,6 +76,7 @@ one_shot = true
 [connection signal="stage_cleared" from="." to="Background" method="_on_main_stage_cleared"]
 [connection signal="stage_cleared" from="." to="Player" method="_on_main_stage_cleared"]
 [connection signal="stage_cleared" from="." to="CanvasLayer/UI" method="_on_main_stage_cleared"]
+[connection signal="stage_cleared" from="." to="CanvasLayer/StageResults" method="_on_main_stage_cleared"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="died" from="Player" to="CanvasLayer/UI" method="_on_player_died"]
 [connection signal="gained_life" from="Player" to="CanvasLayer/UI" method="_on_player_gained_life"]

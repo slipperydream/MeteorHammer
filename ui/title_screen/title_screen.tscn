@@ -214,7 +214,7 @@ z_index = 1
 layout_mode = 1
 
 [node name="MenuTimer" type="Timer" parent="."]
-wait_time = 2.1
+wait_time = 0.5
 one_shot = true
 autostart = true
 

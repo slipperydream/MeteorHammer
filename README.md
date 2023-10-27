@@ -41,13 +41,16 @@ TODOs (not in priority order yet)
 - look into object pools for spawning enemies and bullets
 
 - Possibly replace player weaposn with firing modes that can be unlocked throughout play
- - options Stack, Spread, Tailfan, 
-
- - possibly add drones that fly around the player that do damage:
-    - firing modes: spread, tail, front, ring, rolling (always forward firing, but rotate around player)
-
 
  - Make a stage struct that defines the number, name, and other things
+
+- update player weapon to better looking sprite
+
+- separte attack mode out to run through stages on after another.
+
+- add Path2D for enemy movement
+
+- display currently playing song title on a side panel
 
 Redo code to make components instead of inheritance.
 - Attack

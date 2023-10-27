@@ -290,7 +290,7 @@ text = "1,000
 "
 horizontal_alignment = 1
 
-[node name="Panel6" type="Panel" parent="."]
+[node name="CenterPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -305,7 +305,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel6"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -317,17 +317,17 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="GridContainer" type="GridContainer" parent="Panel6/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CenterPanel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 columns = 4
 
-[node name="DestroyedLabel" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="DestroyedLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Enemies Destroyed:"
 
-[node name="DestroyedCounter" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="DestroyedCounter" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -337,12 +337,12 @@ theme_override_font_sizes/font_size = 24
 text = "24
 "
 
-[node name="CreditsLabel" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="CreditsLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Credits Used:"
 
-[node name="CreditsCounter" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="CreditsCounter" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -352,12 +352,12 @@ theme_override_font_sizes/font_size = 24
 text = "1
 "
 
-[node name="HitsLabel" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="HitsLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Hits Taken:"
 
-[node name="HitsCounter" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="HitsCounter" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -367,12 +367,12 @@ theme_override_font_sizes/font_size = 24
 text = "5
 "
 
-[node name="DeathsLabel" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="DeathsLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Times Died:"
 
-[node name="DeathsCounter" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="DeathsCounter" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_constants/shadow_outline_size = 2
@@ -381,12 +381,12 @@ theme_override_font_sizes/font_size = 24
 text = "3
 "
 
-[node name="MultiplierLabel" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="MultiplierLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Highest Multiplier:"
 
-[node name="MultiplierCounter" type="Label" parent="Panel6/MarginContainer/GridContainer"]
+[node name="MultiplierCounter" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_constants/shadow_outline_size = 2

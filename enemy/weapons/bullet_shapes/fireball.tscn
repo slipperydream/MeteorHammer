@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbvnds8k2ckcp"]
+
+[ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_3w1nx"]
+[ext_resource type="Texture2D" uid="uid://cppvk342vtdeq" path="res://enemy/weapons/bullet_shapes/fireball.png" id="2_vu4g2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6lcf"]
+
+[node name="Fireball" type="Area2D" groups=["enemy_weapon"]]
+collision_layer = 2
+audio_bus_name = &"SFX"
+script = ExtResource("1_3w1nx")
+title = "Heart"
+animate = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_vu4g2")
+hframes = 42
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(1, -2)
+shape = SubResource("CircleShape2D_e6lcf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3.8147e-06, -2)
+scale = Vector2(0.95, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

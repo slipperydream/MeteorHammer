@@ -12,7 +12,6 @@ signal player_hit
 
 var lives = 3
 
-@export var sensitivity : float = 2.0
 @export var speed : int = 150
 @export var cooldown : float = 0.25
 @export var item_recharge_time : float = 5.0
@@ -31,33 +30,36 @@ var option_index = Option_Formation.SPREAD
 
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var shipsize : Vector2 = $Ship.texture.get_size()
+@onready var left_option = $Ship/LeftOption
+@onready var right_option = $Ship/RightOption
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset()
 	emit_signal("weapon_changed", "beam")
-	sensitivity = max(0.5, sensitivity)
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	input /= sensitivity
 	if input.x > 0:
 		$Ship.frame = 2
-		$Ship/LeftOption.frame = 2
-		$Ship/RightOption.frame = 2
-		$Ship/Boosters.animation = "right"
+		left_option.frame = 2
+		right_option.frame = 2
+		$Ship/LeftBooster.animation = "right"
+		$Ship/RightBooster.animation = "right"
 	elif input.x < 0:
 		$Ship.frame = 0
-		$Ship/LeftOption.frame = 1
-		$Ship/RightOption.frame = 1
-		$Ship/Boosters.animation = "left"
+		left_option.frame = 1
+		right_option.frame = 1
+		$Ship/LeftBooster.animation = "left"
+		$Ship/RightBooster.animation = "left"
 	else:
 		$Ship.frame = 1
-		$Ship/LeftOption.frame = 0
-		$Ship/RightOption.frame = 0
-		$Ship/Boosters.animation = "forward"
+		left_option.frame = 0
+		right_option.frame = 0
+		$Ship/LeftBooster.animation = "forward"
+		$Ship/RightBooster.animation = "forward"
 	position += input * speed * delta
 	position = position.clamp(Vector2(8,8), screensize - Vector2(8,8))
 	
@@ -132,16 +134,16 @@ func options_fire():
 		left_option_angle = 90
 		right_option_angle = 90
 	elif option_index == Option_Formation.SIDES:
-		left_option_angle = 180
-		right_option_angle = 0
+		left_option_angle = 0
+		right_option_angle = 180
 
 	var weapon = option_weapons[option_index].instantiate()
 	get_tree().root.add_child(weapon)	
-	weapon.start($Ship/LeftOption.global_position, Vector2.RIGHT.rotated(deg_to_rad(left_option_angle)))	
+	weapon.start(left_option.global_position, Vector2.RIGHT.rotated(deg_to_rad(left_option_angle)))	
 	
 	weapon = option_weapons[option_index].instantiate()
 	get_tree().root.add_child(weapon)	
-	weapon.start($Ship/RightOption.global_position, Vector2.RIGHT.rotated(deg_to_rad(right_option_angle)))
+	weapon.start(right_option.global_position, Vector2.RIGHT.rotated(deg_to_rad(right_option_angle)))
 
 func remove_bullets():
 	get_tree().call_group("bullets", "queue_free")
@@ -153,33 +155,33 @@ func switch_option_formation():
 
 	match option_index:
 		Option_Formation.SPREAD:
-			$Ship/LeftOption.global_position.x = global_position.x - (shipsize.x/3)
-			$Ship/LeftOption.global_position.y = global_position.y + (shipsize.y/2)
-			$Ship/LeftOption.set_rotation_degrees(-5)
-			$Ship/RightOption.global_position.x = global_position.x + (shipsize.x/3)
-			$Ship/RightOption.global_position.y = global_position.y + (shipsize.y/2)
-			$Ship/RightOption.set_rotation_degrees(5)
+			left_option.global_position.x = global_position.x - shipsize.x/4
+			left_option.global_position.y = global_position.y + (shipsize.y/8)
+			left_option.set_rotation_degrees(-15)
+			right_option.global_position.x = global_position.x + shipsize.x/4
+			right_option.global_position.y = global_position.y + (shipsize.y/8)
+			right_option.set_rotation_degrees(15)
 		Option_Formation.TAIL:
-			$Ship/LeftOption.global_position.x = global_position.x - (shipsize.x/5)
-			$Ship/LeftOption.global_position.y = global_position.y + shipsize.y
-			$Ship/LeftOption.set_rotation_degrees(-180)
-			$Ship/RightOption.global_position.x = global_position.x + (shipsize.x/5)
-			$Ship/RightOption.global_position.y = global_position.y + shipsize.y
-			$Ship/RightOption.set_rotation_degrees(180)
+			left_option.global_position.x = global_position.x - (shipsize.x/8)
+			left_option.global_position.y = global_position.y + shipsize.y
+			left_option.set_rotation_degrees(-180)
+			right_option.global_position.x = global_position.x + (shipsize.x/8)
+			right_option.global_position.y = global_position.y + shipsize.y
+			right_option.set_rotation_degrees(180)
 		Option_Formation.FRONT:
-			$Ship/LeftOption.global_position.x = global_position.x - (shipsize.x/4)
-			$Ship/LeftOption.global_position.y = global_position.y - (shipsize.y/2)
-			$Ship/LeftOption.set_rotation_degrees(0)
-			$Ship/RightOption.global_position.x = global_position.x + (shipsize.x/4)
-			$Ship/RightOption.global_position.y = global_position.y - (shipsize.y/2)
-			$Ship/RightOption.set_rotation_degrees(0)
+			left_option.global_position.x = global_position.x - (shipsize.x/5)
+			left_option.global_position.y = global_position.y - (shipsize.y/2)
+			left_option.set_rotation_degrees(0)
+			right_option.global_position.x = global_position.x + (shipsize.x/5)
+			right_option.global_position.y = global_position.y - (shipsize.y/2)
+			right_option.set_rotation_degrees(0)
 		Option_Formation.SIDES:
-			$Ship/LeftOption.global_position.x = global_position.x - (shipsize.x/2)
-			$Ship/LeftOption.global_position.y = global_position.y 
-			$Ship/LeftOption.set_rotation_degrees(-90)
-			$Ship/RightOption.global_position.x = global_position.x + (shipsize.x/2)
-			$Ship/RightOption.global_position.y = global_position.y
-			$Ship/RightOption.set_rotation_degrees(90)
+			left_option.global_position.x = global_position.x - (shipsize.x/3)
+			left_option.global_position.y = global_position.y 
+			left_option.set_rotation_degrees(-90)
+			right_option.global_position.x = global_position.x + (shipsize.x/3)
+			right_option.global_position.y = global_position.y
+			right_option.set_rotation_degrees(90)
 			
 func take_damage(_value):
 	emit_signal("player_hit")

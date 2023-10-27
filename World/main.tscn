@@ -26,13 +26,12 @@ script = ExtResource("1_40pi7")
 
 [node name="Background" type="ParallaxBackground" parent="."]
 script = ExtResource("2_egrtt")
-speed = 30.0
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
-motion_mirroring = Vector2(2.08165e-12, 800)
+motion_mirroring = Vector2(0, 1600)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
-position = Vector2(2.08165e-12, -400)
+position = Vector2(0, -800)
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("4_kjngg")]
@@ -46,10 +45,12 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_r43jo")]
+visible = false
 
 [node name="CenterContainer" parent="CanvasLayer" instance=ExtResource("6_5jg3u")]
 
 [node name="TitleScreen" parent="CanvasLayer" instance=ExtResource("7_vrvlr")]
+visible = false
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0

@@ -10,12 +10,16 @@ signal boss_mode
 @onready var boss_select_button = $Panel/MainMenu/BossSelectButton
 @onready var settings_button = $Panel/MainMenu/SettingsButton
 @onready var high_scores_button = $Panel/MainMenu/HighScoresButton
+@onready var screensize : Vector2 = get_viewport_rect().size
+@onready var background = $Panel/Background
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide_everything()
+	background.size.x = screensize.x
+	background.size.y = screensize.y
 	var tween = create_tween()
-	tween.tween_property($Panel/Title, "position", Vector2(21.5, 84), 2)
+	tween.tween_property($Panel/Title, "position", Vector2(screensize.x/4, screensize.y/10), 2)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -33,7 +37,6 @@ func hide_everything():
 	$Panel/MainMenu.hide()
 	
 func _on_start_game_button_pressed():
-	#not_implemented()
 	$StageSelect.show()
 
 func _on_attack_mode_button_pressed():

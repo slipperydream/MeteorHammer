@@ -12,64 +12,64 @@
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_ofcya"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="5_x30bx"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7y3kw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjf61"]
 atlas = ExtResource("3_m57je")
-region = Rect2(0, 64, 128, 64)
+region = Rect2(0, 128, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7a7s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj11g"]
 atlas = ExtResource("3_m57je")
-region = Rect2(128, 64, 128, 64)
+region = Rect2(256, 128, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a0mlj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahjy4"]
 atlas = ExtResource("3_m57je")
-region = Rect2(256, 64, 128, 64)
+region = Rect2(512, 128, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hhxmc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0ehq"]
 atlas = ExtResource("3_m57je")
-region = Rect2(384, 64, 128, 64)
+region = Rect2(768, 128, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sjwn5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tsgf"]
 atlas = ExtResource("3_m57je")
-region = Rect2(512, 64, 128, 64)
+region = Rect2(1024, 128, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ncr2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf41t"]
 atlas = ExtResource("3_m57je")
-region = Rect2(640, 64, 128, 64)
+region = Rect2(1280, 128, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vnhxo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmiai"]
 atlas = ExtResource("3_m57je")
-region = Rect2(768, 64, 128, 64)
+region = Rect2(1536, 128, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k15s4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xso17"]
 atlas = ExtResource("3_m57je")
-region = Rect2(896, 64, 128, 64)
+region = Rect2(1792, 128, 256, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t6w3m"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7y3kw")
+"texture": SubResource("AtlasTexture_pjf61")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v7a7s")
+"texture": SubResource("AtlasTexture_yj11g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a0mlj")
+"texture": SubResource("AtlasTexture_ahjy4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hhxmc")
+"texture": SubResource("AtlasTexture_d0ehq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sjwn5")
+"texture": SubResource("AtlasTexture_2tsgf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6ncr2")
+"texture": SubResource("AtlasTexture_tf41t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vnhxo")
+"texture": SubResource("AtlasTexture_jmiai")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k15s4")
+"texture": SubResource("AtlasTexture_xso17")
 }],
 "loop": true,
 "name": &"forward",
@@ -77,7 +77,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
-size = Vector2(63, 86)
+size = Vector2(124, 169)
 
 [sub_resource type="Animation" id="Animation_4pyvs"]
 length = 0.001
@@ -285,14 +285,14 @@ rotation = 3.14159
 texture = ExtResource("2_w4oh3")
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
-position = Vector2(-1.0001, 40)
+position = Vector2(-0.000189233, 75)
 sprite_frames = SubResource("SpriteFrames_t6w3m")
 animation = &"forward"
 autoplay = "forward"
 script = ExtResource("5_jg5kb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 6)
+position = Vector2(1, 14.5)
 shape = SubResource("RectangleShape2D_n0ywb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -306,36 +306,39 @@ Attacks = Array[ExtResource("5_4rkk6")]([SubResource("Resource_0ykxp")])
 stations = [NodePath("../MainGunRight"), NodePath("../MainGunLeft"), NodePath("../Station1"), NodePath("../Station2"), NodePath("../Station3"), NodePath("../Station4"), NodePath("../Station5"), NodePath("../Station6"), NodePath("../Station7"), NodePath("../Station8")]
 
 [node name="MainGunRight" type="Marker2D" parent="."]
-position = Vector2(-8, 29)
+position = Vector2(-15, 62)
 
 [node name="MainGunLeft" type="Marker2D" parent="."]
-position = Vector2(6, 29)
+position = Vector2(14, 62)
 
 [node name="Station1" type="Marker2D" parent="."]
-position = Vector2(-15, 3)
+position = Vector2(-30, 6)
 
 [node name="Station2" type="Marker2D" parent="."]
-position = Vector2(-12, 20)
+position = Vector2(-24, 39)
 
 [node name="Station3" type="Marker2D" parent="."]
-position = Vector2(-7, 5)
+position = Vector2(-13, 8)
 
 [node name="Station4" type="Marker2D" parent="."]
-position = Vector2(-4, 15)
+position = Vector2(-9, 29)
 
 [node name="Station5" type="Marker2D" parent="."]
-position = Vector2(5, 13)
+position = Vector2(8, 29)
 
 [node name="Station6" type="Marker2D" parent="."]
-position = Vector2(7, 4)
+position = Vector2(13, 8)
 
 [node name="Station7" type="Marker2D" parent="."]
-position = Vector2(11, 19)
+position = Vector2(23, 41)
 
 [node name="Station8" type="Marker2D" parent="."]
-position = Vector2(14, 3)
+position = Vector2(29, 6)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+z_index = 1
+position = Vector2(2, 14)
+scale = Vector2(6.3, 8.6)
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

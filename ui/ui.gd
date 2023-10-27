@@ -10,7 +10,6 @@ extends Control
 var num_lives = 0
 var weapon : String = 'Beam'
 var item : String = 'Bomb'
-var default_multiplier_font_size = 18
 
 func _ready():
 	$BossLabel.visible = false

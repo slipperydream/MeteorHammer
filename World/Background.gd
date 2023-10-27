@@ -1,6 +1,6 @@
 extends ParallaxBackground
 
-@export var speed = 50.0
+@export var speed = 75.0
 
 @export var direction = Vector2.DOWN
 var saved_speed : float 

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://player/weapons/bullet.gd" id="1_t5fo0"]
 [ext_resource type="AudioStream" uid="uid://df6fckelch2n" path="res://sound/sfx/lasers/Laser_3.wav" id="2_1tayu"]
-[ext_resource type="Texture2D" uid="uid://bl1npxd0xv7nt" path="res://player/weapons/charged_beam_blue_16x16.png" id="3_e3wtj"]
+[ext_resource type="Texture2D" uid="uid://b3al11yml6547" path="res://player/weapons/charged_beam_blue.png" id="3_v6apv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
-size = Vector2(4, 10)
+size = Vector2(8, 20)
 
 [node name="Bullet" type="Area2D" groups=["bullets"]]
 collision_mask = 26
@@ -15,7 +15,7 @@ firing_sound = ExtResource("2_1tayu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("3_e3wtj")
+texture = ExtResource("3_v6apv")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

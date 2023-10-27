@@ -72,7 +72,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
-size = Vector2(6, 5)
+size = Vector2(16, 12)
 
 [sub_resource type="Animation" id="Animation_awwn7"]
 length = 0.001
@@ -134,28 +134,34 @@ texture = ExtResource("4_gx51a")
 hframes = 3
 frame = 1
 
-[node name="Boosters" type="AnimatedSprite2D" parent="Ship"]
-position = Vector2(0, 15)
+[node name="LeftBooster" type="AnimatedSprite2D" parent="Ship"]
+position = Vector2(-12, 36)
+sprite_frames = SubResource("SpriteFrames_05fw1")
+animation = &"forward"
+autoplay = "forward"
+
+[node name="RightBooster" type="AnimatedSprite2D" parent="Ship"]
+position = Vector2(12, 36)
 sprite_frames = SubResource("SpriteFrames_05fw1")
 animation = &"forward"
 autoplay = "forward"
 
 [node name="LeftOption" type="Sprite2D" parent="Ship"]
-position = Vector2(-16, 8)
+position = Vector2(-48, 8)
 rotation = -0.261799
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_81rj8")
 hframes = 3
 
 [node name="RightOption" type="Sprite2D" parent="Ship"]
-position = Vector2(16, 8)
+position = Vector2(48, 8)
 rotation = 0.261799
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_81rj8")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1.5)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_pq5w0")
 
 [node name="GunCooldown" type="Timer" parent="."]

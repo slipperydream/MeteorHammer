@@ -36,3 +36,6 @@ func _on_close_button_pressed():
 
 func _on_stage_selected(stage):
 	print("%s" % stage)
+
+func _on_back_button_pressed():
+	hide()

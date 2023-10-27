@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bthvww1tlvr4y"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_coakg"]
-[ext_resource type="Texture2D" uid="uid://bdyucqt4v8edp" path="res://enemy/weapons/bullet_shapes/slice_32x32.png" id="3_wyhsv"]
+[ext_resource type="Texture2D" path="res://enemy/weapons/bullet_shapes/slice_32x32.png" id="3_wyhsv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xco7j"]
 radius = 12.1655

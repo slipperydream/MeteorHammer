@@ -10,12 +10,10 @@ func _process(delta):
 
 func stop():
 	saved_speed = speed
-	print(saved_speed)
 	speed = 0
 	
 func resume():
 	speed = saved_speed
-	print(speed)
 
 func _on_main_stage_cleared(_stage):
 	resume()

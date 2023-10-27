@@ -72,7 +72,6 @@ one_shot = true
 [connection signal="player_start" from="." to="CanvasLayer/UI" method="_on_main_player_start"]
 [connection signal="score_changed" from="." to="CanvasLayer/UI" method="_on_main_score_changed"]
 [connection signal="score_multiplier" from="." to="CanvasLayer/UI" method="_on_main_score_multiplier"]
-[connection signal="stage_cleared" from="." to="." method="_on_stage_cleared"]
 [connection signal="stage_cleared" from="." to="Background" method="_on_main_stage_cleared"]
 [connection signal="stage_cleared" from="." to="Player" method="_on_main_stage_cleared"]
 [connection signal="stage_cleared" from="." to="CanvasLayer/UI" method="_on_main_stage_cleared"]

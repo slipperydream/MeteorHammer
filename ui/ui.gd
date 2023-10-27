@@ -73,7 +73,6 @@ func _on_boss_spawned():
 func _on_main_stage_cleared(_stage):
 	$Stopwatch.stop()
 	var time_spent = $Stopwatch.time_elapsed
-	#show_stage_results()
 
 func _on_main_new_stage(_stage):
 	$TopBarLeft.show()

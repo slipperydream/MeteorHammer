@@ -26,6 +26,7 @@ var stage_results = {
 	enemy_killed = 0,
 	times_hit = 0,
 	times_died = 0,
+	credits_used = 0,
 	biggest_multiplier = 0
 }
 	
@@ -57,7 +58,7 @@ func begin_game():
 func check_for_stage_clear():
 	if get_tree().get_nodes_in_group("boss").is_empty():
 		boss_spawned = false
-		emit_signal("stage_cleared", current_stage)
+		emit_signal("stage_cleared", current_stage, stage_results)
 		
 func load_stage(selected_stage):
 	reset_stage_results()
@@ -69,12 +70,6 @@ func load_stage(selected_stage):
 	add_child(stage_instance)
 	stage_instance.start()
 	emit_signal("new_stage", selected_stage)
-
-func print_results():
-	print("enemy killed %d" % stage_results.enemy_killed)
-	print("times hit  %d" % stage_results.times_hit)
-	print("times died %d" % stage_results.times_died)
-	print("biggest multiplier %d" % stage_results.biggest_multiplier)
 	
 func reset_stage_results():
 	stage_results.enemy_killed = 0
@@ -111,22 +106,16 @@ func _on_player_died():
 	stage_results.times_died += 1
 
 func _on_player_out_of_lives():
-	print_results()
 	get_tree().call_group("enemies", "queue_free")
 	credits -= 1
 	credits = max(0, credits)
-	emit_signal("player_start", start_lives, credits)
+	var lives = start_lives
 	if credits == 0:
 		current_game_state = game_state.GAME_OVER
 		emit_signal("game_over")
-
-func _on_stage_cleared(_stage):
-	print_results()
-	if current_stage + 1 >= stages.size():
-		emit_signal("beat_game")
-	else:
-		current_stage += 1
-		load_stage(current_stage)
+		# then show stage results
+		lives = 0
+	emit_signal("player_start", lives, credits)
 
 func _on_pause_game():
 	get_tree().paused = true

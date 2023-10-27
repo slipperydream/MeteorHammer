@@ -160,6 +160,12 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_81rj8")
 hframes = 3
 
+[node name="LeftGun" type="Marker2D" parent="Ship"]
+position = Vector2(-18, -19)
+
+[node name="RightGun" type="Marker2D" parent="Ship"]
+position = Vector2(18, -19)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_pq5w0")

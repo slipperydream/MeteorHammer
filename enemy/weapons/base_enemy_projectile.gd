@@ -32,7 +32,6 @@ func _process(delta):
 			var amplitude = 10
 			direction.x = cos(time * frequency * amplitude)
 			position = position + speed * delta * direction 
-	look_at(position)
 	
 	if animate and $AnimationPlayer.is_playing() == false:
 		$AnimationPlayer.play("moving")
@@ -45,7 +44,7 @@ func _on_area_entered(area):
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
-func set_size(size = Vector2(0.5, 0.5)):
+func set_size(size = Vector2(1, 1)):
 	$Sprite2D.apply_scale(size)
 	$CollisionShape2D.apply_scale(size)
 
@@ -63,10 +62,9 @@ func set_bloom_timer(wait_time):
 	print("blooming")
 	queue_free()
 	
-func start(pos, dir):
+func start(pos, dir, angle):
 	position = pos
 	direction = dir
-#	var angle = get_angle_to(position)
-#	$Sprite2D.rotation = angle
+	rotation_degrees = angle - 90
 
 	

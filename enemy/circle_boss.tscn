@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="4_t0exc"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="4_wa46r"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/circle_pattern.gd" id="5_ri64t"]
-[ext_resource type="PackedScene" uid="uid://bgvlm78bigb4b" path="res://enemy/weapons/bullet_shapes/cross_shot.tscn" id="6_a280h"]
+[ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_lc6i8"]
 [ext_resource type="PackedScene" uid="uid://cnt8jlxc1o2co" path="res://enemy/weapons/bullet_shapes/needle.tscn" id="9_2r06l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rgpy"]
@@ -177,9 +177,10 @@ _data = {
 "shooting_3": SubResource("Animation_oxk5s")
 }
 
-[sub_resource type="Resource" id="Resource_lnbkd"]
-script = ExtResource("5_ri64t")
-firing_points = 24
+[sub_resource type="Resource" id="Resource_t7lsq"]
+script = ExtResource("6_lc6i8")
+firing_points = 5
+separation_angle = 10.0
 ripple = false
 ripple_delay = 0.0
 title = ""
@@ -187,15 +188,15 @@ title = ""
 [sub_resource type="Resource" id="Resource_1a5ne"]
 script = ExtResource("3_km3fg")
 bullet_type = 1
-bullet_pattern = SubResource("Resource_lnbkd")
-bullet_shape = ExtResource("6_a280h")
+bullet_pattern = SubResource("Resource_t7lsq")
+bullet_shape = ExtResource("9_2r06l")
 speed = 30
 angle = 90.0
-shot_delay = 0.5
+shot_delay = 2.0
 aimed = false
 station = 0
 
-[sub_resource type="Resource" id="Resource_mg6ak"]
+[sub_resource type="Resource" id="Resource_mp57j"]
 script = ExtResource("5_ri64t")
 firing_points = 24
 ripple = false
@@ -205,10 +206,10 @@ title = ""
 [sub_resource type="Resource" id="Resource_qq07s"]
 script = ExtResource("3_km3fg")
 bullet_type = 0
-bullet_pattern = SubResource("Resource_mg6ak")
+bullet_pattern = SubResource("Resource_mp57j")
 bullet_shape = ExtResource("9_2r06l")
 speed = 30
-angle = 95.0
+angle = 90.0
 shot_delay = 0.0
 aimed = false
 station = 0
@@ -226,6 +227,7 @@ audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_m1li8")
 points = 1000
+speed = 80
 hp = 100
 is_boss = true
 explosion_sound = ExtResource("2_veit0")
@@ -248,7 +250,7 @@ position = Vector2(-1, -0.499998)
 scale = Vector2(11.6, 11.15)
 
 [node name="MovementTimer" type="Timer" parent="."]
-wait_time = 4.5
+wait_time = 1.5
 
 [node name="MilkingTimer" type="Timer" parent="."]
 wait_time = 45.0

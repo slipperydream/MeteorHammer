@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dvpyci50syrwj" path="res://assets/tank.png" id="2_oryfj"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/single_pattern.gd" id="2_rhuen"]
 [ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="3_2hb0p"]
-[ext_resource type="PackedScene" uid="uid://cjsxyohvmi47w" path="res://enemy/weapons/bullet_shapes/shell.tscn" id="3_c5ljc"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="4_6gfax"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="4_rwaqa"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_52fho"]
+[ext_resource type="PackedScene" uid="uid://cb1wj37xtu7h0" path="res://enemy/weapons/bullet_shapes/screwhead.tscn" id="7_cl34w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(42.0416, 33.4706)
@@ -414,7 +414,7 @@ title = ""
 script = ExtResource("4_6gfax")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_veynh")
-bullet_shape = ExtResource("3_c5ljc")
+bullet_shape = ExtResource("7_cl34w")
 speed = 50
 angle = 90.0
 shot_delay = 0.0

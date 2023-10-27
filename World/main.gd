@@ -143,20 +143,10 @@ func _on_title_screen_boss_mode():
 	await get_tree().create_timer(2).timeout
 	begin_game()
 
-
 func _on_title_screen_attack_mode():
 	$CanvasLayer/TitleScreen.hide()
 	stages.append("res://stages/Stage_1.tscn")
 	#stages.append("res://stages/Stage_2.tscn")
-	begin_game()
-
-
-func _on_title_screen_stage_mode(stage):
-	$CanvasLayer/TitleScreen.hide()
-	match stage:
-		1: stages.append("res://stages/Stage_1.tscn")
-		2: stages.append("res://stages/Stage_2.tscn")
-	await get_tree().create_timer(2).timeout
 	begin_game()
 
 func _on_player_player_hit():

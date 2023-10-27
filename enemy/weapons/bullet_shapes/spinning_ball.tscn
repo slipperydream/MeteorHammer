@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://6t7gq1rbqydp"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_i8snl"]
-[ext_resource type="Texture2D" uid="uid://cvvjycb8ej521" path="res://enemy/weapons/bullet_shapes/spinning_ball_32x32.png" id="3_chfhs"]
+[ext_resource type="Texture2D" uid="uid://bq1haimdtetg1" path="res://enemy/weapons/bullet_shapes/spinning_ball.png" id="2_3npsp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_66sgq"]
 radius = 13.0
@@ -55,7 +55,7 @@ script = ExtResource("1_i8snl")
 title = "enemy bolt"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_chfhs")
+texture = ExtResource("2_3npsp")
 hframes = 28
 frame = 4
 

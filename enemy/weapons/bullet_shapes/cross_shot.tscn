@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bgvlm78bigb4b"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_p8iuk"]
-[ext_resource type="Texture2D" uid="uid://w6dtuybhvx72" path="res://enemy/weapons/bullet_shapes/cross_shot_32x32.png" id="3_butf0"]
+[ext_resource type="Texture2D" uid="uid://cap4ct0wo7uab" path="res://enemy/weapons/bullet_shapes/cross_shot.png" id="2_n03q4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0t12t"]
 radius = 11.0
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [18]
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_urh4c"]
@@ -36,7 +36,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [18, 19, 20]
+"values": [3, 4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hdy1v"]
@@ -53,9 +53,9 @@ title = "Cross Shot"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("3_butf0")
+texture = ExtResource("2_n03q4")
 hframes = 21
-frame = 18
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

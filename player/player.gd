@@ -119,7 +119,10 @@ func primary_weapon_fire():
 			angle = deg_to_rad(70 + i * 10)		
 		elif num_shots % 3 == 0:
 			angle = deg_to_rad(80 + i * 10)	
-		weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
+		weapon.start($Ship/LeftGun.global_position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
+		weapon = primary_weapon.instantiate()
+		get_tree().root.add_child(weapon)
+		weapon.start($Ship/RightGun.global_position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
 	if not assist_mode_enabled:
 		options_fire()
 

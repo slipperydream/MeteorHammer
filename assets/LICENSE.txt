@@ -1,6 +1,9 @@
-Title screen
+Art
 Planetary_background_final by CJHD
 OGA-BY 3.0 https://callumdoyley.wixsite.com/cjhd
+
+chikyuu_16_edge.png by ArthCarvalho
+OGA-BY 3.0 
 
 Palette
 Endesga 32by ENDESGA

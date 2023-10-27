@@ -38,7 +38,7 @@ func get_station_position(index):
 			
 func fire_bullet(bullet, pos, angle):
 	get_tree().root.add_child(bullet)
-	bullet.start(pos, Vector2.RIGHT.rotated(angle))
+	bullet.start(pos, Vector2.RIGHT.rotated(deg_to_rad(angle)), angle)
 	AudioStreamManager.play(firing_sound.resource_path, true)
 
 func shoot():
@@ -71,9 +71,9 @@ func single_shot(new_shot):
 	shot.set_type(new_shot.bullet_type)
 	shot.set_size()
 	var pos = get_station_position(new_shot.station)
-	var angle = deg_to_rad(new_shot.angle)
+	var angle = new_shot.angle
 	if new_shot.aimed:
-		angle = get_angle_to(player.position) # already in radians
+		angle = rad_to_deg(get_angle_to(player.position))
 	fire_bullet(shot, pos, angle)
 	shot.set_speed(new_shot.speed)
 	match new_shot.bullet_type:
@@ -89,8 +89,7 @@ func circle_pattern(new_shot):
 		shot.set_type(new_shot.bullet_type)
 		shot.set_size()
 		var pos = get_station_position(new_shot.station)
-		var angle = new_shot.angle
-		fire_bullet(shot, pos, deg_to_rad(point * (360.0/firing_points) + angle))
+		fire_bullet(shot, pos, point * (360.0/firing_points))
 		shot.set_speed(new_shot.speed)
 		match new_shot.bullet_type:
 			BulletConstants.BulletTypes.CURVED:
@@ -108,7 +107,7 @@ func flower_pattern(new_shot):
 		shot.set_size()
 		var pos = get_station_position(new_shot.station)
 		var angle = new_shot.angle
-		fire_bullet(shot, pos, deg_to_rad(point * (360.0/firing_points) + angle))
+		fire_bullet(shot, pos, point * (360.0/firing_points + angle))
 		shot.set_speed(new_shot.speed)
 		shot.set_bloom_timer(new_shot.bullet_pattern.bloom_delay)
 		match new_shot.bullet_type:
@@ -129,7 +128,8 @@ func spread_pattern(new_shot):
 		if new_shot.aimed:
 			angle = get_angle_to_player()
 		var pos = get_station_position(new_shot.station)
-		fire_bullet(shot, pos, deg_to_rad(firing_points * new_shot.bullet_pattern.separation_angle + angle))
+		print("point %d angle %f" % [point, angle])
+		fire_bullet(shot, pos, point * new_shot.bullet_pattern.separation_angle + angle)
 		shot.set_speed(new_shot.speed)
 		match new_shot.bullet_type:
 			BulletConstants.BulletTypes.CURVED:

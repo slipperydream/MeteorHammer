@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bs1kpoi5efod5"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_safj1"]
-[ext_resource type="Texture2D" uid="uid://ckfflpnnssqwj" path="res://enemy/weapons/bullet_shapes/elipse_32x32.png" id="3_pyp5s"]
+[ext_resource type="Texture2D" uid="uid://bnylfhan77sub" path="res://enemy/weapons/bullet_shapes/elipse.png" id="2_dqvlv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_68fdm"]
 radius = 7.0
@@ -29,9 +29,9 @@ script = ExtResource("1_safj1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("3_pyp5s")
+texture = ExtResource("2_dqvlv")
 hframes = 7
-frame = 3
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

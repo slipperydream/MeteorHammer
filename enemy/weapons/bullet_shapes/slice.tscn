@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bthvww1tlvr4y"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_coakg"]
-[ext_resource type="Texture2D" path="res://enemy/weapons/bullet_shapes/slice_32x32.png" id="3_wyhsv"]
+[ext_resource type="Texture2D" uid="uid://cgkomqgsq52dm" path="res://enemy/weapons/bullet_shapes/slice.png" id="2_3jpud"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xco7j"]
 radius = 12.1655
@@ -23,6 +23,20 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_2sg2m"]
 resource_name = "move"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 5, 1, 5]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7h7y"]
 _data = {
@@ -40,7 +54,7 @@ script = ExtResource("1_coakg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
-texture = ExtResource("3_wyhsv")
+texture = ExtResource("2_3jpud")
 hframes = 7
 frame = 3
 

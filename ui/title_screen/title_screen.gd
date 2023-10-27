@@ -2,6 +2,7 @@ extends Control
 
 signal story_mode
 signal attack_mode
+signal stage_mode
 signal boss_mode
 
 @onready var start_game_button = $Panel/MainMenu/StartGameButton
@@ -17,6 +18,8 @@ func _ready():
 	hide_everything()
 	background.size.x = screensize.x
 	background.size.y = screensize.y
+	var tween = create_tween()
+	tween.tween_property($Panel/Title, "position", Vector2(screensize.x/4, screensize.y/10), 2)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

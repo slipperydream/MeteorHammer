@@ -1,9 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfem0x37r3fr"]
+[gd_scene load_steps=7 format=3 uid="uid://bfem0x37r3fr"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_o75l5"]
-[ext_resource type="Texture2D" uid="uid://bqhg5cmjqcmdx" path="res://enemy/weapons/bullet_shapes/heart_32x32.png" id="2_prllg"]
+[ext_resource type="Texture2D" uid="uid://c6e0xehq51o4y" path="res://enemy/weapons/bullet_shapes/heart.png" id="2_k0pxv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e6lcf"]
+
+[sub_resource type="Animation" id="Animation_wyvdc"]
+resource_name = "moving"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0pejl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g0nyj"]
+_data = {
+"RESET": SubResource("Animation_0pejl"),
+"moving": SubResource("Animation_wyvdc")
+}
 
 [node name="Heart" type="Area2D" groups=["enemy_weapon"]]
 collision_layer = 2
@@ -14,9 +51,9 @@ animate = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("2_prllg")
+texture = ExtResource("2_k0pxv")
 hframes = 7
-frame = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -26,6 +63,11 @@ shape = SubResource("CircleShape2D_e6lcf")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(3.8147e-06, -2)
 scale = Vector2(0.95, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g0nyj")
+}
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

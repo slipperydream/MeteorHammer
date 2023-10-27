@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cravdd1vvhaa4"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_emrkd"]
-[ext_resource type="Texture2D" uid="uid://bbwrd7wu8byul" path="res://enemy/weapons/bullet_shapes/ball_32x32.png" id="3_r3mbv"]
+[ext_resource type="Texture2D" uid="uid://dsa3ml47mpm6p" path="res://enemy/weapons/bullet_shapes/ball.png" id="2_lwkv8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_thwgx"]
 radius = 13.0384
@@ -20,35 +20,11 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_evj7h"]
 resource_name = "wobble"
 length = 0.5
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 3.14159, 0.0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hoq6"]
 _data = {
@@ -65,7 +41,8 @@ title = "enemy bullet"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("3_r3mbv")
+rotation = 1.0472
+texture = ExtResource("2_lwkv8")
 hframes = 7
 frame = 1
 

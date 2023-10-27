@@ -1,5 +1,7 @@
 extends Control
 
+signal results_closed
+
 @export var backgrounds : Array[Texture2D] = []
 @export_range(1000, 50000) var star_value : int = 1000
 @export var base_points : int = 50
@@ -71,8 +73,8 @@ func update_stars(value):
 	var stars = $Scorebar/HBoxContainer.get_children()
 	for i in num_stars:
 		stars[i].modulate = Color.WHITE	
-		
-func _on_main_stage_cleared(stage, results):
+
+func _on_main_end_stage(stage, results):
 	update_boss(results.boss_killed)
 	update_deaths(results.times_died)
 	update_destroyed(results.enemies_killed)
@@ -83,3 +85,7 @@ func _on_main_stage_cleared(stage, results):
 	update_stars(results.score)
 	calculate_currency(results)
 	show()
+
+func _on_continue_button_pressed():
+	hide()
+	emit_signal("results_closed")

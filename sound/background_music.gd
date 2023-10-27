@@ -30,7 +30,6 @@ func _ready():
 	bg_music.autoplay = true
 	bg_music.volume_db = bg_music_volume
 	add_child(bg_music)
-	print("%s %f" % [song.resource_path , bg_music.volume_db])
 	emit_signal("new_song", song.resource_name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

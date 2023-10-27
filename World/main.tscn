@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=12 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://World/main.gd" id="1_40pi7"]
 [ext_resource type="Script" path="res://World/Background.gd" id="2_egrtt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="6_5jg3u"]
 [ext_resource type="PackedScene" uid="uid://duxu01d7kskfo" path="res://ui/title_screen/title_screen.tscn" id="6_d1ygs"]
 [ext_resource type="PackedScene" uid="uid://dyqxqv1ayua2r" path="res://ui/stage_results/stage_results.tscn" id="7_5pgji"]
+[ext_resource type="PackedScene" uid="uid://borv5q636p3x1" path="res://ui/stage_select/stage_select.tscn" id="8_4tp73"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -54,6 +55,9 @@ libraries = {
 [node name="StageResults" parent="CanvasLayer" instance=ExtResource("7_5pgji")]
 visible = false
 
+[node name="StageSelect" parent="CanvasLayer" instance=ExtResource("8_4tp73")]
+visible = false
+
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -62,6 +66,11 @@ one_shot = true
 
 [connection signal="beat_game" from="." to="." method="_on_beat_game"]
 [connection signal="beat_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_beat_game"]
+[connection signal="end_stage" from="." to="." method="_on_end_stage"]
+[connection signal="end_stage" from="." to="Background" method="_on_main_end_stage"]
+[connection signal="end_stage" from="." to="Player" method="_on_main_end_stage"]
+[connection signal="end_stage" from="." to="CanvasLayer/UI" method="_on_main_end_stage"]
+[connection signal="end_stage" from="." to="CanvasLayer/StageResults" method="_on_main_end_stage"]
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/CenterContainer" method="_on_main_game_over"]
 [connection signal="new_stage" from="." to="CanvasLayer/UI" method="_on_main_new_stage"]
@@ -73,10 +82,6 @@ one_shot = true
 [connection signal="player_start" from="." to="CanvasLayer/UI" method="_on_main_player_start"]
 [connection signal="score_changed" from="." to="CanvasLayer/UI" method="_on_main_score_changed"]
 [connection signal="score_multiplier" from="." to="CanvasLayer/UI" method="_on_main_score_multiplier"]
-[connection signal="stage_cleared" from="." to="Background" method="_on_main_stage_cleared"]
-[connection signal="stage_cleared" from="." to="Player" method="_on_main_stage_cleared"]
-[connection signal="stage_cleared" from="." to="CanvasLayer/UI" method="_on_main_stage_cleared"]
-[connection signal="stage_cleared" from="." to="CanvasLayer/StageResults" method="_on_main_stage_cleared"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="died" from="Player" to="CanvasLayer/UI" method="_on_player_died"]
 [connection signal="gained_life" from="Player" to="CanvasLayer/UI" method="_on_player_gained_life"]
@@ -93,5 +98,9 @@ one_shot = true
 [connection signal="start_pressed" from="CanvasLayer/CenterContainer" to="." method="_on_center_container_start_pressed"]
 [connection signal="attack_mode" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_attack_mode"]
 [connection signal="boss_mode" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_boss_mode"]
+[connection signal="start_game" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_start_game"]
+[connection signal="results_closed" from="CanvasLayer/StageResults" to="." method="_on_stage_results_results_closed"]
+[connection signal="stage_select_cancelled" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_select_cancelled"]
+[connection signal="stage_selected" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_selected"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="ScoringTimer" to="." method="_on_scoring_timer_timeout"]

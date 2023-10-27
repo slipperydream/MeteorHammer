@@ -205,12 +205,6 @@ func take_damage(_value):
 	else:
 		remove_bullets()
 		out_of_lives.emit()
-
-func upgrade_weapon(stage):
-	match stage:
-		1:
-			primary_weapon = load("res://player/weapons/bullet_level2.tscn")
-			emit_signal("weapon_changed", "charged_beam")
 	
 func use_item():	
 	if $ItemCharge.is_stopped():
@@ -240,10 +234,6 @@ func _on_main_player_start(num_lives, _credits):
 	$ItemCharge.wait_time = item_recharge_time
 	$ItemCharge.start()
 	emit_signal("item_charging")
-		
-func _on_main_stage_cleared(stage):
-	upgrade_weapon(stage)
-	remove_bullets()
 
 func _on_item_charge_timeout():
 	emit_signal("item_recharged")
@@ -252,3 +242,6 @@ func _on_invulnerability_timer_timeout():
 	$AnimationPlayer.stop()
 	invulnerable = false
 
+func _on_main_end_stage():
+	remove_bullets()
+	hide()

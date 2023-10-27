@@ -25,7 +25,7 @@ var all_spawned : bool = false
 signal boss_spawned
 
 func ready():
-	self.connect(main.stage_cleared, _on_main_stage_cleared)
+	self.connect(main.end_stage, _on_main_end_stage)
 	self.connect(main.game_over, _on_main_game_over)
 
 func build_spawns():
@@ -81,7 +81,7 @@ func _on_timer_timeout():
 		await get_tree().create_timer(2).timeout
 		spawn_boss()
 
-func _on_main_stage_cleared():
+func _on_main_end_stage():
 	queue_free()
 				
 func _on_main_game_over():

@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://duxu01d7kskfo"]
+[gd_scene load_steps=10 format=3 uid="uid://duxu01d7kskfo"]
 
 [ext_resource type="Script" path="res://ui/title_screen.gd" id="1_e7kcj"]
 [ext_resource type="Texture2D" uid="uid://7xdoxqs0d5mo" path="res://assets/planet_background_final.png" id="2_1jrv7"]
 [ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="2_n3jpo"]
 [ext_resource type="Texture2D" uid="uid://yvpoqnsnhp20" path="res://ui/title_screen/title.png" id="3_1eu7u"]
 [ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="3_vfonr"]
-[ext_resource type="PackedScene" uid="uid://borv5q636p3x1" path="res://ui/stage_select/stage_select.tscn" id="4_jed41"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjcqh"]
 bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
@@ -207,11 +206,6 @@ theme_override_fonts/font = ExtResource("2_n3jpo")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_8jokb")
 text = "Close"
-
-[node name="StageSelect" parent="." instance=ExtResource("4_jed41")]
-visible = false
-z_index = 1
-layout_mode = 1
 
 [node name="MenuTimer" type="Timer" parent="."]
 wait_time = 0.5

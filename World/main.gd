@@ -8,9 +8,9 @@ signal game_over
 signal pause_game
 signal score_changed
 signal score_multiplier
-signal stage_cleared
 signal new_stage
 signal player_start
+signal end_stage
 
 # achievement signals
 signal high_multiplier
@@ -38,6 +38,11 @@ var stage_results = {
 @export var credits = 3
 @export var scoring_timer : int = 5
 @export var high_scoring_multiplier : int = 30
+
+@onready var title_screen = $CanvasLayer/TitleScreen
+@onready var stage_select = $CanvasLayer/StageSelect
+@onready var results_screen = $CanvasLayer/StageResults
+
 var stages : Array = []
 
 # Called when the node enters the scene tree for the first time.
@@ -54,6 +59,8 @@ func begin_game():
 	score = 0
 	emit_signal("score_changed", score)
 	current_stage = 0
+	AudioStreamManager.clear_queue()
+	AudioStreamManager.start()
 	emit_signal("player_start",start_lives, credits)
 	current_game_state = game_state.RUNNING
 	load_stage(current_stage)
@@ -62,7 +69,7 @@ func check_for_stage_clear():
 	if get_tree().get_nodes_in_group("boss").is_empty():
 		boss_spawned = false
 		stage_results.boss_killed = true
-		emit_signal("stage_cleared", current_stage, stage_results)
+		emit_signal("end_stage", current_stage, stage_results)
 		
 func load_stage(selected_stage):
 	reset_stage_results()
@@ -118,6 +125,7 @@ func _on_player_out_of_lives():
 	credits = max(0, credits)
 	var lives = start_lives
 	if credits == 0:
+		emit_signal("end_stage", current_stage, stage_results)
 		current_game_state = game_state.GAME_OVER
 		emit_signal("game_over")
 		# then show stage results
@@ -146,13 +154,11 @@ func _on_center_container_game_unpaused():
 
 
 func _on_title_screen_boss_mode():
-	$CanvasLayer/TitleScreen.hide()
 	stages.append("res://stages/Stage_1Boss.tscn")
 	await get_tree().create_timer(2).timeout
 	begin_game()
 
 func _on_title_screen_attack_mode():
-	$CanvasLayer/TitleScreen.hide()
 	stages.append("res://stages/Stage_1.tscn")
 	begin_game()
 
@@ -165,3 +171,20 @@ func _on_new_background(file):
 func _on_beat_game():
 	_on_game_over()
 
+func _on_end_stage():
+	AudioStreamManager.clear_queue()
+	AudioStreamManager.stop()
+
+func _on_stage_results_results_closed():
+	stage_select.show()
+
+func _on_title_screen_start_game():
+	stage_select.show()
+
+func _on_stage_select_stage_select_cancelled():
+	title_screen.show()
+	stages.clear()
+
+func _on_stage_select_stage_selected(stage_path):
+	stages.append(stage_path)
+	begin_game()

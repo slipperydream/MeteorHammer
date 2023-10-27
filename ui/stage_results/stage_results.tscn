@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyqxqv1ayua2r"]
+[gd_scene load_steps=10 format=3 uid="uid://dyqxqv1ayua2r"]
 
 [ext_resource type="Script" path="res://ui/stage_results/stage_results.gd" id="1_had4i"]
 [ext_resource type="Texture2D" uid="uid://b4pdc8li273br" path="res://assets/nerdy_girl.jpg" id="2_jy3ai"]
@@ -15,6 +15,22 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.996078, 0.905882, 0.380392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kinx"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.752941, 0.796078, 0.862745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -393,3 +409,31 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("5_ve1qy")
 theme_override_font_sizes/font_size = 24
 text = "8"
+
+[node name="ContinueButton" type="Button" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -50.0
+offset_right = 58.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_3kinx")
+action_mode = 0
+text = "Continue
+"
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

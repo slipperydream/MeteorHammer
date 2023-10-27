@@ -15,5 +15,5 @@ func stop():
 func resume():
 	speed = saved_speed
 
-func _on_main_stage_cleared(_stage):
+func _on_main_end_stage(_stage, _stage_results):
 	resume()

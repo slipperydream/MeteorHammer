@@ -1,6 +1,6 @@
 extends Control
 
-signal story_mode
+signal start_game
 signal attack_mode
 signal boss_mode
 
@@ -30,18 +30,20 @@ func _input(_event):
 		
 func hide_everything():
 	$Popup.hide()
-	$StageSelect.hide()
 	$Panel/MainMenu.hide()
 	
 func _on_start_game_button_pressed():
-	$StageSelect.show()
+	emit_signal("start_game")
+	hide()
 
 func _on_attack_mode_button_pressed():
 	emit_signal("attack_mode")
+	hide()
 
 func _on_boss_select_button_pressed():
 	#not_implemented()
 	emit_signal("boss_mode")
+	hide()
 
 func _on_settings_button_pressed():
 	not_implemented()

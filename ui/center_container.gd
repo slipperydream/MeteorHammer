@@ -55,3 +55,4 @@ func display_game_end(text):
 	game_over_label.show()
 	await get_tree().create_timer(2).timeout
 	game_over_label.hide()
+

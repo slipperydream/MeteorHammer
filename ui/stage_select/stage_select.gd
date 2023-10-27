@@ -1,5 +1,8 @@
 extends Panel
 
+signal stage_select_cancelled
+signal stage_selected
+
 const stage_button = preload("res://ui/stage_select/stage_button.tscn")
 @export_dir var stages_dir
 
@@ -16,7 +19,6 @@ func get_stages(path):
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			print(file_name)
 			create_stage_button('%s/%s' % [dir.get_current_dir(), file_name], file_name)
 			file_name = dir.get_next()
 		dir.list_dir_end()
@@ -31,11 +33,13 @@ func create_stage_button(stage_path, stage_name):
 	grid.add_child(btn)
 	btn.connect("stage_selected", _on_stage_selected)
 
-func _on_close_button_pressed():
-	error_screen.hide()
-
 func _on_stage_selected(stage):
-	print("%s" % stage)
+	emit_signal("stage_selected", stage)
+	hide()
 
 func _on_back_button_pressed():
 	hide()
+	emit_signal("stage_select_cancelled")
+
+func _on_error_close_button_pressed():
+	error_screen.hide()

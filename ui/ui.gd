@@ -70,10 +70,6 @@ func _on_boss_spawned():
 	await $AnimationPlayer.animation_finished
 	$BossLabel.visible = false
 
-func _on_main_stage_cleared(_stage):
-	$Stopwatch.stop()
-	var time_spent = $Stopwatch.time_elapsed
-
 func _on_main_new_stage(_stage):
 	$TopBarLeft.show()
 	$BottomBar.show()
@@ -92,3 +88,8 @@ func _on_main_score_multiplier(multiplier):
 		multiplier_label.text = "MULTIPLIER\nx%d" % multiplier
 	else:
 		multiplier_label.hide()
+
+func _on_main_end_stage():
+	$Stopwatch.stop()
+	var time_spent = $Stopwatch.time_elapsed
+	hide()

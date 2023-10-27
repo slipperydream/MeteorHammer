@@ -12,6 +12,8 @@ var bus = "SFX"
 var available_players = []
 var sound_queue = []
 
+var play_sounds : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Create pool of AudioStreamPlayer nodes.
@@ -28,10 +30,13 @@ func _on_stream_finished(stream):
 	available_players.append(stream)
 
 func play(sound_path, randomize_pitch : bool = false):
-	var sound = SoundEffect.new()
-	sound.path = sound_path
-	sound.randomize_pitch = randomize_pitch
-	sound_queue.append(sound)
+	if play_sounds:
+		var sound = SoundEffect.new()
+		sound.path = sound_path
+		sound.randomize_pitch = randomize_pitch
+		sound_queue.append(sound)
+#	else:
+#		print("sorry not playing sounds")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -45,3 +50,14 @@ func _process(_delta):
 			available_players[0].pitch_scale = 1.0
 		available_players[0].play()
 		available_players.pop_front()
+
+func clear_queue():
+	sound_queue.clear()
+
+func start():
+	play_sounds = true
+	
+func stop():
+	play_sounds = false
+	for i in available_players:
+		i.stop()

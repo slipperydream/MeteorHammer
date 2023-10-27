@@ -128,7 +128,6 @@ func spread_pattern(new_shot):
 		if new_shot.aimed:
 			angle = get_angle_to_player()
 		var pos = get_station_position(new_shot.station)
-		print("point %d angle %f" % [point, angle])
 		fire_bullet(shot, pos, point * new_shot.bullet_pattern.separation_angle + angle)
 		shot.set_speed(new_shot.speed)
 		match new_shot.bullet_type:

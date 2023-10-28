@@ -23,6 +23,8 @@ var boss_spawned = false
 var scoring_chain_active : bool = false
 var scoring_multiplier : int = 1
 var stage_results = {
+	path = '',
+	name = '',
 	score = 0,
 	enemies_killed = 0,
 	times_hit = 0,
@@ -48,7 +50,7 @@ var stages : Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_game_state = game_state.TITLE
-	$CanvasLayer/TitleScreen.show()
+	title_screen.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -176,6 +178,7 @@ func _on_end_stage():
 	AudioStreamManager.stop()
 
 func _on_stage_results_results_closed():
+	# need to make this aware if we are in story or attack mode
 	stage_select.show()
 
 func _on_title_screen_start_game():
@@ -187,4 +190,5 @@ func _on_stage_select_stage_select_cancelled():
 
 func _on_stage_select_stage_selected(stage_path):
 	stages.append(stage_path)
+	stage_results.path = stage_path
 	begin_game()

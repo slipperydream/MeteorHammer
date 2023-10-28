@@ -1,6 +1,7 @@
 extends Control
 
 signal results_closed
+signal retry_level
 
 @export var backgrounds : Array[Texture2D] = []
 @export_range(1000, 50000) var star_value : int = 1000
@@ -17,7 +18,7 @@ signal results_closed
 @onready var hits_counter = $CenterPanel/MarginContainer/GridContainer/HitsCounter
 @onready var multiplier_counter = $CenterPanel/MarginContainer/GridContainer/MultiplierCounter
 @onready var progress_counter = $Panel2/VBoxContainer2/ProgressBonus
-
+var path : String = ''
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -75,6 +76,7 @@ func update_stars(value):
 		stars[i].modulate = Color.WHITE	
 
 func _on_main_end_stage(stage, results):
+	path = results.path
 	update_boss(results.boss_killed)
 	update_deaths(results.times_died)
 	update_destroyed(results.enemies_killed)
@@ -89,3 +91,8 @@ func _on_main_end_stage(stage, results):
 func _on_continue_button_pressed():
 	hide()
 	emit_signal("results_closed")
+
+func _on_retry_button_pressed():
+	hide()
+	emit_signal("retry_level", path)
+

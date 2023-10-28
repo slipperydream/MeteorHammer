@@ -128,6 +128,18 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "BOSS SELECT"
 
+[node name="ShopButton" type="Button" parent="Panel/MainMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("3_vfonr")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
+text = "SHOP"
+
 [node name="SettingsButton" type="Button" parent="Panel/MainMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
@@ -215,6 +227,7 @@ autostart = true
 [connection signal="pressed" from="Panel/MainMenu/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/AttackModeButton" to="." method="_on_attack_mode_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/BossSelectButton" to="." method="_on_boss_select_button_pressed"]
+[connection signal="pressed" from="Panel/MainMenu/ShopButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Panel/MainMenu/HighScoresButton" to="." method="_on_high_scores_button_pressed"]
 [connection signal="pressed" from="Popup/CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Bomb_setting" load_steps=2 format=3 uid="uid://dwqnuw5siohn3"]
+
+[ext_resource type="Script" path="res://player/items/bomb_setting.gd" id="1_0jcgs"]
+
+[resource]
+script = ExtResource("1_0jcgs")
+setting_name = "Balance"
+max_bombs = 4
+max_main_weapon_shots = 4

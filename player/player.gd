@@ -3,25 +3,26 @@ extends Area2D
 signal died
 signal out_of_lives
 signal gained_life
-signal item_charging
-signal item_recharged
-signal item_used
+signal bomb_charging
+signal bomb_recharged
+signal bomb_used
 signal weapon_changed
-signal item_changed
+signal bomb_changed
 signal player_hit
 
 var lives = 3
 
 @export var speed : int = 150
-@export var cooldown : float = 0.25
-@export var item_recharge_time : float = 5.0
-@export var primary_weapon : PackedScene
-@export var secondary_weapon : PackedScene
-@export var num_shots : int = 3
-@export var option_weapons : Array[PackedScene] = []
-@export var item_scene : PackedScene
+@export var cooldown : float = 0.1
+@export var bomb_recharge_time : float = 20.0
+@export var main_weapon: PackedScene
+@export var special_weapon : PackedScene
+@export var configuration : Ship_configuration
+@export var option_weapon : PackedScene
+@export var bomb_scene : PackedScene
 @export var explosion_sound : AudioStreamWAV
 
+var num_shots : int = 3
 var can_shoot : bool = true
 var invulnerable : bool = false
 var assist_mode_enabled = false
@@ -36,6 +37,7 @@ var option_index = Option_Formation.SPREAD
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset()
+	#$Ship.texture = configuration.sprite
 	emit_signal("weapon_changed", "beam")
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
 	
@@ -63,18 +65,18 @@ func _process(delta):
 	position += input * speed * delta
 	position = position.clamp(Vector2(8,8), screensize - Vector2(8,8))
 	
-	if Input.is_action_pressed("primary_weapon_fire"):
-		primary_weapon_fire()
-	elif Input.is_action_just_pressed("secondary_weapon_fire"):
-		secondary_fire()
+	if Input.is_action_pressed("main_weapon_fire"):
+		main_weapon_fire()
+	elif Input.is_action_just_pressed("special_weapon_fire"):
+		special_weapon_fire()
 	
 	if assist_mode_enabled:
 		if Input.is_action_just_pressed("assist_mode_fire"):
 			options_fire()
 		
 func _input(event):	
-	if event.is_action_pressed("use_item"):
-		use_item()
+	if event.is_action_pressed("use_bomb"):
+		use_bomb()
 	if event.is_action_pressed("switch_formation"):
 		switch_option_formation()
 		
@@ -89,13 +91,13 @@ func reset():
 		show()
 	can_shoot = true
 
-func secondary_fire():	
+func special_weapon_fire():	
 	if can_shoot == false:
 		return
 	can_shoot = false
 	$GunCooldown.start()	
 	for i in range(num_shots):
-		var weapon = secondary_weapon.instantiate()
+		var weapon = special_weapon.instantiate()
 		get_tree().root.add_child(weapon)
 		var angle = deg_to_rad(90)
 		if num_shots % 5 == 0:
@@ -106,13 +108,13 @@ func secondary_fire():
 	if not assist_mode_enabled:
 		options_fire()
 		
-func primary_weapon_fire():
+func main_weapon_fire():
 	if can_shoot == false:
 		return
 	can_shoot = false
 	$GunCooldown.start()	
 	for i in range(num_shots):
-		var weapon = primary_weapon.instantiate()
+		var weapon = main_weapon.instantiate()
 		get_tree().root.add_child(weapon)
 		var angle = deg_to_rad(90)
 		if num_shots % 5 == 0:
@@ -120,7 +122,7 @@ func primary_weapon_fire():
 		elif num_shots % 3 == 0:
 			angle = deg_to_rad(80 + i * 10)	
 		weapon.start($Ship/LeftGun.global_position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
-		weapon = primary_weapon.instantiate()
+		weapon = main_weapon.instantiate()
 		get_tree().root.add_child(weapon)
 		weapon.start($Ship/RightGun.global_position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
 	if not assist_mode_enabled:
@@ -140,11 +142,11 @@ func options_fire():
 		left_option_angle = 0
 		right_option_angle = 180
 
-	var weapon = option_weapons[option_index].instantiate()
+	var weapon = option_weapon.instantiate()
 	get_tree().root.add_child(weapon)	
 	weapon.start(left_option.global_position, Vector2.RIGHT.rotated(deg_to_rad(left_option_angle)))	
 	
-	weapon = option_weapons[option_index].instantiate()
+	weapon = option_weapon.instantiate()
 	get_tree().root.add_child(weapon)	
 	weapon.start(right_option.global_position, Vector2.RIGHT.rotated(deg_to_rad(right_option_angle)))
 
@@ -193,7 +195,7 @@ func take_damage(_value):
 		return
 		
 	if $ItemCharge.is_stopped():
-		use_item()
+		use_bomb()
 		return
 		
 	lives = max(0, lives - 1)
@@ -206,16 +208,16 @@ func take_damage(_value):
 		remove_bullets()
 		out_of_lives.emit()
 	
-func use_item():	
+func use_bomb():	
 	if $ItemCharge.is_stopped():
 		make_invulnerable()
-		var item = item_scene.instantiate()
+		var item = bomb_scene.instantiate()
 		get_tree().root.add_child(item)
 		item.execute(position)
-		emit_signal("item_used")
-		$ItemCharge.wait_time = item_recharge_time
+		emit_signal("bomb_used")
+		$ItemCharge.wait_time = bomb_recharge_time
 		$ItemCharge.start()
-		emit_signal("item_charging")
+		emit_signal("bomb_charging")
 	else:
 		print("waiting on item timer to recharge")
 		
@@ -231,12 +233,12 @@ func _on_main_player_start(num_lives, _credits):
 	remove_bullets()
 	lives = num_lives
 	reset()
-	$ItemCharge.wait_time = item_recharge_time
+	$ItemCharge.wait_time = bomb_recharge_time
 	$ItemCharge.start()
-	emit_signal("item_charging")
+	emit_signal("bomb_charging")
 
-func _on_item_charge_timeout():
-	emit_signal("item_recharged")
+func _on_bomb_charge_timeout():
+	emit_signal("bomb_recharged")
 
 func _on_invulnerability_timer_timeout():
 	$AnimationPlayer.stop()

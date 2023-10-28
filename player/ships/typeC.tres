@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Ship_configuration" load_steps=3 format=3 uid="uid://sg1jttj0fwhq"]
+
+[ext_resource type="Script" path="res://player/ships/ship_configuration.gd" id="1_f11cc"]
+[ext_resource type="Texture2D" uid="uid://bbe8ulu58rbgf" path="res://assets/Player_ship_C.png" id="2_xoh4n"]
+
+[resource]
+script = ExtResource("1_f11cc")
+sprite = ExtResource("2_xoh4n")
+speed = 0.75
+shot_width = 60.0
+description = "A slow ship with a very wide firing arc"

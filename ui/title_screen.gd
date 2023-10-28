@@ -3,14 +3,17 @@ extends Control
 signal start_game
 signal attack_mode
 signal boss_mode
+signal exit_game
 
-@onready var start_game_button = $Panel/MainMenu/StartGameButton
-@onready var attack_mode_button = $Panel/MainMenu/AttackModeButton
-@onready var boss_select_button = $Panel/MainMenu/BossSelectButton
-@onready var settings_button = $Panel/MainMenu/SettingsButton
-@onready var high_scores_button = $Panel/MainMenu/HighScoresButton
+@onready var title_menu = $Panel/TitleMenu
+@onready var start_game_button = $Panel/TitleMenu/StartGameButton
+@onready var attack_mode_button = $Panel/TitleMenu/AttackModeButton
+@onready var boss_select_button = $Panel/TitleMenu/BossSelectButton
+@onready var settings_button = $Panel/TitleMenu/SettingsButton
+@onready var high_scores_button = $Panel/TitleMenu/HighScoresButton
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var background = $Panel/Background
+@onready var main = get_tree().get_first_node_in_group("main")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,8 +32,11 @@ func _input(_event):
 		$MenuTimer.start()
 		
 func hide_everything():
-	$Popup.hide()
-	$Panel/MainMenu.hide()
+	title_menu.hide()
+
+func display_popup(text):
+	$AcceptDialog.set_text(text)
+	$AcceptDialog.popup_centered()
 	
 func _on_start_game_button_pressed():
 	emit_signal("start_game")
@@ -41,25 +47,33 @@ func _on_attack_mode_button_pressed():
 	hide()
 
 func _on_boss_select_button_pressed():
-	#not_implemented()
 	emit_signal("boss_mode")
 	hide()
 
 func _on_settings_button_pressed():
-	not_implemented()
+	var text = "Sorry, the settings menu isn't implemented yet."
+	display_popup(text)
 
 func _on_high_scores_button_pressed():
-	not_implemented()
-
-func _on_close_button_pressed():
-	$Popup.hide()
-
-func not_implemented():
-	$Popup.show()
+	var text = "Sorry, the high scores menu isn't implemented yet."
+	display_popup(text)
 
 func _on_menu_timer_timeout():
-	$Panel/MainMenu.show()
+	title_menu.show()
 	
 func _on_main_game_over():
 	await get_tree().create_timer(5).timeout
 	show()
+
+func _on_shop_button_pressed():
+	var text = "Sorry, the shop menu isn't implemented yet."
+	display_popup(text)
+
+func _on_exit_game_button_pressed():
+	var text = "Are you sure you want to exit the game?"
+	$ConfirmationDialog.set_text(text)
+	$ConfirmationDialog.set_ok_button_text("Exit Game")
+	$ConfirmationDialog.popup_centered()
+
+func _on_confirmation_dialog_confirmed():
+	emit_signal("exit_game")

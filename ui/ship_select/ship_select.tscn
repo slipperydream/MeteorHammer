@@ -1,6 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqrp2a1yyocuq"]
+[gd_scene load_steps=18 format=3 uid="uid://dqrp2a1yyocuq"]
 
 [ext_resource type="Script" path="res://ui/ship_select/ship_select.gd" id="1_7nx0c"]
+[ext_resource type="Resource" uid="uid://celc63e446bf5" path="res://player/ships/typeA.tres" id="2_kjrhv"]
+[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="2_s0frm"]
+[ext_resource type="Resource" uid="uid://d0wi48w2l1og6" path="res://player/ships/typeB.tres" id="3_kcjrv"]
+[ext_resource type="Resource" uid="uid://sg1jttj0fwhq" path="res://player/ships/typeC.tres" id="4_fb8cj"]
+[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="5_nqfqe"]
+[ext_resource type="Resource" uid="uid://dwqnuw5siohn3" path="res://player/items/bs_balance.tres" id="5_v0tyv"]
+[ext_resource type="Texture2D" uid="uid://phyo4rl3na6v" path="res://ui/left_arrow.png" id="5_yawv7"]
+[ext_resource type="Resource" uid="uid://cga4ahkk4o4fq" path="res://player/items/bs_max_bombs.tres" id="6_mf4qx"]
+[ext_resource type="Texture2D" uid="uid://cef4mhh1bw6on" path="res://ui/right_arrow.png" id="6_tp3a0"]
+[ext_resource type="Resource" uid="uid://bky0kst2eax5q" path="res://player/items/bs_no_bombs.tres" id="7_6wn6n"]
+[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="8_mr15y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uixk"]
+bg_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.6, 0.858824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erc8k"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.917647, 0.831373, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5qle"]
+bg_color = Color(0.0705882, 0.305882, 0.537255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.752941, 0.796078, 0.862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_poidl"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.752941, 0.796078, 0.862745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yvj7"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.752941, 0.796078, 0.862745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="ShipSelect" type="Control"]
 layout_mode = 3
@@ -10,6 +77,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7nx0c")
+ships = Array[Resource("res://player/ships/ship_configuration.gd")]([ExtResource("2_kjrhv"), ExtResource("3_kcjrv"), ExtResource("4_fb8cj")])
+bomb_settings = Array[Resource("res://player/items/bomb_setting.gd")]([ExtResource("5_v0tyv"), ExtResource("6_mf4qx"), ExtResource("7_6wn6n")])
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -18,8 +87,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1uixk")
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="InstructionLabel" type="Label" parent="Panel"]
+layout_mode = 2
+offset_top = 64.0
+offset_right = 600.0
+offset_bottom = 97.0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_shadow_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("5_nqfqe")
+theme_override_font_sizes/font_size = 32
+text = "Choose your ship and its weapons
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ship" type="Panel" parent="Panel"]
+layout_mode = 2
+offset_left = 236.0
+offset_top = 109.0
+offset_right = 364.0
+offset_bottom = 237.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_erc8k")
+
+[node name="Control" type="Control" parent="Panel/Ship"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,24 +123,286 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 2
-offset_left = 300.0
-offset_top = 400.0
-offset_right = 300.0
-offset_bottom = 400.0
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Ship/Control"]
+centered = false
+offset = Vector2(32, 32)
+hframes = 3
+frame = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="ShipPreviousButton" type="TextureButton" parent="."]
 layout_mode = 2
-offset_left = 2.0
-offset_top = 81.0
-offset_right = 602.0
-offset_bottom = 107.0
+offset_left = 186.0
+offset_top = 140.0
+offset_right = 250.0
+offset_bottom = 204.0
+texture_normal = ExtResource("5_yawv7")
+
+[node name="ShipNextButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 350.0
+offset_top = 140.0
+offset_right = 414.0
+offset_bottom = 204.0
+texture_normal = ExtResource("6_tp3a0")
+
+[node name="ShipLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -155.0
+offset_right = 32.0
+offset_bottom = -131.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0.6, 0.858824, 1)
-theme_override_colors/font_shadow_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
+theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-text = "Choose your ship and its weapons
+theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_font_sizes/font_size = 18
+text = "Type A
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SpecialWeapon" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 236.0
+offset_top = 279.0
+offset_right = 364.0
+offset_bottom = 407.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_erc8k")
+
+[node name="Control" type="Control" parent="SpecialWeapon"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SpecialWeapon/Control"]
+centered = false
+offset = Vector2(32, 32)
+hframes = 3
+frame = 1
+
+[node name="WeaponPreviousButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 186.0
+offset_top = 310.0
+offset_right = 250.0
+offset_bottom = 374.0
+texture_normal = ExtResource("5_yawv7")
+
+[node name="WeaponNextButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 350.0
+offset_top = 310.0
+offset_right = 414.0
+offset_bottom = 374.0
+texture_normal = ExtResource("6_tp3a0")
+
+[node name="SpecialWeaponLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = 10.0
+offset_right = 66.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
+theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_font_sizes/font_size = 18
+text = "Mark IV Laser
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BombSetting" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 236.0
+offset_top = 443.0
+offset_right = 364.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_erc8k")
+
+[node name="Description" type="Label" parent="BombSetting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_alignment = 1
+
+[node name="BombSettingPreviousButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 186.0
+offset_top = 472.0
+offset_right = 250.0
+offset_bottom = 536.0
+texture_normal = ExtResource("5_yawv7")
+
+[node name="BombSettingNextButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 350.0
+offset_top = 472.0
+offset_right = 414.0
+offset_bottom = 536.0
+texture_normal = ExtResource("6_tp3a0")
+
+[node name="BombSettingLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = 180.0
+offset_right = 33.0
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
+theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_font_sizes/font_size = 18
+text = "Bombs
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+initial_position = 1
+size = Vector2i(150, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_n5qle")
+dialog_autowrap = true
+
+[node name="BackButton" type="Button" parent="."]
+z_index = 1
+layout_mode = 2
+offset_left = 90.0
+offset_top = 684.0
+offset_right = 162.0
+offset_bottom = 707.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_poidl")
+action_mode = 0
+text = "<< Back
+"
+
+[node name="GridContainer2" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -202.0
+offset_right = -48.0
+offset_bottom = -89.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AcceptButton" type="Button" parent="GridContainer2"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
+action_mode = 0
+text = "Accept
+"
+
+[node name="RandomizeButton" type="Button" parent="GridContainer2"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
+action_mode = 0
+text = "Randomize
+"
+
+[node name="Settings" type="Button" parent="GridContainer2"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
+action_mode = 0
+text = "Settings
+"
+
+[node name="Shop" type="Button" parent="GridContainer2"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
+action_mode = 0
+text = "Shop
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 136.0
+offset_bottom = 64.0
+
+[connection signal="pressed" from="ShipPreviousButton" to="." method="_on_ship_previous_button_pressed"]
+[connection signal="pressed" from="ShipNextButton" to="." method="_on_ship_next_button_pressed"]
+[connection signal="pressed" from="WeaponPreviousButton" to="." method="_on_weapon_previous_button_pressed"]
+[connection signal="pressed" from="WeaponNextButton" to="." method="_on_weapon_next_button_pressed"]
+[connection signal="pressed" from="BombSettingPreviousButton" to="." method="_on_bomb_setting_previous_button_pressed"]
+[connection signal="pressed" from="BombSettingNextButton" to="." method="_on_bomb_setting_next_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="GridContainer2/AcceptButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="GridContainer2/RandomizeButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="GridContainer2/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="GridContainer2/Shop" to="." method="_on_shop_pressed"]

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/main_weapon.tscn" id="2_75g50"]
+[ext_resource type="PackedScene" path="res://player/weapons/slice.tscn" id="2_td1ue"]
 [ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://player/items/bomb.tscn" id="3_0duad"]
-[ext_resource type="Resource" uid="uid://celc63e446bf5" path="res://player/ships/typeA.tres" id="3_hf8c5"]
 [ext_resource type="Texture2D" uid="uid://c35hw3gw3gswt" path="res://assets/Player_ship_16x16.png" id="4_gx51a"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
 [ext_resource type="Texture2D" uid="uid://b6aobhf1c1n66" path="res://assets/Boosters_16x16.png" id="5_kpxme"]
@@ -120,10 +120,13 @@ _data = {
 [node name="Player" type="Area2D" groups=["player"]]
 collision_mask = 31
 script = ExtResource("1_ks4n4")
-main_weapon = ExtResource("2_75g50")
-configuration = ExtResource("3_hf8c5")
-option_weapon = ExtResource("2_75g50")
-bomb_scene = ExtResource("3_0duad")
+cooldown = 0.1
+item_recharge_time = 20.0
+primary_weapon = ExtResource("2_75g50")
+secondary_weapon = ExtResource("2_td1ue")
+num_shots = 1
+option_weapons = Array[PackedScene]([ExtResource("2_75g50"), ExtResource("2_td1ue"), ExtResource("2_td1ue"), ExtResource("2_75g50")])
+item_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")
 
 [node name="Ship" type="Sprite2D" parent="."]

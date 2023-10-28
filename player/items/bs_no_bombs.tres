@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Bomb_setting" load_steps=2 format=3 uid="uid://bky0kst2eax5q"]
+
+[ext_resource type="Script" path="res://player/items/bomb_setting.gd" id="1_0rr2v"]
+
+[resource]
+script = ExtResource("1_0rr2v")
+setting_name = "NoBombs"
+max_bombs = 0
+max_main_weapon_shots = 6

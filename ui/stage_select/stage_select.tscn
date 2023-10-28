@@ -1,20 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://borv5q636p3x1"]
+[gd_scene load_steps=7 format=3 uid="uid://borv5q636p3x1"]
 
 [ext_resource type="Script" path="res://ui/stage_select/stage_select.gd" id="1_ecuyr"]
 [ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="2_4dqn1"]
-[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="2_fbpvc"]
 [ext_resource type="Texture2D" uid="uid://dqk5cpl3h6p17" path="res://ui/stage_select/galaxy.png" id="2_fjdhx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd0wk"]
 bg_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py8jp"]
-bg_color = Color(0.0705882, 0.305882, 0.537255, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.752941, 0.796078, 0.862745, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4mk2"]
 content_margin_left = 1.0
@@ -31,6 +22,14 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py8jp"]
+bg_color = Color(0.0705882, 0.305882, 0.537255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.752941, 0.796078, 0.862745, 1)
 
 [node name="StageSelect" type="Panel"]
 anchors_preset = 15
@@ -79,59 +78,6 @@ vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="ErrorPanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -146.0
-offset_top = -60.0
-offset_right = 146.0
-offset_bottom = 56.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_py8jp")
-
-[node name="ErrorLabel" type="Label" parent="ErrorPanel"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -7.5
-offset_bottom = 7.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
-theme_override_fonts/font = ExtResource("2_fbpvc")
-theme_override_font_sizes/font_size = 24
-text = "An error occurred
-"
-horizontal_alignment = 1
-
-[node name="ErrorCloseButton" type="Button" parent="ErrorPanel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.5
-offset_top = -25.0
-offset_right = 32.5
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
-theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
-theme_override_fonts/font = ExtResource("2_4dqn1")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_w4mk2")
-text = "Close"
 
 [node name="BackButton" type="Button" parent="."]
 z_index = 1
@@ -217,7 +163,6 @@ size = Vector2i(150, 100)
 theme_override_styles/panel = SubResource("StyleBoxFlat_py8jp")
 dialog_autowrap = true
 
-[connection signal="pressed" from="ErrorPanel/ErrorCloseButton" to="." method="_on_error_close_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]

@@ -197,5 +197,6 @@ func _on_stage_select_stage_selected(stage_path):
 	stage_results.path = stage_path
 	begin_game()
 
+
 func _on_title_screen_exit_game():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)

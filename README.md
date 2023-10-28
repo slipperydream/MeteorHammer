@@ -52,6 +52,28 @@ TODOs (not in priority order yet)
 
 - display currently playing song title on a side panel
 
+- create different player ships
+ - speed + shot width differences seem to be standard
+ - fast + narrow
+ - average + 45 degree shot
+ - slow + 60-90 degree shot?
+
+ - ship customization
+    - bombs: more bombs but fewer shots from primary weapon shots (4 & 2)
+    - power: no bombs, but 6 shots?
+    - balance: 3 bombs and 3 shots?
+    - chaining_easier: more time between kills, but grows slower
+    - chaining_higher: less time between kills, but grows faster
+
+ Alternate Weapons
+  - shield
+  - homing missiles
+  - laser
+  - katana
+ 
+ Items
+ - Bombs
+
 Redo code to make components instead of inheritance.
 - Attack
 - Health

@@ -7,10 +7,8 @@ const stage_button = preload("res://ui/stage_select/stage_button.tscn")
 @export_dir var stages_dir
 
 @onready var grid = $MarginContainer/VBoxContainer/GridContainer
-@onready var error_screen = $ErrorPanel
 
 func _ready():
-	error_screen.hide()
 	get_stages(stages_dir)
 	
 func get_stages(path):
@@ -45,8 +43,6 @@ func _on_back_button_pressed():
 	hide()
 	emit_signal("stage_select_cancelled")
 
-func _on_error_close_button_pressed():
-	error_screen.hide()
 
 func _on_settings_pressed():
 	var text = "Sorry, the settings menu isn't implemented yet."

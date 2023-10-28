@@ -211,7 +211,13 @@ action_mode = 0
 text = "Shop
 "
 
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+initial_position = 1
+size = Vector2i(150, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_py8jp")
+dialog_autowrap = true
+
 [connection signal="pressed" from="ErrorPanel/ErrorCloseButton" to="." method="_on_error_close_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Settings" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Shop" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]

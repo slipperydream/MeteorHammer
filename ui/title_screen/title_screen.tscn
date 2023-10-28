@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://duxu01d7kskfo"]
+[gd_scene load_steps=8 format=3 uid="uid://duxu01d7kskfo"]
 
 [ext_resource type="Script" path="res://ui/title_screen.gd" id="1_e7kcj"]
 [ext_resource type="Texture2D" uid="uid://7xdoxqs0d5mo" path="res://assets/planet_background_final.png" id="2_1jrv7"]
-[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="2_n3jpo"]
 [ext_resource type="Texture2D" uid="uid://yvpoqnsnhp20" path="res://ui/title_screen/title.png" id="3_1eu7u"]
 [ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="3_vfonr"]
 
@@ -12,28 +11,13 @@ bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4sjx"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py8jp"]
-bg_color = Color(0.188235, 0.317647, 0.509804, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nb6g"]
+bg_color = Color(0.0705882, 0.305882, 0.537255, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jokb"]
-content_margin_left = 1.0
-content_margin_top = 1.0
-content_margin_right = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(0.996078, 0.996078, 0.996078, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+border_color = Color(0.752941, 0.796078, 0.862745, 1)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -76,7 +60,7 @@ grow_horizontal = 2
 texture = ExtResource("3_1eu7u")
 expand_mode = 1
 
-[node name="MainMenu" type="GridContainer" parent="Panel"]
+[node name="TitleMenu" type="GridContainer" parent="Panel"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 8
@@ -84,14 +68,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -46.5
-offset_top = -53.0
-offset_right = 46.5
-offset_bottom = 53.0
+offset_left = -64.5
+offset_top = -60.0
+offset_right = 64.5
+offset_bottom = 111.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartGameButton" type="Button" parent="Panel/MainMenu"]
+[node name="StartGameButton" type="Button" parent="Panel/TitleMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
@@ -103,7 +87,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "START GAME"
 
-[node name="AttackModeButton" type="Button" parent="Panel/MainMenu"]
+[node name="AttackModeButton" type="Button" parent="Panel/TitleMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
@@ -116,7 +100,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "SCORE ATTACK
 "
 
-[node name="BossSelectButton" type="Button" parent="Panel/MainMenu"]
+[node name="BossSelectButton" type="Button" parent="Panel/TitleMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
@@ -128,7 +112,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "BOSS SELECT"
 
-[node name="ShopButton" type="Button" parent="Panel/MainMenu"]
+[node name="ShopButton" type="Button" parent="Panel/TitleMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
@@ -140,7 +124,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "SHOP"
 
-[node name="SettingsButton" type="Button" parent="Panel/MainMenu"]
+[node name="SettingsButton" type="Button" parent="Panel/TitleMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
@@ -152,7 +136,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "SETTINGS"
 
-[node name="HighScoresButton" type="Button" parent="Panel/MainMenu"]
+[node name="HighScoresButton" type="Button" parent="Panel/TitleMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
@@ -164,71 +148,41 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "HIGH SCORES"
 
-[node name="Popup" type="Panel" parent="."]
-visible = false
-z_index = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -96.0
-offset_top = -73.0
-offset_right = 96.0
-offset_bottom = 73.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_py8jp")
-
-[node name="Warning" type="Label" parent="Popup"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = -29.0
-offset_right = -5.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+[node name="ExitGameButton" type="Button" parent="Panel/TitleMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
 theme_override_fonts/font = ExtResource("3_vfonr")
 theme_override_font_sizes/font_size = 24
-text = "Sorry, the selected feature is not implemented."
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="CloseButton" type="Button" parent="Popup"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.5
-offset_top = -23.0
-offset_right = 20.5
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
-theme_override_fonts/font = ExtResource("2_n3jpo")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_8jokb")
-text = "Close"
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
+text = "EXIT GAME"
 
 [node name="MenuTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 autostart = true
 
-[connection signal="pressed" from="Panel/MainMenu/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="Panel/MainMenu/AttackModeButton" to="." method="_on_attack_mode_button_pressed"]
-[connection signal="pressed" from="Panel/MainMenu/BossSelectButton" to="." method="_on_boss_select_button_pressed"]
-[connection signal="pressed" from="Panel/MainMenu/ShopButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Panel/MainMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Panel/MainMenu/HighScoresButton" to="." method="_on_high_scores_button_pressed"]
-[connection signal="pressed" from="Popup/CloseButton" to="." method="_on_close_button_pressed"]
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+title = "Warning"
+initial_position = 1
+size = Vector2i(150, 100)
+borderless = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nb6g")
+dialog_autowrap = true
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 1
+borderless = true
+
+[connection signal="pressed" from="Panel/TitleMenu/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Panel/TitleMenu/AttackModeButton" to="." method="_on_attack_mode_button_pressed"]
+[connection signal="pressed" from="Panel/TitleMenu/BossSelectButton" to="." method="_on_boss_select_button_pressed"]
+[connection signal="pressed" from="Panel/TitleMenu/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="Panel/TitleMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/TitleMenu/HighScoresButton" to="." method="_on_high_scores_button_pressed"]
+[connection signal="pressed" from="Panel/TitleMenu/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
 [connection signal="timeout" from="MenuTimer" to="." method="_on_menu_timer_timeout"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

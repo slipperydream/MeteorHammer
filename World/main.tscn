@@ -98,6 +98,7 @@ one_shot = true
 [connection signal="start_pressed" from="CanvasLayer/CenterContainer" to="." method="_on_center_container_start_pressed"]
 [connection signal="attack_mode" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_attack_mode"]
 [connection signal="boss_mode" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_boss_mode"]
+[connection signal="exit_game" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_exit_game"]
 [connection signal="start_game" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="results_closed" from="CanvasLayer/StageResults" to="." method="_on_stage_results_results_closed"]
 [connection signal="stage_select_cancelled" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_select_cancelled"]

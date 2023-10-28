@@ -23,8 +23,8 @@ func get_stages(path):
 			file_name = dir.get_next()
 		dir.list_dir_end()
 	else:
-		error_screen.ErrorLabel.text = "An error occurred trying to access the path %s" % path
-		error_screen.show()
+		var text = "An error occurred trying to access the path %s" % path
+		display_popup(text)
 	
 func create_stage_button(stage_path, stage_name):
 	var btn = stage_button.instantiate()
@@ -33,6 +33,10 @@ func create_stage_button(stage_path, stage_name):
 	grid.add_child(btn)
 	btn.connect("stage_selected", _on_stage_selected)
 
+func display_popup(text):
+	$AcceptDialog.set_text(text)
+	$AcceptDialog.popup_centered()
+	
 func _on_stage_selected(stage):
 	emit_signal("stage_selected", stage)
 	hide()
@@ -43,3 +47,11 @@ func _on_back_button_pressed():
 
 func _on_error_close_button_pressed():
 	error_screen.hide()
+
+func _on_settings_pressed():
+	var text = "Sorry, the settings menu isn't implemented yet."
+	display_popup(text)
+
+func _on_shop_pressed():
+	var text = "Sorry, the shop menu isn't implemented yet."
+	display_popup(text)

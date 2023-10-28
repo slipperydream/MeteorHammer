@@ -97,7 +97,11 @@ func _input(_event):
 	if Input.is_action_just_pressed("pause_game"):
 		current_game_state = game_state.PAUSED
 		emit_signal("pause_game")
-	
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		get_tree().quit() # default behavior
+		
 func _on_enemy_died(value):
 	if scoring_chain_active:
 		scoring_multiplier += 1
@@ -192,3 +196,6 @@ func _on_stage_select_stage_selected(stage_path):
 	stages.append(stage_path)
 	stage_results.path = stage_path
 	begin_game()
+
+func _on_title_screen_exit_game():
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)

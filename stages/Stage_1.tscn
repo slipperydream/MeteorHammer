@@ -237,7 +237,7 @@ wave_name = "mines"
 wave_start_time = 25
 spawns = Array[ExtResource("3_ht83h")]([SubResource("Resource_5vilv"), SubResource("Resource_re6hh"), SubResource("Resource_a2j7s"), SubResource("Resource_ea5ve"), SubResource("Resource_n573u")])
 
-[node name="Stage_1" type="Area2D" groups=["levels"]]
+[node name="Stage_1" type="Area2D" groups=["stage"]]
 script = ExtResource("1_p1jaf")
 title = "Attack on Yz"
 waves = Array[ExtResource("2_dgbhq")]([SubResource("Resource_78suo"), SubResource("Resource_pcpba"), SubResource("Resource_2p0i8")])

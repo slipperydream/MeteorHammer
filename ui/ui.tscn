@@ -18,7 +18,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomBar/Item:theme_override_styles/normal:border_color")
+tracks/0/path = NodePath("BottomBar/Bomb:theme_override_styles/normal:border_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,7 +30,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomBar/Item:modulate")
+tracks/1/path = NodePath("BottomBar/Bomb:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -74,7 +74,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomBar/Item:modulate")
+tracks/0/path = NodePath("BottomBar/Bomb:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -86,7 +86,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomBar/Item:theme_override_styles/normal:border_color")
+tracks/1/path = NodePath("BottomBar/Bomb:theme_override_styles/normal:border_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -101,7 +101,7 @@ resource_name = "item_recharged"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomBar/Item:theme_override_styles/normal:border_color")
+tracks/0/path = NodePath("BottomBar/Bomb:theme_override_styles/normal:border_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -116,7 +116,7 @@ resource_name = "item_used"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomBar/Item:theme_override_styles/normal:border_color")
+tracks/0/path = NodePath("BottomBar/Bomb:theme_override_styles/normal:border_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -129,10 +129,10 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_32n0a"]
 _data = {
 "RESET": SubResource("Animation_cgqaq"),
-"boss_warning": SubResource("Animation_ax065"),
-"item_charging": SubResource("Animation_0wnln"),
-"item_recharged": SubResource("Animation_ken60"),
-"item_used": SubResource("Animation_y4u8q")
+"bomb_charging": SubResource("Animation_0wnln"),
+"bomb_recharged": SubResource("Animation_ken60"),
+"bomb_used": SubResource("Animation_y4u8q"),
+"boss_warning": SubResource("Animation_ax065")
 }
 
 [node name="UI" type="Control" groups=["ui"]]
@@ -246,7 +246,7 @@ theme_override_font_sizes/font_size = 32
 text = "Credits: 3"
 vertical_alignment = 2
 
-[node name="Weapon" type="Label" parent="BottomBar"]
+[node name="MainWeapon" type="Label" parent="BottomBar"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_85hi6")
@@ -255,7 +255,16 @@ text = "Beam"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Item" type="Label" parent="BottomBar"]
+[node name="SpecialWeapon" type="Label" parent="BottomBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_85hi6")
+theme_override_font_sizes/font_size = 32
+text = "Beam"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Bomb" type="Label" parent="BottomBar"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_85hi6")

@@ -7,7 +7,6 @@ signal bomb_charging
 signal bomb_recharged
 signal bomb_used
 signal weapon_changed
-signal bomb_changed
 signal player_hit
 
 var lives = 3
@@ -33,6 +32,9 @@ var option_index = Option_Formation.SPREAD
 @onready var shipsize : Vector2 = $Ship.texture.get_size()
 @onready var left_option = $Ship/LeftOption
 @onready var right_option = $Ship/RightOption
+@onready var bomb_timer = $BombTimer
+@onready var gun_cooldown = $GunCooldown
+@onready var invuln_timer = $InvulnerabilityTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -83,10 +85,10 @@ func _input(event):
 func make_invulnerable():
 	invulnerable = true
 	$AnimationPlayer.play("invlunerable")
-	$InvulnerabilityTimer.start()	
+	invuln_timer.start()	
 			
 func reset():
-	$GunCooldown.wait_time = cooldown
+	gun_cooldown.wait_time = cooldown
 	if not visible:
 		show()
 	can_shoot = true
@@ -95,7 +97,7 @@ func special_weapon_fire():
 	if can_shoot == false:
 		return
 	can_shoot = false
-	$GunCooldown.start()	
+	gun_cooldown.start()	
 	for i in range(num_shots):
 		var weapon = special_weapon.instantiate()
 		get_tree().root.add_child(weapon)
@@ -112,7 +114,7 @@ func main_weapon_fire():
 	if can_shoot == false:
 		return
 	can_shoot = false
-	$GunCooldown.start()	
+	gun_cooldown.start()	
 	for i in range(num_shots):
 		var weapon = main_weapon.instantiate()
 		get_tree().root.add_child(weapon)
@@ -194,7 +196,7 @@ func take_damage(_value):
 	if invulnerable: 
 		return
 		
-	if $ItemCharge.is_stopped():
+	if bomb_timer.is_stopped():
 		use_bomb()
 		return
 		
@@ -209,14 +211,14 @@ func take_damage(_value):
 		out_of_lives.emit()
 	
 func use_bomb():	
-	if $ItemCharge.is_stopped():
+	if bomb_timer.is_stopped():
 		make_invulnerable()
 		var item = bomb_scene.instantiate()
 		get_tree().root.add_child(item)
 		item.execute(position)
 		emit_signal("bomb_used")
-		$ItemCharge.wait_time = bomb_recharge_time
-		$ItemCharge.start()
+		bomb_timer.wait_time = bomb_recharge_time
+		bomb_timer.start()
 		emit_signal("bomb_charging")
 	else:
 		print("waiting on item timer to recharge")
@@ -233,17 +235,18 @@ func _on_main_player_start(num_lives, _credits):
 	remove_bullets()
 	lives = num_lives
 	reset()
-	$ItemCharge.wait_time = bomb_recharge_time
-	$ItemCharge.start()
+	bomb_timer.wait_time = bomb_recharge_time
+	bomb_timer.start()
 	emit_signal("bomb_charging")
-
-func _on_bomb_charge_timeout():
-	emit_signal("bomb_recharged")
 
 func _on_invulnerability_timer_timeout():
 	$AnimationPlayer.stop()
 	invulnerable = false
 
-func _on_main_end_stage():
+func _on_main_end_stage(_current, _results):
 	remove_bullets()
 	hide()
+
+
+func _on_bomb_timer_timeout():
+	emit_signal("bomb_recharged")

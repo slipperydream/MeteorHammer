@@ -21,8 +21,8 @@ buses/default_bus_layout="res://sound/default_bus_layout.tres"
 
 [autoload]
 
+BackgroundMusic="*res://sound/background_music.tscn"
 AudioStreamManager="*res://sound/AudioStreamManager.gd"
-BackgroundMusic="*res://sound/background_music.gd"
 
 [display]
 

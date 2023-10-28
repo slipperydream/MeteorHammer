@@ -170,7 +170,7 @@ shape = SubResource("RectangleShape2D_pq5w0")
 [node name="GunCooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="ItemCharge" type="Timer" parent="."]
+[node name="BombTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
 
@@ -185,5 +185,5 @@ libraries = {
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
-[connection signal="timeout" from="ItemCharge" to="." method="_on_item_charge_timeout"]
+[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]

@@ -21,7 +21,7 @@ func _process(_delta):
 	pass
 
 func show_stage_label(stage):
-	stage_label.text = "Stage %d" % (stage + 1)
+	stage_label.text = "Stage %d" % (stage)
 	stage_label.show()
 	await get_tree().create_timer(2).timeout
 	stage_label.hide()

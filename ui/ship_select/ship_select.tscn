@@ -416,9 +416,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 38.0
+offset_left = 38.5
 offset_top = 55.0
-offset_right = 104.0
+offset_right = 187.5
 offset_bottom = 79.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -428,9 +428,8 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 
 theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Type A
+text = "Starting Bombs:
 "
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MaxBombs" type="Label" parent="."]
@@ -440,9 +439,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 38.0
+offset_left = 38.5
 offset_top = 82.0
-offset_right = 104.0
+offset_right = 149.5
 offset_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -452,8 +451,7 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 
 theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Speed
-"
+text = "Max Bombs:"
 vertical_alignment = 1
 
 [node name="MaxOptions" type="Label" parent="."]
@@ -475,7 +473,7 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 
 theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Shot Width
+text = "Options: 
 "
 vertical_alignment = 1
 
@@ -486,9 +484,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 38.0
+offset_left = 195.0
 offset_top = 55.0
-offset_right = 104.0
+offset_right = 219.0
 offset_bottom = 79.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -498,9 +496,8 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 
 theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Type A
+text = "3
 "
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MaxBombsCounter" type="Label" parent="."]
@@ -510,9 +507,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 38.0
+offset_left = 195.0
 offset_top = 82.0
-offset_right = 104.0
+offset_right = 219.0
 offset_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -522,7 +519,7 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 
 theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Speed
+text = "3
 "
 vertical_alignment = 1
 
@@ -533,9 +530,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 38.5
+offset_left = 195.0
 offset_top = 110.0
-offset_right = 141.5
+offset_right = 219.0
 offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -545,7 +542,7 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 
 theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Shot Width
+text = "3
 "
 vertical_alignment = 1
 

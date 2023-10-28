@@ -4,12 +4,12 @@ extends Control
 @onready var multiplier_label = $TopBarRight/MultiplierLabel
 @onready var lives_counter = $BottomBar/PlayerLivesLabel
 @onready var credits_counter = $BottomBar/PlayerCreditsLabel
-@onready var weapon_label = $BottomBar/Weapon
-@onready var item_label = $BottomBar/Item
+@onready var weapon_label = $BottomBar/MainWeapon
+@onready var bomb_label = $BottomBar/Bomb
 
 var num_lives = 0
 var weapon : String = 'Beam'
-var item : String = 'Bomb'
+var bomb : String = 'Bomb'
 
 func _ready():
 	$BossLabel.visible = false
@@ -48,22 +48,16 @@ func _on_main_player_start(lives, credits):
 	if credits <= 0:
 		$Stopwatch.stop()
 
-func _on_player_item_recharged():
-	$AnimationPlayer.play("item_recharged")
+func _on_player_bomb_recharged():
+	$AnimationPlayer.play("bomb_recharged")
 
-func _on_player_item_changed(new_item):
-	item_label.text = new_item
-
-func _on_player_item_used():
+func _on_player_bomb_used():
 	$AnimationPlayer.stop()
-	$AnimationPlayer.play("item_used")
+	$AnimationPlayer.play("bomb_used")
 
 func _on_player_weapon_changed(new_weapon):
 	if weapon_label:
 		weapon_label.text = new_weapon
-
-func _on_player_item_charging():
-	$AnimationPlayer.play("item_charging")
 
 func _on_boss_spawned():
 	$AnimationPlayer.play("boss_warning")
@@ -89,7 +83,10 @@ func _on_main_score_multiplier(multiplier):
 	else:
 		multiplier_label.hide()
 
-func _on_main_end_stage():
+func _on_main_end_stage(_current, _results):
 	$Stopwatch.stop()
 	var time_spent = $Stopwatch.time_elapsed
 	hide()
+
+func _on_player_bomb_charging():
+	$AnimationPlayer.play("bomb_charging")

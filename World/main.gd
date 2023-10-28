@@ -18,7 +18,8 @@ signal beat_game
 
 var score = 0
 var current_game_state : game_state = game_state.TITLE
-var current_stage : int = 0
+var stage_num : int = 1
+var stage : PackedScene
 var boss_spawned = false
 var scoring_chain_active : bool = false
 var scoring_multiplier : int = 1
@@ -45,12 +46,12 @@ var stage_results = {
 @onready var stage_select = $CanvasLayer/StageSelect
 @onready var results_screen = $CanvasLayer/StageResults
 
-var stages : Array = []
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_game_state = game_state.TITLE
 	title_screen.show()
+	BackgroundMusic.fade_in()
+	BackgroundMusic.play_title_song()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -60,29 +61,35 @@ func _process(_delta):
 func begin_game():
 	score = 0
 	emit_signal("score_changed", score)
-	current_stage = 0
-	AudioStreamManager.clear_queue()
-	AudioStreamManager.start()
+	stage_num = 1
+	kill_sfx()
 	emit_signal("player_start",start_lives, credits)
 	current_game_state = game_state.RUNNING
-	load_stage(current_stage)
+	play_stage()
 
 func check_for_stage_clear():
 	if get_tree().get_nodes_in_group("boss").is_empty():
 		boss_spawned = false
 		stage_results.boss_killed = true
-		emit_signal("end_stage", current_stage, stage_results)
+		emit_signal("end_stage", stage_num, stage_results)
+	
+func kill_sfx():
+	AudioStreamManager.clear_queue()
+	AudioStreamManager.start()
 		
-func load_stage(selected_stage):
+func play_stage():
 	reset_stage_results()
 	var last_stage = get_tree().get_first_node_in_group("stage")
 	if last_stage:
 		last_stage.queue_free()
-	var stage = load(stages[selected_stage])
+		
+	BackgroundMusic.fade_in()
+	BackgroundMusic.play_stage_theme(stage_num)
+	
 	var stage_instance = stage.instantiate()
 	add_child(stage_instance)
 	stage_instance.start()
-	emit_signal("new_stage", selected_stage)
+	emit_signal("new_stage", stage_num)
 	
 func reset_stage_results():
 	stage_results.score = 0
@@ -118,6 +125,7 @@ func _on_enemy_died(value):
 		$ScoringTimer.start()
 		scoring_chain_active = true
 	score += value * scoring_multiplier	
+	stage_results.score = score
 	emit_signal("score_multiplier", scoring_multiplier)
 	stage_results.enemies_killed += 1
 	emit_signal("score_changed", score)
@@ -131,7 +139,7 @@ func _on_player_out_of_lives():
 	credits = max(0, credits)
 	var lives = start_lives
 	if credits == 0:
-		emit_signal("end_stage", current_stage, stage_results)
+		emit_signal("end_stage", stage_num, stage_results)
 		current_game_state = game_state.GAME_OVER
 		emit_signal("game_over")
 		# then show stage results
@@ -150,22 +158,28 @@ func _on_scoring_timer_timeout():
 	emit_signal("score_multiplier", scoring_multiplier)
 
 func _on_boss_spawned():
+	BackgroundMusic.fade_out()
 	boss_spawned = true
 	$Background.stop()
+	await get_tree().create_timer(0.5).timeout
+	BackgroundMusic.play_boss_theme(stage_num)
+	BackgroundMusic.fade_in()
 	stage_results.progress = 100
 	
 func _on_center_container_game_unpaused():
 	current_game_state = game_state.RUNNING
 	get_tree().paused = false
 
-
 func _on_title_screen_boss_mode():
-	stages.append("res://stages/Stage_1Boss.tscn")
-	await get_tree().create_timer(2).timeout
+	stage = load("res://stages/Stage_1Boss.tscn")
+	BackgroundMusic.fade_out()
+	await get_tree().create_timer(1).timeout
 	begin_game()
 
 func _on_title_screen_attack_mode():
-	stages.append("res://stages/Stage_1.tscn")
+	stage = load("res://stages/Stage_1.tscn")
+	BackgroundMusic.fade_out()
+	await get_tree().create_timer(1).timeout
 	begin_game()
 
 func _on_player_player_hit():
@@ -177,9 +191,9 @@ func _on_new_background(file):
 func _on_beat_game():
 	_on_game_over()
 
-func _on_end_stage():
-	AudioStreamManager.clear_queue()
-	AudioStreamManager.stop()
+func _on_end_stage(_current, _results):
+	BackgroundMusic.fade_out()
+	kill_sfx()
 
 func _on_stage_results_results_closed():
 	# need to make this aware if we are in story or attack mode
@@ -190,13 +204,15 @@ func _on_title_screen_start_game():
 
 func _on_stage_select_stage_select_cancelled():
 	title_screen.show()
-	stages.clear()
+	stage = null
 
 func _on_stage_select_stage_selected(stage_path):
-	stages.append(stage_path)
+	stage = load(stage_path)
 	stage_results.path = stage_path
 	begin_game()
 
-
 func _on_title_screen_exit_game():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	
+func _on_stage_results_retry_level():
+	play_stage()

@@ -24,9 +24,9 @@ var bomb_index : int = 0
 @onready var selected_bomb_setting = $BombSetting/Label
 @onready var prev_bomb_setting = $BombSettingPreviousButton
 @onready var next_bomb_setting = $BombSettingNextButton
-@onready var starting_bombs = $StartingBombs
-@onready var max_bombs = $MaxBombs
-@onready var max_options = $MaxOptions
+@onready var starting_bombs = $StartingBombsCounter
+@onready var max_bombs = $MaxBombsCounter
+@onready var max_options = $MaxOptionsCounter
 
 @onready var random_button = $GridContainer2/RandomizeButton
 @onready var accept_button = $GridContainer2/AcceptButton
@@ -57,9 +57,9 @@ func update_special_weapon():
 
 func update_bomb_settings():
 	selected_bomb_setting.text = bomb_settings[bomb_index].setting_name
-	starting_bombs.text = "Starting Bombs: %d" % bomb_settings[bomb_index].starting_bombs
-	max_bombs.text = "Max Bombs: %d" % bomb_settings[bomb_index].max_bombs
-	max_options.text = "Options: %d" % bomb_settings[bomb_index].max_options
+	starting_bombs.text = str(bomb_settings[bomb_index].starting_bombs)
+	max_bombs.text = str(bomb_settings[bomb_index].max_bombs)
+	max_options.text = str(bomb_settings[bomb_index].max_options)
 	
 func _on_settings_pressed():
 	var text = "Sorry, the settings menu isn't implemented yet."

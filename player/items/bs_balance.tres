@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_0jcgs")
 setting_name = "Balance"
-max_bombs = 4
-max_main_weapon_shots = 4
+max_bombs = 3
+starting_bombs = 1
+max_options = 4

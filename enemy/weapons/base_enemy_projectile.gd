@@ -23,6 +23,8 @@ func _process(delta):
 		BulletConstants.BulletTypes.STRAIGHT:
 			position = position + speed * delta * direction 
 		BulletConstants.BulletTypes.CURVED:
+			#Try this one out
+			#position = position + speed * direction.rotated(added_rotation) * delta
 			position = position + speed * delta * (direction * added_rotation)
 		BulletConstants.BulletTypes.SPIRALING:
 			position = position + speed * delta * direction

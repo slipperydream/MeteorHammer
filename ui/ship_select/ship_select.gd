@@ -12,17 +12,21 @@ var bomb_index : int = 0
 @onready var selected_ship_img = $Panel/Ship/Control/Sprite2D
 @onready var prev_ship = $ShipPreviousButton
 @onready var next_ship = $ShipNextButton
-@onready var ship_label = $ShipLabel
+@onready var ship_name = $ShipName
+@onready var ship_speed = $Speed
+@onready var ship_shot_width = $ShotWidth
 
-@onready var selected_special_weapon_img = $Panel/SpecialWeapon/Control/Sprite2D
+@onready var selected_special_weapon_img = $SpecialWeapon/Control/Sprite2D
 @onready var prev_special_weapon = $WeaponPreviousButton
 @onready var next_special_weapon = $WeaponNextButton
-@onready var special_weapon_label = $Alternatespecial_weaponLabel
+@onready var special_weapon_label = $SpecialWeaponLabel
 
-@onready var selected_bomb_setting = $BombSetting/Description
+@onready var selected_bomb_setting = $BombSetting/Label
 @onready var prev_bomb_setting = $BombSettingPreviousButton
 @onready var next_bomb_setting = $BombSettingNextButton
-@onready var bomb_setting_label = $BombSettingLabel
+@onready var starting_bombs = $StartingBombs
+@onready var max_bombs = $MaxBombs
+@onready var max_options = $MaxOptions
 
 @onready var random_button = $GridContainer2/RandomizeButton
 @onready var accept_button = $GridContainer2/AcceptButton
@@ -42,16 +46,20 @@ func update_ship():
 	selected_ship_img.texture = ships[ship_index].sprite
 	selected_ship_img.hframes = 3
 	selected_ship_img.frame = 1
-	pass
+	ship_name.text = ships[ship_index].name
+	
+	ship_speed.value = ships[ship_index].speed
+	ship_shot_width.value = ships[ship_index].shot_width
 
 func update_special_weapon():
 	#selected_special_weapon_img.texture = special_weapons[special_weapon_index].sprite
 	pass
 
 func update_bomb_settings():
-	var text = "Max Bombs: %d\nMax Shots %d" % [bomb_settings[bomb_index].max_bombs, bomb_settings[bomb_index].max_main_weapon_shots]
-	selected_bomb_setting.text = text
-	bomb_setting_label.text = bomb_settings[bomb_index].setting_name
+	selected_bomb_setting.text = bomb_settings[bomb_index].setting_name
+	starting_bombs.text = "Starting Bombs: %d" % bomb_settings[bomb_index].starting_bombs
+	max_bombs.text = "Max Bombs: %d" % bomb_settings[bomb_index].max_bombs
+	max_options.text = "Options: %d" % bomb_settings[bomb_index].max_options
 	
 func _on_settings_pressed():
 	var text = "Sorry, the settings menu isn't implemented yet."

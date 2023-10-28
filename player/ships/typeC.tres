@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_f11cc")
+name = "Type C"
 sprite = ExtResource("2_xoh4n")
 speed = 0.75
 shot_width = 60.0

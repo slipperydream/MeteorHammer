@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_nwgjj")
-setting_name = "Max_Bombs"
+setting_name = "Bombs Away"
 max_bombs = 6
-max_main_weapon_shots = 3
+starting_bombs = 5
+max_options = 2

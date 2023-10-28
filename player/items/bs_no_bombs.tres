@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_0rr2v")
-setting_name = "NoBombs"
+setting_name = "Guns Not Bombs"
 max_bombs = 0
-max_main_weapon_shots = 6
+starting_bombs = 0
+max_options = 6

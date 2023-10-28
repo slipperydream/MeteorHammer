@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_m7u8i")
+name = "Type A"
 sprite = ExtResource("2_g1jv8")
 speed = 1.25
 shot_width = 20.0

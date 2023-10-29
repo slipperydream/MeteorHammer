@@ -14,12 +14,13 @@ var lives = 3
 @export var base_speed : int = 2
 @export var cooldown : float = 0.1
 @export var main_weapon: PackedScene
-@export var special_weapon : Special_weapon = load("res://player/weapons/katana.tres")
-@onready var ship_config : Ship_configuration = load("res://player/ships/typeC.tres")
-@onready var bomb_config : Bomb_setting = load("res://player/items/bs_balance.tres")
 @export var bomb_scene : PackedScene
 @export var explosion_sound : AudioStreamWAV
 @export var firing_stations : Array[Marker2D] = []
+
+@onready var ship_config : Ship_configuration = load("res://player/ships/typeC.tres")
+@onready var special_config : Special_weapon = load("res://player/weapons/katana.tres")
+@onready var bomb_config : Bomb_setting = load("res://player/items/bs_balance.tres")
 
 var x_offset : int = 20
 var y_offset : int = 24
@@ -49,19 +50,21 @@ func _ready():
 func start():
 	reset()
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
-	configure()
+	special_cooldown.start()
+	emit_signal("weapon_changed", special_config.name)
+	bomb_timer.start()
+	emit_signal("bomb_charging", bomb_config.recharge_time)
 
-func configure():
+func configure(in_ship_config, in_special_config, in_bomb_setting):
+	ship_config = in_ship_config
+	special_config = in_special_config
+	bomb_config = in_bomb_setting
 	$Ship.texture = ship_config.sprite
 	speed = base_speed * ship_config.speed 
 	set_firing_stations()
 	switch_option_formation()
 	bomb_timer.wait_time = 0.1
-	bomb_timer.start()
-	emit_signal("bomb_charging", 5) #bomb_config.recharge_time)
-	special_cooldown.wait_time = special_weapon.wait_time
-	special_cooldown.start()
-	emit_signal("weapon_changed", special_weapon.name)
+	special_cooldown.wait_time = special_config.wait_time
 	
 func set_firing_stations():
 	var i = 0
@@ -93,8 +96,8 @@ func _process(delta):
 	
 	if Input.is_action_pressed("main_weapon_fire"):
 		main_weapon_fire()
-	elif Input.is_action_just_pressed("special_weapon_fire"):
-		special_weapon_fire()
+	elif Input.is_action_just_pressed("special_fire"):
+		special_fire()
 	
 	if assist_mode_enabled:
 		if Input.is_action_just_pressed("assist_mode_fire"):
@@ -117,12 +120,12 @@ func reset():
 		show()
 	can_shoot = true
 
-func special_weapon_fire():	
+func special_fire():	
 	if special_available == false:
 		return
 	special_available = false
 	special_cooldown.start()	
-	var weapon = special_weapon.weapon.instantiate()
+	var weapon = special_config.weapon.instantiate()
 	get_tree().root.add_child(weapon)
 	if weapon.title.to_lower() == "mine":
 		weapon.start(global_position + Vector2(0, 64), Vector2.DOWN.rotated(rotation))

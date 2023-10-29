@@ -59,6 +59,7 @@ func update_bomb_settings():
 	selected_bomb_setting.text = bomb_settings[bomb_index].setting_name
 	starting_bombs.text = str(bomb_settings[bomb_index].starting_bombs)
 	max_bombs.text = str(bomb_settings[bomb_index].max_bombs)
+	print(bomb_settings[bomb_index].max_bombs)
 	max_options.text = str(bomb_settings[bomb_index].max_options)
 	
 func _on_settings_pressed():

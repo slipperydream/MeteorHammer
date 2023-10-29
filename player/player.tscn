@@ -120,6 +120,9 @@ _data = {
 [node name="Player" type="Area2D" node_paths=PackedStringArray("firing_stations") groups=["player"]]
 collision_mask = 31
 script = ExtResource("1_ks4n4")
+base_speed = null
+cooldown = null
+bomb_recharge_time = null
 main_weapon = ExtResource("2_75g50")
 bomb_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")
@@ -158,6 +161,9 @@ autoplay = "forward"
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_pq5w0")
 
+[node name="SpecialWeaponTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="GunCooldown" type="Timer" parent="."]
 one_shot = true
 
@@ -175,6 +181,7 @@ libraries = {
 }
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="SpecialWeaponTimer" to="." method="_on_special_weapon_timer_timeout"]
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]

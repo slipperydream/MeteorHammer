@@ -85,13 +85,14 @@ func die():
 	emit_signal("died", points)
 	get_tree().call_group("enemy_weapon", "queue_free")
 	explode()
-	remove()
+	
 
 func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("explode")
 	await $AnimationPlayer.animation_finished
+	remove()
 		
 func remove():
 	queue_free()	
@@ -103,7 +104,6 @@ func steer_towards_player(delta):
 			var desired = vec_to_player * speed
 			steer = (desired - direction).normalized() * steer_force * delta
 	return steer
-
 	
 func _on_player_died():
 	pass

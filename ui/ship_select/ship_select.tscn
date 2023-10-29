@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://dqrp2a1yyocuq"]
+[gd_scene load_steps=22 format=3 uid="uid://dqrp2a1yyocuq"]
 
 [ext_resource type="Script" path="res://ui/ship_select/ship_select.gd" id="1_7nx0c"]
 [ext_resource type="Resource" uid="uid://celc63e446bf5" path="res://player/ships/typeA.tres" id="2_kjrhv"]
 [ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="2_s0frm"]
 [ext_resource type="Resource" uid="uid://d0wi48w2l1og6" path="res://player/ships/typeB.tres" id="3_kcjrv"]
 [ext_resource type="Resource" uid="uid://sg1jttj0fwhq" path="res://player/ships/typeC.tres" id="4_fb8cj"]
+[ext_resource type="Resource" uid="uid://d0x51n0wgj6ah" path="res://player/weapons/mine.tres" id="5_6n2b7"]
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="5_nqfqe"]
 [ext_resource type="Resource" uid="uid://dwqnuw5siohn3" path="res://player/items/bs_balance.tres" id="5_v0tyv"]
 [ext_resource type="Texture2D" uid="uid://phyo4rl3na6v" path="res://ui/left_arrow.png" id="5_yawv7"]
@@ -39,6 +40,18 @@ expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oorie"]
 bg_color = Color(0.388235, 0.780392, 0.301961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hule7"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.14902, 0.168627, 0.266667, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5qle"]
 bg_color = Color(0.0705882, 0.305882, 0.537255, 1)
@@ -89,6 +102,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7nx0c")
 ships = Array[Resource("res://player/ships/ship_configuration.gd")]([ExtResource("2_kjrhv"), ExtResource("3_kcjrv"), ExtResource("4_fb8cj")])
+special_weapons = Array[Resource("res://player/weapons/special_weapon.gd")]([ExtResource("5_6n2b7")])
 bomb_settings = Array[Resource("res://player/items/bomb_setting.gd")]([ExtResource("5_v0tyv"), ExtResource("6_mf4qx"), ExtResource("7_6wn6n")])
 
 [node name="Panel" type="Panel" parent="."]
@@ -339,6 +353,31 @@ offset_right = 342.0
 offset_bottom = 384.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("6_tp3a0")
+
+[node name="SpecialWeaponDescription" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 39.0
+offset_top = -119.0
+offset_right = 250.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
+theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_hule7")
+text = "Shot Width
+"
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="SpecialWeaponLabel" type="Label" parent="."]
 layout_mode = 1
@@ -672,5 +711,5 @@ offset_bottom = 64.0
 [connection signal="pressed" from="GridContainer2/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="GridContainer2/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="GridContainer2/Shop" to="." method="_on_shop_pressed"]
-[connection signal="pressed" from="GridContainer2/RandomizeButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="GridContainer2/RandomizeButton" to="." method="_on_randomize_button_pressed"]
 [connection signal="pressed" from="GridContainer2/AcceptButton" to="." method="_on_settings_pressed"]

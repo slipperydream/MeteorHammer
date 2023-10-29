@@ -11,20 +11,24 @@ signal player_hit
 
 var lives = 3
 
-@export var base_speed : int = 150
+@export var base_speed : int = 2
 @export var cooldown : float = 0.1
 @export var bomb_recharge_time : float = 20.0
 @export var main_weapon: PackedScene
-@export var special_weapon : PackedScene
-@onready var config : Ship_configuration = load("res://player/ships/typeC.tres")
+@export var special_weapon : Special_weapon
+@onready var ship_config : Ship_configuration = load("res://player/ships/typeA.tres")
+@onready var bomb_config : Bomb_setting = load("res://player/items/bs_balance.tres")
 @export var bomb_scene : PackedScene
 @export var explosion_sound : AudioStreamWAV
 @export var firing_stations : Array[Firing_station] = []
-@export var x_offset : int = 20
-@export var y_offset : int = 24
 
+var x_offset : int = 20
+var y_offset : int = 24
 var speed : int
+var max_bombs : int
+var bombs : int 
 var can_shoot : bool = true
+var special_available : bool = false
 var invulnerable : bool = false
 var assist_mode_enabled = false
 enum Option_Formation { SPREAD, TAIL, SIDES, FRONT}
@@ -34,6 +38,7 @@ var option_index = Option_Formation.FRONT
 @onready var shipsize : Vector2 = $Ship.texture.get_size()
 @onready var bomb_timer = $BombTimer
 @onready var gun_cooldown = $GunCooldown
+@onready var special_cooldown = $SpecialWeaponTimer
 @onready var invuln_timer = $InvulnerabilityTimer
 @onready var left_option = $Ship/LeftOption
 @onready var right_option = $Ship/RightOption
@@ -41,20 +46,25 @@ var option_index = Option_Formation.FRONT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset()
-	$Ship.texture = config.sprite
-	speed = base_speed * (config.speed * 1.5 / 100)
 	emit_signal("weapon_changed", "beam")
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
+	configure()
+
+func configure():
+	$Ship.texture = ship_config.sprite
+	speed = base_speed * ship_config.speed 
 	set_firing_stations(5)
 	switch_option_formation()
-
+	max_bombs = bomb_config.max_bombs
+	bombs = bomb_config.starting_bombs
+	special_cooldown = special_weapon.wait_time
+	special_cooldown.start()
+	
 func set_firing_stations(value):
 	var i = 0
 	while i < firing_stations.size():
-		firing_stations[i].start(Vector2(global_position.x - x_offset + (i * config.spacing), global_position.y - y_offset))
-		print("sfs ship %v" % global_position)
-		print("sfs station %v" % firing_stations[i].global_position)
-		firing_stations[i].angle = config.start_angle + (i * config.canting)
+		firing_stations[i].start(Vector2(global_position.x - x_offset + (i * ship_config.spacing), global_position.y - y_offset))
+		firing_stations[i].angle = ship_config.start_angle + (i * ship_config.canting)
 		i += 1
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -105,14 +115,15 @@ func reset():
 	can_shoot = true
 
 func special_weapon_fire():	
-	if can_shoot == false:
+	if special_available == false:
 		return
-	can_shoot = false
-	gun_cooldown.start()	
-	var weapon = special_weapon.instantiate()
+	special_available = false
+	special_cooldown.start()	
+	var weapon = special_weapon.weapon.instantiate()
 	get_tree().root.add_child(weapon)
-	var angle = deg_to_rad(90)
-	weapon.start(position + Vector2(0, -8), Vector2.RIGHT.rotated(angle))	
+	if weapon.title.to_lower() == "mine":
+		weapon.start(position + Vector2(0, 64), Vector2.DOWN.rotated(rotation))
+		
 	if not assist_mode_enabled:
 		options_fire()
 		
@@ -125,8 +136,6 @@ func main_weapon_fire():
 	for i in firing_stations:
 		var weapon = main_weapon.instantiate()
 		get_tree().root.add_child(weapon)
-		print("station %v" % i.global_position)
-		print(global_position)
 		weapon.start(i.global_position, Vector2.RIGHT.rotated(deg_to_rad(i.angle)), i.angle)	
 	if not assist_mode_enabled:
 		options_fire()
@@ -206,7 +215,7 @@ func take_damage(_value):
 		out_of_lives.emit()
 	
 func use_bomb():	
-	if bomb_timer.is_stopped():
+	if bomb_timer.is_stopped() and bombs > 0:
 		make_invulnerable()
 		var item = bomb_scene.instantiate()
 		get_tree().root.add_child(item)
@@ -244,3 +253,6 @@ func _on_main_end_stage(_current, _results):
 
 func _on_bomb_timer_timeout():
 	emit_signal("bomb_recharged")
+
+func _on_special_weapon_timer_timeout():
+	special_available = true

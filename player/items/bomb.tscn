@@ -67,11 +67,10 @@ _data = {
 "explode": SubResource("Animation_taoce")
 }
 
-[node name="item" type="Area2D"]
+[node name="Bomb" type="Area2D"]
 collision_layer = 4
 collision_mask = 26
 script = ExtResource("1_f5b0g")
-power = 15
 activation_sound = ExtResource("2_gype8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

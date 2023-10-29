@@ -4,7 +4,7 @@ signal ship_select_cancelled
 
 @export var ships : Array[Ship_configuration] = []
 var ship_index : int = 0
-@export var special_weapons : Array[Texture2D]
+@export var special_weapons : Array[Special_weapon]
 var special_weapon_index : int = 0
 @export var bomb_settings : Array[Bomb_setting] = []
 var bomb_index : int = 0
@@ -19,6 +19,7 @@ var bomb_index : int = 0
 @onready var selected_special_weapon_img = $SpecialWeapon/Control/Sprite2D
 @onready var prev_special_weapon = $WeaponPreviousButton
 @onready var next_special_weapon = $WeaponNextButton
+@onready var special_description = $SpecialWeaponDescription
 @onready var special_weapon_label = $SpecialWeaponLabel
 
 @onready var selected_bomb_setting = $BombSetting/Label
@@ -52,8 +53,10 @@ func update_ship():
 	ship_shot_width.value = ships[ship_index].shot_width
 
 func update_special_weapon():
-	#selected_special_weapon_img.texture = special_weapons[special_weapon_index].sprite
-	pass
+	selected_special_weapon_img.texture = special_weapons[special_weapon_index].sprite
+	selected_special_weapon_img.hframes = 4
+	selected_special_weapon_img.frame = 0
+	special_description.text = special_weapons[special_weapon_index].description
 
 func update_bomb_settings():
 	selected_bomb_setting.text = bomb_settings[bomb_index].setting_name

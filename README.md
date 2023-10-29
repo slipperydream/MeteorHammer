@@ -23,7 +23,7 @@ TODOs (rough priority order)
   - [] homing missiles
   - [] laser
   - [] katana
-  - [] mines
+  - [x] mines
  
 - Power ups
 - [] Shot power increase by 10% not 100%

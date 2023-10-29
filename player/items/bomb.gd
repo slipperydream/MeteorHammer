@@ -1,7 +1,7 @@
 extends "res://player/items/base_item.gd"
 
-@export var blast_radius : int = 150
-@export var power : int = 5
+@export var blast_radius : int = 300
+@export var power : int = 15
 var targets = []
 
 # Called when the node enters the scene tree for the first time.

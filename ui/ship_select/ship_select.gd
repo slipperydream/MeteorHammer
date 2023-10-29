@@ -53,13 +53,14 @@ func update_ship():
 	ship_shot_width.value = ships[ship_index].shot_width
 
 func update_special_weapon():
-	selected_special_weapon_img.texture = special_weapons[special_weapon_index].sprite
-	if special_weapons[special_weapon_index].name.contains("katana"):
-		selected_special_weapon_img.hframes = 7
-		selected_special_weapon_img.frame = 6
-	elif special_weapons[special_weapon_index].name.contains("mine"):
+	if special_weapons[special_weapon_index].name.to_lower().contains("katana"):
+		selected_special_weapon_img.hframes = 1
+		selected_special_weapon_img.frame = 0
+	elif special_weapons[special_weapon_index].name.to_lower().contains("mine"):
 		selected_special_weapon_img.hframes = 4
 		selected_special_weapon_img.frame = 0
+
+	selected_special_weapon_img.texture = special_weapons[special_weapon_index].sprite
 	special_description.text = special_weapons[special_weapon_index].description
 
 func update_bomb_settings():

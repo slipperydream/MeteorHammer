@@ -78,7 +78,6 @@ func check_for_stage_clear():
 		stage_results.boss_killed = true
 		$Stopwatch.stop()
 		stage_results.boss_kill_time = $Stopwatch.time_elapsed
-		print(stage_results)
 		emit_signal("end_stage", stage_num, stage_results)
 		
 func kill_sfx():
@@ -148,8 +147,8 @@ func _on_player_out_of_lives():
 		emit_signal("end_stage", stage_num, stage_results)
 		current_game_state = game_state.GAME_OVER
 		emit_signal("game_over")
-		# then show stage results
 	emit_signal("player_lives", default_lives)
+	stage_results.continues_used += 1
 
 func _on_pause_game():
 	get_tree().paused = true

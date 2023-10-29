@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://duxu01d7kskfo"]
 
-[ext_resource type="Script" path="res://ui/title_screen.gd" id="1_e7kcj"]
+[ext_resource type="Script" path="res://ui/title_screen/title_screen.gd" id="1_e7kcj"]
 [ext_resource type="Texture2D" uid="uid://7xdoxqs0d5mo" path="res://assets/planet_background_final.png" id="2_1jrv7"]
 [ext_resource type="Texture2D" uid="uid://yvpoqnsnhp20" path="res://ui/title_screen/title.png" id="3_1eu7u"]
 [ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="3_vfonr"]
@@ -112,18 +112,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
 text = "BOSS SELECT"
 
-[node name="ShopButton" type="Button" parent="Panel/TitleMenu"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
-theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
-theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
-theme_override_fonts/font = ExtResource("3_vfonr")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_j4sjx")
-theme_override_styles/hover = SubResource("StyleBoxFlat_j4sjx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_j4sjx")
-text = "SHOP"
-
 [node name="SettingsButton" type="Button" parent="Panel/TitleMenu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
@@ -180,7 +168,6 @@ borderless = true
 [connection signal="pressed" from="Panel/TitleMenu/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="Panel/TitleMenu/AttackModeButton" to="." method="_on_attack_mode_button_pressed"]
 [connection signal="pressed" from="Panel/TitleMenu/BossSelectButton" to="." method="_on_boss_select_button_pressed"]
-[connection signal="pressed" from="Panel/TitleMenu/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Panel/TitleMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Panel/TitleMenu/HighScoresButton" to="." method="_on_high_scores_button_pressed"]
 [connection signal="pressed" from="Panel/TitleMenu/ExitGameButton" to="." method="_on_exit_game_button_pressed"]

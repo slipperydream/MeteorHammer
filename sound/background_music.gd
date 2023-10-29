@@ -2,7 +2,7 @@ extends AudioStreamPlayer2D
 
 signal new_song
 
-@onready var bg_music_volume : int = -25
+@onready var bg_music_volume : int = -80
 @export var title_song = preload("res://sound/music/stg_noloop003.ogg")
 @export var stage_1_theme = preload("res://sound/music/stg_st001.ogg")
 @export var stage_2_theme = preload("res://sound/music/stg_st002.ogg")
@@ -38,7 +38,7 @@ func _process(_delta):
 
 func get_songs(path):
 	var dir = DirAccess.open(path)
-	if dir.get_open_error() == OK:
+	if DirAccess.get_open_error() == OK:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
@@ -56,14 +56,16 @@ func _on_finished():
 		play_song(current_song)
 
 func fade_in():
-	var child = get_child(0)
-	var tween = create_tween()
-	tween.tween_property(child, "volume_db", -25, 2)
+	if get_child_count() > 0:
+		var child = get_child(0)
+		var tween = create_tween()
+		tween.tween_property(child, "volume_db", -30, 3)
 
 func fade_out():
-	var child= get_child(0)
-	var tween = create_tween()
-	tween.tween_property(child, "volume_db", -80, 2)
+	if get_child_count() > 0:
+		var child= get_child(0)
+		var tween = create_tween()
+		tween.tween_property(child, "volume_db", -80, 3)
 	
 func get_random_song():
 	var song = playlist[randi() % playlist.size()]
@@ -71,6 +73,8 @@ func get_random_song():
 	
 func play_song(song):
 	current_song = song
+	fade_out()
+	await get_tree().create_timer(2).timeout
 	for child in get_children():
 		remove_child(child)
 	var bg_music = AudioStreamPlayer.new()
@@ -79,6 +83,7 @@ func play_song(song):
 	bg_music.volume_db = bg_music_volume
 	add_child(bg_music)
 	emit_signal("new_song", song.resource_name)
+	fade_in()
 	
 func play_stage_theme(value):
 	match value:

@@ -13,7 +13,7 @@ func _ready():
 	
 func get_stages(path):
 	var dir = DirAccess.open(path)
-	if dir.get_open_error() == OK:
+	if DirAccess.get_open_error() == OK:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":

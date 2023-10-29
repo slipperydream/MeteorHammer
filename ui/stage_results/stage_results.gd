@@ -27,10 +27,6 @@ func _ready():
 	background.size.y = screensize.y
 	background.modulate = Color.AQUAMARINE
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func calculate_currency(results):
 	var boss_bonus = 2 if results.boss_killed else 1
 	var currency_earned = base_points * results.progress * boss_bonus
@@ -65,18 +61,13 @@ func update_score(value):
 	score.text = str(value)
 
 func update_stars(value):
-	$Scorebar/HBoxContainer/Star.modulate = Color.GRAY
-	$Scorebar/HBoxContainer/Star2.modulate = Color.GRAY
-	$Scorebar/HBoxContainer/Star3.modulate = Color.GRAY
-	$Scorebar/HBoxContainer/Star4.modulate = Color.GRAY
-	$Scorebar/HBoxContainer/Star5.modulate = Color.GRAY
 	var num_stars = min(5, floor(value / star_value))
 	var stars = $Scorebar/HBoxContainer.get_children()
 	for i in num_stars:
 		stars[i].modulate = Color.WHITE	
 		
 
-func _on_main_end_stage(stage, results):
+func _on_main_end_stage(_stage, results):
 	path = results.path
 	update_boss(results.boss_killed)
 	update_deaths(results.times_died)

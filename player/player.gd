@@ -16,11 +16,11 @@ var lives = 3
 @export var bomb_recharge_time : float = 20.0
 @export var main_weapon: PackedScene
 @export var special_weapon : Special_weapon
-@onready var ship_config : Ship_configuration = load("res://player/ships/typeA.tres")
+@onready var ship_config : Ship_configuration = load("res://player/ships/typeC.tres")
 @onready var bomb_config : Bomb_setting = load("res://player/items/bs_balance.tres")
 @export var bomb_scene : PackedScene
 @export var explosion_sound : AudioStreamWAV
-@export var firing_stations : Array[Firing_station] = []
+@export var firing_stations : Array[Marker2D] = []
 
 var x_offset : int = 20
 var y_offset : int = 24
@@ -148,9 +148,9 @@ func remove_bullets():
 	get_tree().call_group("bullets", "queue_free")
 
 func switch_option_formation():		
-	option_index += 1
+	option_index += 1 as Option_Formation
 	if option_index >= Option_Formation.size():
-		option_index = 0
+		option_index = Option_Formation.SPREAD
 
 	match option_index:
 		Option_Formation.SPREAD:
@@ -215,11 +215,11 @@ func take_damage(_value):
 		out_of_lives.emit()
 	
 func use_bomb():	
-	if bomb_timer.is_stopped() and bombs > 0:
+	if bomb_timer.is_stopped():
 		make_invulnerable()
-		var item = bomb_scene.instantiate()
-		get_tree().root.add_child(item)
-		item.execute(position)
+		var bomb = bomb_scene.instantiate()
+		get_tree().root.add_child(bomb)
+		bomb.execute(position)
 		emit_signal("bomb_used")
 		bomb_timer.wait_time = bomb_recharge_time
 		bomb_timer.start()

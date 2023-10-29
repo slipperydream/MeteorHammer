@@ -4,7 +4,7 @@ class_name Ship_configuration
 
 @export var name : String
 @export var sprite : Texture2D
-@export_range(50, 100) var speed : float = 75
+@export_range(50, 100) var speed : int = 75
 @export_range(50, 100) var shot_width : float = 75
 @export var description : String = ''
 

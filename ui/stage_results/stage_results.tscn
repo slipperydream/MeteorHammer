@@ -63,8 +63,8 @@ expand_mode = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 11.0
-offset_bottom = 119.0
+offset_top = 152.0
+offset_bottom = 298.0
 grow_horizontal = 2
 size_flags_vertical = 0
 alignment = 1
@@ -94,217 +94,39 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="Star" type="TextureRect" parent="Scorebar/HBoxContainer"]
+modulate = Color(0.294118, 0.294118, 0.294118, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("6_boqdi")
 stretch_mode = 2
 
 [node name="Star2" type="TextureRect" parent="Scorebar/HBoxContainer"]
+modulate = Color(0.294118, 0.294118, 0.294118, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("6_boqdi")
 
 [node name="Star3" type="TextureRect" parent="Scorebar/HBoxContainer"]
+modulate = Color(0.294118, 0.294118, 0.294118, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("6_boqdi")
 
 [node name="Star4" type="TextureRect" parent="Scorebar/HBoxContainer"]
+modulate = Color(0.294118, 0.294118, 0.294118, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("6_boqdi")
 
 [node name="Star5" type="TextureRect" parent="Scorebar/HBoxContainer"]
+modulate = Color(0.294118, 0.294118, 0.294118, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("6_boqdi")
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 2
-offset_left = 20.0
-offset_top = 540.0
-offset_right = 155.0
-offset_bottom = 618.0
-grow_vertical = 0
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Base" type="Label" parent="Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("7_4bmah")
-theme_override_font_sizes/font_size = 24
-text = "STAGE"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="BaseValue" type="Label" parent="Panel/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
-theme_override_font_sizes/font_size = 24
-text = "50"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel2" type="Panel" parent="."]
-layout_mode = 2
-offset_left = 165.0
-offset_top = 540.0
-offset_right = 300.0
-offset_bottom = 618.0
-grow_vertical = 0
-size_flags_horizontal = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ProgressLabel" type="Label" parent="Panel2/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("7_4bmah")
-theme_override_font_sizes/font_size = 24
-text = "PROGRESS"
-horizontal_alignment = 1
-
-[node name="ProgressBonus" type="Label" parent="Panel2/VBoxContainer2"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
-theme_override_font_sizes/font_size = 24
-text = "x100%
-"
-horizontal_alignment = 1
-
-[node name="Panel3" type="Panel" parent="."]
-layout_mode = 2
-offset_left = 310.0
-offset_top = 539.0
-offset_right = 445.0
-offset_bottom = 617.0
-size_flags_horizontal = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DifficultyLabel" type="Label" parent="Panel3/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("7_4bmah")
-theme_override_font_sizes/font_size = 24
-text = "DIFFICULTY"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="DifficultyBonus" type="Label" parent="Panel3/VBoxContainer3"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
-theme_override_font_sizes/font_size = 24
-text = "x1"
-horizontal_alignment = 1
-
-[node name="Panel4" type="Panel" parent="."]
-layout_mode = 2
-offset_left = 455.0
-offset_top = 538.0
-offset_right = 590.0
-offset_bottom = 616.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BossDefeated" type="Label" parent="Panel4/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("7_4bmah")
-theme_override_font_sizes/font_size = 24
-text = "BOSS
-"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="BossBonus" type="Label" parent="Panel4/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
-theme_override_font_sizes/font_size = 24
-text = "x2
-"
-horizontal_alignment = 1
-
-[node name="Panel5" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -225.0
-offset_top = -166.0
-offset_right = 225.0
-offset_bottom = -102.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel5"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -18.5
-offset_bottom = 18.5
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="CurrencyLabel" type="Label" parent="Panel5/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_4bmah")
-theme_override_font_sizes/font_size = 24
-text = "Space Bucks:"
-horizontal_alignment = 1
-
-[node name="CurrencyEarned" type="Label" parent="Panel5/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-text = "1,000
-"
-horizontal_alignment = 1
 
 [node name="CenterPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -314,9 +136,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -234.0
-offset_top = -75.0
+offset_top = -19.0
 offset_right = 234.0
-offset_bottom = 75.0
+offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
@@ -409,6 +231,190 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("5_ve1qy")
 theme_override_font_sizes/font_size = 24
 text = "8"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 53.0
+offset_right = 155.0
+offset_bottom = 131.0
+grow_vertical = 0
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Base" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_font_sizes/font_size = 24
+text = "STAGE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BaseValue" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_font_sizes/font_size = 24
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 165.0
+offset_top = 53.0
+offset_right = 300.0
+offset_bottom = 131.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ProgressLabel" type="Label" parent="Panel2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_font_sizes/font_size = 24
+text = "PROGRESS"
+horizontal_alignment = 1
+
+[node name="ProgressBonus" type="Label" parent="Panel2/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_font_sizes/font_size = 24
+text = "x100%
+"
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 310.0
+offset_top = 52.0
+offset_right = 445.0
+offset_bottom = 130.0
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DifficultyLabel" type="Label" parent="Panel3/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_font_sizes/font_size = 24
+text = "DIFFICULTY"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DifficultyBonus" type="Label" parent="Panel3/VBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_font_sizes/font_size = 24
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Panel4" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 455.0
+offset_top = 51.0
+offset_right = 590.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BossDefeated" type="Label" parent="Panel4/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_font_sizes/font_size = 24
+text = "BOSS
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BossBonus" type="Label" parent="Panel4/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_font_sizes/font_size = 24
+text = "x2
+"
+horizontal_alignment = 1
+
+[node name="Panel5" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -166.0
+offset_right = 225.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel5"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -18.5
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CurrencyLabel" type="Label" parent="Panel5/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_font_sizes/font_size = 24
+text = "Space Bucks:"
+horizontal_alignment = 1
+
+[node name="CurrencyEarned" type="Label" parent="Panel5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "1,000
+"
+horizontal_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="."]
 z_index = 1

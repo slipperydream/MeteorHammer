@@ -50,7 +50,6 @@ var stage_results = {
 func _ready():
 	current_game_state = game_state.TITLE
 	title_screen.show()
-	BackgroundMusic.fade_in()
 	BackgroundMusic.play_title_song()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,6 +71,7 @@ func check_for_stage_clear():
 		boss_spawned = false
 		stage_results.boss_killed = true
 		emit_signal("end_stage", stage_num, stage_results)
+		print(stage_results)
 	
 func kill_sfx():
 	AudioStreamManager.clear_queue()
@@ -163,7 +163,6 @@ func _on_boss_spawned():
 	$Background.stop()
 	await get_tree().create_timer(0.5).timeout
 	BackgroundMusic.play_boss_theme(stage_num)
-	BackgroundMusic.fade_in()
 	stage_results.progress = 100
 	
 func _on_center_container_game_unpaused():
@@ -172,14 +171,10 @@ func _on_center_container_game_unpaused():
 
 func _on_title_screen_boss_mode():
 	stage = load("res://stages/Stage_1Boss.tscn")
-	BackgroundMusic.fade_out()
-	await get_tree().create_timer(1).timeout
 	begin_game()
 
 func _on_title_screen_attack_mode():
 	stage = load("res://stages/Stage_1.tscn")
-	BackgroundMusic.fade_out()
-	await get_tree().create_timer(1).timeout
 	begin_game()
 
 func _on_player_player_hit():

@@ -19,8 +19,8 @@ func print_time():
 	
 func format_time(time):
 	var minutes : int = time / 60
-	var seconds: int = fmod(time, 60)
-	var time_string = "%02d:%02d" % [minutes, seconds]
+	var seconds: float = fmod(time, 60)
+	var time_string = "%02d:%02f" % [minutes, seconds]
 	return time_string
 
 func start():

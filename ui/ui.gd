@@ -85,7 +85,7 @@ func _on_main_score_multiplier(multiplier):
 
 func _on_main_end_stage(_current, _results):
 	$Stopwatch.stop()
-	var time_spent = $Stopwatch.time_elapsed
+	#var time_spent = $Stopwatch.time_elapsed
 	hide()
 
 func _on_player_bomb_charging():

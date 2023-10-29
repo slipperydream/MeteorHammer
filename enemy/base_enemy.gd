@@ -22,7 +22,7 @@ var vec_to_player : Vector2 = Vector2(0,1)
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var enemy_size : Vector2 = $Sprite2D.get_rect().size
-@onready var ceasefire_line : int = screensize.y * 0.9
+@onready var ceasefire_line : float = screensize.y * 0.9
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

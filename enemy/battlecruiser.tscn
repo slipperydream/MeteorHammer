@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_4rkk6"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_jg5kb"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_ofcya"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="5_x30bx"]
+[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion.png" id="5_x30bx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjf61"]
 atlas = ExtResource("3_m57je")

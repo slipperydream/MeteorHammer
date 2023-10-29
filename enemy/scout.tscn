@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dgqsqufwnerkc" path="res://sound/sfx/Explosions/Explosion_2.wav" id="2_xlork"]
 [ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="3_2rb8e"]
 [ext_resource type="Texture2D" uid="uid://ct6e2mc24ibyc" path="res://assets/Nairan/Engine_Effects/Nairan-Scout-Engine.png" id="3_02wae"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="5_gbr6t"]
+[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_gbr6t"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_gygaj"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_r0vnt"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_y84sk"]

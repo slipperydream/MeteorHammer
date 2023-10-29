@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqeh1mw7t26rb"]
+[gd_scene load_steps=11 format=3 uid="uid://bbvo37joshkmr"]
 
-[ext_resource type="Script" path="res://player/weapons/mine.gd" id="1_t6dp1"]
-[ext_resource type="AudioStream" uid="uid://cocrqag81vq8f" path="res://sound/sfx/lasers/Laser_5.wav" id="2_8b1ee"]
-[ext_resource type="AudioStream" uid="uid://gxabbu32l1eb" path="res://sound/sfx/Explosions/Explosion_7.wav" id="3_1l5il"]
-[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="3_7qlp3"]
-[ext_resource type="Texture2D" uid="uid://dpi8u4m0cw0i1" path="res://player/weapons/mineA.png" id="4_tsy8h"]
+[ext_resource type="Script" path="res://player/weapons/katana.gd" id="1_62fyx"]
+[ext_resource type="AudioStream" uid="uid://i6ekra65r3fc" path="res://sound/sfx/Power ups and power downs/Power_up_7.wav" id="2_sws7p"]
+[ext_resource type="Texture2D" uid="uid://cgkomqgsq52dm" path="res://enemy/weapons/bullet_shapes/slice.png" id="4_lt71a"]
+[ext_resource type="Texture2D" uid="uid://dpi8u4m0cw0i1" path="res://player/weapons/mineA.png" id="4_sid07"]
+[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_48ver"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4xqj4"]
-radius = 101.501
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r274r"]
+size = Vector2(290, 22.5)
 
 [sub_resource type="Animation" id="Animation_x1hwl"]
 length = 0.001
@@ -36,7 +36,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_7qlp3")]
+"values": [ExtResource("5_48ver")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -77,7 +77,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_tsy8h")]
+"values": [ExtResource("4_sid07")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -99,20 +99,20 @@ _data = {
 "moving": SubResource("Animation_18y22")
 }
 
-[node name="Mine" type="Area2D"]
+[node name="Katana" type="Area2D"]
 collision_mask = 26
-script = ExtResource("1_t6dp1")
-title = "Mine"
-firing_sound = ExtResource("2_8b1ee")
-explosion_sound = ExtResource("3_1l5il")
+script = ExtResource("1_62fyx")
+firing_sound = ExtResource("2_sws7p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_tsy8h")
-hframes = 4
+rotation = 3.14159
+scale = Vector2(9.92787, 0.605066)
+texture = ExtResource("4_lt71a")
+hframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1.5)
-shape = SubResource("CircleShape2D_4xqj4")
+position = Vector2(-6, 0.25)
+shape = SubResource("RectangleShape2D_r274r")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -121,10 +121,11 @@ libraries = {
 "": SubResource("AnimationLibrary_oxx66")
 }
 
-[node name="SelfDestructTimer" type="Timer" parent="."]
-wait_time = 10.0
+[node name="DistanceTimer" type="Timer" parent="."]
+wait_time = 0.75
 one_shot = true
+autostart = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]
+[connection signal="timeout" from="DistanceTimer" to="." method="_on_distance_timer_timeout"]

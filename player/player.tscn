@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=24 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/main_weapon.tscn" id="2_75g50"]
 [ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://player/items/bomb.tscn" id="3_0duad"]
+[ext_resource type="Resource" uid="uid://dh27gviiyc4wd" path="res://player/weapons/katana.tres" id="3_308ka"]
 [ext_resource type="Texture2D" uid="uid://cqeb72k7qp10i" path="res://assets/Player_ship_A.png" id="4_gx51a"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
 [ext_resource type="Texture2D" uid="uid://dhejifd02ryj7" path="res://assets/Boosters.png" id="5_kpxme"]
@@ -120,10 +121,8 @@ _data = {
 [node name="Player" type="Area2D" node_paths=PackedStringArray("firing_stations") groups=["player"]]
 collision_mask = 31
 script = ExtResource("1_ks4n4")
-base_speed = null
-cooldown = null
-bomb_recharge_time = null
 main_weapon = ExtResource("2_75g50")
+special_weapon = ExtResource("3_308ka")
 bomb_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")
 firing_stations = [NodePath("Ship/FiringStation"), NodePath("Ship/FiringStation2"), NodePath("Ship/FiringStation3"), NodePath("Ship/FiringStation4")]

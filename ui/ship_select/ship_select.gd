@@ -54,8 +54,12 @@ func update_ship():
 
 func update_special_weapon():
 	selected_special_weapon_img.texture = special_weapons[special_weapon_index].sprite
-	selected_special_weapon_img.hframes = 4
-	selected_special_weapon_img.frame = 0
+	if special_weapons[special_weapon_index].name.contains("katana"):
+		selected_special_weapon_img.hframes = 7
+		selected_special_weapon_img.frame = 6
+	elif special_weapons[special_weapon_index].name.contains("mine"):
+		selected_special_weapon_img.hframes = 4
+		selected_special_weapon_img.frame = 0
 	special_description.text = special_weapons[special_weapon_index].description
 
 func update_bomb_settings():

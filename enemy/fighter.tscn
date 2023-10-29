@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="4_fc43p"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_2emms"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_66wlm"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="5_g6033"]
+[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion.png" id="5_g6033"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_uhask"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_sq7r8"]
 

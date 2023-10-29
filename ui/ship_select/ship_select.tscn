@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dqrp2a1yyocuq"]
+[gd_scene load_steps=23 format=3 uid="uid://dqrp2a1yyocuq"]
 
 [ext_resource type="Script" path="res://ui/ship_select/ship_select.gd" id="1_7nx0c"]
 [ext_resource type="Resource" uid="uid://celc63e446bf5" path="res://player/ships/typeA.tres" id="2_kjrhv"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="5_nqfqe"]
 [ext_resource type="Resource" uid="uid://dwqnuw5siohn3" path="res://player/items/bs_balance.tres" id="5_v0tyv"]
 [ext_resource type="Texture2D" uid="uid://phyo4rl3na6v" path="res://ui/left_arrow.png" id="5_yawv7"]
+[ext_resource type="Resource" uid="uid://dh27gviiyc4wd" path="res://player/weapons/katana.tres" id="6_km5v2"]
 [ext_resource type="Resource" uid="uid://cga4ahkk4o4fq" path="res://player/items/bs_max_bombs.tres" id="6_mf4qx"]
 [ext_resource type="Texture2D" uid="uid://cef4mhh1bw6on" path="res://ui/right_arrow.png" id="6_tp3a0"]
 [ext_resource type="Resource" uid="uid://bky0kst2eax5q" path="res://player/items/bs_no_bombs.tres" id="7_6wn6n"]
@@ -102,7 +103,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7nx0c")
 ships = Array[Resource("res://player/ships/ship_configuration.gd")]([ExtResource("2_kjrhv"), ExtResource("3_kcjrv"), ExtResource("4_fb8cj")])
-special_weapons = Array[Resource("res://player/weapons/special_weapon.gd")]([ExtResource("5_6n2b7")])
+special_weapons = Array[Resource("res://player/weapons/special_weapon.gd")]([ExtResource("5_6n2b7"), ExtResource("6_km5v2")])
 bomb_settings = Array[Resource("res://player/items/bomb_setting.gd")]([ExtResource("5_v0tyv"), ExtResource("6_mf4qx"), ExtResource("7_6wn6n")])
 
 [node name="Panel" type="Panel" parent="."]

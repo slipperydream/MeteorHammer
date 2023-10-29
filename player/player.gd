@@ -53,14 +53,14 @@ func _ready():
 func configure():
 	$Ship.texture = ship_config.sprite
 	speed = base_speed * ship_config.speed 
-	set_firing_stations(5)
+	set_firing_stations()
 	switch_option_formation()
 	max_bombs = bomb_config.max_bombs
 	bombs = bomb_config.starting_bombs
-	special_cooldown = special_weapon.wait_time
+	special_cooldown.wait_time = special_weapon.wait_time
 	special_cooldown.start()
 	
-func set_firing_stations(value):
+func set_firing_stations():
 	var i = 0
 	while i < firing_stations.size():
 		firing_stations[i].start(Vector2(global_position.x - x_offset + (i * ship_config.spacing), global_position.y - y_offset))
@@ -122,8 +122,9 @@ func special_weapon_fire():
 	var weapon = special_weapon.weapon.instantiate()
 	get_tree().root.add_child(weapon)
 	if weapon.title.to_lower() == "mine":
-		weapon.start(position + Vector2(0, 64), Vector2.DOWN.rotated(rotation))
-		
+		weapon.start(global_position + Vector2(0, 64), Vector2.DOWN.rotated(rotation))
+	elif weapon.title.to_lower().contains("katana"):
+		weapon.start(global_position + Vector2(0, -64))
 	if not assist_mode_enabled:
 		options_fire()
 		
@@ -132,7 +133,6 @@ func main_weapon_fire():
 		return
 	can_shoot = false
 	gun_cooldown.start()
-	var width = 0
 	for i in firing_stations:
 		var weapon = main_weapon.instantiate()
 		get_tree().root.add_child(weapon)

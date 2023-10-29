@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="3_km3fg"]
 [ext_resource type="Texture2D" uid="uid://dlholuxpiqcq7" path="res://enemy/circle_boss.png" id="4_2bc68"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="4_nn3en"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion_16x16.png" id="4_t0exc"]
+[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion.png" id="4_t0exc"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="4_wa46r"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/circle_pattern.gd" id="5_ri64t"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_lc6i8"]

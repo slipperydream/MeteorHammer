@@ -120,5 +120,5 @@ func _on_bomb_setting_next_button_pressed():
 	update_bomb_settings()
 
 func _on_accept_button_pressed():
-	emit_signal("ship_selected", ships[ship_index], special_weapons[special_weapon_index], bomb_settings[bomb_index].setting_name)
+	emit_signal("ship_selected", ships[ship_index], special_weapons[special_weapon_index], bomb_settings[bomb_index])
 	hide()

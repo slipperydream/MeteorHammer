@@ -234,4 +234,5 @@ func _on_ship_select_ship_select_cancelled():
 			stage_select.show()
 
 func _on_ship_select_ship_selected(ship, special, bomb):
+	player.configure(ship, special, bomb)
 	begin_game()

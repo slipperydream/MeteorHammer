@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://du6kybeyrcmf2"]
+[gd_scene load_steps=10 format=3 uid="uid://du6kybeyrcmf2"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_ieqr5"]
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="2_85hi6"]
@@ -11,92 +11,13 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.8, 0.8, 0.156863, 1)
+border_color = Color(0.45098, 0.243137, 0.223529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qp07s"]
+bg_color = Color(0, 0, 0, 0.47451)
 
 [sub_resource type="Animation" id="Animation_cgqaq"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BottomBar/Bomb:theme_override_styles/normal:border_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.8, 0.8, 0.156863, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BottomBar/Bomb:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_0wnln"]
-resource_name = "item_charging"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BottomBar/Bomb:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.14902), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BottomBar/Bomb:theme_override_styles/normal:border_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.8, 0.8, 0.156863, 0.00784314), Color(0.8, 0.8, 0.156863, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ken60"]
-resource_name = "item_recharged"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BottomBar/Bomb:theme_override_styles/normal:border_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.8, 0.8, 0.156863, 0), Color(0.8, 0.8, 0.156863, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_y4u8q"]
-resource_name = "item_used"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BottomBar/Bomb:theme_override_styles/normal:border_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.8, 0.8, 0.156863, 0.921569), Color(0.8, 0.8, 0.156863, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_ax065"]
 resource_name = "boss_warning"
@@ -129,9 +50,6 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_32n0a"]
 _data = {
 "RESET": SubResource("Animation_cgqaq"),
-"bomb_charging": SubResource("Animation_0wnln"),
-"bomb_recharged": SubResource("Animation_ken60"),
-"bomb_used": SubResource("Animation_y4u8q"),
 "boss_warning": SubResource("Animation_ax065")
 }
 
@@ -155,7 +73,7 @@ size_flags_vertical = 0
 
 [node name="ScoreHeader" type="Label" parent="TopBarLeft"]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.545098, 0.607843, 0.705882, 1)
 theme_override_fonts/font = ExtResource("2_85hi6")
 theme_override_font_sizes/font_size = 32
@@ -163,11 +81,19 @@ text = "SCORE"
 
 [node name="ScoreLabel" type="Label" parent="TopBarLeft"]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.545098, 0.607843, 0.705882, 1)
 theme_override_fonts/font = ExtResource("2_85hi6")
 theme_override_font_sizes/font_size = 32
 text = "00000000"
+
+[node name="Continues" type="Label" parent="TopBarLeft"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.894118, 0.231373, 0.266667, 1)
+theme_override_fonts/font = ExtResource("2_85hi6")
+theme_override_font_sizes/font_size = 32
+text = "Yes"
 
 [node name="TopBarRight" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -195,7 +121,6 @@ x1"
 horizontal_alignment = 2
 
 [node name="BossLabel" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -238,29 +163,12 @@ theme_override_font_sizes/font_size = 32
 text = "x3"
 vertical_alignment = 2
 
-[node name="PlayerCreditsLabel" type="Label" parent="BottomBar"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.894118, 0.231373, 0.266667, 1)
-theme_override_fonts/font = ExtResource("2_85hi6")
-theme_override_font_sizes/font_size = 32
-text = "Credits: 3"
-vertical_alignment = 2
-
-[node name="MainWeapon" type="Label" parent="BottomBar"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_85hi6")
-theme_override_font_sizes/font_size = 32
-text = "Beam"
-horizontal_alignment = 1
-vertical_alignment = 2
-
 [node name="SpecialWeapon" type="Label" parent="BottomBar"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_85hi6")
 theme_override_font_sizes/font_size = 32
-text = "Beam"
+text = "Laser"
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -273,6 +181,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_r8lrl")
 text = "Bomb"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Panel" type="Panel" parent="BottomBar/Bomb"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qp07s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -3,19 +3,15 @@ extends Control
 @onready var score_counter = $TopBarLeft/ScoreLabel
 @onready var multiplier_label = $TopBarRight/MultiplierLabel
 @onready var lives_counter = $BottomBar/PlayerLivesLabel
-@onready var credits_counter = $BottomBar/PlayerCreditsLabel
-@onready var weapon_label = $BottomBar/MainWeapon
+@onready var continues = $TopBarLeft/Continues
+@onready var weapon_label = $BottomBar/SpecialWeapon
 @onready var bomb_label = $BottomBar/Bomb
 
 var num_lives = 0
-var weapon : String = 'Beam'
 var bomb : String = 'Bomb'
 
 func _ready():
 	$BossLabel.visible = false
-
-func _process(_delta):
-	pass
 	
 func update_score(value):
 	var s = "%08d" % value
@@ -26,34 +22,35 @@ func update_lives(value):
 	if lives_counter:
 		lives_counter.text = "x%s" % str(num_lives)
 	
-func update_credits(value):
-	if credits_counter:
-		credits_counter.text = "Credits: x%s" % str(value)
+func update_continues(value):
+	if value:
+		continues.text = "Yes"
+	else:
+		continues.text = "No"
 	
 func _on_main_score_changed(score):
 	update_score(score)
 	
 func _on_player_died():
-	update_lives(-1)	
+	update_lives(-1)
 
 func _on_player_gained_life():
 	update_lives(1)
 	
 func _on_player_out_of_lives():
-	update_lives(0)
+	update_continues(false)
 
-func _on_main_player_start(lives, credits):
+func _on_main_player_lives(lives):
 	update_lives(lives)
-	update_credits(credits)
-	if credits <= 0:
-		$Stopwatch.stop()
 
-func _on_player_bomb_recharged():
-	$AnimationPlayer.play("bomb_recharged")
-
+func _on_main_continue_earned():
+	update_continues(true)
+	
 func _on_player_bomb_used():
-	$AnimationPlayer.stop()
-	$AnimationPlayer.play("bomb_used")
+	var tween = create_tween()
+	tween.tween_property($BottomBar/Bomb/Panel, "scale:x", 1, 0.1)
+	tween = create_tween()
+	tween.tween_property($BottomBar/Bomb.get_theme_stylebox("normal"), "border_color", Color(0.45, 0.24, 0.22, 1), 0.1)
 
 func _on_player_weapon_changed(new_weapon):
 	if weapon_label:
@@ -88,5 +85,9 @@ func _on_main_end_stage(_current, _results):
 	#var time_spent = $Stopwatch.time_elapsed
 	hide()
 
-func _on_player_bomb_charging():
-	$AnimationPlayer.play("bomb_charging")
+func _on_player_bomb_charging(time):
+	var tween = create_tween()
+	tween.tween_property($BottomBar/Bomb/Panel, "scale:x", 0, time)
+	tween = create_tween()
+	tween.tween_property($BottomBar/Bomb.get_theme_stylebox("normal"), "border_color",  Color(0.39, 0.78, 0.3, 1), time)
+

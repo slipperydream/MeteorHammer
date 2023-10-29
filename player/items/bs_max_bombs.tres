@@ -5,6 +5,5 @@
 [resource]
 script = ExtResource("1_nwgjj")
 setting_name = "Bombs Away"
-max_bombs = 6
-starting_bombs = 5
+recharge_time = 20
 max_options = 2

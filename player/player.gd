@@ -13,9 +13,8 @@ var lives = 3
 
 @export var base_speed : int = 2
 @export var cooldown : float = 0.1
-@export var bomb_recharge_time : float = 20.0
 @export var main_weapon: PackedScene
-@export var special_weapon : Special_weapon
+@export var special_weapon : Special_weapon = load("res://player/weapons/katana.tres")
 @onready var ship_config : Ship_configuration = load("res://player/ships/typeC.tres")
 @onready var bomb_config : Bomb_setting = load("res://player/items/bs_balance.tres")
 @export var bomb_scene : PackedScene
@@ -45,8 +44,10 @@ var option_index = Option_Formation.FRONT
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+func start():
 	reset()
-	emit_signal("weapon_changed", "beam")
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
 	configure()
 
@@ -55,10 +56,12 @@ func configure():
 	speed = base_speed * ship_config.speed 
 	set_firing_stations()
 	switch_option_formation()
-	max_bombs = bomb_config.max_bombs
-	bombs = bomb_config.starting_bombs
+	bomb_timer.wait_time = 0.1
+	bomb_timer.start()
+	emit_signal("bomb_charging", 5) #bomb_config.recharge_time)
 	special_cooldown.wait_time = special_weapon.wait_time
 	special_cooldown.start()
+	emit_signal("weapon_changed", special_weapon.name)
 	
 func set_firing_stations():
 	var i = 0
@@ -148,7 +151,7 @@ func remove_bullets():
 	get_tree().call_group("bullets", "queue_free")
 
 func switch_option_formation():		
-	option_index += 1 as Option_Formation
+	option_index += 1
 	if option_index >= Option_Formation.size():
 		option_index = Option_Formation.SPREAD
 
@@ -200,6 +203,7 @@ func take_damage(_value):
 	if invulnerable: 
 		return
 		
+	# tie to autobombing
 	if bomb_timer.is_stopped():
 		use_bomb()
 		return
@@ -221,11 +225,11 @@ func use_bomb():
 		get_tree().root.add_child(bomb)
 		bomb.execute(position)
 		emit_signal("bomb_used")
-		bomb_timer.wait_time = bomb_recharge_time
+		bomb_timer.wait_time = bomb_config.recharge_time
 		bomb_timer.start()
-		emit_signal("bomb_charging")
+		emit_signal("bomb_charging", bomb_config.recharge_time)
 	else:
-		print("waiting on item timer to recharge")
+		print("waiting on bomb timer to recharge")
 		
 func _on_gun_cooldown_timeout():
 	can_shoot = true
@@ -235,13 +239,10 @@ func _on_area_entered(area):
 		area.explode()
 		take_damage(1)
 		
-func _on_main_player_start(num_lives, _credits):
+func _on_main_player_lives(num_lives):
 	remove_bullets()
 	lives = num_lives
 	reset()
-	bomb_timer.wait_time = bomb_recharge_time
-	bomb_timer.start()
-	emit_signal("bomb_charging")
 
 func _on_invulnerability_timer_timeout():
 	$AnimationPlayer.stop()

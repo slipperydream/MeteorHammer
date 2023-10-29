@@ -65,7 +65,6 @@ func _on_main_game_over():
 	await get_tree().create_timer(5).timeout
 	show()
 
-
 func _on_exit_game_button_pressed():
 	var text = "Are you sure you want to exit the game?"
 	$ConfirmationDialog.set_text(text)

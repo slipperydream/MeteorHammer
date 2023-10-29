@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=14 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://World/main.gd" id="1_40pi7"]
 [ext_resource type="Script" path="res://World/Background.gd" id="2_egrtt"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://duxu01d7kskfo" path="res://ui/title_screen/title_screen.tscn" id="6_d1ygs"]
 [ext_resource type="PackedScene" uid="uid://dyqxqv1ayua2r" path="res://ui/stage_results/stage_results.tscn" id="7_5pgji"]
 [ext_resource type="PackedScene" uid="uid://borv5q636p3x1" path="res://ui/stage_select/stage_select.tscn" id="8_4tp73"]
+[ext_resource type="PackedScene" uid="uid://dqrp2a1yyocuq" path="res://ui/ship_select/ship_select.tscn" id="9_aya4f"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://ui/stopwatch.tscn" id="9_vmmdb"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -58,14 +60,21 @@ visible = false
 [node name="StageSelect" parent="CanvasLayer" instance=ExtResource("8_4tp73")]
 visible = false
 
+[node name="ShipSelect" parent="CanvasLayer" instance=ExtResource("9_aya4f")]
+visible = false
+
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0
 
 [node name="ScoringTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Stopwatch" parent="." instance=ExtResource("9_vmmdb")]
+visible = false
+
 [connection signal="beat_game" from="." to="." method="_on_beat_game"]
 [connection signal="beat_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_beat_game"]
+[connection signal="continue_earned" from="." to="CanvasLayer/UI" method="_on_main_continue_earned"]
 [connection signal="end_stage" from="." to="." method="_on_end_stage"]
 [connection signal="end_stage" from="." to="Background" method="_on_main_end_stage"]
 [connection signal="end_stage" from="." to="Player" method="_on_main_end_stage"]
@@ -79,12 +88,11 @@ one_shot = true
 [connection signal="pause_game" from="." to="." method="_on_pause_game"]
 [connection signal="pause_game" from="." to="CanvasLayer/UI" method="_on_main_pause_game"]
 [connection signal="pause_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_pause_game"]
-[connection signal="player_start" from="." to="Player" method="_on_main_player_start"]
-[connection signal="player_start" from="." to="CanvasLayer/UI" method="_on_main_player_start"]
+[connection signal="player_lives" from="." to="Player" method="_on_main_player_lives"]
+[connection signal="player_lives" from="." to="CanvasLayer/UI" method="_on_main_player_lives"]
 [connection signal="score_changed" from="." to="CanvasLayer/UI" method="_on_main_score_changed"]
 [connection signal="score_multiplier" from="." to="CanvasLayer/UI" method="_on_main_score_multiplier"]
 [connection signal="bomb_charging" from="Player" to="CanvasLayer/UI" method="_on_player_bomb_charging"]
-[connection signal="bomb_recharged" from="Player" to="CanvasLayer/UI" method="_on_player_bomb_recharged"]
 [connection signal="bomb_used" from="Player" to="CanvasLayer/UI" method="_on_player_bomb_used"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="died" from="Player" to="CanvasLayer/UI" method="_on_player_died"]
@@ -104,5 +112,7 @@ one_shot = true
 [connection signal="retry_level" from="CanvasLayer/StageResults" to="." method="_on_stage_results_retry_level"]
 [connection signal="stage_select_cancelled" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_select_cancelled"]
 [connection signal="stage_selected" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_selected"]
+[connection signal="ship_select_cancelled" from="CanvasLayer/ShipSelect" to="." method="_on_ship_select_ship_select_cancelled"]
+[connection signal="ship_selected" from="CanvasLayer/ShipSelect" to="." method="_on_ship_select_ship_selected"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="ScoringTimer" to="." method="_on_scoring_timer_timeout"]

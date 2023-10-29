@@ -25,11 +25,12 @@ func get_stages(path):
 		display_popup(text)
 	
 func create_stage_button(stage_path, stage_name):
-	var btn = stage_button.instantiate()
-	btn.text = stage_name.trim_suffix('.tscn').replace("_", " ")
-	btn.stage_path = stage_path
-	grid.add_child(btn)
-	btn.connect("stage_selected", _on_stage_selected)
+	if stage_name.get_extension() == 'tscn':
+		var btn = stage_button.instantiate()
+		btn.text = stage_name.trim_suffix('.tscn').replace("_", " ")
+		btn.stage_path = stage_path
+		grid.add_child(btn)
+		btn.connect("stage_selected", _on_stage_selected)
 
 func display_popup(text):
 	$AcceptDialog.set_text(text)
@@ -48,6 +49,3 @@ func _on_settings_pressed():
 	var text = "Sorry, the settings menu isn't implemented yet."
 	display_popup(text)
 
-func _on_shop_pressed():
-	var text = "Sorry, the shop menu isn't implemented yet."
-	display_popup(text)

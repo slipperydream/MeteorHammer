@@ -131,32 +131,6 @@ action_mode = 0
 text = "Settings
 "
 
-[node name="Shop" type="Button" parent="."]
-z_index = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 140.0
-offset_top = -71.0
-offset_right = 240.0
-offset_bottom = -48.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
-theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
-theme_override_fonts/font = ExtResource("2_4dqn1")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_w4mk2")
-action_mode = 0
-text = "Shop
-"
-
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
 initial_position = 1
 size = Vector2i(150, 100)
@@ -165,4 +139,3 @@ dialog_autowrap = true
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]

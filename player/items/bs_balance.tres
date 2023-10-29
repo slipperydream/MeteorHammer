@@ -5,6 +5,5 @@
 [resource]
 script = ExtResource("1_0jcgs")
 setting_name = "Balance"
-max_bombs = 3
-starting_bombs = 1
+recharge_time = 35
 max_options = 4

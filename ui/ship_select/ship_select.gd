@@ -1,6 +1,7 @@
 extends Control
 
 signal ship_select_cancelled
+signal ship_selected
 
 @export var ships : Array[Ship_configuration] = []
 var ship_index : int = 0
@@ -25,8 +26,7 @@ var bomb_index : int = 0
 @onready var selected_bomb_setting = $BombSetting/Label
 @onready var prev_bomb_setting = $BombSettingPreviousButton
 @onready var next_bomb_setting = $BombSettingNextButton
-@onready var starting_bombs = $StartingBombsCounter
-@onready var max_bombs = $MaxBombsCounter
+@onready var recharge  = $RechargeTimeCounter
 @onready var max_options = $MaxOptionsCounter
 
 @onready var random_button = $GridContainer2/RandomizeButton
@@ -64,17 +64,11 @@ func update_special_weapon():
 
 func update_bomb_settings():
 	selected_bomb_setting.text = bomb_settings[bomb_index].setting_name
-	starting_bombs.text = str(bomb_settings[bomb_index].starting_bombs)
-	max_bombs.text = str(bomb_settings[bomb_index].max_bombs)
-	print(bomb_settings[bomb_index].max_bombs)
+	recharge.text = str(bomb_settings[bomb_index].recharge_time)
 	max_options.text = str(bomb_settings[bomb_index].max_options)
 	
 func _on_settings_pressed():
 	var text = "Sorry, the settings menu isn't implemented yet."
-	display_popup(text)
-
-func _on_shop_pressed():
-	var text = "Sorry, the shop menu isn't implemented yet."
 	display_popup(text)
 
 func _on_ship_previous_button_pressed():
@@ -124,3 +118,7 @@ func _on_bomb_setting_next_button_pressed():
 	if bomb_index >= bomb_settings.size():
 		bomb_index = 0
 	update_bomb_settings()
+
+func _on_accept_button_pressed():
+	emit_signal("ship_selected", ships[ship_index], special_weapons[special_weapon_index], bomb_settings[bomb_index].setting_name)
+	hide()

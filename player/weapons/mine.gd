@@ -27,7 +27,6 @@ func _on_area_entered(area):
 	if area.is_in_group("enemy"):
 		damage_targets()
 		explode()
-		
 
 func damage_targets():
 	var potential_targets = get_tree().get_nodes_in_group("enemy")

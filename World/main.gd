@@ -2,15 +2,16 @@ extends Node2D
 
 @onready var screensize : Vector2 = get_viewport_rect().size
 
-enum game_state {ATTRACT, TITLE, RUNNING, PAUSED, GAME_OVER}
-
+enum game_state {TITLE, RUNNING, PAUSED, GAME_OVER}
+enum game_mode {NONE, ATTRACT, ATTACK, BOSS, STORY}
 signal game_over
 signal pause_game
 signal score_changed
 signal score_multiplier
 signal new_stage
-signal player_start
+signal player_lives
 signal end_stage
+signal continue_earned
 
 # achievement signals
 signal high_multiplier
@@ -18,6 +19,7 @@ signal beat_game
 
 var score = 0
 var current_game_state : game_state = game_state.TITLE
+var current_game_mode : game_mode = game_mode.NONE
 var stage_num : int = 1
 var stage : PackedScene
 var boss_spawned = false
@@ -30,21 +32,23 @@ var stage_results = {
 	enemies_killed = 0,
 	times_hit = 0,
 	times_died = 0,
-	credits_used = 0,
+	continues_used = 0,
 	biggest_multiplier = 0,
 	progress = 0,
 	boss_killed = false,
+	boss_kill_time = 0
 }
-	
 
-@export var start_lives = 3
-@export var credits = 3
+@export var default_lives = 3
+@export var continues = 1
 @export var scoring_timer : int = 5
 @export var high_scoring_multiplier : int = 30
 
+@onready var player = $Player
 @onready var title_screen = $CanvasLayer/TitleScreen
 @onready var stage_select = $CanvasLayer/StageSelect
 @onready var results_screen = $CanvasLayer/StageResults
+@onready var ship_select = $CanvasLayer/ShipSelect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,19 +64,23 @@ func _process(_delta):
 func begin_game():
 	score = 0
 	emit_signal("score_changed", score)
-	stage_num = 1
 	kill_sfx()
-	emit_signal("player_start",start_lives, credits)
+	player.start()
+	emit_signal("player_lives", default_lives)
+	emit_signal("continue_earned")
 	current_game_state = game_state.RUNNING
+	print(stage)
 	play_stage()
 
 func check_for_stage_clear():
 	if get_tree().get_nodes_in_group("boss").is_empty():
 		boss_spawned = false
 		stage_results.boss_killed = true
-		emit_signal("end_stage", stage_num, stage_results)
+		$Stopwatch.stop()
+		stage_results.boss_kill_time = $Stopwatch.time_elapsed
 		print(stage_results)
-	
+		emit_signal("end_stage", stage_num, stage_results)
+		
 func kill_sfx():
 	AudioStreamManager.clear_queue()
 	AudioStreamManager.start()
@@ -135,16 +143,13 @@ func _on_player_died():
 
 func _on_player_out_of_lives():
 	get_tree().call_group("enemies", "queue_free")
-	credits -= 1
-	credits = max(0, credits)
-	var lives = start_lives
-	if credits == 0:
+	continues -= 1
+	if continues < 0:
 		emit_signal("end_stage", stage_num, stage_results)
 		current_game_state = game_state.GAME_OVER
 		emit_signal("game_over")
 		# then show stage results
-		lives = 0
-	emit_signal("player_start", lives, credits)
+	emit_signal("player_lives", default_lives)
 
 func _on_pause_game():
 	get_tree().paused = true
@@ -158,10 +163,11 @@ func _on_scoring_timer_timeout():
 	emit_signal("score_multiplier", scoring_multiplier)
 
 func _on_boss_spawned():
-	BackgroundMusic.fade_out()
 	boss_spawned = true
 	$Background.stop()
 	await get_tree().create_timer(0.5).timeout
+	$Stopwatch.reset()
+	$Stopwatch.start()
 	BackgroundMusic.play_boss_theme(stage_num)
 	stage_results.progress = 100
 	
@@ -170,12 +176,12 @@ func _on_center_container_game_unpaused():
 	get_tree().paused = false
 
 func _on_title_screen_boss_mode():
-	stage = load("res://stages/Stage_1Boss.tscn")
-	begin_game()
+	stage = load("res://stages/bosses/Stage_1Boss.tscn")
+	ship_select.show()
 
 func _on_title_screen_attack_mode():
 	stage = load("res://stages/Stage_1.tscn")
-	begin_game()
+	ship_select.show()
 
 func _on_player_player_hit():
 	stage_results.times_hit += 0
@@ -195,19 +201,37 @@ func _on_stage_results_results_closed():
 	stage_select.show()
 
 func _on_title_screen_start_game():
+	current_game_mode = game_mode.STORY
 	stage_select.show()
 
 func _on_stage_select_stage_select_cancelled():
 	title_screen.show()
+	current_game_mode = game_mode.NONE
 	stage = null
 
 func _on_stage_select_stage_selected(stage_path):
 	stage = load(stage_path)
 	stage_results.path = stage_path
-	begin_game()
-
+	stage_num = 1
+	ship_select.show()
+	
 func _on_title_screen_exit_game():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	
 func _on_stage_results_retry_level():
-	play_stage()
+	begin_game()
+
+func _on_ship_select_ship_select_cancelled():
+	# need to make this aware of last screen before ship selection
+	match current_game_mode:
+		game_mode.ATTACK:
+			current_game_mode = game_mode.NONE
+			title_screen.show()
+		game_mode.BOSS:
+			current_game_mode = game_mode.NONE
+			title_screen.show()
+		game_mode.STORY:
+			stage_select.show()
+
+func _on_ship_select_ship_selected(ship, special, bomb):
+	begin_game()

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player/weapons/mine.gd" id="1_t6dp1"]
 [ext_resource type="AudioStream" uid="uid://cocrqag81vq8f" path="res://sound/sfx/lasers/Laser_5.wav" id="2_8b1ee"]
 [ext_resource type="AudioStream" uid="uid://gxabbu32l1eb" path="res://sound/sfx/Explosions/Explosion_7.wav" id="3_1l5il"]
-[ext_resource type="Texture2D" path="res://assets/Effects/Explosion_16x16.png" id="3_7qlp3"]
+[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_7cgk3"]
 [ext_resource type="Texture2D" uid="uid://i3nqxu3o3qtp" path="res://player/weapons/mine.png" id="4_tsy8h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4xqj4"]
@@ -36,7 +36,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_7qlp3")]
+"values": [ExtResource("4_7cgk3")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -107,8 +107,8 @@ firing_sound = ExtResource("2_8b1ee")
 explosion_sound = ExtResource("3_1l5il")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_tsy8h")
-hframes = 4
+texture = ExtResource("4_7cgk3")
+hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1.5)

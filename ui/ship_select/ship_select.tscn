@@ -63,10 +63,10 @@ border_width_bottom = 2
 border_color = Color(0.752941, 0.796078, 0.862745, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_poidl"]
-content_margin_left = 1.0
-content_margin_top = 1.0
-content_margin_right = 1.0
-content_margin_bottom = 1.0
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.752941, 0.796078, 0.862745, 1)
 border_width_left = 1
 border_width_top = 1
@@ -79,10 +79,10 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yvj7"]
-content_margin_left = 1.0
-content_margin_top = 1.0
-content_margin_right = 1.0
-content_margin_bottom = 1.0
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.752941, 0.796078, 0.862745, 1)
 border_width_left = 1
 border_width_top = 1
@@ -447,7 +447,7 @@ offset_bottom = 546.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("6_tp3a0")
 
-[node name="StartingBombs" type="Label" parent="."]
+[node name="RechargeTime" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -455,9 +455,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 38.5
-offset_top = 55.0
+offset_top = 81.0
 offset_right = 187.5
-offset_bottom = 79.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
@@ -466,30 +466,29 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 
 theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Starting Bombs:
+text = "Recharge Time:
 "
 vertical_alignment = 1
 
-[node name="MaxBombs" type="Label" parent="."]
+[node name="RechargeTimeCounter" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 38.5
-offset_top = 82.0
-offset_right = 149.5
-offset_bottom = 106.0
+offset_left = 195.0
+offset_top = 81.0
+offset_right = 219.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
-theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_constants/shadow_outline_size = 1
+theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Max Bombs:"
+text = "30
+"
 vertical_alignment = 1
 
 [node name="MaxOptions" type="Label" parent="."]
@@ -501,7 +500,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 38.5
 offset_top = 110.0
-offset_right = 141.5
+offset_right = 159.5
 offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -511,49 +510,7 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 
 theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("8_mr15y")
 theme_override_font_sizes/font_size = 18
-text = "Options: 
-"
-vertical_alignment = 1
-
-[node name="StartingBombsCounter" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 195.0
-offset_top = 55.0
-offset_right = 219.0
-offset_bottom = 79.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
-theme_override_fonts/font = ExtResource("8_mr15y")
-theme_override_font_sizes/font_size = 18
-text = "3
-"
-vertical_alignment = 1
-
-[node name="MaxBombsCounter" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 195.0
-offset_top = 82.0
-offset_right = 219.0
-offset_bottom = 106.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
-theme_override_fonts/font = ExtResource("8_mr15y")
-theme_override_font_sizes/font_size = 18
-text = "3
+text = "Num Options: 
 "
 vertical_alignment = 1
 
@@ -610,30 +567,32 @@ dialog_autowrap = true
 
 [node name="GridContainer2" type="GridContainer" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -578.0
-offset_top = -116.0
-offset_right = -21.0
-offset_bottom = -89.0
-grow_horizontal = 0
+offset_left = -187.0
+offset_top = -52.0
+offset_right = 187.0
+offset_bottom = -21.0
+grow_horizontal = 2
 grow_vertical = 0
-columns = 5
+columns = 4
 
 [node name="BackButton" type="Button" parent="GridContainer2"]
 z_index = 1
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_focus_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_fonts/font = ExtResource("2_s0frm")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_poidl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_poidl")
+theme_override_styles/focus = SubResource("StyleBoxFlat_poidl")
 action_mode = 0
 text = "<< Back
 "
@@ -641,44 +600,33 @@ text = "<< Back
 [node name="Settings" type="Button" parent="GridContainer2"]
 z_index = 1
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_focus_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_fonts/font = ExtResource("2_s0frm")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_poidl")
+theme_override_styles/focus = SubResource("StyleBoxFlat_poidl")
 action_mode = 0
 text = "Settings
-"
-
-[node name="Shop" type="Button" parent="GridContainer2"]
-z_index = 1
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
-theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
-theme_override_fonts/font = ExtResource("2_s0frm")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
-action_mode = 0
-text = "Shop
 "
 
 [node name="RandomizeButton" type="Button" parent="GridContainer2"]
 z_index = 1
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_focus_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_fonts/font = ExtResource("2_s0frm")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_poidl")
+theme_override_styles/focus = SubResource("StyleBoxFlat_poidl")
 action_mode = 0
 text = "Randomize
 "
@@ -686,14 +634,16 @@ text = "Randomize
 [node name="AcceptButton" type="Button" parent="GridContainer2"]
 z_index = 1
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_focus_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_fonts/font = ExtResource("2_s0frm")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_poidl")
+theme_override_styles/focus = SubResource("StyleBoxFlat_poidl")
 action_mode = 0
 text = "Accept
 "
@@ -711,6 +661,5 @@ offset_bottom = 64.0
 [connection signal="pressed" from="BombSettingNextButton" to="." method="_on_bomb_setting_next_button_pressed"]
 [connection signal="pressed" from="GridContainer2/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="GridContainer2/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="GridContainer2/Shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="GridContainer2/RandomizeButton" to="." method="_on_randomize_button_pressed"]
-[connection signal="pressed" from="GridContainer2/AcceptButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="GridContainer2/AcceptButton" to="." method="_on_accept_button_pressed"]

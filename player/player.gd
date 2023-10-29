@@ -11,16 +11,19 @@ signal player_hit
 
 var lives = 3
 
-@export var speed : int = 150
+@export var base_speed : int = 150
 @export var cooldown : float = 0.1
 @export var bomb_recharge_time : float = 20.0
 @export var main_weapon: PackedScene
 @export var special_weapon : PackedScene
-@export var configuration : Ship_configuration
+@onready var config : Ship_configuration = load("res://player/ships/typeC.tres")
 @export var bomb_scene : PackedScene
 @export var explosion_sound : AudioStreamWAV
 @export var firing_stations : Array[Firing_station] = []
+@export var x_offset : int = 20
+@export var y_offset : int = 24
 
+var speed : int
 var can_shoot : bool = true
 var invulnerable : bool = false
 var assist_mode_enabled = false
@@ -38,18 +41,21 @@ var option_index = Option_Formation.FRONT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset()
-	#$Ship.texture = configuration.sprite
+	$Ship.texture = config.sprite
+	speed = base_speed * (config.speed * 1.5 / 100)
 	emit_signal("weapon_changed", "beam")
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
 	set_firing_stations(5)
 	switch_option_formation()
 
 func set_firing_stations(value):
-	for station in firing_stations:
-		station.start(global_position)
+	var i = 0
+	while i < firing_stations.size():
+		firing_stations[i].start(Vector2(global_position.x - x_offset + (i * config.spacing), global_position.y - y_offset))
 		print("sfs ship %v" % global_position)
-		print("sfs station %v" % station.global_position)
-		station.angle = 90
+		print("sfs station %v" % firing_stations[i].global_position)
+		firing_stations[i].angle = config.start_angle + (i * config.canting)
+		i += 1
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

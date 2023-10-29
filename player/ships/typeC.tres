@@ -7,6 +7,9 @@
 script = ExtResource("1_f11cc")
 name = "Type C"
 sprite = ExtResource("2_xoh4n")
-speed = 0.75
-shot_width = 60.0
+speed = 50.0
+shot_width = 100.0
 description = "A slow ship with a very wide firing arc"
+spacing = 15
+start_angle = 75
+canting = 10

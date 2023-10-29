@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/main_weapon.tscn" id="2_75g50"]
 [ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://player/items/bomb.tscn" id="3_0duad"]
-[ext_resource type="Resource" uid="uid://celc63e446bf5" path="res://player/ships/typeA.tres" id="3_hf8c5"]
 [ext_resource type="Texture2D" uid="uid://cqeb72k7qp10i" path="res://assets/Player_ship_A.png" id="4_gx51a"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
 [ext_resource type="Texture2D" uid="uid://dhejifd02ryj7" path="res://assets/Boosters.png" id="5_kpxme"]
 [ext_resource type="Texture2D" uid="uid://dla4w1crjijvn" path="res://assets/Boosters_left.png" id="6_af20e"]
+[ext_resource type="PackedScene" uid="uid://clivlywn14dn5" path="res://player/weapons/firing_station.tscn" id="6_lwalq"]
 [ext_resource type="Texture2D" uid="uid://c2o0ujdp8t2v5" path="res://assets/Boosters_right.png" id="7_phs4y"]
 [ext_resource type="PackedScene" uid="uid://cgapobxp7ck2" path="res://player/option.tscn" id="10_ih0ln"]
 
@@ -121,10 +121,9 @@ _data = {
 collision_mask = 31
 script = ExtResource("1_ks4n4")
 main_weapon = ExtResource("2_75g50")
-configuration = ExtResource("3_hf8c5")
 bomb_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")
-firing_stations = [null]
+firing_stations = [NodePath("Ship/FiringStation"), NodePath("Ship/FiringStation2"), NodePath("Ship/FiringStation3"), NodePath("Ship/FiringStation4")]
 
 [node name="Ship" type="Sprite2D" parent="."]
 texture = ExtResource("4_gx51a")
@@ -146,6 +145,14 @@ autoplay = "forward"
 [node name="LeftOption" parent="Ship" instance=ExtResource("10_ih0ln")]
 
 [node name="RightOption" parent="Ship" instance=ExtResource("10_ih0ln")]
+
+[node name="FiringStation" parent="Ship" instance=ExtResource("6_lwalq")]
+
+[node name="FiringStation2" parent="Ship" instance=ExtResource("6_lwalq")]
+
+[node name="FiringStation3" parent="Ship" instance=ExtResource("6_lwalq")]
+
+[node name="FiringStation4" parent="Ship" instance=ExtResource("6_lwalq")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)

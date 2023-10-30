@@ -31,7 +31,7 @@ func update_base(value):
 	base_counter.text = "%d" % value
 	
 func update_boss(value):
-	var text = 2 if value else 1
+	var text = 'Yes' if value else 'No'
 	boss_counter.text = str(text)
 	
 func update_continues(value):

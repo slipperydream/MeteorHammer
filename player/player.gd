@@ -233,7 +233,11 @@ func use_bomb():
 	if bomb_timer.is_stopped():
 		make_invulnerable()
 		var bomb = bomb_scene.instantiate()
+		
+		# debugger compalins about not using call_deferred,
+		# but that breaks for me
 		get_tree().root.add_child(bomb)
+		
 		bomb.execute(position)
 		emit_signal("bomb_used")
 		bomb_timer.wait_time = bomb_config.recharge_time

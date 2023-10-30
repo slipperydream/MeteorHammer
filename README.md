@@ -3,26 +3,24 @@ Heavily modified now
 
 TODOs (rough priority order)
 -----
-- [] create different player ships
+- [x] create different player ships
  - speed + shot width differences seem to be standard
  - [x] fast + narrow
  - [x] average + 45 degree shot
  - [x] slow + 60-90 degree shot?
- - [] add progress bars to show differences on the ship select screen
+ - [x] add progress bars to show differences on the ship select screen
 
 - []ship customization
    - [] chaining_easier: more time between kills, but grows slower
    - [] chaining_higher: less time between kills, but grows faster
-   Update bomb configuration to be options not shots
-- Max Bombs is 5 bombs & 3 options to both & max of 6 bombs
-- Max Options 6 options max 1 bomb
-- Balance: 4 options & 2 bombs (start with 1) Add option switch between normal (two) vs boost (four/ less damage per option)
+
+- [] Add option switch between normal (two) vs boost (four/ less damage per option)
 
 - Special Weapons
   - [] shield
   - [] homing missiles
-  - [] laser
-  - [] katana
+  - [x] laser - made as a standard weapon
+  - [x] katana
   - [x] mines
  
 - Power ups
@@ -32,15 +30,16 @@ TODOs (rough priority order)
 - [] Add effects
 - [] Increase sounda
 
-- [] finish ship select screen
-- [] walk through title to stage end
+- [X] finish ship select screen
+- [X] walk through title to stage end
 
 - [] Add game over screen
 - [] Add settings menu
 - [] Add high score saving
 
+- [x] add paths and prototyped moving an enemy with one. 
 - [] Add pathing (Path2D) for enemy waves that aren’t just flying directly south 
-- [] Add UI indication of incoming enemy path with Line2D
+- [] Add UI indication of incoming enemy path with Line2D?
 
 - [] Make a stage struct that defines the number, name, and other things
 
@@ -70,13 +69,13 @@ TODOs (rough priority order)
 - []Start building 60 second long stage 1
   - goal is to have each stage be about 2 minutes and a 30-45 second boss fight
   - Keep main story stages to 5 to 7 
-    - [] add song changes with the stage changes
+    - [x] add song changes with the stage changes
     - [X] update spawner to specify location
     - [] add complete boss scene 
-      - [] change music to boss theme
+      - [x] change music to boss theme
 
 - [] make/finish game modes: 
-   - [] stage select: galaxy map with brief overview of mission when selected
+   - [x] stage select: galaxy map with brief overview of mission when selected
    - [] boss select: just play the bosses you've seen before
    - [] attack mode: out to run through stages on after another.
    - [] attract mode: self playing 
@@ -92,8 +91,10 @@ TODOs (rough priority order)
 - [] add scoring triggers to generate items/powerups/1ups
 - [] Add corpse on screen for last death. Worth X points if "salvaged" i.e. picked up
 
-- [] Replace credits with a continue meter that refills with score
-- [] add focused shot for player with holding down the button
+- [-] Replace credits with a continue meter that refills with score
+- [x] add focused shot for player with holding down the button
+    - doesn't seem possible with Godot, so adding laser as a default weapon instead
+    - [] slow player speed when firing laser
 - [] Add player shot limit. Forces closer attacks for higher damage
 - [] Possibly add a collision shield? Doesn’t stop bullets
 - [] update player weapon to better looking sprite

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_1lirv"]
 [ext_resource type="AudioStream" uid="uid://cjfmy76pau61g" path="res://sound/sfx/Explosions/Explosion_3.wav" id="2_er248"]
 [ext_resource type="Texture2D" uid="uid://lhbfv1g66r0e" path="res://assets/Nairan/Designs-Base/Nairan-SupportShip-Base.png" id="3_rsx6e"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion.png" id="4_y5j0t"]
+[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_y5j0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(14, 8)

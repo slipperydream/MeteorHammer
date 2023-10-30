@@ -42,7 +42,8 @@ func _physics_process(delta):
 	
 	if is_colliding():
 		for i in get_collision_count():
-			cast_point = to_local(get_collision_point(i))
+			var point = get_collision_point(i)
+			cast_point = to_local(Vector2(global_position.x, point.y-15))
 			var area = get_collider(i)
 			if area.is_in_group("enemy"):
 				area.take_damage(power)

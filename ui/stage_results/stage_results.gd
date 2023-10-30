@@ -4,7 +4,7 @@ signal results_closed
 signal retry_level
 
 @export var backgrounds : Array[Texture2D] = []
-@export_range(1000, 50000) var star_value : int = 10000
+@export_range(1000, 50000) var star_value : int = 5000
 @export var base_points : int = 1000
 @onready var background = $PanelContainer/Sprite2D
 @onready var screensize : Vector2 = get_viewport_rect().size
@@ -53,7 +53,7 @@ func update_progress(value):
 	progress_counter = "%s" % value 
 
 func update_speed(value):
-	speed_counter.text = "%02f" % value
+	speed_counter.text = "%02.1f" % value
 
 func update_score(results):
 	var boss_bonus = 2 if results.boss_killed else 1

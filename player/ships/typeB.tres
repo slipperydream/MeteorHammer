@@ -9,6 +9,7 @@ name = "Type B"
 sprite = ExtResource("2_clphk")
 speed = 75
 shot_width = 75.0
+laser_width = 45.0
 description = "A balanced ship with a wide firing arc"
 spacing = 15
 start_angle = 80

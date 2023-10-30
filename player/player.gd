@@ -57,13 +57,17 @@ func start():
 
 func configure(in_ship_config, in_special_config, in_bomb_setting):
 	ship_config = in_ship_config
-	special_config = in_special_config
-	bomb_config = in_bomb_setting
 	$Ship.texture = ship_config.sprite
 	speed = base_speed * ship_config.speed 
+	$Laser.width = ship_config.laser_width
+	$Laser.power = ship_config.laser_power
 	set_firing_stations()
-	switch_option_formation()
+	
+	bomb_config = in_bomb_setting
 	bomb_timer.wait_time = 0.1
+	switch_option_formation()
+	
+	special_config = in_special_config
 	special_cooldown.wait_time = special_config.wait_time
 	
 func set_firing_stations():
@@ -96,8 +100,12 @@ func _process(delta):
 	
 	if Input.is_action_pressed("main_weapon_fire"):
 		main_weapon_fire()
-	elif Input.is_action_just_pressed("special_fire"):
-		special_fire()
+	elif Input.is_action_pressed("laser"):
+		$Laser.start()
+	if Input.is_action_just_released("laser"):
+		$Laser.stop()
+	if Input.is_action_just_pressed("special_weapon_fire"):
+		special_weapon_fire()
 	
 	if assist_mode_enabled:
 		if Input.is_action_just_pressed("assist_mode_fire"):
@@ -120,7 +128,7 @@ func reset():
 		show()
 	can_shoot = true
 
-func special_fire():	
+func special_weapon_fire():	
 	if special_available == false:
 		return
 	special_available = false

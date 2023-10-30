@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ptgwn0ioh0rq"]
+
+[ext_resource type="Texture2D" uid="uid://c1tuj3cjl34xo" path="res://assets/Player_missile_shots.png" id="1_5tr4b"]
+[ext_resource type="Script" path="res://player/weapons/homing_missile.gd" id="1_180j4"]
+[ext_resource type="AudioStream" uid="uid://bfp18e75mhkyv" path="res://sound/sfx/Scifi/Booster.wav" id="2_wp7r3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
+size = Vector2(8, 20)
+
+[node name="HomingMissile" type="Area2D" groups=["bullets"]]
+collision_mask = 26
+script = ExtResource("1_180j4")
+title = "Bullet"
+firing_sound = ExtResource("2_wp7r3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("1_5tr4b")
+hframes = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_75uv4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["bullets"]]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

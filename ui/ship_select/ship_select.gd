@@ -60,6 +60,9 @@ func update_special_weapon():
 	elif special_weapons[special_weapon_index].name.to_lower().contains("mine"):
 		selected_special_weapon_img.hframes = 4
 		selected_special_weapon_img.frame = 0
+	elif special_weapons[special_weapon_index].name.to_lower().contains("missile"):
+		selected_special_weapon_img.hframes = 16
+		selected_special_weapon_img.frame = 0
 	
 	special_name.text = special_weapons[special_weapon_index].name
 	selected_special_weapon_img.texture = special_weapons[special_weapon_index].sprite

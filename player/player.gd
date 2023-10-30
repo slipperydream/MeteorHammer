@@ -139,6 +139,8 @@ func special_weapon_fire():
 		weapon.start(global_position + Vector2(0, 64), Vector2.DOWN.rotated(rotation))
 	elif weapon.title.to_lower().contains("katana"):
 		weapon.start(global_position + Vector2(0, -64))
+	elif weapon.title.to_lower().contains("missile"):
+		weapon.start(position + Vector2(0, -64))
 	if not assist_mode_enabled:
 		options_fire()
 		

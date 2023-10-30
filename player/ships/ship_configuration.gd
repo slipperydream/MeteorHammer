@@ -7,7 +7,7 @@ class_name Ship_configuration
 @export_range(50, 100) var speed : int = 75
 @export_range(50, 100) var shot_width : float = 75
 @export_range(20, 60) var laser_width : float = 35
-@export_range(1, 20) var laser_power : int = 1
+@export_range(1, 20) var laser_power : float = 1
 @export var description : String = ''
 
 @export var spacing : int = 15

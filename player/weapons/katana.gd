@@ -14,29 +14,24 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#	rotation_degrees += rotation_speed
-#	if rotation_degrees > 0 and rotation_degrees < 45:
-#		position = position + speed * delta * direction * rotation_degrees
-#	else:
-	position = position + speed * delta * direction
+	#position = position + speed * delta * direction
+	pass
 
 
 func start(pos):
 	AudioStreamManager.play(firing_sound.resource_path, true)
-	global_position = pos
-	slice_right = randi_range(0,1)
-	if slice_right == false:
-		$Sprite2D.flip_h = false
-	var angle = 70
 	
-	if slice_right:
-		rotation_degrees = -45
+	var end_x = -25
+	slice_right = randi_range(0,1)
+	if slice_right == true:
+		global_position = Vector2(-10, pos.y)
+		end_x = 625
 	else:
-		angle = -70
-		rotation_degrees = 45
+		global_position = Vector2(610, pos.y)
+		$Sprite2D.flip_h = true		
 		
 	var tween = create_tween()
-	tween.tween_property(self, "rotation_degrees", angle, 1)
+	tween.tween_property(self, "position:x", end_x, 1)
 	
 func _on_area_entered(area):
 	if area.is_in_group("enemy"):

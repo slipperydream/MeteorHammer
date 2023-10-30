@@ -16,6 +16,7 @@ var bomb_index : int = 0
 @onready var ship_name = $ShipName
 @onready var ship_speed = $Speed
 @onready var ship_shot_width = $ShotWidth
+@onready var ship_laser_power = $LaserPower
 
 @onready var selected_special_weapon_img = $SpecialWeapon/Control/Sprite2D
 @onready var prev_special_weapon = $WeaponPreviousButton
@@ -52,6 +53,7 @@ func update_ship():
 	
 	ship_speed.value = ships[ship_index].speed
 	ship_shot_width.value = ships[ship_index].shot_width
+	ship_laser_power.value = ships[ship_index].laser_power
 
 func update_special_weapon():
 	if special_weapons[special_weapon_index].name.to_lower().contains("katana"):

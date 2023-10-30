@@ -25,7 +25,6 @@ func _ready():
 	set_physics_process(false)
 	$Line2D.points[1] = Vector2.ZERO
 	
-
 #func _unhandled_input(event):
 #	if event.is_action_pressed("laser"):
 #		start()

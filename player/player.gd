@@ -61,6 +61,7 @@ func configure(in_ship_config, in_special_config, in_bomb_setting):
 	speed = base_speed * ship_config.speed 
 	$Laser.width = ship_config.laser_width
 	$Laser.power = ship_config.laser_power
+	
 	set_firing_stations()
 	
 	bomb_config = in_bomb_setting
@@ -138,7 +139,7 @@ func special_weapon_fire():
 	if weapon.title.to_lower() == "mine":
 		weapon.start(global_position + Vector2(0, 64), Vector2.DOWN.rotated(rotation))
 	elif weapon.title.to_lower().contains("katana"):
-		weapon.start(global_position + Vector2(0, -64))
+		weapon.start(global_position + Vector2(0, -300))
 	elif weapon.title.to_lower().contains("missile"):
 		weapon.start(position + Vector2(0, -64))
 	if not assist_mode_enabled:

@@ -12,7 +12,6 @@ signal retry_level
 @onready var score = $Scorebar/ScoreLabel
 @onready var base_counter = $Panel/VBoxContainer/BaseValue
 @onready var boss_counter = $Panel4/VBoxContainer/BossBonus
-@onready var continues_counter = $CenterPanel/MarginContainer/GridContainer/ContinuesCounter
 @onready var deaths_counter = $CenterPanel/MarginContainer/GridContainer/DeathsCounter
 @onready var destroyed_counter = $CenterPanel/MarginContainer/GridContainer/DestroyedCounter
 @onready var hits_counter = $CenterPanel/MarginContainer/GridContainer/HitsCounter
@@ -33,9 +32,6 @@ func update_base(value):
 func update_boss(value):
 	var text = 'Yes' if value else 'No'
 	boss_counter.text = str(text)
-	
-func update_continues(value):
-	continues_counter.text = str(value)
 	
 func update_deaths(value):
 	deaths_counter.text = str(value)
@@ -72,7 +68,6 @@ func update_stars(value):
 func _on_main_end_stage(_stage, results):
 	update_base(base_points)
 	update_boss(results.boss_killed)
-	update_continues(results.continues_used)
 	update_deaths(results.times_died)
 	update_destroyed(results.enemies_killed)
 	update_hits(results.times_hit)

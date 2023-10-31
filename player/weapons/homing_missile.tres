@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://player/weapons/special_weapon.gd" id="1_flkvo"]
 [ext_resource type="PackedScene" uid="uid://ptgwn0ioh0rq" path="res://player/weapons/homing_missile.tscn" id="2_gluyw"]
-[ext_resource type="Texture2D" uid="uid://c1tuj3cjl34xo" path="res://assets/Player_missile_shots.png" id="2_kud4l"]
+[ext_resource type="Texture2D" uid="uid://dfpawfolnlu1v" path="res://player/weapons/charged_shot.png" id="2_rfokb"]
 
 [resource]
 script = ExtResource("1_flkvo")
 name = "Homing Missile"
-sprite = ExtResource("2_kud4l")
+sprite = ExtResource("2_rfokb")
 weapon = ExtResource("2_gluyw")
-wait_time = 1.0
+cost = 1
 description = "Seeks and destroys first target it finds"

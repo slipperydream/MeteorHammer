@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dnd3jgl6lomdw"]
+[gd_scene load_steps=33 format=3 uid="uid://dnd3jgl6lomdw"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_w0iv7"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="2_775kc"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_jg5kb"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_ofcya"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_x30bx"]
+[ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://enemy/target_lock.tscn" id="6_omhe3"]
+[ext_resource type="Texture2D" uid="uid://du2oumn8k17xg" path="res://ui/target_lock_medium.png" id="7_bubes"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_x1v44"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjf61"]
@@ -293,6 +295,21 @@ sprite_frames = SubResource("SpriteFrames_t6w3m")
 animation = &"forward"
 autoplay = "forward"
 script = ExtResource("5_jg5kb")
+
+[node name="TargetLock" parent="Sprite2D" instance=ExtResource("6_omhe3")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -192.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bubes")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 14.5)

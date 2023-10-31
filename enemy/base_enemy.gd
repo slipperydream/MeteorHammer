@@ -35,6 +35,7 @@ func _ready():
 	if parent is PathFollow2D:
 		parent.progress = 0
 		
+	$Sprite2D/TargetLock.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -107,7 +108,7 @@ func calculate_points():
 		
 func show_points():
 	var death_points = Points_label.new()
-	get_tree().root.add_child(death_points)
+	get_tree().get_first_node_in_group("canvas").add_child(death_points)
 	death_points.display(global_position + Vector2(20, -32), points)
 
 func explode():
@@ -140,3 +141,7 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 func _on_shooting_component_shooting():
 	if $AnimationPlayer.has_animation("shooting"):
 		$AnimationPlayer.play("shooting")
+
+func _on_homing_missile_target_lock(target):
+	if target == self:
+		$Sprite2D/TargetLock.show()

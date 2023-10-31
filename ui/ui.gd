@@ -91,3 +91,5 @@ func _on_player_bomb_charging(time):
 	tween = create_tween()
 	tween.tween_property($BottomBar/Bomb.get_theme_stylebox("normal"), "border_color",  Color(0.39, 0.78, 0.3, 1), time)
 
+	
+	

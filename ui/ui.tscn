@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_ieqr5"]
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="2_85hi6"]
-[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://ui/stopwatch.tscn" id="3_0adte"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="3_0adte"]
 [ext_resource type="Texture2D" uid="uid://55fsu8go74hg" path="res://assets/Player_life_icon_64x64.png" id="3_5pht8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8lrl"]

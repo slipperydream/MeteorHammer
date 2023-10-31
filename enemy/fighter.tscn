@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://iv1q1152twqe"]
+[gd_scene load_steps=31 format=3 uid="uid://iv1q1152twqe"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_cja1d"]
 [ext_resource type="AudioStream" uid="uid://b81ote4ejuuha" path="res://sound/sfx/Explosions/Explosion_4.wav" id="2_enotn"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_g6033"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_uhask"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_sq7r8"]
+[ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://enemy/target_lock.tscn" id="6_vb0wi"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_1wv58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqjq8"]
@@ -275,6 +276,19 @@ sprite_frames = SubResource("SpriteFrames_0qgxf")
 animation = &"forward"
 autoplay = "forward"
 script = ExtResource("5_2emms")
+
+[node name="TargetLock" parent="Sprite2D" instance=ExtResource("6_vb0wi")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -82.0
+offset_right = -46.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)

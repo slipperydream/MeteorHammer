@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dyqxqv1ayua2r" path="res://ui/stage_results/stage_results.tscn" id="7_5pgji"]
 [ext_resource type="PackedScene" uid="uid://borv5q636p3x1" path="res://ui/stage_select/stage_select.tscn" id="8_4tp73"]
 [ext_resource type="PackedScene" uid="uid://dqrp2a1yyocuq" path="res://ui/ship_select/ship_select.tscn" id="9_aya4f"]
-[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://ui/stopwatch.tscn" id="9_vmmdb"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="9_vmmdb"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -46,7 +46,7 @@ libraries = {
 "": SubResource("AnimationLibrary_gky1u")
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["canvas"]]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_r43jo")]
 

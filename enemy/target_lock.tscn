@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://m0kvusipjv6x"]
+
+[ext_resource type="Texture2D" uid="uid://biw8w4kd1fdp8" path="res://ui/target_lock_small.png" id="1_r1i2r"]
+
+[node name="TargetLock" type="TextureRect"]
+offset_right = 36.0
+offset_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_r1i2r")

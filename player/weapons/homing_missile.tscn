@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player/weapons/homing_missile.gd" id="1_180j4"]
 [ext_resource type="AudioStream" uid="uid://bfp18e75mhkyv" path="res://sound/sfx/Scifi/Booster.wav" id="2_wp7r3"]
-[ext_resource type="Texture2D" uid="uid://di1kgbpvwy4bc" path="res://enemy/weapons/bullet_shapes/needle.png" id="3_02eca"]
+[ext_resource type="Texture2D" uid="uid://dfpawfolnlu1v" path="res://player/weapons/charged_shot.png" id="3_llu2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
 size = Vector2(12, 30)
@@ -11,14 +11,12 @@ size = Vector2(12, 30)
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_180j4")
-title = "Bullet"
 power = 50
 firing_sound = ExtResource("2_wp7r3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-rotation = 3.14159
-texture = ExtResource("3_02eca")
+texture = ExtResource("3_llu2l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)

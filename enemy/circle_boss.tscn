@@ -1,12 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://cojkicds8uf8c"]
+[gd_scene load_steps=26 format=3 uid="uid://cojkicds8uf8c"]
 
 [ext_resource type="Script" path="res://enemy/boss.gd" id="1_m1li8"]
 [ext_resource type="AudioStream" uid="uid://dc0pm3gmnb134" path="res://sound/sfx/Explosions/Repeating_explosion.wav" id="2_veit0"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="3_km3fg"]
 [ext_resource type="Texture2D" uid="uid://dlholuxpiqcq7" path="res://enemy/circle_boss.png" id="4_2bc68"]
+[ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://enemy/target_lock.tscn" id="4_k7s7j"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="4_nn3en"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_t0exc"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="4_wa46r"]
+[ext_resource type="Texture2D" uid="uid://du2oumn8k17xg" path="res://ui/target_lock_medium.png" id="5_h8iit"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/circle_pattern.gd" id="5_ri64t"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_lc6i8"]
 [ext_resource type="PackedScene" uid="uid://cnt8jlxc1o2co" path="res://enemy/weapons/bullet_shapes/needle.tscn" id="9_2r06l"]
@@ -236,6 +238,21 @@ explosion_sound = ExtResource("2_veit0")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_2bc68")
 hframes = 8
+
+[node name="TargetLock" parent="Sprite2D" instance=ExtResource("4_k7s7j")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -192.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_h8iit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8rgpy")

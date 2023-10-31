@@ -28,7 +28,6 @@ var speed : int
 var max_bombs : int
 var bombs : int 
 var can_shoot : bool = true
-var special_available : bool = false
 var invulnerable : bool = false
 var assist_mode_enabled = false
 enum Option_Formation { SPREAD, TAIL, SIDES, FRONT}
@@ -38,7 +37,6 @@ var option_index = Option_Formation.FRONT
 @onready var shipsize : Vector2 = $Ship.texture.get_size()
 @onready var bomb_timer = $BombTimer
 @onready var gun_cooldown = $GunCooldown
-@onready var special_cooldown = $SpecialWeaponTimer
 @onready var invuln_timer = $InvulnerabilityTimer
 @onready var left_option = $Ship/LeftOption
 @onready var right_option = $Ship/RightOption
@@ -50,7 +48,6 @@ func _ready():
 func start():
 	reset()
 	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
-	special_cooldown.start()
 	emit_signal("weapon_changed", special_config.name)
 	bomb_timer.start()
 	emit_signal("bomb_charging", bomb_config.recharge_time)
@@ -69,7 +66,6 @@ func configure(in_ship_config, in_special_config, in_bomb_setting):
 	switch_option_formation()
 	
 	special_config = in_special_config
-	special_cooldown.wait_time = special_config.wait_time
 	
 func set_firing_stations():
 	var i = 0
@@ -130,10 +126,6 @@ func reset():
 	can_shoot = true
 
 func special_weapon_fire():	
-	if special_available == false:
-		return
-	special_available = false
-	special_cooldown.start()	
 	var weapon = special_config.weapon.instantiate()
 	get_tree().root.add_child(weapon)
 	if weapon.title.to_lower() == "mine":
@@ -142,7 +134,6 @@ func special_weapon_fire():
 		weapon.start(global_position + Vector2(0, -300))
 	elif weapon.title.to_lower().contains("missile"):
 		weapon.start(global_position + Vector2(0, -64))
-		print("fired missile at %v" % global_position)
 		
 	if not assist_mode_enabled:
 		options_fire()
@@ -275,5 +266,3 @@ func _on_main_end_stage(_current, _results):
 func _on_bomb_timer_timeout():
 	emit_signal("bomb_recharged")
 
-func _on_special_weapon_timer_timeout():
-	special_available = true

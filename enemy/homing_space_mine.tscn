@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://glp73e1wvqq8"]
+[gd_scene load_steps=12 format=3 uid="uid://glp73e1wvqq8"]
 
 [ext_resource type="Script" path="res://enemy/space_mine.gd" id="1_fhimk"]
 [ext_resource type="AudioStream" uid="uid://ddofjp0mt70pf" path="res://sound/sfx/Explosions/Explosion_8.wav" id="2_egdk7"]
 [ext_resource type="Texture2D" uid="uid://cck7wsjxldu6m" path="res://enemy/homing_space_mine.png" id="3_nwtac"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_mt7iv"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="5_gvawt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0drl"]
 size = Vector2(88, 110)
@@ -165,13 +166,15 @@ _data = {
 
 [node name="HomingSpaceMine" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 10
+collision_layer = 8
+collision_mask = 3
 audio_bus_name = &"SFX"
 script = ExtResource("1_fhimk")
 title = "Homing Space Mine"
 faces_player = true
 homing = true
 explosion_sound = ExtResource("2_egdk7")
+life_expectancy = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_nwtac")
@@ -193,6 +196,8 @@ scale = Vector2(1.6, 2.45)
 [node name="SelfDestructTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="Stopwatch" parent="." instance=ExtResource("5_gvawt")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

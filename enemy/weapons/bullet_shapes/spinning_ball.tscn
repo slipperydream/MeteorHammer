@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://6t7gq1rbqydp"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_i8snl"]
-[ext_resource type="Texture2D" uid="uid://bq1haimdtetg1" path="res://enemy/weapons/bullet_shapes/spinning_ball.png" id="2_3npsp"]
+[ext_resource type="Texture2D" uid="uid://6m1juh18lo61" path="res://enemy/weapons/bullet_shapes/spinning_ball.png" id="2_3npsp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_66sgq"]
 radius = 13.0
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_18lte"]
@@ -36,7 +36,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [4, 5, 6, 7]
+"values": [0, 1, 2, 7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7h7y"]
@@ -48,16 +48,15 @@ _data = {
 [node name="SpinningBullet" type="Area2D" groups=["enemy_weapon"]]
 z_index = 1
 rotation = 3.14159
-collision_layer = 2
+collision_layer = 16
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_i8snl")
-title = "enemy bolt"
+title = "spinning ball"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3npsp")
-hframes = 28
-frame = 4
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_66sgq")

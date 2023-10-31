@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsctabtw3j43n"]
+[gd_scene load_steps=15 format=3 uid="uid://bsctabtw3j43n"]
 
 [ext_resource type="Script" path="res://enemy/asteroid.gd" id="1_x8os1"]
 [ext_resource type="AudioStream" uid="uid://b4txmwe7jncxj" path="res://sound/sfx/Explosions/Explosion_5.wav" id="2_a1tck"]
 [ext_resource type="Texture2D" uid="uid://heglul6b074k" path="res://enemy/asteroids.png" id="2_ujvb8"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="3_n2esd"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="5_mvenc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3qpc2"]
 radius = 27.0
@@ -283,7 +284,8 @@ _data = {
 
 [node name="Asteroid" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 10
+collision_layer = 8
+collision_mask = 3
 audio_bus_name = &"SFX"
 script = ExtResource("1_x8os1")
 title = "Asteroid"
@@ -302,3 +304,5 @@ libraries = {
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Stopwatch" parent="." instance=ExtResource("5_mvenc")]

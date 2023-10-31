@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dnd3jgl6lomdw"]
+[gd_scene load_steps=31 format=3 uid="uid://dnd3jgl6lomdw"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_w0iv7"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="2_775kc"]
@@ -10,7 +10,8 @@
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_4rkk6"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_jg5kb"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_ofcya"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion.png" id="5_x30bx"]
+[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_x30bx"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_x1v44"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjf61"]
 atlas = ExtResource("3_m57je")
@@ -274,11 +275,13 @@ salvo_delay = 0.3
 
 [node name="Battlecruiser" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 10
+collision_layer = 8
+collision_mask = 3
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_w0iv7")
 explosion_sound = ExtResource("2_775kc")
+life_expectancy = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
@@ -339,6 +342,8 @@ position = Vector2(29, 6)
 z_index = 1
 position = Vector2(2, 14)
 scale = Vector2(6.3, 8.6)
+
+[node name="Stopwatch" parent="." instance=ExtResource("12_x1v44")]
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

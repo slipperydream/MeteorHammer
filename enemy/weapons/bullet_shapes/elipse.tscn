@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bs1kpoi5efod5"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_safj1"]
-[ext_resource type="Texture2D" uid="uid://bnylfhan77sub" path="res://enemy/weapons/bullet_shapes/elipse.png" id="2_dqvlv"]
+[ext_resource type="Texture2D" uid="uid://v4n5o8drleao" path="res://enemy/weapons/bullet_shapes/elipse.png" id="2_dqvlv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_68fdm"]
 radius = 7.0
@@ -9,12 +9,36 @@ height = 26.0
 
 [sub_resource type="Animation" id="Animation_ffaud"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_urh4c"]
 resource_name = "spin"
-length = 0.45
+length = 0.8
 loop_mode = 1
-step = 0.15
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.1, 1.1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hdy1v"]
 _data = {
@@ -23,15 +47,13 @@ _data = {
 }
 
 [node name="Elipse" type="Area2D" groups=["enemy_weapon"]]
-collision_layer = 2
+collision_layer = 16
 audio_bus_name = &"SFX"
 script = ExtResource("1_safj1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_dqvlv")
-hframes = 7
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

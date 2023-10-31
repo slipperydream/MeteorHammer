@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://iv1q1152twqe"]
+[gd_scene load_steps=30 format=3 uid="uid://iv1q1152twqe"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_cja1d"]
 [ext_resource type="AudioStream" uid="uid://b81ote4ejuuha" path="res://sound/sfx/Explosions/Explosion_4.wav" id="2_enotn"]
@@ -8,9 +8,10 @@
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="4_fc43p"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_2emms"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_66wlm"]
-[ext_resource type="Texture2D" uid="uid://bb6ccfu1fmffu" path="res://assets/Effects/Explosion.png" id="5_g6033"]
+[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_g6033"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_uhask"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_sq7r8"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_1wv58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqjq8"]
 atlas = ExtResource("3_0mkme")
@@ -256,7 +257,8 @@ salvo_delay = 0.3
 
 [node name="Fighter" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 10
+collision_layer = 8
+collision_mask = 3
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_cja1d")
@@ -309,5 +311,7 @@ stations = [NodePath("../Station1"), NodePath("../Station2"), NodePath("../Stati
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, -2)
 scale = Vector2(3, 2.7)
+
+[node name="Stopwatch" parent="." instance=ExtResource("12_1wv58")]
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c5vy5tww5so1i"]
+[gd_scene load_steps=27 format=3 uid="uid://c5vy5tww5so1i"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_0amy5"]
 [ext_resource type="AudioStream" uid="uid://cjfmy76pau61g" path="res://sound/sfx/Explosions/Explosion_3.wav" id="2_1c6ef"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_8fkfv"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="4_rwaqa"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_52fho"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="10_02n62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(42.0416, 33.4706)
@@ -430,7 +431,8 @@ salvo_delay = 0.4
 
 [node name="Tank" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 18
+collision_layer = 8
+collision_mask = 3
 audio_bus_name = &"SFX"
 script = ExtResource("1_0amy5")
 is_GOB = true
@@ -460,6 +462,8 @@ position = Vector2(-11, -4)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -5)
+
+[node name="Stopwatch" parent="." instance=ExtResource("10_02n62")]
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

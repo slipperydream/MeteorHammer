@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ducqu38f0s015"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_pjj7e"]
-[ext_resource type="Texture2D" uid="uid://covrginwr42oi" path="res://enemy/weapons/bullet_shapes/diamonds.png" id="2_hsod7"]
+[ext_resource type="Texture2D" uid="uid://c40apwls8mty1" path="res://enemy/weapons/bullet_shapes/diamonds.png" id="2_hsod7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sq72"]
 size = Vector2(10, 22)
@@ -45,15 +45,13 @@ _data = {
 }
 
 [node name="Diamond" type="Area2D" groups=["enemy_weapon"]]
-collision_layer = 2
+collision_layer = 16
 audio_bus_name = &"SFX"
 script = ExtResource("1_pjj7e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_hsod7")
-hframes = 7
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

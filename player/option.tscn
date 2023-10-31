@@ -68,6 +68,7 @@ animations = [{
 }]
 
 [node name="Option" type="Area2D"]
+collision_mask = 0
 script = ExtResource("1_cbo4c")
 weapon = ExtResource("2_v6brp")
 

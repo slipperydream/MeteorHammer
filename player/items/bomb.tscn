@@ -68,8 +68,8 @@ _data = {
 }
 
 [node name="Bomb" type="Area2D"]
-collision_layer = 4
-collision_mask = 26
+collision_layer = 2
+collision_mask = 24
 script = ExtResource("1_f5b0g")
 activation_sound = ExtResource("2_gype8")
 

@@ -15,6 +15,7 @@ signal died
 @export var homing : bool = false
 @export var steer_force = 50.0
 @export var explosion_sound : AudioStreamWAV
+@export var life_expectancy : int = 8
 
 var is_alive : bool = true
 var vec_to_player : Vector2 = Vector2(0,1)
@@ -89,11 +90,25 @@ func take_damage(value):
 				
 func die():
 	speed = 0
+	calculate_points()
+	show_points()
 	set_deferred("monitoring", false)
 	emit_signal("died", points)
 	get_tree().call_group("enemy_weapon", "queue_free")
 	explode()
+
+func calculate_points():
+	$Stopwatch.stop()
+	if life_expectancy > $Stopwatch.time_elapsed:
+		var diff = life_expectancy - floor($Stopwatch.time_elapsed)
+		var bonus = points * (diff/10)
+		points += bonus
 	
+		
+func show_points():
+	var death_points = Points_label.new()
+	get_tree().root.add_child(death_points)
+	death_points.display(global_position + Vector2(20, -32), points)
 
 func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)
@@ -117,6 +132,7 @@ func _on_player_died():
 	pass
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
+	$Stopwatch.start()
 	for child in get_children():
 		if child is Shooting_component:
 			child.start()

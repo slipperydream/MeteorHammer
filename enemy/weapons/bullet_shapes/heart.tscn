@@ -1,25 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bfem0x37r3fr"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_o75l5"]
-[ext_resource type="Texture2D" uid="uid://c6e0xehq51o4y" path="res://enemy/weapons/bullet_shapes/heart.png" id="2_k0pxv"]
+[ext_resource type="Texture2D" uid="uid://baqi7wleqyt33" path="res://enemy/weapons/bullet_shapes/heart.png" id="2_k0pxv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e6lcf"]
-
-[sub_resource type="Animation" id="Animation_wyvdc"]
-resource_name = "moving"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_0pejl"]
 length = 0.001
@@ -36,6 +20,24 @@ tracks/0/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_wyvdc"]
+resource_name = "moving"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1), Vector2(1.15, 1.15)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g0nyj"]
 _data = {
 "RESET": SubResource("Animation_0pejl"),
@@ -43,7 +45,7 @@ _data = {
 }
 
 [node name="Heart" type="Area2D" groups=["enemy_weapon"]]
-collision_layer = 2
+collision_layer = 16
 audio_bus_name = &"SFX"
 script = ExtResource("1_o75l5")
 title = "Heart"
@@ -52,8 +54,6 @@ animate = false
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_k0pxv")
-hframes = 7
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

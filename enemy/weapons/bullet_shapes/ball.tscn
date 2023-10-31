@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cravdd1vvhaa4"]
 
 [ext_resource type="Script" path="res://enemy/weapons/base_enemy_projectile.gd" id="1_emrkd"]
-[ext_resource type="Texture2D" uid="uid://dsa3ml47mpm6p" path="res://enemy/weapons/bullet_shapes/ball.png" id="2_lwkv8"]
+[ext_resource type="Texture2D" uid="uid://lh0oyu184nf" path="res://enemy/weapons/bullet_shapes/ball.png" id="2_lwkv8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_thwgx"]
 radius = 13.0384
@@ -33,7 +33,7 @@ _data = {
 }
 
 [node name="Ball" type="Area2D"]
-collision_layer = 2
+collision_layer = 16
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_emrkd")
@@ -41,10 +41,7 @@ title = "enemy bullet"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-rotation = 1.0472
 texture = ExtResource("2_lwkv8")
-hframes = 7
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

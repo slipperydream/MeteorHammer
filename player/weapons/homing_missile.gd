@@ -13,7 +13,7 @@ var vec_to_target : Vector2 = Vector2(0,1)
 var target
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	acquire_target()
+	target = acquire_target()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,8 +29,20 @@ func _process(delta):
 			$AnimationPlayer.play(anim_direction)
 
 func acquire_target():
-	target = get_tree().get_first_node_in_group("enemy")
-	emit_signal("target_lock", target)
+	var closet_enemy = null
+	var shortest_distance = INF
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if not is_instance_valid(enemy):
+			continue
+		var distance = position.distance_to(enemy.position)
+		if distance < shortest_distance:
+			shortest_distance = distance
+			closet_enemy = enemy
+	
+	if closet_enemy != null:
+		emit_signal("target_lock", closet_enemy)
+	return closet_enemy	
+
 	
 func get_facing_direction(vtp):
 	var facing_vec = get_facing_vector(vtp)
@@ -55,7 +67,8 @@ func steer_towards_target(delta):
 
 func start(pos):
 	AudioStreamManager.play(firing_sound.resource_path, true)
-	position = pos
+	global_position = pos
+	print("missile %v" % global_position)
 	
 func _on_area_entered(area):
 	if area.is_in_group("enemy"):

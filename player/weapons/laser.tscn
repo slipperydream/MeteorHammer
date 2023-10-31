@@ -7,7 +7,7 @@ size = Vector2(40, 20)
 
 [sub_resource type="Gradient" id="Gradient_rf1e2"]
 offsets = PackedFloat32Array(0.101523, 0.312183, 0.548223, 0.784264, 0.961929)
-colors = PackedColorArray(0.0941176, 0.0784314, 0.145098, 1, 0.635294, 0.14902, 0.2, 1, 0.894118, 0.231373, 0.266667, 1, 0.894118, 0.231373, 0.266667, 1, 1, 0, 0.266667, 1)
+colors = PackedColorArray(0.0941176, 0.0784314, 0.145098, 1, 0, 0.6, 0.858824, 1, 0.172549, 0.909804, 0.960784, 1, 0.317647, 0.698039, 0.988235, 1, 1, 0, 0.266667, 1)
 
 [sub_resource type="Gradient" id="Gradient_qlliw"]
 offsets = PackedFloat32Array(0, 0.603175, 1)
@@ -42,7 +42,7 @@ color_ramp = SubResource("GradientTexture1D_745r4")
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_o6kxi")
 target_position = Vector2(0, 780)
-collision_mask = 26
+collision_mask = 8
 collide_with_areas = true
 script = ExtResource("1_py5i5")
 
@@ -52,20 +52,25 @@ gradient = SubResource("Gradient_rf1e2")
 
 [node name="ParticleOrigin" type="GPUParticles2D" parent="."]
 emitting = false
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_y7wu4")
 
 [node name="ParticleQuarter" type="GPUParticles2D" parent="."]
 emitting = false
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_y7wu4")
 
 [node name="ParticleMid" type="GPUParticles2D" parent="."]
 emitting = false
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_y7wu4")
 
 [node name="ParticleThirdQuarter" type="GPUParticles2D" parent="."]
 emitting = false
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_y7wu4")
 
 [node name="ParticleEnd" type="GPUParticles2D" parent="."]
 emitting = false
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_ji1qt")

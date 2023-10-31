@@ -1,27 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://ptgwn0ioh0rq"]
 
-[ext_resource type="Texture2D" uid="uid://c1tuj3cjl34xo" path="res://assets/Player_missile_shots.png" id="1_5tr4b"]
 [ext_resource type="Script" path="res://player/weapons/homing_missile.gd" id="1_180j4"]
 [ext_resource type="AudioStream" uid="uid://bfp18e75mhkyv" path="res://sound/sfx/Scifi/Booster.wav" id="2_wp7r3"]
+[ext_resource type="Texture2D" uid="uid://di1kgbpvwy4bc" path="res://enemy/weapons/bullet_shapes/needle.png" id="3_02eca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
-size = Vector2(8, 20)
+size = Vector2(12, 30)
 
 [node name="HomingMissile" type="Area2D" groups=["bullets"]]
-collision_mask = 26
+collision_layer = 2
+collision_mask = 8
 script = ExtResource("1_180j4")
 title = "Bullet"
+power = 50
 firing_sound = ExtResource("2_wp7r3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("1_5tr4b")
-hframes = 16
+rotation = 3.14159
+texture = ExtResource("3_02eca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_75uv4")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["bullets"]]
+position = Vector2(-1, -2)
+scale = Vector2(0.7, 1.6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

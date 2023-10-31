@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cob7rnhv2vc6s"]
+[gd_scene load_steps=31 format=3 uid="uid://cob7rnhv2vc6s"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_je8v6"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="2_7167e"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_gygaj"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_r0vnt"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_y84sk"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_cf853"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6q5ii"]
 atlas = ExtResource("3_02wae")
@@ -251,7 +252,8 @@ salvo_delay = 0.3
 
 [node name="Scout" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 10
+collision_layer = 8
+collision_mask = 3
 audio_bus_name = &"SFX"
 script = ExtResource("1_je8v6")
 explosion_sound = ExtResource("2_xlork")
@@ -291,6 +293,8 @@ position = Vector2(20, 10)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -3.5)
 scale = Vector2(2.3, 2.25)
+
+[node name="Stopwatch" parent="." instance=ExtResource("12_cf853")]
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

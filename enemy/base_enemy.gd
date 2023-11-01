@@ -8,40 +8,44 @@ signal died
 @export var points : int = 100
 @export var speed : int = 30
 @export var hp : int = 5
-@export var is_boss : bool = false
-@export var is_GOB : bool = false
 @export var faces_player : bool = false
 @export var direction : Vector2 = Vector2(0,1)
 @export var homing : bool = false
 @export var steer_force = 50.0
 @export var explosion_sound : AudioStreamWAV
-@export var life_expectancy : int = 8
 
 var is_alive : bool = true
+var is_offscreen : bool = true
 var vec_to_player : Vector2 = Vector2(0,1)
+var vec_travel : Vector2
+var prev_pos : Vector2 = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var enemy_size : Vector2 = $Sprite2D.get_rect().size
 @onready var ceasefire_line : float = screensize.y * 0.9
+@onready var stopwatch = $Stopwatch
 @onready var parent = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if is_GOB:
+	if is_in_group("ground"):
 		z_index = 0
 	else:
 		z_index = 1
 	if parent is PathFollow2D:
 		parent.progress = 0
-		
+	
+
 	$Sprite2D/TargetLock.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta):	
+	vec_travel = (global_position - prev_pos).normalized()
+	rotation = vec_travel.angle()
 	if parent is PathFollow2D:
-		parent.progress += 250 * delta
-		if parent.progress_ratio == 1:
+		parent.progress += speed * delta
+		if parent.progress_ratio >= 1 and is_offscreen:
 			remove()
 	else:
 		position = position + speed * delta * direction + steer_towards_player(delta)
@@ -49,7 +53,8 @@ func _process(delta):
 		# left the screen so remove
 		if position.y > screensize.y + enemy_size.y:
 			remove()
-			
+	
+	
 	# ceasefire once in the bottom 10% of the screen to prevent frustration
 	if position.y > ceasefire_line:
 		for child in get_children():
@@ -61,6 +66,9 @@ func _process(delta):
 		var anim_direction = get_facing_direction(vec_to_player)
 		if $AnimationPlayer.has_animation(anim_direction):
 			$AnimationPlayer.play(anim_direction)
+	
+	prev_pos = global_position
+
 
 func get_facing_vector(vtp):
 	var min_angle = 360
@@ -91,25 +99,23 @@ func take_damage(value):
 				
 func die():
 	speed = 0
-	calculate_points()
-	show_points()
+	var bonus = calculate_bonus()
+	show_points(bonus)
 	set_deferred("monitoring", false)
-	emit_signal("died", points)
+	emit_signal("died", (points+bonus))
 	get_tree().call_group("enemy_weapon", "queue_free")
 	explode()
 
-func calculate_points():
-	$Stopwatch.stop()
-	if life_expectancy > $Stopwatch.time_elapsed:
-		var diff = life_expectancy - floor($Stopwatch.time_elapsed)
-		var bonus = points * (diff/10)
-		points += bonus
+func calculate_bonus():
+	stopwatch.stop()
+	var bonus = points - (10 * floor(stopwatch.time_elapsed))
+	bonus = max(0, bonus)
+	return bonus
 	
-		
-func show_points():
+func show_points(bonus):
 	var death_points = Points_label.new()
-	get_tree().get_first_node_in_group("canvas").add_child(death_points)
-	death_points.display(global_position + Vector2(20, -32), points)
+	get_tree().get_first_node_in_group("stage").add_child(death_points)
+	death_points.display(global_position + Vector2(20, -32), points, bonus)
 
 func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)
@@ -133,7 +139,8 @@ func _on_player_died():
 	pass
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
-	$Stopwatch.start()
+	stopwatch.start()
+	is_offscreen = true
 	for child in get_children():
 		if child is Shooting_component:
 			child.start()
@@ -145,3 +152,6 @@ func _on_shooting_component_shooting():
 func _on_homing_missile_target_lock(target):
 	if target == self:
 		$Sprite2D/TargetLock.show()
+		
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	is_offscreen = true

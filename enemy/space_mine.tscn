@@ -170,9 +170,8 @@ collision_layer = 8
 collision_mask = 3
 audio_bus_name = &"SFX"
 script = ExtResource("1_7k8d2")
-is_GOB = true
+title = "Space Mine"
 explosion_sound = ExtResource("2_o2q0a")
-life_expectancy = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_g85j6")
@@ -210,4 +209,5 @@ scale = Vector2(2.05, 2.2)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]

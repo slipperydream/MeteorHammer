@@ -1,17 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://iv1q1152twqe"]
+[gd_scene load_steps=25 format=3 uid="uid://iv1q1152twqe"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_cja1d"]
 [ext_resource type="AudioStream" uid="uid://b81ote4ejuuha" path="res://sound/sfx/Explosions/Explosion_4.wav" id="2_enotn"]
 [ext_resource type="Texture2D" uid="uid://cegot2yvfipbj" path="res://assets/Nairan/Designs-Base/Nairan-Fighter-Base.png" id="2_men5b"]
 [ext_resource type="Texture2D" uid="uid://cu8j558idih2l" path="res://assets/Nairan/Engine_Effects/Nairan-Fighter-Engine.png" id="3_0mkme"]
-[ext_resource type="PackedScene" uid="uid://cnt8jlxc1o2co" path="res://enemy/weapons/bullet_shapes/needle.tscn" id="3_fnmmr"]
-[ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="4_fc43p"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_2emms"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_66wlm"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_g6033"]
-[ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_uhask"]
-[ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_sq7r8"]
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://enemy/target_lock.tscn" id="6_vb0wi"]
+[ext_resource type="Resource" uid="uid://cemq7kmtjxgou" path="res://enemy/fighter_attacks/6-gun_salute.tres" id="9_6ptos"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_1wv58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqjq8"]
@@ -119,18 +116,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [8]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_0rlae"]
 resource_name = "explode"
@@ -177,46 +162,10 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_men5b")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
@@ -230,32 +179,6 @@ _data = {
 "hit": SubResource("Animation_bjodb")
 }
 
-[sub_resource type="Resource" id="Resource_roxgy"]
-script = ExtResource("6_sq7r8")
-firing_points = 5
-separation_angle = 10.0
-ripple = false
-ripple_delay = 0.0
-title = ""
-
-[sub_resource type="Resource" id="Resource_ntpav"]
-script = ExtResource("4_fc43p")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_roxgy")
-bullet_shape = ExtResource("3_fnmmr")
-speed = 50
-angle = 60.0
-shot_delay = 0.0
-aimed = false
-station = 0
-
-[sub_resource type="Resource" id="Resource_brra5"]
-script = ExtResource("5_uhask")
-attack_name = "Attack"
-Firing_Sequence = Array[ExtResource("4_fc43p")]([SubResource("Resource_ntpav")])
-salvos = 1
-salvo_delay = 0.3
-
 [node name="Fighter" type="Area2D" groups=["enemy"]]
 position = Vector2(0, -50)
 collision_layer = 8
@@ -263,6 +186,7 @@ collision_mask = 3
 audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_cja1d")
+speed = 45
 hp = 8
 explosion_sound = ExtResource("2_enotn")
 
@@ -295,7 +219,6 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_n0ywb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_h123k")
 }
@@ -319,8 +242,8 @@ position = Vector2(19, 12)
 position = Vector2(23, 12)
 
 [node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_66wlm")]
-Attacks = Array[ExtResource("5_uhask")]([SubResource("Resource_brra5")])
 stations = [NodePath("../Station1"), NodePath("../Station2"), NodePath("../Station3"), NodePath("../Station4"), NodePath("../Station5"), NodePath("../Station6")]
+Attacks = Array[Resource("res://enemy/weapons/attack.gd")]([ExtResource("9_6ptos")])
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, -2)
@@ -329,3 +252,4 @@ scale = Vector2(3, 2.7)
 [node name="Stopwatch" parent="." instance=ExtResource("12_1wv58")]
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -255,7 +255,6 @@ bloom_delay = 5.0
 blooms = 4
 ripple = false
 ripple_delay = 0.0
-title = ""
 
 [sub_resource type="Resource" id="Resource_sl7on"]
 script = ExtResource("4_ukxkn")
@@ -283,7 +282,6 @@ audio_bus_override = true
 audio_bus_name = &"SFX"
 script = ExtResource("1_w0iv7")
 explosion_sound = ExtResource("2_775kc")
-life_expectancy = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
@@ -322,8 +320,8 @@ libraries = {
 }
 
 [node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_ofcya")]
-Attacks = Array[ExtResource("5_4rkk6")]([SubResource("Resource_0ykxp")])
 stations = [NodePath("../MainGunRight"), NodePath("../MainGunLeft"), NodePath("../Station1"), NodePath("../Station2"), NodePath("../Station3"), NodePath("../Station4"), NodePath("../Station5"), NodePath("../Station6"), NodePath("../Station7"), NodePath("../Station8")]
+Attacks = Array[ExtResource("5_4rkk6")]([SubResource("Resource_0ykxp")])
 
 [node name="MainGunRight" type="Marker2D" parent="."]
 position = Vector2(-15, 62)
@@ -364,3 +362,4 @@ scale = Vector2(6.3, 8.6)
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

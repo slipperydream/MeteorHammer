@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=8 format=3 uid="uid://cyigo1qtgocyq"]
+
+[ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="1_bfwdo"]
+[ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="2_3m6vv"]
+[ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="3_v56le"]
+[ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="4_4g2hm"]
+
+[sub_resource type="Resource" id="Resource_0uysy"]
+script = ExtResource("1_bfwdo")
+firing_points = 3
+separation_angle = 15.0
+ripple = false
+ripple_delay = 0.0
+title = ""
+
+[sub_resource type="Resource" id="Resource_pfb24"]
+script = ExtResource("3_v56le")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_0uysy")
+bullet_shape = ExtResource("2_3m6vv")
+speed = 50
+angle = 90.0
+shot_delay = 0.0
+aimed = false
+station = 1
+
+[sub_resource type="Resource" id="Resource_tqure"]
+script = ExtResource("3_v56le")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_0uysy")
+bullet_shape = ExtResource("2_3m6vv")
+speed = 50
+angle = 90.0
+shot_delay = 0.0
+aimed = false
+station = 4
+
+[resource]
+script = ExtResource("4_4g2hm")
+attack_name = "Double_barrel_spread"
+Firing_Sequence = Array[ExtResource("3_v56le")]([SubResource("Resource_pfb24"), SubResource("Resource_tqure")])
+salvos = 1
+salvo_delay = 0.3

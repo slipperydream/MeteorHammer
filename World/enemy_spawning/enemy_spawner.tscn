@@ -1,9 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq0qbts2mi4lh"]
+[gd_scene load_steps=6 format=3 uid="uid://cq0qbts2mi4lh"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_8257j"]
+[ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_qmr0u"]
+[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="3_oftsi"]
+
+[sub_resource type="Resource" id="Resource_h6ugr"]
+script = ExtResource("3_oftsi")
+spawn_time = 0
+lane = 0
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_30ls8"]
+script = ExtResource("2_qmr0u")
+wave_name = "WaveX"
+wave_start_time = 0
+spawns = Array[ExtResource("3_oftsi")]([SubResource("Resource_h6ugr")])
 
 [node name="EnemySpawner" type="Area2D" groups=["stage"]]
 script = ExtResource("1_8257j")
+waves = Array[ExtResource("2_qmr0u")]([SubResource("Resource_30ls8"), null, null])
 
 [node name="Timer" type="Timer" parent="."]
 

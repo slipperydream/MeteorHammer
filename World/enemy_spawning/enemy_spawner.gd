@@ -1,12 +1,12 @@
 extends Node2D
 
 signal new_background
+signal boss_spawned
+signal stage_boss_spawned
 
 @export var title : String = ''
 @export var waves : Array[Enemy_wave] = []
-var stage_spawns : Array = []
-@export var mid_boss : PackedScene 
-@export var end_boss : Resource 
+@export var paths : Array[Path2D] = []
 @export var background : Texture
 
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -19,10 +19,8 @@ var num_lanes : int = 7
 var gutter_size : int = 30
 var default_pos_y = -10
 var spawn_count : int = 0
-var total_enemies : int = 0
+var stage_spawns : Array = []
 var all_spawned : bool = false
-
-signal boss_spawned
 
 func ready():
 	self.connect(main.end_stage, _on_main_end_stage)
@@ -32,6 +30,10 @@ func build_spawns():
 	for w in waves:
 		for s in w.spawns:
 			s.spawn_time = w.wave_start_time + s.spawn_time
+			if w.is_boss_wave:
+				s.is_boss = true
+			if w.path >= 0:
+				s.path = w.path
 			stage_spawns.append(s)
 		
 func get_spawn_position(lane):
@@ -50,36 +52,42 @@ func start():
 	boss_spawned.connect(main._on_boss_spawned)
 	boss_spawned.connect(ui._on_boss_spawned)
 	build_spawns()
-	total_enemies = stage_spawns.size()	
 
-func spawn_boss():
-	spawn_enemy(end_boss, Vector2(screensize.x/2, default_pos_y), 80)
-	emit_signal("boss_spawned")
-
-func spawn_enemy(spawn, pos, screen_y):
-	var new_enemy = spawn
+func spawn_enemy(spawn_info):
+	var new_enemy = spawn_info.spawn
 	var enemy_spawn = new_enemy.instantiate()
-	enemy_spawn.global_position = pos
-	add_child(enemy_spawn)
-	if enemy_spawn.is_GOB:
-		enemy_spawn.global_position.y = screen_y
-	enemy_spawn.start(enemy_spawn.global_position)
+	enemy_spawn.speed += spawn_info.extra_speed
 	enemy_spawn.died.connect(main._on_enemy_died)
+	if spawn_info.is_boss:
+		emit_signal("boss_spawned")
+		enemy_spawn.add_to_group("boss")
+		#emit_signal("stage_boss_spawned")
+			
+	if spawn_info.path >= 0:
+		var follow = PathFollow2D.new()
+		follow.loop = false
+		follow.rotates = false
+		paths[spawn_info.path].add_child(follow)
+		#spawn_info.path.add_child(follow)
+		follow.add_child(enemy_spawn)
+	else:
+		enemy_spawn.global_position = get_spawn_position(spawn_info.lane)
+		if spawn_info.spawn_on_screen:
+			enemy_spawn.global_position.y = spawn_info.screen_y
+		add_child(enemy_spawn)
+		
+		enemy_spawn.start(enemy_spawn.global_position)	
 	
 func _on_timer_timeout():
 	time += 1
 	if all_spawned == false:
-		for i in stage_spawns:
-			if time >= i.spawn_time and i.spawned == false:
-				spawn_enemy(i.spawn, get_spawn_position(i.lane), i.screen_y)
-				i.spawned = true
+		for spawn in stage_spawns:
+			if time >= spawn.spawn_time and spawn.spawned == false:
+				spawn_enemy(spawn)
+				spawn.spawned = true
 				spawn_count += 1
-		if spawn_count >= total_enemies:
+		if spawn_count >= stage_spawns.size():
 			all_spawned = true
-	else:
-		$Timer.stop()
-		await get_tree().create_timer(2).timeout
-		spawn_boss()
 
 func _on_main_end_stage():
 	queue_free()

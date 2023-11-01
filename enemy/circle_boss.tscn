@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cojkicds8uf8c"]
+[gd_scene load_steps=27 format=3 uid="uid://cojkicds8uf8c"]
 
 [ext_resource type="Script" path="res://enemy/boss.gd" id="1_m1li8"]
 [ext_resource type="AudioStream" uid="uid://dc0pm3gmnb134" path="res://sound/sfx/Explosions/Repeating_explosion.wav" id="2_veit0"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://enemy/weapons/patterns/circle_pattern.gd" id="5_ri64t"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/spread_pattern.gd" id="6_lc6i8"]
 [ext_resource type="PackedScene" uid="uid://cnt8jlxc1o2co" path="res://enemy/weapons/bullet_shapes/needle.tscn" id="9_2r06l"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="13_kgi7a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rgpy"]
 radius = 101.045
@@ -185,7 +186,6 @@ firing_points = 5
 separation_angle = 10.0
 ripple = false
 ripple_delay = 0.0
-title = ""
 
 [sub_resource type="Resource" id="Resource_1a5ne"]
 script = ExtResource("3_km3fg")
@@ -203,7 +203,6 @@ script = ExtResource("5_ri64t")
 firing_points = 24
 ripple = false
 ripple_delay = 0.0
-title = ""
 
 [sub_resource type="Resource" id="Resource_qq07s"]
 script = ExtResource("3_km3fg")
@@ -232,7 +231,6 @@ script = ExtResource("1_m1li8")
 points = 1000
 speed = 80
 hp = 100
-is_boss = true
 explosion_sound = ExtResource("2_veit0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -289,8 +287,10 @@ position = Vector2(-106, 1)
 
 [node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("4_wa46r")]
 shot_timer = 4.0
-Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_1eptv")])
 stations = [NodePath("../NorthEmitter"), NodePath("../SouthEmitter"), NodePath("../EastEmitter"), NodePath("../WestEmitter")]
+Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_1eptv")])
+
+[node name="Stopwatch" parent="." instance=ExtResource("13_kgi7a")]
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

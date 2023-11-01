@@ -3,6 +3,7 @@ extends "res://enemy/base_enemy.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	var start_frame = randi_range(0,3)
 	$Sprite2D.frame = start_frame * 4
 	match start_frame:

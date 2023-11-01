@@ -1,0 +1,128 @@
+[gd_resource type="Resource" script_class="Enemy_wave" load_steps=17 format=3 uid="uid://ddqhg22w68nu8"]
+
+[ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="1_7p1qk"]
+[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="2_18po2"]
+[ext_resource type="PackedScene" uid="uid://bsctabtw3j43n" path="res://enemy/asteroid.tscn" id="3_t5jlc"]
+
+[sub_resource type="Resource" id="Resource_cs0xi"]
+script = ExtResource("2_18po2")
+spawn_time = 0
+spawn = ExtResource("3_t5jlc")
+lane = 0
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_qqal0"]
+script = ExtResource("2_18po2")
+spawn_time = 1
+spawn = ExtResource("3_t5jlc")
+lane = 1
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_junj4"]
+script = ExtResource("2_18po2")
+spawn_time = 2
+spawn = ExtResource("3_t5jlc")
+lane = 2
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_5l5il"]
+script = ExtResource("2_18po2")
+spawn_time = 3
+spawn = ExtResource("3_t5jlc")
+lane = 3
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_vk340"]
+script = ExtResource("2_18po2")
+spawn_time = 4
+spawn = ExtResource("3_t5jlc")
+lane = 4
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_5tabx"]
+script = ExtResource("2_18po2")
+spawn_time = 5
+spawn = ExtResource("3_t5jlc")
+lane = 5
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_fo6gb"]
+script = ExtResource("2_18po2")
+spawn_time = 6
+spawn = ExtResource("3_t5jlc")
+lane = 6
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_wpjcy"]
+script = ExtResource("2_18po2")
+spawn_time = 7
+spawn = ExtResource("3_t5jlc")
+lane = 5
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_uew1v"]
+script = ExtResource("2_18po2")
+spawn_time = 8
+spawn = ExtResource("3_t5jlc")
+lane = 4
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_pywgo"]
+script = ExtResource("2_18po2")
+spawn_time = 9
+spawn = ExtResource("3_t5jlc")
+lane = 3
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_4yyet"]
+script = ExtResource("2_18po2")
+spawn_time = 10
+spawn = ExtResource("3_t5jlc")
+lane = 2
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_1oggq"]
+script = ExtResource("2_18po2")
+spawn_time = 11
+spawn = ExtResource("3_t5jlc")
+lane = 1
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_lt1wt"]
+script = ExtResource("2_18po2")
+spawn_time = 12
+spawn = ExtResource("3_t5jlc")
+lane = 0
+spawn_on_screen = false
+screen_y = 200
+extra_speed = 0
+
+[resource]
+script = ExtResource("1_7p1qk")
+is_boss_wave = false
+wave_start_time = 5
+spawns = Array[ExtResource("2_18po2")]([SubResource("Resource_cs0xi"), SubResource("Resource_qqal0"), SubResource("Resource_junj4"), SubResource("Resource_5l5il"), SubResource("Resource_vk340"), SubResource("Resource_5tabx"), SubResource("Resource_fo6gb"), SubResource("Resource_wpjcy"), SubResource("Resource_uew1v"), SubResource("Resource_pywgo"), SubResource("Resource_4yyet"), SubResource("Resource_1oggq"), SubResource("Resource_lt1wt")])

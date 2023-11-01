@@ -1,10 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://n4wr7hkiskex"]
+[gd_scene load_steps=10 format=3 uid="uid://n4wr7hkiskex"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_itrr3"]
+[ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_by0uf"]
+[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="3_cck05"]
+[ext_resource type="PackedScene" uid="uid://iv1q1152twqe" path="res://enemy/fighter.tscn" id="4_onajs"]
+[ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="5_a8a38"]
+
+[sub_resource type="Resource" id="Resource_0heta"]
+script = ExtResource("3_cck05")
+spawn_time = 0
+spawn = ExtResource("4_onajs")
+lane = 1
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_iwhhp"]
+script = ExtResource("3_cck05")
+spawn_time = 0
+spawn = ExtResource("4_onajs")
+lane = 4
+spawn_on_screen = false
+screen_y = 200
+
+[sub_resource type="Resource" id="Resource_ghbty"]
+script = ExtResource("2_by0uf")
+wave_name = "WaveX"
+wave_start_time = 0
+spawns = Array[ExtResource("3_cck05")]([SubResource("Resource_0heta"), SubResource("Resource_iwhhp")])
+
+[sub_resource type="Resource" id="Resource_cep4h"]
+script = ExtResource("2_by0uf")
+wave_name = "WaveX"
+wave_start_time = 25
+spawns = Array[ExtResource("3_cck05")]([SubResource("Resource_0heta"), SubResource("Resource_iwhhp")])
 
 [node name="Stage_2" type="Area2D" groups=["stage"]]
 script = ExtResource("1_itrr3")
 title = "Escape from Base"
+waves = Array[ExtResource("2_by0uf")]([SubResource("Resource_ghbty"), SubResource("Resource_cep4h")])
+end_boss = ExtResource("5_a8a38")
 
 [node name="Timer" type="Timer" parent="."]
 

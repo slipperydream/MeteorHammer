@@ -5,10 +5,11 @@ class_name Shooting_component
 signal shooting
 
 @export var shot_timer : float = 2
+@export var stations : Array[Marker2D] = []
 @export var Attacks : Array[Attack] = []
 @export var firing_sound : AudioStreamWAV
 @export var sealing_range = 0
-@export var stations : Array[Marker2D] = []
+
 var attack_index : int = 0
 
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -54,6 +55,9 @@ func shoot():
 		attack_index = 0
 	for x in range(attack.salvos):
 		for shot in attack.Firing_Sequence:
+			if shot.shot_delay > 0:
+				await get_tree().create_timer(shot.shot_delay).timeout
+				
 			if shot.bullet_pattern is Circle_pattern:
 				circle_pattern(shot)		
 			elif shot.bullet_pattern is Single_pattern:
@@ -62,8 +66,8 @@ func shoot():
 				spread_pattern(shot)
 			elif shot.bullet_pattern is Flower_pattern:
 				flower_pattern(shot)
-			if shot.shot_delay > 0:
-				await get_tree().create_timer(shot.shot_delay).timeout
+			else:
+				single_shot(shot)
 		await get_tree().create_timer(attack.salvo_delay).timeout
 				
 func single_shot(new_shot):

@@ -17,10 +17,7 @@ signal stage_boss_spawned
 var time = 0
 var num_lanes : int = 7
 var gutter_size : int = 30
-var default_pos_y = -10
-var spawn_count : int = 0
 var stage_spawns : Array = []
-var all_spawned : bool = false
 
 func ready():
 	self.connect(main.end_stage, _on_main_end_stage)
@@ -28,27 +25,33 @@ func ready():
 
 func build_spawns():
 	for w in waves:
-		for s in w.spawns:
-			s.spawn_time = w.wave_start_time + s.spawn_time
+		get_tree().create_timer(w.wave_start_time).timeout
+		for s in w.spawns:		
 			if w.is_boss_wave:
 				s.is_boss = true
 			if w.path >= 0:
 				s.path = w.path
 			stage_spawns.append(s)
-		
-func get_spawn_position(lane):
+		spawn_wave()
+
+func spawn_wave():
+	for spawn in stage_spawns:
+		if spawn.has_spawned == false:
+			spawn_enemy(spawn)
+			spawn.has_spawned = true
+
+func get_position_x(lane):
 	if lane > num_lanes-1 or lane < 0:
 		lane = randi_range(0, num_lanes-1)
 	var lane_size = (screensize.x - (2 * gutter_size)) / num_lanes	
 	var pos_x = lane * lane_size + lane_size
-	return Vector2(pos_x, default_pos_y)
+	return pos_x
 	
 func start():
 	new_background.connect(main._on_new_background)
 	emit_signal("new_background", background)
 	# give the player a few seconds to fly around before the level actually starts
 	await get_tree().create_timer(2).timeout
-	$Timer.start()
 	boss_spawned.connect(main._on_boss_spawned)
 	boss_spawned.connect(ui._on_boss_spawned)
 	build_spawns()
@@ -68,26 +71,13 @@ func spawn_enemy(spawn_info):
 		follow.loop = false
 		follow.rotates = false
 		paths[spawn_info.path].add_child(follow)
-		#spawn_info.path.add_child(follow)
 		follow.add_child(enemy_spawn)
 	else:
-		enemy_spawn.global_position = get_spawn_position(spawn_info.lane)
-		if spawn_info.spawn_on_screen:
-			enemy_spawn.global_position.y = spawn_info.screen_y
+		enemy_spawn.global_position.x = get_position_x(spawn_info.lane)
+		enemy_spawn.global_position.y = spawn_info.screen_y
 		add_child(enemy_spawn)
 		
 		enemy_spawn.start(enemy_spawn.global_position)	
-	
-func _on_timer_timeout():
-	time += 1
-	if all_spawned == false:
-		for spawn in stage_spawns:
-			if time >= spawn.spawn_time and spawn.spawned == false:
-				spawn_enemy(spawn)
-				spawn.spawned = true
-				spawn_count += 1
-		if spawn_count >= stage_spawns.size():
-			all_spawned = true
 
 func _on_main_end_stage():
 	queue_free()

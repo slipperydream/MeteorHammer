@@ -1,76 +1,27 @@
-[gd_scene load_steps=16 format=3 uid="uid://8bwqwxoxjr48"]
+[gd_scene load_steps=7 format=3 uid="uid://8bwqwxoxjr48"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_p1jaf"]
-[ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_dgbhq"]
-[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="3_ht83h"]
-[ext_resource type="PackedScene" uid="uid://iv1q1152twqe" path="res://enemy/fighter.tscn" id="4_ewsgj"]
-[ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="5_arunl"]
+[ext_resource type="Resource" uid="uid://mus5woijwmpa" path="res://stages/waves/scouts_left.tres" id="2_0hlxb"]
+[ext_resource type="Resource" uid="uid://b7g742irrml15" path="res://stages/waves/scouts_right.tres" id="3_p8apu"]
 [ext_resource type="Resource" uid="uid://b3rse8cl0ojh3" path="res://stages/waves/circle_boss.tres" id="6_i03xb"]
-[ext_resource type="PackedScene" uid="uid://bb0e8r36p02q2" path="res://paths/LoopLeft.tscn" id="8_hhtf3"]
-[ext_resource type="PackedScene" uid="uid://cxkywu1t1m35o" path="res://paths/LoopRight.tscn" id="9_16yqs"]
 [ext_resource type="Texture2D" uid="uid://byuby0ivr5gfv" path="res://World/space_background.png" id="10_st4v6"]
 
-[sub_resource type="Resource" id="Resource_76bmx"]
-script = ExtResource("3_ht83h")
-spawn_time = 0
-spawn = ExtResource("5_arunl")
-lane = 0
-spawn_on_screen = false
-screen_y = 200
-extra_speed = 40
-
-[sub_resource type="Resource" id="Resource_os3mm"]
-script = ExtResource("3_ht83h")
-spawn_time = 3
-spawn = ExtResource("5_arunl")
-lane = 0
-spawn_on_screen = false
-screen_y = 200
-extra_speed = 0
-
-[sub_resource type="Resource" id="Resource_t6u1t"]
-script = ExtResource("2_dgbhq")
-is_boss_wave = false
-wave_start_time = 0
-path = 0
-spawns = Array[ExtResource("3_ht83h")]([SubResource("Resource_76bmx"), SubResource("Resource_os3mm")])
-
-[sub_resource type="Resource" id="Resource_0heta"]
-script = ExtResource("3_ht83h")
-spawn_time = 0
-spawn = ExtResource("4_ewsgj")
-lane = 1
-spawn_on_screen = false
-screen_y = 200
-extra_speed = 0
-
-[sub_resource type="Resource" id="Resource_iwhhp"]
-script = ExtResource("3_ht83h")
-spawn_time = 0
-spawn = ExtResource("4_ewsgj")
-lane = 4
-spawn_on_screen = false
-screen_y = 200
-extra_speed = 0
-
-[sub_resource type="Resource" id="Resource_j8rxs"]
-script = ExtResource("2_dgbhq")
-is_boss_wave = false
-wave_start_time = 10
-path = -1
-spawns = Array[ExtResource("3_ht83h")]([SubResource("Resource_0heta"), SubResource("Resource_iwhhp")])
+[sub_resource type="Curve2D" id="Curve2D_oxuxu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -9, 678, 0, 0, 0, 0, 609, 376)
+}
+point_count = 2
 
 [node name="Stage_1" type="Area2D" node_paths=PackedStringArray("paths") groups=["stage"]]
 script = ExtResource("1_p1jaf")
 title = "Attack on Yz"
-waves = Array[ExtResource("2_dgbhq")]([SubResource("Resource_t6u1t"), SubResource("Resource_j8rxs"), ExtResource("6_i03xb")])
-paths = [NodePath("Loop_left"), NodePath("Loop_right")]
+waves = Array[Resource("res://World/enemy_spawning/wave.gd")]([ExtResource("2_0hlxb"), ExtResource("3_p8apu"), ExtResource("6_i03xb")])
+paths = [null]
 background = ExtResource("10_st4v6")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Slash_bottom_LtoR" type="Path2D" parent="."]
+curve = SubResource("Curve2D_oxuxu")
 
-[node name="Loop_left" parent="." instance=ExtResource("8_hhtf3")]
-
-[node name="Loop_right" parent="." instance=ExtResource("9_16yqs")]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Slash_bottom_LtoR"]
+position = Vector2(-9, 678)
+rotation = -0.454545

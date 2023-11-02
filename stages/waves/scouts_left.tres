@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="Enemy_wave" load_steps=10 format=3 uid="uid://mus5woijwmpa"]
+
+[ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="1_hbcwq"]
+[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="2_4gjer"]
+[ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="3_er1oc"]
+
+[sub_resource type="Resource" id="Resource_jn27e"]
+script = ExtResource("2_4gjer")
+spawn = ExtResource("3_er1oc")
+lane = 0
+screen_y = -56
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_gy1wc"]
+script = ExtResource("2_4gjer")
+spawn = ExtResource("3_er1oc")
+lane = 1
+screen_y = -56
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_ck43v"]
+script = ExtResource("2_4gjer")
+spawn = ExtResource("3_er1oc")
+lane = 2
+screen_y = -80
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_mmh76"]
+script = ExtResource("2_4gjer")
+spawn = ExtResource("3_er1oc")
+lane = 0
+screen_y = -90
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_gsrw6"]
+script = ExtResource("2_4gjer")
+spawn = ExtResource("3_er1oc")
+lane = 1
+screen_y = -90
+extra_speed = 0
+
+[sub_resource type="Resource" id="Resource_0kn24"]
+script = ExtResource("2_4gjer")
+spawn = ExtResource("3_er1oc")
+lane = 2
+screen_y = -110
+extra_speed = 0
+
+[resource]
+script = ExtResource("1_hbcwq")
+is_boss_wave = false
+wave_start_time = 0
+path = -1
+spawns = Array[ExtResource("2_4gjer")]([SubResource("Resource_jn27e"), SubResource("Resource_gy1wc"), SubResource("Resource_ck43v"), SubResource("Resource_mmh76"), SubResource("Resource_gsrw6"), SubResource("Resource_0kn24")])

@@ -11,10 +11,11 @@ spawn = ExtResource("3_wop2w")
 lane = 3
 spawn_on_screen = false
 screen_y = 200
+extra_speed = 0
 
 [resource]
 script = ExtResource("1_lf72d")
-wave_name = "WaveX"
 is_boss_wave = true
-wave_start_time = 15
+wave_start_time = 30
+path = -1
 spawns = Array[ExtResource("2_xtlpm")]([SubResource("Resource_pprep")])

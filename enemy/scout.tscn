@@ -1,16 +1,16 @@
-[gd_scene load_steps=32 format=3 uid="uid://cob7rnhv2vc6s"]
+[gd_scene load_steps=31 format=3 uid="uid://cob7rnhv2vc6s"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_je8v6"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="2_7167e"]
 [ext_resource type="Texture2D" uid="uid://bb280gh637ydk" path="res://assets/Nairan/Designs-Base/Nairan-Scout-Base.png" id="2_eiou3"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/single_pattern.gd" id="2_n0eyg"]
 [ext_resource type="AudioStream" uid="uid://dgqsqufwnerkc" path="res://sound/sfx/Explosions/Explosion_2.wav" id="2_xlork"]
-[ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://enemy/weapons/bullet_shapes/spinning_ball.tscn" id="3_2rb8e"]
 [ext_resource type="Texture2D" uid="uid://ct6e2mc24ibyc" path="res://assets/Nairan/Engine_Effects/Nairan-Scout-Engine.png" id="3_02wae"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_gbr6t"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_gygaj"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_r0vnt"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_y84sk"]
+[ext_resource type="PackedScene" uid="uid://cjsxyohvmi47w" path="res://enemy/weapons/bullet_shapes/shell.tscn" id="10_yc1p3"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_cf853"]
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://enemy/target_lock.tscn" id="13_30731"]
 
@@ -81,34 +81,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(48, 45)
 
-[sub_resource type="Animation" id="Animation_4pyvs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_eiou3")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_rw8h2"]
+[sub_resource type="Animation" id="Animation_qni6s"]
 resource_name = "explode"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -147,9 +120,9 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_gbsme"]
+[sub_resource type="Animation" id="Animation_qg02f"]
 resource_name = "hit"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -160,26 +133,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0784314), Color(1, 1, 1, 1), Color(1, 1, 1, 0.207843), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.360784), Color(1, 1, 1, 1), Color(1, 1, 1, 0.0823529), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h123k"]
 _data = {
-"RESET": SubResource("Animation_4pyvs"),
-"explode": SubResource("Animation_rw8h2"),
-"hit": SubResource("Animation_gbsme")
+"explode": SubResource("Animation_qni6s"),
+"hit": SubResource("Animation_qg02f")
 }
 
 [sub_resource type="Resource" id="Resource_aoie2"]
 script = ExtResource("2_n0eyg")
-title = null
 
 [sub_resource type="Resource" id="Resource_370c3"]
 script = ExtResource("2_7167e")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_aoie2")
-bullet_shape = ExtResource("3_2rb8e")
-speed = 50
+bullet_shape = ExtResource("10_yc1p3")
+speed = 70
 angle = 90.0
 shot_delay = 0.0
 aimed = true
@@ -189,8 +160,8 @@ station = 0
 script = ExtResource("2_7167e")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_aoie2")
-bullet_shape = ExtResource("3_2rb8e")
-speed = 50
+bullet_shape = ExtResource("10_yc1p3")
+speed = 70
 angle = 90.0
 shot_delay = 0.0
 aimed = true
@@ -210,6 +181,7 @@ collision_mask = 3
 audio_bus_name = &"SFX"
 script = ExtResource("1_je8v6")
 title = "Scout"
+speed = 70
 explosion_sound = ExtResource("2_xlork")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -247,7 +219,7 @@ libraries = {
 }
 
 [node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_gygaj")]
-shot_timer = 3.0
+shot_timer = 4.0
 stations = [NodePath("../Station1"), NodePath("../Station2")]
 Attacks = Array[ExtResource("5_r0vnt")]([SubResource("Resource_4nyni")])
 

@@ -6,21 +6,17 @@
 
 [sub_resource type="Resource" id="Resource_h6ugr"]
 script = ExtResource("3_oftsi")
-spawn_time = 0
 lane = 0
-spawn_on_screen = false
 screen_y = 200
+extra_speed = 0
 
 [sub_resource type="Resource" id="Resource_30ls8"]
 script = ExtResource("2_qmr0u")
-wave_name = "WaveX"
+is_boss_wave = false
 wave_start_time = 0
+path = -1
 spawns = Array[ExtResource("3_oftsi")]([SubResource("Resource_h6ugr")])
 
 [node name="EnemySpawner" type="Area2D" groups=["stage"]]
 script = ExtResource("1_8257j")
 waves = Array[ExtResource("2_qmr0u")]([SubResource("Resource_30ls8"), null, null])
-
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

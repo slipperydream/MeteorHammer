@@ -17,9 +17,7 @@ signal died
 var is_alive : bool = true
 var is_offscreen : bool = true
 var vec_to_player : Vector2 = Vector2(0,1)
-var vec_travel : Vector2
-var prev_pos : Vector2 = Vector2.ZERO
-
+	
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var enemy_size : Vector2 = $Sprite2D.get_rect().size
@@ -36,13 +34,10 @@ func _ready():
 	if parent is PathFollow2D:
 		parent.progress = 0
 	
-
 	$Sprite2D/TargetLock.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
-	vec_travel = (global_position - prev_pos).normalized()
-	rotation = vec_travel.angle()
 	if parent is PathFollow2D:
 		parent.progress += speed * delta
 		if parent.progress_ratio >= 1 and is_offscreen:
@@ -67,8 +62,6 @@ func _process(delta):
 		if $AnimationPlayer.has_animation(anim_direction):
 			$AnimationPlayer.play(anim_direction)
 	
-	prev_pos = global_position
-
 
 func get_facing_vector(vtp):
 	var min_angle = 360

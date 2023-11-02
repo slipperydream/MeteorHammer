@@ -6,10 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_pprep"]
 script = ExtResource("2_xtlpm")
-spawn_time = 5
 spawn = ExtResource("3_wop2w")
 lane = 3
-spawn_on_screen = false
 screen_y = 200
 extra_speed = 0
 

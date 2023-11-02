@@ -20,3 +20,7 @@ spawns = Array[ExtResource("3_oftsi")]([SubResource("Resource_h6ugr")])
 [node name="EnemySpawner" type="Area2D" groups=["stage"]]
 script = ExtResource("1_8257j")
 waves = Array[ExtResource("2_qmr0u")]([SubResource("Resource_30ls8"), null, null])
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

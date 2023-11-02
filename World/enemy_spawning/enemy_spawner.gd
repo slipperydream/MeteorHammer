@@ -18,6 +18,8 @@ var time = 0
 var num_lanes : int = 7
 var gutter_size : int = 30
 var stage_spawns : Array = []
+var all_spawned : bool = false
+var spawn_count : int = 0
 
 func ready():
 	self.connect(main.end_stage, _on_main_end_stage)
@@ -25,14 +27,13 @@ func ready():
 
 func build_spawns():
 	for w in waves:
-		get_tree().create_timer(w.wave_start_time).timeout
 		for s in w.spawns:		
 			if w.is_boss_wave:
 				s.is_boss = true
 			if w.path >= 0:
 				s.path = w.path
+			s.spawn_time = w.wave_start_time
 			stage_spawns.append(s)
-		spawn_wave()
 
 func spawn_wave():
 	for spawn in stage_spawns:
@@ -52,6 +53,7 @@ func start():
 	emit_signal("new_background", background)
 	# give the player a few seconds to fly around before the level actually starts
 	await get_tree().create_timer(2).timeout
+	$Timer.start()
 	boss_spawned.connect(main._on_boss_spawned)
 	boss_spawned.connect(ui._on_boss_spawned)
 	build_spawns()
@@ -85,3 +87,13 @@ func _on_main_end_stage():
 func _on_main_game_over():
 	queue_free()
 
+func _on_timer_timeout():
+	time += 1
+	if all_spawned == false:
+		for spawn in stage_spawns:
+			if time >= spawn.spawn_time and spawn.has_spawned == false:
+				spawn_enemy(spawn)
+				spawn.has_spawned = true
+				spawn_count += 1
+		if spawn_count >= stage_spawns.size():
+			all_spawned = true

@@ -9,3 +9,4 @@ class_name Spawn_info
 var has_spawned : bool = false
 var is_boss : bool = false
 var path : int = -1
+var spawn_time : int = 0

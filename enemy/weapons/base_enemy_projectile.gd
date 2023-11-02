@@ -10,6 +10,7 @@ var speed : int = 60
 var added_rotation : Vector2 = Vector2(0, 1)
 var power : int = 1
 var time : int = 0
+var path : Route = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

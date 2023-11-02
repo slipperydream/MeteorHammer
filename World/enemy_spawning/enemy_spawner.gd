@@ -15,38 +15,10 @@ signal stage_boss_spawned
 @onready var screensize : Vector2 = get_viewport_rect().size
 
 var time = 0
-var num_lanes : int = 7
-var gutter_size : int = 30
-var stage_spawns : Array = []
-var all_spawned : bool = false
-var spawn_count : int = 0
 
 func ready():
 	self.connect(main.end_stage, _on_main_end_stage)
 	self.connect(main.game_over, _on_main_game_over)
-
-func build_spawns():
-	for w in waves:
-		for s in w.spawns:		
-			if w.is_boss_wave:
-				s.is_boss = true
-			if w.path >= 0:
-				s.path = w.path
-			s.spawn_time = w.wave_start_time
-			stage_spawns.append(s)
-
-func spawn_wave():
-	for spawn in stage_spawns:
-		if spawn.has_spawned == false:
-			spawn_enemy(spawn)
-			spawn.has_spawned = true
-
-func get_position_x(lane):
-	if lane > num_lanes-1 or lane < 0:
-		lane = randi_range(0, num_lanes-1)
-	var lane_size = (screensize.x - (2 * gutter_size)) / num_lanes	
-	var pos_x = lane * lane_size + lane_size
-	return pos_x
 	
 func start():
 	new_background.connect(main._on_new_background)
@@ -56,30 +28,37 @@ func start():
 	$Timer.start()
 	boss_spawned.connect(main._on_boss_spawned)
 	boss_spawned.connect(ui._on_boss_spawned)
-	build_spawns()
 
+func spawn_wave(wave):
+	var num_spawns = wave.spawns.size()
+	var index = 0
+	for spawn in wave.spawns:
+		spawn.offset_x = index * wave.spawn_size
+		spawn.offset_y = index * wave.spawn_size
+		spawn.spawn_pt = wave.start_pt
+		spawn.spawn_pt.x += spawn.offset_x
+		spawn.spawn_pt.y += spawn.offset_y
+		
+		spawn.path = wave.path
+		spawn_enemy(spawn)	
+	
 func spawn_enemy(spawn_info):
 	var new_enemy = spawn_info.spawn
 	var enemy_spawn = new_enemy.instantiate()
-	enemy_spawn.speed += spawn_info.extra_speed
 	enemy_spawn.died.connect(main._on_enemy_died)
 	if spawn_info.is_boss:
 		emit_signal("boss_spawned")
 		enemy_spawn.add_to_group("boss")
 		#emit_signal("stage_boss_spawned")
 			
-	if spawn_info.path >= 0:
-		var follow = PathFollow2D.new()
-		follow.loop = false
-		follow.rotates = false
-		paths[spawn_info.path].add_child(follow)
-		follow.add_child(enemy_spawn)
-	else:
-		enemy_spawn.global_position.x = get_position_x(spawn_info.lane)
-		enemy_spawn.global_position.y = spawn_info.screen_y
-		add_child(enemy_spawn)
-		
-		enemy_spawn.start(enemy_spawn.global_position)	
+	enemy_spawn.global_position = spawn_info.spawn_pt
+	add_child(enemy_spawn)
+	if enemy_spawn.path:
+		for pt in enemy_spawn.path:
+			pt.x += spawn_info.offset_x
+			pt.y += spawn_info.offset_y
+			
+	enemy_spawn.start(enemy_spawn.global_position)	
 
 func _on_main_end_stage():
 	queue_free()
@@ -89,11 +68,9 @@ func _on_main_game_over():
 
 func _on_timer_timeout():
 	time += 1
-	if all_spawned == false:
-		for spawn in stage_spawns:
-			if time >= spawn.spawn_time and spawn.has_spawned == false:
-				spawn_enemy(spawn)
-				spawn.has_spawned = true
-				spawn_count += 1
-		if spawn_count >= stage_spawns.size():
-			all_spawned = true
+	for wave in waves:
+		if time >= wave.wave_start_time and wave.has_spawned == false:
+			spawn_wave(wave)
+			wave.has_spawned = true
+		
+	

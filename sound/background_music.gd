@@ -30,7 +30,7 @@ func _ready():
 
 func play_title_song():
 	current_song = title_song
-	play_song(title_song)
+	play_song(title_song, 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -51,9 +51,9 @@ func get_songs(path):
 		
 func _on_finished():
 	if randomize_music:
-		play_song(current_song)
+		play_song(current_song, 1.5)
 	else:
-		play_song(current_song)
+		play_song(current_song, 1.5)
 
 func fade_in():
 	if get_child_count() > 0:
@@ -71,10 +71,10 @@ func get_random_song():
 	var song = playlist[randi() % playlist.size()]
 	return song
 	
-func play_song(song):
+func play_song(song, fade_time):
 	current_song = song
 	fade_out()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(fade_time).timeout
 	for child in get_children():
 		remove_child(child)
 	var bg_music = AudioStreamPlayer.new()
@@ -88,31 +88,31 @@ func play_song(song):
 func play_stage_theme(value):
 	match value:
 		1:
-			play_song(stage_1_theme)
+			play_song(stage_1_theme, 2)
 		2:
-			play_song(stage_2_theme)
+			play_song(stage_2_theme, 2)
 		3:
-			play_song(stage_3_theme)
+			play_song(stage_3_theme, 2)
 		4:
-			play_song(stage_4_theme)
+			play_song(stage_4_theme, 2)
 		5:
-			play_song(stage_5_theme)
+			play_song(stage_5_theme, 2)
 		6:
-			play_song(stage_6_theme)
+			play_song(stage_6_theme, 2)
 
 func play_boss_theme(value):
 	match value:
 		1:
-			play_song(boss_theme_1)
+			play_song(boss_theme_1, 1.5)
 		2:
-			play_song(boss_theme_2)
+			play_song(boss_theme_2, 1.5)
 		3:
-			play_song(boss_theme_3)
+			play_song(boss_theme_3, 1.5)
 		4:
-			play_song(boss_theme_4)
+			play_song(boss_theme_4, 1.5)
 		5:
-			play_song(boss_theme_5)
+			play_song(boss_theme_5, 1.5)
 		6:
-			play_song(boss_theme_6)
+			play_song(boss_theme_6, 1.5)
 		7:
-			play_song(boss_theme_1)
+			play_song(boss_theme_1, 1.5)

@@ -1,30 +1,57 @@
-[gd_scene load_steps=7 format=3 uid="uid://8bwqwxoxjr48"]
+[gd_scene load_steps=14 format=3 uid="uid://8bwqwxoxjr48"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_p1jaf"]
-[ext_resource type="Resource" uid="uid://mus5woijwmpa" path="res://stages/waves/scouts_left.tres" id="2_0hlxb"]
-[ext_resource type="Resource" uid="uid://b7g742irrml15" path="res://stages/waves/scouts_right.tres" id="3_p8apu"]
-[ext_resource type="Resource" uid="uid://b3rse8cl0ojh3" path="res://stages/waves/circle_boss.tres" id="6_i03xb"]
+[ext_resource type="Script" path="res://World/waypoint.gd" id="2_2d28i"]
+[ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_5ewq5"]
+[ext_resource type="Script" path="res://World/route.gd" id="3_l3bif"]
+[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="5_06wck"]
+[ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://enemy/scout.tscn" id="6_t3622"]
 [ext_resource type="Texture2D" uid="uid://byuby0ivr5gfv" path="res://World/space_background.png" id="10_st4v6"]
 
-[sub_resource type="Curve2D" id="Curve2D_oxuxu"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -9, 678, 0, 0, 0, 0, 609, 376)
-}
-point_count = 2
+[sub_resource type="Resource" id="Resource_t2qg7"]
+script = ExtResource("2_2d28i")
+point = Vector2(150, 150)
+wait_time = 0.0
+shoot = true
+wobble = false
 
-[node name="Stage_1" type="Area2D" node_paths=PackedStringArray("paths") groups=["stage"]]
+[sub_resource type="Resource" id="Resource_rqhxc"]
+script = ExtResource("2_2d28i")
+point = Vector2(150, 300)
+wait_time = 0.0
+shoot = false
+wobble = false
+
+[sub_resource type="Resource" id="Resource_dk0l3"]
+script = ExtResource("2_2d28i")
+point = Vector2(300, 600)
+wait_time = 0.0
+shoot = true
+wobble = false
+
+[sub_resource type="Resource" id="Resource_3evhn"]
+script = ExtResource("3_l3bif")
+points = Array[ExtResource("2_2d28i")]([SubResource("Resource_t2qg7"), SubResource("Resource_rqhxc"), SubResource("Resource_dk0l3")])
+
+[sub_resource type="Resource" id="Resource_uy227"]
+script = ExtResource("5_06wck")
+spawn = ExtResource("6_t3622")
+
+[sub_resource type="Resource" id="Resource_xj2bn"]
+script = ExtResource("2_5ewq5")
+is_boss_wave = false
+wave_start_time = 0
+start_pt = Vector2(300, 150)
+path = SubResource("Resource_3evhn")
+formation = 0
+spawn_size = 0
+spawns = Array[ExtResource("5_06wck")]([SubResource("Resource_uy227")])
+
+[node name="Stage_1" type="Area2D" groups=["stage"]]
 script = ExtResource("1_p1jaf")
 title = "Attack on Yz"
-waves = Array[Resource("res://World/enemy_spawning/wave.gd")]([ExtResource("2_0hlxb"), ExtResource("3_p8apu"), ExtResource("6_i03xb")])
-paths = [null]
+waves = Array[ExtResource("2_5ewq5")]([SubResource("Resource_xj2bn")])
 background = ExtResource("10_st4v6")
-
-[node name="Slash_bottom_LtoR" type="Path2D" parent="."]
-curve = SubResource("Curve2D_oxuxu")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Slash_bottom_LtoR"]
-position = Vector2(-9, 678)
-rotation = -0.454545
 
 [node name="Timer" type="Timer" parent="."]
 

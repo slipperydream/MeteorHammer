@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2vhuseujrg1u"
-path="res://.godot/imported/charged_beam_green.png-7869eeb27498e8155139633ae156a172.ctex"
+uid="uid://b0osu4emp6p1o"
+path="res://.godot/imported/blue_mech.png-2145262c60c75bed53264892b391c742.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/weapons/charged_beam_green.png"
-dest_files=["res://.godot/imported/charged_beam_green.png-7869eeb27498e8155139633ae156a172.ctex"]
+source_file="res://assets/blue_mech.png"
+dest_files=["res://.godot/imported/blue_mech.png-2145262c60c75bed53264892b391c742.ctex"]
 
 [params]
 

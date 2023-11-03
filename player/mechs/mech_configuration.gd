@@ -1,6 +1,6 @@
 extends Resource
 
-class_name Ship_configuration
+class_name Mech_configuration
 
 @export var name : String
 @export var sprite : Texture2D

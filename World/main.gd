@@ -48,7 +48,7 @@ var stage_results = {
 @onready var title_screen = $CanvasLayer/TitleScreen
 @onready var stage_select = $CanvasLayer/StageSelect
 @onready var results_screen = $CanvasLayer/StageResults
-@onready var ship_select = $CanvasLayer/ShipSelect
+@onready var mech_select = $CanvasLayer/MechSelect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -176,11 +176,11 @@ func _on_center_container_game_unpaused():
 
 func _on_title_screen_boss_mode():
 	stage = load("res://stages/bosses/Stage_1Boss.tscn")
-	ship_select.show()
+	mech_select.show()
 
 func _on_title_screen_attack_mode():
 	stage = load("res://stages/Stage_1.tscn")
-	ship_select.show()
+	mech_select.show()
 
 func _on_player_player_hit():
 	stage_results.times_hit += 0
@@ -212,7 +212,7 @@ func _on_stage_select_stage_selected(stage_path):
 	stage = load(stage_path)
 	stage_results.path = stage_path
 	stage_num = 1
-	ship_select.show()
+	mech_select.show()
 	
 func _on_title_screen_exit_game():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
@@ -220,8 +220,8 @@ func _on_title_screen_exit_game():
 func _on_stage_results_retry_level():
 	begin_game()
 
-func _on_ship_select_ship_select_cancelled():
-	# need to make this aware of last screen before ship selection
+func _on_mech_select_mech_select_cancelled():
+	# need to make this aware of last screen before mech selection
 	match current_game_mode:
 		game_mode.ATTACK:
 			current_game_mode = game_mode.NONE
@@ -232,6 +232,6 @@ func _on_ship_select_ship_select_cancelled():
 		game_mode.STORY:
 			stage_select.show()
 
-func _on_ship_select_ship_selected(ship, special, bomb):
-	player.configure(ship, special, bomb)
+func _on_mech_select_mech_selected(mech, special, bomb):
+	player.configure(mech, special, bomb)
 	begin_game()

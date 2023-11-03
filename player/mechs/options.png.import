@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dron6p6vj2wl2"
-path="res://.godot/imported/charged_beam_red.png-aeeb3171e19d8c4558c3e14b7b45ea49.ctex"
+uid="uid://v1asm43f1vm7"
+path="res://.godot/imported/options.png-61332826d02d893ae2201ec3462e4936.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/weapons/charged_beam_red.png"
-dest_files=["res://.godot/imported/charged_beam_red.png-aeeb3171e19d8c4558c3e14b7b45ea49.ctex"]
+source_file="res://player/mechs/options.png"
+dest_files=["res://.godot/imported/options.png-61332826d02d893ae2201ec3462e4936.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cgapobxp7ck2"]
 
-[ext_resource type="Texture2D" uid="uid://v1asm43f1vm7" path="res://player/ships/options.png" id="1_712ku"]
+[ext_resource type="Texture2D" uid="uid://v1asm43f1vm7" path="res://player/mechs/options.png" id="1_712ku"]
 [ext_resource type="Script" path="res://player/option.gd" id="1_cbo4c"]
 [ext_resource type="Texture2D" uid="uid://dhejifd02ryj7" path="res://assets/Boosters.png" id="1_p5dbx"]
 [ext_resource type="Texture2D" uid="uid://dla4w1crjijvn" path="res://assets/Boosters_left.png" id="2_8frw1"]

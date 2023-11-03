@@ -1,22 +1,22 @@
 extends Control
 
-signal ship_select_cancelled
-signal ship_selected
+signal mech_select_cancelled
+signal mech_selected
 
-@export var ships : Array[Ship_configuration] = []
-var ship_index : int = 0
+@export var mechs : Array[Mech_configuration] = []
+var mech_index : int = 0
 @export var special_weapons : Array[Special_weapon]
 var special_weapon_index : int = 0
 @export var bomb_settings : Array[Bomb_setting] = []
 var bomb_index : int = 0
 
-@onready var selected_ship_img = $Panel/Ship/Control/Sprite2D
-@onready var prev_ship = $ShipPreviousButton
-@onready var next_ship = $ShipNextButton
-@onready var ship_name = $ShipName
-@onready var ship_speed = $Speed
-@onready var ship_shot_width = $ShotWidth
-@onready var ship_laser_power = $LaserPower
+@onready var selected_mech_img = $Panel/Mech/Control/Sprite2D
+@onready var prev_mech = $MechPreviousButton
+@onready var next_mech = $MechNextButton
+@onready var mech_name = $MechName
+@onready var mech_speed = $Speed
+@onready var mech_shot_width = $ShotWidth
+@onready var mech_laser_power = $LaserPower
 
 @onready var selected_special_weapon_img = $SpecialWeapon/Control/Sprite2D
 @onready var prev_special_weapon = $WeaponPreviousButton
@@ -37,7 +37,7 @@ var bomb_index : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_ship()
+	update_mech()
 	update_special_weapon()
 	update_bomb_settings()
 
@@ -45,15 +45,15 @@ func display_popup(text):
 	$AcceptDialog.set_text(text)
 	$AcceptDialog.popup_centered()
 
-func update_ship():
-	selected_ship_img.texture = ships[ship_index].sprite
-	selected_ship_img.hframes = 3
-	selected_ship_img.frame = 1
-	ship_name.text = ships[ship_index].name
+func update_mech():
+	selected_mech_img.texture = mechs[mech_index].sprite
+	selected_mech_img.hframes = 3
+	selected_mech_img.frame = 0
+	mech_name.text = mechs[mech_index].name
 	
-	ship_speed.value = ships[ship_index].speed
-	ship_shot_width.value = ships[ship_index].shot_width
-	ship_laser_power.value = ships[ship_index].laser_power
+	mech_speed.value = mechs[mech_index].speed
+	mech_shot_width.value = mechs[mech_index].shot_width
+	mech_laser_power.value = mechs[mech_index].laser_power
 
 func update_special_weapon():
 	if special_weapons[special_weapon_index].name.to_lower().contains("katana"):
@@ -79,29 +79,29 @@ func _on_settings_pressed():
 	var text = "Sorry, the settings menu isn't implemented yet."
 	display_popup(text)
 
-func _on_ship_previous_button_pressed():
-	ship_index -= 1
-	if ship_index < 0:
-		ship_index = ships.size() - 1
-	update_ship()
+func _on_mech_previous_button_pressed():
+	mech_index -= 1
+	if mech_index < 0:
+		mech_index = mechs.size() - 1
+	update_mech()
 
-func _on_ship_next_button_pressed():
-	ship_index += 1
-	if ship_index >= ships.size():
-		ship_index = 0
-	update_ship()
+func _on_mech_next_button_pressed():
+	mech_index += 1
+	if mech_index >= mechs.size():
+		mech_index = 0
+	update_mech()
 
 func _on_randomize_button_pressed():
-	ship_index = randi() % ships.size()
+	mech_index = randi() % mechs.size()
 	special_weapon_index = randi() % special_weapons.size()
 	bomb_index = randi() % bomb_settings.size()
-	update_ship()
+	update_mech()
 	update_special_weapon()
 	update_bomb_settings()
 
 func _on_back_button_pressed():
 	hide()
-	emit_signal("ship_select_cancelled")
+	emit_signal("mech_select_cancelled")
 
 func _on_weapon_previous_button_pressed():
 	special_weapon_index -= 1
@@ -128,5 +128,5 @@ func _on_bomb_setting_next_button_pressed():
 	update_bomb_settings()
 
 func _on_accept_button_pressed():
-	emit_signal("ship_selected", ships[ship_index], special_weapons[special_weapon_index], bomb_settings[bomb_index])
+	emit_signal("mech_selected", mechs[mech_index], special_weapons[special_weapon_index], bomb_settings[bomb_index])
 	hide()

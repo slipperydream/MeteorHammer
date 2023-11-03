@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://duxu01d7kskfo" path="res://ui/title_screen/title_screen.tscn" id="6_d1ygs"]
 [ext_resource type="PackedScene" uid="uid://dyqxqv1ayua2r" path="res://ui/stage_results/stage_results.tscn" id="7_5pgji"]
 [ext_resource type="PackedScene" uid="uid://borv5q636p3x1" path="res://ui/stage_select/stage_select.tscn" id="8_4tp73"]
-[ext_resource type="PackedScene" uid="uid://dqrp2a1yyocuq" path="res://ui/ship_select/ship_select.tscn" id="9_aya4f"]
+[ext_resource type="PackedScene" uid="uid://dqrp2a1yyocuq" path="res://ui/mech_select/mech_select.tscn" id="9_aya4f"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="9_vmmdb"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
@@ -60,7 +60,7 @@ visible = false
 [node name="StageSelect" parent="CanvasLayer" instance=ExtResource("8_4tp73")]
 visible = false
 
-[node name="ShipSelect" parent="CanvasLayer" instance=ExtResource("9_aya4f")]
+[node name="MechSelect" parent="CanvasLayer" instance=ExtResource("9_aya4f")]
 visible = false
 
 [node name="WaveTimer" type="Timer" parent="."]
@@ -112,7 +112,7 @@ visible = false
 [connection signal="retry_level" from="CanvasLayer/StageResults" to="." method="_on_stage_results_retry_level"]
 [connection signal="stage_select_cancelled" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_select_cancelled"]
 [connection signal="stage_selected" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_selected"]
-[connection signal="ship_select_cancelled" from="CanvasLayer/ShipSelect" to="." method="_on_ship_select_ship_select_cancelled"]
-[connection signal="ship_selected" from="CanvasLayer/ShipSelect" to="." method="_on_ship_select_ship_selected"]
+[connection signal="mech_select_cancelled" from="CanvasLayer/MechSelect" to="." method="_on_mech_select_mech_select_cancelled"]
+[connection signal="mech_selected" from="CanvasLayer/MechSelect" to="." method="_on_mech_select_mech_selected"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="ScoringTimer" to="." method="_on_scoring_timer_timeout"]

@@ -18,12 +18,14 @@ var lives = 3
 @export var explosion_sound : AudioStreamWAV
 @export var firing_stations : Array[Marker2D] = []
 
-@onready var ship_config : Ship_configuration = load("res://player/ships/typeC.tres")
+@onready var mech = $Mech
+@onready var laser = $Laser
+@onready var mech_config : Mech_configuration = load("res://player/mechs/typeC.tres")
 @onready var special_config : Special_weapon = load("res://player/weapons/katana.tres")
 @onready var bomb_config : Bomb_setting = load("res://player/items/bs_balance.tres")
 
-var x_offset : int = 20
-var y_offset : int = 24
+var station_offset_x : int = 15
+var station_offset_Y : int = 28
 var speed : int
 var max_bombs : int
 var bombs : int 
@@ -34,12 +36,12 @@ enum Option_Formation { SPREAD, TAIL, SIDES, FRONT}
 var option_index = Option_Formation.FRONT
 
 @onready var screensize : Vector2 = get_viewport_rect().size
-@onready var shipsize : Vector2 = $Ship.texture.get_size()
+@onready var player_size : Vector2 = mech.texture.get_size()
 @onready var bomb_timer = $BombTimer
 @onready var gun_cooldown = $GunCooldown
 @onready var invuln_timer = $InvulnerabilityTimer
-@onready var left_option = $Ship/LeftOption
-@onready var right_option = $Ship/RightOption
+@onready var left_option = $Mech/LeftOption
+@onready var right_option = $Mech/RightOption
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,17 +49,17 @@ func _ready():
 
 func start():
 	reset()
-	position = Vector2(screensize.x / 2, screensize.y - (shipsize.y * 4))
+	position = Vector2(screensize.x / 2, screensize.y - (player_size.y * 4))
 	emit_signal("weapon_changed", special_config.name)
 	bomb_timer.start()
 	emit_signal("bomb_charging", bomb_config.recharge_time)
 
-func configure(in_ship_config, in_special_config, in_bomb_setting):
-	ship_config = in_ship_config
-	$Ship.texture = ship_config.sprite
-	speed = base_speed * ship_config.speed 
-	$Laser.width = ship_config.laser_width
-	$Laser.power = ship_config.laser_power
+func configure(in_mech_config, in_special_config, in_bomb_setting):
+	mech_config = in_mech_config
+	mech.texture = mech_config.sprite
+	speed = base_speed * mech_config.speed 
+	laser.width = mech_config.laser_width
+	laser.power = mech_config.laser_power
 	
 	set_firing_stations()
 	
@@ -70,37 +72,31 @@ func configure(in_ship_config, in_special_config, in_bomb_setting):
 func set_firing_stations():
 	var i = 0
 	while i < firing_stations.size():
-		firing_stations[i].start(Vector2(global_position.x - x_offset + (i * ship_config.spacing), global_position.y - y_offset))
-		firing_stations[i].angle = ship_config.start_angle + (i * ship_config.canting)
+		firing_stations[i].start(Vector2(global_position.x - station_offset_x + (i * mech_config.spacing), global_position.y - station_offset_Y))
+		firing_stations[i].angle = mech_config.start_angle + (i * mech_config.canting)
 		i += 1
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input.x > 0:
-		$Ship.frame = 2
+		mech.frame = 1
 		get_tree().call_group("option", "move", "right")
-		$Ship/LeftBooster.animation = "right"
-		$Ship/RightBooster.animation = "right"
 	elif input.x < 0:
-		$Ship.frame = 0
-		$Ship/LeftBooster.animation = "left"
-		$Ship/RightBooster.animation = "left"
+		mech.frame = 2
 		get_tree().call_group("option", "move", "left")
 	else:
-		$Ship.frame = 1
+		mech.frame = 0
 		get_tree().call_group("option", "move", "forward")
-		$Ship/LeftBooster.animation = "forward"
-		$Ship/RightBooster.animation = "forward"
 	position += input * speed * delta
 	position = position.clamp(Vector2(64,64), screensize - Vector2(64,64))
 	
 	if Input.is_action_pressed("main_weapon_fire"):
 		main_weapon_fire()
 	elif Input.is_action_pressed("laser"):
-		$Laser.start()
+		laser.start()
 	if Input.is_action_just_released("laser"):
-		$Laser.stop()
+		laser.stop()
 	if Input.is_action_just_pressed("special_weapon_fire"):
 		special_weapon_fire()
 	
@@ -164,42 +160,42 @@ func switch_option_formation():
 
 	match option_index:
 		Option_Formation.SPREAD:
-			left_option.global_position.x = global_position.x - shipsize.x/4
-			left_option.global_position.y = global_position.y + (shipsize.y/8)
+			left_option.global_position.x = global_position.x - player_size.x/4
+			left_option.global_position.y = global_position.y + (player_size.y/8)
 			left_option.set_rotation_degrees(-15)
 			left_option.firing_angle = 75
 			
-			right_option.global_position.x = global_position.x + shipsize.x/4
-			right_option.global_position.y = global_position.y + (shipsize.y/8)
+			right_option.global_position.x = global_position.x + player_size.x/4
+			right_option.global_position.y = global_position.y + (player_size.y/8)
 			right_option.set_rotation_degrees(15)
 			right_option.firing_angle = 105
 		Option_Formation.TAIL:
-			left_option.global_position.x = global_position.x - (shipsize.x/8)
-			left_option.global_position.y = global_position.y + shipsize.y
+			left_option.global_position.x = global_position.x - (player_size.x/8)
+			left_option.global_position.y = global_position.y + player_size.y
 			left_option.set_rotation_degrees(-180)
 			left_option.firing_angle = 270
 		
-			right_option.global_position.x = global_position.x + (shipsize.x/8)
-			right_option.global_position.y = global_position.y + shipsize.y
+			right_option.global_position.x = global_position.x + (player_size.x/8)
+			right_option.global_position.y = global_position.y + player_size.y
 			right_option.set_rotation_degrees(180)
 			right_option.firing_angle = 270
 		Option_Formation.FRONT:
-			left_option.global_position.x = global_position.x - (shipsize.x/5)
-			left_option.global_position.y = global_position.y - (shipsize.y/2)
+			left_option.global_position.x = global_position.x - (player_size.x/5)
+			left_option.global_position.y = global_position.y - (player_size.y/2)
 			left_option.set_rotation_degrees(0)
 			left_option.firing_angle = 90
 		
-			right_option.global_position.x = global_position.x + (shipsize.x/5)
-			right_option.global_position.y = global_position.y - (shipsize.y/2)
+			right_option.global_position.x = global_position.x + (player_size.x/5)
+			right_option.global_position.y = global_position.y - (player_size.y/2)
 			right_option.set_rotation_degrees(0)
 			right_option.firing_angle = 90
 		Option_Formation.SIDES:
-			left_option.global_position.x = global_position.x - (shipsize.x/3)
+			left_option.global_position.x = global_position.x - (player_size.x/3)
 			left_option.global_position.y = global_position.y 
 			left_option.set_rotation_degrees(-90)
 			left_option.firing_angle = 0
 		
-			right_option.global_position.x = global_position.x + (shipsize.x/3)
+			right_option.global_position.x = global_position.x + (player_size.x/3)
 			right_option.global_position.y = global_position.y
 			right_option.set_rotation_degrees(90)
 			right_option.firing_angle = 180

@@ -1,76 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=14 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/main_weapon.tscn" id="2_75g50"]
 [ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://player/items/bomb.tscn" id="3_0duad"]
-[ext_resource type="Texture2D" uid="uid://cqeb72k7qp10i" path="res://assets/Player_ship_A.png" id="4_gx51a"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
-[ext_resource type="Texture2D" uid="uid://dhejifd02ryj7" path="res://assets/Boosters.png" id="5_kpxme"]
-[ext_resource type="Texture2D" uid="uid://dla4w1crjijvn" path="res://assets/Boosters_left.png" id="6_af20e"]
+[ext_resource type="Texture2D" uid="uid://b0osu4emp6p1o" path="res://assets/blue_mech.png" id="5_7btv6"]
 [ext_resource type="PackedScene" uid="uid://clivlywn14dn5" path="res://player/weapons/firing_station.tscn" id="6_lwalq"]
-[ext_resource type="Texture2D" uid="uid://c2o0ujdp8t2v5" path="res://assets/Boosters_right.png" id="7_phs4y"]
 [ext_resource type="PackedScene" uid="uid://cgapobxp7ck2" path="res://player/option.tscn" id="10_ih0ln"]
 [ext_resource type="PackedScene" uid="uid://c5gjata5tywxj" path="res://player/weapons/laser.tscn" id="11_uo5o6"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3log"]
-atlas = ExtResource("5_kpxme")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6lxya"]
-atlas = ExtResource("5_kpxme")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cwy4h"]
-atlas = ExtResource("6_af20e")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7mc7p"]
-atlas = ExtResource("6_af20e")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n2i1v"]
-atlas = ExtResource("7_phs4y")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rcmri"]
-atlas = ExtResource("7_phs4y")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_05fw1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s3log")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6lxya")
-}],
-"loop": true,
-"name": &"forward",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cwy4h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7mc7p")
-}],
-"loop": true,
-"name": &"left",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n2i1v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rcmri")
-}],
-"loop": true,
-"name": &"right",
-"speed": 10.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
 size = Vector2(16, 12)
@@ -80,7 +17,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Ship:modulate")
+tracks/0/path = NodePath("Mech:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,7 +38,7 @@ step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Ship:modulate")
+tracks/0/path = NodePath("Mech:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -124,36 +61,24 @@ script = ExtResource("1_ks4n4")
 main_weapon = ExtResource("2_75g50")
 bomb_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")
-firing_stations = [NodePath("Ship/FiringStation"), NodePath("Ship/FiringStation2"), NodePath("Ship/FiringStation3"), NodePath("Ship/FiringStation4")]
+firing_stations = [NodePath("Mech/FiringStation"), NodePath("Mech/FiringStation2"), NodePath("Mech/FiringStation3"), NodePath("Mech/FiringStation4")]
 
-[node name="Ship" type="Sprite2D" parent="."]
-texture = ExtResource("4_gx51a")
+[node name="Mech" type="Sprite2D" parent="."]
+texture = ExtResource("5_7btv6")
 hframes = 3
 frame = 1
 
-[node name="LeftBooster" type="AnimatedSprite2D" parent="Ship"]
-position = Vector2(-12, 45)
-sprite_frames = SubResource("SpriteFrames_05fw1")
-animation = &"forward"
-autoplay = "forward"
+[node name="LeftOption" parent="Mech" instance=ExtResource("10_ih0ln")]
 
-[node name="RightBooster" type="AnimatedSprite2D" parent="Ship"]
-position = Vector2(12, 44)
-sprite_frames = SubResource("SpriteFrames_05fw1")
-animation = &"forward"
-autoplay = "forward"
+[node name="RightOption" parent="Mech" instance=ExtResource("10_ih0ln")]
 
-[node name="LeftOption" parent="Ship" instance=ExtResource("10_ih0ln")]
+[node name="FiringStation" parent="Mech" instance=ExtResource("6_lwalq")]
 
-[node name="RightOption" parent="Ship" instance=ExtResource("10_ih0ln")]
+[node name="FiringStation2" parent="Mech" instance=ExtResource("6_lwalq")]
 
-[node name="FiringStation" parent="Ship" instance=ExtResource("6_lwalq")]
+[node name="FiringStation3" parent="Mech" instance=ExtResource("6_lwalq")]
 
-[node name="FiringStation2" parent="Ship" instance=ExtResource("6_lwalq")]
-
-[node name="FiringStation3" parent="Ship" instance=ExtResource("6_lwalq")]
-
-[node name="FiringStation4" parent="Ship" instance=ExtResource("6_lwalq")]
+[node name="FiringStation4" parent="Mech" instance=ExtResource("6_lwalq")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)

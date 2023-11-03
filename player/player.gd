@@ -8,6 +8,8 @@ signal bomb_recharged
 signal bomb_used
 signal weapon_changed
 signal player_hit
+signal ammo_count
+signal no_ammo_error
 
 var lives = 3
 
@@ -27,8 +29,7 @@ var lives = 3
 var station_offset_x : int = 15
 var station_offset_Y : int = 28
 var speed : int
-var max_bombs : int
-var bombs : int 
+var ammo : int = 100
 var can_shoot : bool = true
 var invulnerable : bool = false
 var assist_mode_enabled = false
@@ -51,6 +52,7 @@ func start():
 	reset()
 	position = Vector2(screensize.x / 2, screensize.y - (player_size.y * 4))
 	emit_signal("weapon_changed", special_config.name)
+	emit_signal("ammo_count", ammo)
 	bomb_timer.start()
 	emit_signal("bomb_charging", bomb_config.recharge_time)
 
@@ -125,6 +127,14 @@ func reset():
 	can_shoot = true
 
 func special_weapon_fire():	
+	var cost = special_config.cost
+	if ammo - cost < 0:
+		emit_signal("no_ammo_error")
+		return
+	else:
+		ammo -= cost
+		emit_signal("ammo_count", ammo)
+		
 	var weapon = special_config.weapon.instantiate()
 	get_tree().root.add_child(weapon)
 	if weapon.title.to_lower() == "mine":
@@ -133,6 +143,11 @@ func special_weapon_fire():
 		weapon.start(global_position + Vector2(0, -300))
 	elif weapon.title.to_lower().contains("missile"):
 		weapon.start(global_position + Vector2(0, -64))
+		
+		for i in range(3):
+			weapon = special_config.weapon.instantiate()
+			get_tree().root.add_child(weapon)
+			weapon.start(global_position + Vector2(0, -64))
 		
 	if not assist_mode_enabled:
 		options_fire()

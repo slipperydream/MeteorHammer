@@ -23,6 +23,7 @@ func _physics_process(delta):
 	if is_instance_valid(target):
 		direction = (target.global_transform.origin - global_transform.origin).normalized()
 	else:
+		direction = direction + Vector2(randf_range(-0.5,0.5),randf_range(-0.01, 0.01))
 		target = acquire_target()
 	position += direction * speed * delta
 	
@@ -40,6 +41,8 @@ func acquire_target():
 	var shortest_distance = INF
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if not is_instance_valid(enemy):
+			continue
+		if enemy.targeted:
 			continue
 		var distance = position.distance_to(enemy.position)
 		if distance < shortest_distance:

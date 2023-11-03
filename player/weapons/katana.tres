@@ -9,5 +9,5 @@ script = ExtResource("1_ngb0n")
 name = "Cosmic Katana"
 sprite = ExtResource("2_oi8f5")
 weapon = ExtResource("3_fi2mp")
-wait_time = 1.0
+cost = 30
 description = "Slice through your foes with this devastating attack!"

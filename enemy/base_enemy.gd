@@ -17,7 +17,7 @@ signal died
 var is_alive : bool = true
 var is_offscreen : bool = true
 var vec_to_player : Vector2 = Vector2(0,1)
-
+var targeted : bool = false
 	
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var screensize : Vector2 = get_viewport_rect().size
@@ -83,6 +83,7 @@ func start(pos):
 	position = Vector2(pos.x, pos.y)
 
 func take_damage(value):
+	# need to include attacker so I can remove the target lock
 	if is_alive == false:
 		return
 	hp = max(0, hp - value)
@@ -146,7 +147,8 @@ func _on_shooting_component_shooting():
 
 func _on_homing_missile_target_lock(target):
 	if target == self:
+		targeted = true
 		$Sprite2D/TargetLock.show()
-		
+				
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	is_offscreen = true

@@ -9,5 +9,5 @@ script = ExtResource("1_flkvo")
 name = "Homing Missile"
 sprite = ExtResource("2_rfokb")
 weapon = ExtResource("2_gluyw")
-cost = 1
-description = "Seeks and destroys first target it finds"
+cost = 10
+description = "A missile burst of target seeking missiles"

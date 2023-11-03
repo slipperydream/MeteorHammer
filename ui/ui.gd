@@ -6,6 +6,7 @@ extends Control
 @onready var continues = $TopBarLeft/Continues
 @onready var weapon_label = $BottomBar/SpecialWeapon
 @onready var bomb_label = $BottomBar/Bomb
+@onready var ammo_count = $BottomBar/AmmoCount
 
 var num_lives = 0
 var bomb : String = 'Bomb'
@@ -91,5 +92,8 @@ func _on_player_bomb_charging(time):
 	tween = create_tween()
 	tween.tween_property($BottomBar/Bomb.get_theme_stylebox("normal"), "border_color",  Color(0.39, 0.78, 0.3, 1), time)
 
-	
-	
+func _on_player_ammo_count(value):
+	ammo_count.value = value
+
+func _on_player_no_ammo_error():
+	$AnimationPlayer.play("no_ammo")

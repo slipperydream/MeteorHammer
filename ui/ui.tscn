@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://du6kybeyrcmf2"]
+[gd_scene load_steps=13 format=3 uid="uid://du6kybeyrcmf2"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_ieqr5"]
 [ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="2_85hi6"]
@@ -16,8 +16,30 @@ border_color = Color(0.45098, 0.243137, 0.223529, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qp07s"]
 bg_color = Color(0, 0, 0, 0.47451)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwfli"]
+bg_color = Color(0, 0.278431, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4v055"]
+bg_color = Color(0, 1, 0, 1)
+
 [sub_resource type="Animation" id="Animation_cgqaq"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BottomBar/AmmoCount:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ax065"]
 resource_name = "boss_warning"
@@ -47,10 +69,27 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_rypw4"]
+resource_name = "no_ammo"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BottomBar/AmmoCount:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_32n0a"]
 _data = {
 "RESET": SubResource("Animation_cgqaq"),
-"boss_warning": SubResource("Animation_ax065")
+"boss_warning": SubResource("Animation_ax065"),
+"no_ammo": SubResource("Animation_rypw4")
 }
 
 [node name="UI" type="Control" groups=["ui"]]
@@ -190,6 +229,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qp07s")
+
+[node name="AmmoCount" type="ProgressBar" parent="BottomBar"]
+custom_minimum_size = Vector2(256, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_qwfli")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4v055")
+step = 1.0
+value = 50.0
+
+[node name="AmmoLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -35.0
+offset_right = -4.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_85hi6")
+theme_override_font_sizes/font_size = 20
+text = "AMMO"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

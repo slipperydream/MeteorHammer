@@ -95,8 +95,11 @@ func _process(delta):
 		main_weapon_fire()
 	elif Input.is_action_pressed("laser"):
 		laser.start()
+		speed -= 15
+		speed = max(base_speed * mech_config.speed * 0.75, speed)
 	if Input.is_action_just_released("laser"):
 		laser.stop()
+		speed = base_speed * mech_config.speed 
 	if Input.is_action_just_pressed("special_weapon_fire"):
 		special_weapon_fire()
 	

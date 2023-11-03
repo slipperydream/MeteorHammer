@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://iv1q1152twqe"]
+[gd_scene load_steps=26 format=3 uid="uid://iv1q1152twqe"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_cja1d"]
 [ext_resource type="AudioStream" uid="uid://b81ote4ejuuha" path="res://sound/sfx/Explosions/Explosion_4.wav" id="2_enotn"]
-[ext_resource type="Texture2D" uid="uid://cegot2yvfipbj" path="res://assets/Nairan/Designs-Base/Nairan-Fighter-Base.png" id="2_men5b"]
-[ext_resource type="Texture2D" uid="uid://cu8j558idih2l" path="res://assets/Nairan/Engine_Effects/Nairan-Fighter-Engine.png" id="3_0mkme"]
+[ext_resource type="Texture2D" uid="uid://cegot2yvfipbj" path="res://assets/Enemies/Designs-Base/Nairan-Fighter-Base.png" id="2_men5b"]
+[ext_resource type="Texture2D" uid="uid://cyxrkvimsss4n" path="res://assets/Enemies/Designs-Base/Nautolan_Fighter.png" id="3_fec7a"]
+[ext_resource type="Texture2D" uid="uid://ca6qveh1xsyek" path="res://assets/Enemies/Engine_Effects/Nautolan_Fighter_EngineEffect.png" id="4_ppggd"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_2emms"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="5_66wlm"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_g6033"]
@@ -11,64 +12,64 @@
 [ext_resource type="Resource" uid="uid://cemq7kmtjxgou" path="res://enemy/fighter_attacks/6-gun_salute.tres" id="9_6ptos"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_1wv58"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wqjq8"]
-atlas = ExtResource("3_0mkme")
-region = Rect2(0, 64, 128, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiqci"]
+atlas = ExtResource("4_ppggd")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hsug2"]
-atlas = ExtResource("3_0mkme")
-region = Rect2(128, 64, 128, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_iewdj"]
+atlas = ExtResource("4_ppggd")
+region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_87vp0"]
-atlas = ExtResource("3_0mkme")
-region = Rect2(256, 64, 128, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0xvj"]
+atlas = ExtResource("4_ppggd")
+region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4f6k3"]
-atlas = ExtResource("3_0mkme")
-region = Rect2(384, 64, 128, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_i601g"]
+atlas = ExtResource("4_ppggd")
+region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nm8a2"]
-atlas = ExtResource("3_0mkme")
-region = Rect2(512, 64, 128, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q6gk"]
+atlas = ExtResource("4_ppggd")
+region = Rect2(512, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8wg6m"]
-atlas = ExtResource("3_0mkme")
-region = Rect2(640, 64, 128, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_71pah"]
+atlas = ExtResource("4_ppggd")
+region = Rect2(640, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptr27"]
-atlas = ExtResource("3_0mkme")
-region = Rect2(768, 64, 128, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_15giv"]
+atlas = ExtResource("4_ppggd")
+region = Rect2(768, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0ufm"]
-atlas = ExtResource("3_0mkme")
-region = Rect2(896, 64, 128, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1cn6"]
+atlas = ExtResource("4_ppggd")
+region = Rect2(896, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0qgxf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wqjq8")
+"texture": SubResource("AtlasTexture_aiqci")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hsug2")
+"texture": SubResource("AtlasTexture_iewdj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_87vp0")
+"texture": SubResource("AtlasTexture_f0xvj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4f6k3")
+"texture": SubResource("AtlasTexture_i601g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nm8a2")
+"texture": SubResource("AtlasTexture_2q6gk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8wg6m")
+"texture": SubResource("AtlasTexture_71pah")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ptr27")
+"texture": SubResource("AtlasTexture_15giv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u0ufm")
+"texture": SubResource("AtlasTexture_m1cn6")
 }],
 "loop": true,
 "name": &"forward",
@@ -180,7 +181,6 @@ _data = {
 }
 
 [node name="Fighter" type="Area2D" groups=["enemy"]]
-position = Vector2(0, -50)
 collision_layer = 8
 collision_mask = 3
 audio_bus_override = true
@@ -191,11 +191,9 @@ hp = 8
 explosion_sound = ExtResource("2_enotn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.14159
-texture = ExtResource("2_men5b")
+texture = ExtResource("3_fec7a")
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
-position = Vector2(-8.86122e-05, 35)
 sprite_frames = SubResource("SpriteFrames_0qgxf")
 animation = &"forward"
 autoplay = "forward"

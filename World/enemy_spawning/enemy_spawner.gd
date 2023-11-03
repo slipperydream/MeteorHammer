@@ -30,33 +30,37 @@ func start():
 	boss_spawned.connect(ui._on_boss_spawned)
 
 func spawn_wave(wave):
-	var num_spawns = wave.spawns.size()
 	var index = 0
-	for spawn in wave.spawns:
-		spawn.offset_x = index * wave.spawn_size
-		spawn.offset_y = index * wave.spawn_size
-		spawn.spawn_pt = wave.start_pt
-		spawn.spawn_pt.x += spawn.offset_x
-		spawn.spawn_pt.y += spawn.offset_y
-		
-		spawn.path = wave.path
-		spawn_enemy(spawn)	
+	for spawn_info in wave.spawns:
+		var offset_x = index * wave.spawn_size
+		spawn_info.offset_x = offset_x
+		var offset_y = index * wave.spawn_size
+		spawn_info.offset_y = offset_y
+		spawn_info.spawn_pt = wave.start_pt
+		spawn_info.spawn_pt.x += spawn_info.offset_x
+		spawn_info.spawn_pt.y += spawn_info.offset_y
+
+		spawn_info.path =  wave.path
+		spawn_enemy(spawn_info)	
+		index += 1
 	
 func spawn_enemy(spawn_info):
 	var new_enemy = spawn_info.spawn
 	var enemy_spawn = new_enemy.instantiate()
 	enemy_spawn.died.connect(main._on_enemy_died)
+	var follow = PathFollow2D.new()
+	follow.loop = false
+	follow.rotates = false
+	follow.h_offset = spawn_info.offset_x
+	follow.v_offset = spawn_info.offset_y
+	paths[spawn_info.path].add_child(follow)
+	follow.add_child(enemy_spawn)
 	if spawn_info.is_boss:
 		emit_signal("boss_spawned")
 		enemy_spawn.add_to_group("boss")
 		#emit_signal("stage_boss_spawned")
 			
-	enemy_spawn.global_position = spawn_info.spawn_pt
-	add_child(enemy_spawn)
-	if enemy_spawn.path:
-		for pt in enemy_spawn.path:
-			pt.x += spawn_info.offset_x
-			pt.y += spawn_info.offset_y
+	#enemy_spawn.global_position = spawn_info.spawn_pt	
 			
 	enemy_spawn.start(enemy_spawn.global_position)	
 

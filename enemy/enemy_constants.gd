@@ -11,21 +11,3 @@ const FACING = {
 	Vector2(-1, 0): 'west',
 	Vector2(-1, -1): 'northwest',
 }
-
-enum Size{
-	SMALL = 32,
-	MEDIUM = 64,
-	LARGE = 128,
-	X_LARGE = 256,
-}
-
-enum Formations{
-	SINGLE,
-	CIRCLE,
-	WALL,
-	BOX,
-	LINE,
-	X,
-	VEE,
-	W
-}

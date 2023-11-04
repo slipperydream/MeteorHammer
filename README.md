@@ -18,7 +18,7 @@ TODOs (rough priority order)
 
 - Special Weapons
   - [] shield
-  - [] homing missiles
+  - [x] homing missiles
   - [x] laser - made as a standard weapon
   - [x] katana
   - [x] mines
@@ -47,7 +47,7 @@ TODOs (rough priority order)
     - Save as wave scenes and update spawner to take those?
 
 - [] Move non-spawning functionality of spawner and make a level scene with spawner and other details
-- [] make pickup system (use area2d area entered calls to hoover up things)
+- [x] make pickup system (use area2d area entered calls to hoover up things)
 - [] make pickup spawner
 - 1ups: score or tasking based?
 
@@ -88,8 +88,9 @@ TODOs (rough priority order)
  - Proximity based scoring
  - Hyper?
  - Bonus for lives not spent 
-- [] add scoring triggers to generate items/powerups/1ups
+- [x] add scoring triggers to generate items/powerups/1ups
 - [] Add corpse on screen for last death. Worth X points if "salvaged" i.e. picked up
+- [] add ghost path of last route?
 
 - [-] Replace credits with a continue meter that refills with score
 - [x] add focused shot for player with holding down the button
@@ -101,7 +102,6 @@ TODOs (rough priority order)
 
 - []Redo code to make components instead of inheritance.
     - Attack
-    - Health
     - Hitbox 
     - Movement?
 
@@ -112,7 +112,6 @@ TODOs (rough priority order)
 
 - [] display currently playing song title on a side panel
 
-- [] Add ship transform to mecha?
 - [] Add difficulty levels
    - [] Add more shot patterns to each enemy for difficulty increase
    - [] Adjustable difficulty by widening shot patterns, increasing number of waves, bullet speed, spread, damage
@@ -138,8 +137,8 @@ TODOs (rough priority order)
 
 
 ## Enemies
-- [] Change score multiplier to time bonus for bosses
-- [] Improve bullet cancelling 
+- [x] Change score multiplier to time bonus for bosses
+- [-] Improve bullet cancelling 
    - bullets fly to the player and become scoring items. Need to investigate who owns the bullets
    
 - Enemy deaths

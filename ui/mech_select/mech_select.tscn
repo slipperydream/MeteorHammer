@@ -1,20 +1,19 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqrp2a1yyocuq"]
+[gd_scene load_steps=23 format=3 uid="uid://dqrp2a1yyocuq"]
 
 [ext_resource type="Script" path="res://ui/mech_select/mech_select.gd" id="1_7nx0c"]
 [ext_resource type="Resource" uid="uid://celc63e446bf5" path="res://player/mechs/typeA.tres" id="2_kjrhv"]
-[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="2_s0frm"]
 [ext_resource type="Resource" uid="uid://d0wi48w2l1og6" path="res://player/mechs/typeB.tres" id="3_kcjrv"]
 [ext_resource type="Resource" uid="uid://sg1jttj0fwhq" path="res://player/mechs/typeC.tres" id="4_fb8cj"]
 [ext_resource type="Resource" uid="uid://d0x51n0wgj6ah" path="res://player/weapons/mine.tres" id="5_6n2b7"]
-[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="5_nqfqe"]
 [ext_resource type="Resource" uid="uid://dwqnuw5siohn3" path="res://player/items/bs_balance.tres" id="5_v0tyv"]
-[ext_resource type="Texture2D" uid="uid://phyo4rl3na6v" path="res://ui/left_arrow.png" id="5_yawv7"]
+[ext_resource type="Texture2D" uid="uid://phyo4rl3na6v" path="res://ui/icons/left_arrow.png" id="5_yawv7"]
 [ext_resource type="Resource" uid="uid://dh27gviiyc4wd" path="res://player/weapons/katana.tres" id="6_km5v2"]
 [ext_resource type="Resource" uid="uid://cga4ahkk4o4fq" path="res://player/items/bs_max_bombs.tres" id="6_mf4qx"]
-[ext_resource type="Texture2D" uid="uid://cef4mhh1bw6on" path="res://ui/right_arrow.png" id="6_tp3a0"]
+[ext_resource type="Texture2D" uid="uid://cef4mhh1bw6on" path="res://ui/icons/right_arrow.png" id="6_tp3a0"]
 [ext_resource type="Resource" uid="uid://bky0kst2eax5q" path="res://player/items/bs_no_bombs.tres" id="7_6wn6n"]
 [ext_resource type="Resource" uid="uid://chqt1efjggkuj" path="res://player/weapons/missile.tres" id="7_bggw0"]
-[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="8_mr15y"]
+[ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="11_eg7h0"]
+[ext_resource type="FontFile" uid="uid://dv3201q5d4liu" path="res://ui/fonts/PixelMecha.ttf" id="13_hlewj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uixk"]
 bg_color = Color(0.0941176, 0.0784314, 0.145098, 1)
@@ -125,7 +124,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0.6, 0.858824, 1)
 theme_override_colors/font_shadow_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("5_nqfqe")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 32
 text = "Select your ship
 "
@@ -191,7 +190,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Name"
 vertical_alignment = 1
@@ -213,7 +212,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Type A
 "
@@ -237,7 +236,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Speed
 "
@@ -272,7 +271,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Shot Width
 "
@@ -307,7 +306,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Laser Power"
 vertical_alignment = 1
@@ -342,7 +341,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Mech
 "
@@ -408,7 +407,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Name"
 vertical_alignment = 1
@@ -430,9 +429,9 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
-text = "Homing Missiles
+text = "Missiles
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -454,7 +453,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("13_hlewj")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_hule7")
 text = "Shot Width
@@ -479,7 +478,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Special Weapon
 "
@@ -506,7 +505,7 @@ offset_top = -7.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("5_nqfqe")
+theme_override_fonts/font = ExtResource("13_hlewj")
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -546,7 +545,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Recharge Time:
 "
@@ -567,7 +566,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "30
 "
@@ -590,7 +589,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Num Options: 
 "
@@ -611,7 +610,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "3
 "
@@ -634,7 +633,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("8_mr15y")
+theme_override_fonts/font = ExtResource("11_eg7h0")
 theme_override_font_sizes/font_size = 18
 text = "Bomb Setting
 "
@@ -670,7 +669,7 @@ theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
 theme_override_colors/font_focus_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_fonts/font = ExtResource("13_hlewj")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_poidl")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_poidl")
@@ -687,7 +686,7 @@ theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
 theme_override_colors/font_focus_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_fonts/font = ExtResource("13_hlewj")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_poidl")
@@ -704,7 +703,7 @@ theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
 theme_override_colors/font_focus_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_fonts/font = ExtResource("13_hlewj")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_poidl")
@@ -721,7 +720,7 @@ theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
 theme_override_colors/font_focus_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_fonts/font = ExtResource("2_s0frm")
+theme_override_fonts/font = ExtResource("13_hlewj")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_2yvj7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_poidl")

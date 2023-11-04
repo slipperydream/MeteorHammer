@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyqxqv1ayua2r"]
+[gd_scene load_steps=11 format=3 uid="uid://dyqxqv1ayua2r"]
 
 [ext_resource type="Script" path="res://ui/stage_results/stage_results.gd" id="1_had4i"]
 [ext_resource type="Texture2D" uid="uid://b4pdc8li273br" path="res://assets/nerdy_girl.jpg" id="2_jy3ai"]
 [ext_resource type="Texture2D" uid="uid://cu7e0uycc4pqb" path="res://assets/pilot.jpg" id="3_itkcq"]
 [ext_resource type="Texture2D" uid="uid://c032jnaue66l6" path="res://assets/spaceship.jpg" id="4_g5w0h"]
-[ext_resource type="FontFile" uid="uid://d0skg0e6m85wm" path="res://ui/PixelMechaBold.ttf" id="5_ve1qy"]
+[ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="5_h7r0f"]
 [ext_resource type="Texture2D" uid="uid://dxlap145yd7a0" path="res://ui/stage_results/star.png" id="6_boqdi"]
-[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="7_4bmah"]
+[ext_resource type="FontFile" uid="uid://dv3201q5d4liu" path="res://ui/fonts/PixelMecha.ttf" id="7_rpfw1"]
+[ext_resource type="FontFile" uid="uid://bhmp00k1x74q3" path="res://ui/fonts/PixelMechaBold.ttf" id="8_o8ert"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jex25"]
 bg_color = Color(0.0705882, 0.305882, 0.537255, 0.427451)
@@ -74,7 +75,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_fonts/font = ExtResource("5_h7r0f")
 theme_override_font_sizes/font_size = 32
 text = "SCORE"
 
@@ -85,7 +86,7 @@ size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_fonts/font = ExtResource("5_h7r0f")
 theme_override_font_sizes/font_size = 40
 text = "00000000"
 
@@ -145,9 +146,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jex25")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterPanel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.5
+offset_top = -48.0
+offset_right = 193.5
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
@@ -162,6 +169,8 @@ columns = 4
 
 [node name="DestroyedLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 24
 text = "Enemies Destroyed:"
 
@@ -170,7 +179,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "24
 "
@@ -178,6 +187,8 @@ vertical_alignment = 2
 
 [node name="ContinuesLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 24
 text = "Credits Used:"
 
@@ -186,7 +197,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "1
 "
@@ -194,6 +205,8 @@ vertical_alignment = 2
 
 [node name="HitsLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 24
 text = "Hits Taken:"
 
@@ -202,7 +215,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "5
 "
@@ -210,6 +223,8 @@ vertical_alignment = 2
 
 [node name="DeathsLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 24
 text = "Times Died:"
 
@@ -218,7 +233,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "3
 "
@@ -226,6 +241,8 @@ vertical_alignment = 2
 
 [node name="MultiplierLabel" type="Label" parent="CenterPanel/MarginContainer/GridContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 24
 text = "Highest Multiplier:"
 
@@ -234,7 +251,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "8"
 vertical_alignment = 2
@@ -261,7 +278,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 20
 text = "STAGE"
 horizontal_alignment = 1
@@ -269,7 +286,8 @@ vertical_alignment = 2
 
 [node name="BaseValue" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "50"
 horizontal_alignment = 1
@@ -298,14 +316,15 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 20
 text = "PROGRESS"
 horizontal_alignment = 1
 
 [node name="ProgressBonus" type="Label" parent="Panel2/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "x100%
 "
@@ -331,7 +350,7 @@ grow_vertical = 2
 [node name="DifficultyLabel" type="Label" parent="Panel3/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 20
 text = "DIFFICULTY"
 horizontal_alignment = 1
@@ -339,7 +358,8 @@ vertical_alignment = 2
 
 [node name="DifficultyBonus" type="Label" parent="Panel3/VBoxContainer3"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "x1"
 horizontal_alignment = 1
@@ -365,9 +385,9 @@ grow_vertical = 2
 
 [node name="BossDefeated" type="Label" parent="Panel4/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 10
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 20
 text = "BOSS
 KILLED
@@ -377,7 +397,8 @@ vertical_alignment = 2
 
 [node name="BossBonus" type="Label" parent="Panel4/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "x2
 "
@@ -404,8 +425,8 @@ grow_vertical = 2
 
 [node name="SpeedKill" type="Label" parent="Panel5/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("7_4bmah")
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 20
 text = "SPEED 
 BONUS"
@@ -414,37 +435,12 @@ vertical_alignment = 2
 
 [node name="SpeedBonus" type="Label" parent="Panel5/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_ve1qy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_o8ert")
 theme_override_font_sizes/font_size = 24
 text = "10
 "
 horizontal_alignment = 1
-
-[node name="ContinueButton" type="Button" parent="."]
-z_index = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 93.0
-offset_top = -50.0
-offset_right = 193.0
-offset_bottom = -18.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
-theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
-theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
-theme_override_fonts/font = ExtResource("7_4bmah")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_3kinx")
-action_mode = 0
-text = "Continue
-"
 
 [node name="RetryButton" type="Button" parent="."]
 z_index = 1
@@ -465,12 +461,38 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
 theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
-theme_override_fonts/font = ExtResource("7_4bmah")
+theme_override_fonts/font = ExtResource("7_rpfw1")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_3kinx")
 action_mode = 0
 text = "Retry
 "
 
-[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
+[node name="ContinueButton" type="Button" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 93.0
+offset_top = -50.0
+offset_right = 193.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("7_rpfw1")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_3kinx")
+action_mode = 0
+text = "Continue
+"
+
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

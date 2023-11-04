@@ -23,6 +23,7 @@ signal new_song
 
 var current_song : AudioStreamOggVorbis
 var playlist : Array[AudioStreamOggVorbis] = []
+var default_fade_time : float = 1.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +31,7 @@ func _ready():
 
 func play_title_song():
 	current_song = title_song
-	play_song(title_song, 1)
+	play_song(title_song, 0.5)
 
 func get_songs(path):
 	var dir = DirAccess.open(path)
@@ -47,29 +48,30 @@ func get_songs(path):
 		
 func _on_finished():
 	if randomize_music:
-		play_song(current_song, 1.5)
+		play_song(current_song, default_fade_time)
 	else:
-		play_song(current_song, 1.5)
+		play_song(current_song, default_fade_time)
 
-func fade_in():
+func fade_in(fade_time):
 	if get_child_count() > 0:
 		var child = get_child(0)
 		var tween = create_tween()
-		tween.tween_property(child, "volume_db", -30, 3)
+		tween.tween_property(child, "volume_db", -30, fade_time)
 
-func fade_out():
+func fade_out(fade_time):
 	if get_child_count() > 0:
 		var child= get_child(0)
 		var tween = create_tween()
-		tween.tween_property(child, "volume_db", -80, 3)
+		tween.tween_property(child, "volume_db", -80, fade_time)
 	
 func get_random_song():
 	var song = playlist[randi() % playlist.size()]
 	return song
 	
 func play_song(song, fade_time):
+	# TODO: Revisit this so the fading is smoother
 	current_song = song
-	fade_out()
+	fade_out(fade_time)
 	await get_tree().create_timer(fade_time).timeout
 	for child in get_children():
 		remove_child(child)
@@ -79,36 +81,36 @@ func play_song(song, fade_time):
 	bg_music.volume_db = bg_music_volume
 	add_child(bg_music)
 	emit_signal("new_song", song.resource_name)
-	fade_in()
+	fade_in(fade_time)
 	
 func play_stage_theme(value):
 	match value:
 		1:
-			play_song(stage_1_theme, 2)
+			play_song(stage_1_theme, default_fade_time)
 		2:
-			play_song(stage_2_theme, 2)
+			play_song(stage_2_theme, default_fade_time)
 		3:
-			play_song(stage_3_theme, 2)
+			play_song(stage_3_theme, default_fade_time)
 		4:
-			play_song(stage_4_theme, 2)
+			play_song(stage_4_theme, default_fade_time)
 		5:
-			play_song(stage_5_theme, 2)
+			play_song(stage_5_theme, default_fade_time)
 		6:
-			play_song(stage_6_theme, 2)
+			play_song(stage_6_theme, default_fade_time)
 
 func play_boss_theme(value):
 	match value:
 		1:
-			play_song(boss_theme_1, 1.5)
+			play_song(boss_theme_1, default_fade_time)
 		2:
-			play_song(boss_theme_2, 1.5)
+			play_song(boss_theme_2, default_fade_time)
 		3:
-			play_song(boss_theme_3, 1.5)
+			play_song(boss_theme_3, default_fade_time)
 		4:
-			play_song(boss_theme_4, 1.5)
+			play_song(boss_theme_4, default_fade_time)
 		5:
-			play_song(boss_theme_5, 1.5)
+			play_song(boss_theme_5, default_fade_time)
 		6:
-			play_song(boss_theme_6, 1.5)
+			play_song(boss_theme_6, default_fade_time)
 		7:
-			play_song(boss_theme_1, 1.5)
+			play_song(boss_theme_1, default_fade_time)

@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 class_name Enemy
 
@@ -8,15 +8,13 @@ signal died
 @export var points : int = 100
 @export var speed : int = 30
 @export var faces_player : bool = false
-@export var direction : Vector2 = Vector2(0,1)
-@export var homing : bool = false
-@export var steer_force = 50.0
 @export var explosion_sound : AudioStreamWAV
 
 var is_alive : bool = true
 var is_offscreen : bool = true
 var vec_to_player : Vector2 = Vector2(0,1)
 var targeted : bool = false
+var direction : Vector2 = Vector2(0,1)
 	
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var screensize : Vector2 = get_viewport_rect().size
@@ -46,7 +44,7 @@ func _process(delta):
 			if is_offscreen:
 				remove()
 	else:
-		position = position + speed * delta * direction + steer_towards_player(delta)
+		position = position + speed * delta * direction
 	
 		# left the screen so remove
 		if position.y > screensize.y + enemy_size.y:
@@ -127,13 +125,6 @@ func explode():
 func remove():
 	queue_free()	
 
-func steer_towards_player(delta):
-	var steer = Vector2.ZERO
-	if homing:
-		if player:
-			var desired = vec_to_player * speed
-			steer = (desired - direction).normalized() * steer_force * delta
-	return steer
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	stopwatch.start()
@@ -159,3 +150,4 @@ func _on_health_component_hit():
 
 func _on_health_component_killed(source):
 	die(source)
+

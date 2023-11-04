@@ -9,5 +9,5 @@ script = ExtResource("1_add0e")
 name = "Mine"
 sprite = ExtResource("2_lobli")
 weapon = ExtResource("3_f0md0")
-wait_time = 2.0
+cost = 1
 description = "Drop these nasty explosives behind you to kill unsuspecting enemies"

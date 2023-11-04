@@ -42,7 +42,7 @@ func _physics_process(delta):
 			var point = get_collision_point(i)
 			cast_point = to_local(Vector2(global_position.x, point.y-15))
 			var area = get_collider(i)
-			if area is Enemy:
+			if area is HitboxComponent:
 				area.take_damage(power, damage_type)
 	
 	$Line2D.points[1] = cast_point

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cojkicds8uf8c"]
+[gd_scene load_steps=29 format=3 uid="uid://cojkicds8uf8c"]
 
 [ext_resource type="Script" path="res://entities/enemy/boss.gd" id="1_m1li8"]
 [ext_resource type="AudioStream" uid="uid://dc0pm3gmnb134" path="res://sound/sfx/Explosions/Repeating_explosion.wav" id="2_veit0"]
@@ -13,10 +13,8 @@
 [ext_resource type="Script" path="res://entities/enemy/weapons/patterns/spread_pattern.gd" id="6_lc6i8"]
 [ext_resource type="PackedScene" uid="uid://cnt8jlxc1o2co" path="res://entities/enemy/weapons/bullet_shapes/needle.tscn" id="9_2r06l"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="13_kgi7a"]
-[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="14_0th8o"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8rgpy"]
-radius = 101.045
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="14_0th8o"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="15_wdne5"]
 
 [sub_resource type="Animation" id="Animation_4pyvs"]
 length = 0.001
@@ -223,11 +221,10 @@ Firing_Sequence = Array[ExtResource("3_km3fg")]([SubResource("Resource_1a5ne"), 
 salvos = 1
 salvo_delay = 0.4
 
-[node name="CircleBoss" type="Area2D" groups=["boss", "enemy"]]
-collision_layer = 8
-collision_mask = 3
-audio_bus_override = true
-audio_bus_name = &"SFX"
+[sub_resource type="CircleShape2D" id="CircleShape2D_8rgpy"]
+radius = 101.045
+
+[node name="CircleBoss" type="Node2D" groups=["boss", "enemy"]]
 script = ExtResource("1_m1li8")
 points = 1000
 speed = 80
@@ -251,9 +248,6 @@ offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_h8iit")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8rgpy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
@@ -295,10 +289,16 @@ Attacks = Array[ExtResource("4_nn3en")]([SubResource("Resource_1eptv")])
 [node name="HealthComponent" parent="." instance=ExtResource("14_0th8o")]
 max_health = 150
 
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("15_wdne5")]
+collision_layer = 8
+collision_mask = 3
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_8rgpy")
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="MilkingTimer" to="." method="_on_milking_timer_timeout"]
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
-[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
-[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

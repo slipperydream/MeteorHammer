@@ -29,5 +29,5 @@ func execute():
 	# need to rework so this works in multiplayer
 	
 func _on_area_entered(area):
-	if area is Player:
+	if area is HitboxComponent:
 		execute()

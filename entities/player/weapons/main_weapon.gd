@@ -23,7 +23,7 @@ func start(pos, dir, angle):
 	rotation_degrees = angle - 90
 	
 func _on_area_entered(area):
-	if area is Enemy:
+	if area is HitboxComponent:
 		area.take_damage(power, damage_type)
 		queue_free()
 

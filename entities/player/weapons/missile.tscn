@@ -70,7 +70,7 @@ libraries = {
 "": SubResource("AnimationLibrary_b2rvs")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(5, 0)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_75uv4")

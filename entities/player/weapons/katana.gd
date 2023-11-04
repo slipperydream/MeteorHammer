@@ -28,7 +28,7 @@ func start(pos):
 	tween.tween_property(self, "position", end_pos, 1)
 	
 func _on_area_entered(area):
-	if area is Enemy:
+	if area is HitboxComponent:
 		area.take_damage(power, damage_type)
 				
 # Possibly convert this to freeing shortly before leaving the screen

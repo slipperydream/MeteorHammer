@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c5vy5tww5so1i"]
+[gd_scene load_steps=30 format=3 uid="uid://c5vy5tww5so1i"]
 
 [ext_resource type="Script" path="res://entities/enemy/base_enemy.gd" id="1_0amy5"]
 [ext_resource type="AudioStream" uid="uid://cjfmy76pau61g" path="res://sound/sfx/Explosions/Explosion_3.wav" id="2_1c6ef"]
@@ -12,9 +12,7 @@
 [ext_resource type="Script" path="res://entities/enemy/weapons/attack.gd" id="5_52fho"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="10_02n62"]
 [ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="12_ipvc4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
-size = Vector2(42.0416, 33.4706)
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="13_ui6xm"]
 
 [sub_resource type="Animation" id="Animation_hdjc4"]
 length = 0.001
@@ -45,7 +43,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:rotation")
+tracks/2/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -69,7 +67,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D:position")
+tracks/4/path = NodePath("HitboxComponent/Hitbox:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -97,7 +95,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -109,7 +107,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/path = NodePath("HitboxComponent/Hitbox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -164,7 +162,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:modulate")
+tracks/0/path = NodePath("HitboxComponent/Hitbox:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -192,7 +190,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -220,7 +218,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -248,7 +246,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -260,7 +258,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/path = NodePath("HitboxComponent/Hitbox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -288,7 +286,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -316,7 +314,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -344,7 +342,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -372,7 +370,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:rotation")
+tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -384,7 +382,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/path = NodePath("HitboxComponent/Hitbox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -430,11 +428,11 @@ Firing_Sequence = Array[ExtResource("4_6gfax")]([SubResource("Resource_4jl70")])
 salvos = 3
 salvo_delay = 0.4
 
-[node name="Tank" type="Area2D" groups=["enemy"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
+size = Vector2(42.0416, 33.4706)
+
+[node name="Tank" type="Node2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 8
-collision_mask = 3
-audio_bus_name = &"SFX"
 script = ExtResource("1_0amy5")
 title = "Tank"
 faces_player = true
@@ -458,10 +456,6 @@ offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, -2)
-shape = SubResource("RectangleShape2D_n0ywb")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_axh05")
@@ -482,6 +476,15 @@ position = Vector2(0, -5)
 
 [node name="HealthComponent" parent="." instance=ExtResource("12_ipvc4")]
 max_health = 5
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("13_ui6xm")]
+collision_layer = 8
+collision_mask = 3
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(4, -2)
+shape = SubResource("RectangleShape2D_n0ywb")
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

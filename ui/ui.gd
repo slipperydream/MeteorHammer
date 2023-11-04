@@ -89,7 +89,7 @@ func _on_player_bomb_charging(time):
 func _on_player_special_selected(new_weapon):
 	if new_weapon.to_lower().contains("katana"):
 		special_weapon_icon.texture = load("res://ui/icons/icon_katana.png")
-	elif new_weapon.to_lower().contains("mines"):
+	elif new_weapon.to_lower().contains("mine"):
 		special_weapon_icon.texture = load("res://ui/icons/icon_mineA.png")
 	elif new_weapon.to_lower().contains("missile"):
 		special_weapon_icon.texture = load("res://ui/icons/icon_missile.png")

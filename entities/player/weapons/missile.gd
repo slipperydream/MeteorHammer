@@ -23,10 +23,9 @@ func _physics_process(delta):
 	else:
 		direction = direction + Vector2(randf_range(-0.5,0.5),randf_range(-0.01, 0.01))
 	position += direction * speed * delta
-	
 
 func _on_area_entered(area):
-	if area.is_in_group("enemy"):
+	if area is HitboxComponent:
 		area.take_damage(power, damage_type)
 		queue_free()
 

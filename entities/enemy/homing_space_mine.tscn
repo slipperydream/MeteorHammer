@@ -1,14 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://glp73e1wvqq8"]
+[gd_scene load_steps=15 format=3 uid="uid://glp73e1wvqq8"]
 
 [ext_resource type="Script" path="res://entities/enemy/space_mine.gd" id="1_fhimk"]
 [ext_resource type="AudioStream" uid="uid://ddofjp0mt70pf" path="res://sound/sfx/Explosions/Explosion_8.wav" id="2_egdk7"]
 [ext_resource type="Texture2D" uid="uid://cck7wsjxldu6m" path="res://entities/enemy/homing_space_mine.png" id="3_nwtac"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_mt7iv"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="5_gvawt"]
-[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="6_iosjc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0drl"]
-size = Vector2(88, 110)
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="6_iosjc"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="7_b30uv"]
 
 [sub_resource type="Animation" id="Animation_4pyvs"]
 length = 0.001
@@ -165,24 +163,23 @@ _data = {
 "hit": SubResource("Animation_hjaro")
 }
 
-[node name="HomingSpaceMine" type="Area2D" groups=["enemy"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0drl"]
+size = Vector2(36, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xtink"]
+radius = 278.582
+
+[node name="HomingSpaceMine" type="Node2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 8
-collision_mask = 3
-audio_bus_name = &"SFX"
 script = ExtResource("1_fhimk")
+homing = true
 title = "Homing Space Mine"
 faces_player = true
-homing = true
 explosion_sound = ExtResource("2_egdk7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_nwtac")
 hframes = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -8)
-shape = SubResource("RectangleShape2D_o0drl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -202,9 +199,21 @@ one_shot = true
 [node name="HealthComponent" parent="." instance=ExtResource("6_iosjc")]
 max_health = 10
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_b30uv")]
+collision_layer = 8
+collision_mask = 3
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_o0drl")
+
+[node name="Trigger" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="TriggerShape" type="CollisionShape2D" parent="Trigger"]
+shape = SubResource("CircleShape2D_xtink")
+debug_color = Color(0.937255, 0.12549, 0.54902, 0.419608)
+
 [connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]
-[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
-[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
+[connection signal="area_entered" from="Trigger" to="." method="_on_trigger_area_entered"]

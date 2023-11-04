@@ -3,7 +3,7 @@ extends Area2D
 @export var title : String = "mine"
 @export var speed : int = 10
 var direction : Vector2 = Vector2(0, 1)
-@export var blast_radius : int = 64
+@export var blast_radius : int = 128
 @export var power : int = 5
 @export var firing_sound : AudioStreamWAV
 @export var explosion_sound : AudioStreamWAV
@@ -25,7 +25,7 @@ func start(pos, dir):
 	$AnimationPlayer.play("moving")
 	
 func _on_area_entered(area):
-	if area is Enemy:
+	if area is HitboxComponent:
 		await get_tree().create_timer(1).timeout
 		damage_targets()
 		explode()

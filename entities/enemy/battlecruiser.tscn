@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dnd3jgl6lomdw"]
+[gd_scene load_steps=35 format=3 uid="uid://dnd3jgl6lomdw"]
 
 [ext_resource type="Script" path="res://entities/enemy/base_enemy.gd" id="1_w0iv7"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="2_775kc"]
@@ -14,7 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://entities/enemy/target_lock.tscn" id="6_omhe3"]
 [ext_resource type="Texture2D" uid="uid://du2oumn8k17xg" path="res://ui/target_lock_medium.png" id="7_bubes"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_x1v44"]
-[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="15_5ubky"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="15_5ubky"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="16_5tokm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjf61"]
 atlas = ExtResource("3_m57je")
@@ -79,9 +80,6 @@ animations = [{
 "name": &"forward",
 "speed": 8.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
-size = Vector2(124, 169)
 
 [sub_resource type="Animation" id="Animation_4pyvs"]
 length = 0.001
@@ -275,12 +273,11 @@ Firing_Sequence = Array[ExtResource("4_ukxkn")]([SubResource("Resource_sl7on")])
 salvos = 1
 salvo_delay = 0.3
 
-[node name="Battlecruiser" type="Area2D" groups=["enemy"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
+size = Vector2(124, 169)
+
+[node name="Battlecruiser" type="Node2D" groups=["enemy"]]
 position = Vector2(0, -50)
-collision_layer = 8
-collision_mask = 3
-audio_bus_override = true
-audio_bus_name = &"SFX"
 script = ExtResource("1_w0iv7")
 explosion_sound = ExtResource("2_775kc")
 
@@ -309,10 +306,6 @@ offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_bubes")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 14.5)
-shape = SubResource("RectangleShape2D_n0ywb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
@@ -363,6 +356,15 @@ scale = Vector2(6.3, 8.6)
 
 [node name="HealthComponent" parent="." instance=ExtResource("15_5ubky")]
 max_health = 50
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("16_5tokm")]
+collision_layer = 8
+collision_mask = 3
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(1, 14.5)
+shape = SubResource("RectangleShape2D_n0ywb")
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

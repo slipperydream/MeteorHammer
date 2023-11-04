@@ -3,6 +3,8 @@ extends ShapeCast2D
 @export var power : int = 1
 @export var width : int = 50
 
+@onready var damage_type =  DamageConstants.DamageTypes.LASER
+
 var is_casting : bool = false:
 	set(val):
 		is_casting = val
@@ -25,7 +27,6 @@ func _ready():
 	set_physics_process(false)
 	$Line2D.points[1] = Vector2.ZERO
 	
-#
 func start():
 	is_casting = true
 	
@@ -41,8 +42,8 @@ func _physics_process(delta):
 			var point = get_collision_point(i)
 			cast_point = to_local(Vector2(global_position.x, point.y-15))
 			var area = get_collider(i)
-			if area.is_in_group("enemy"):
-				area.take_damage(power)
+			if area is Enemy:
+				area.take_damage(power, damage_type)
 	
 	$Line2D.points[1] = cast_point
 	$ParticleEnd.position = cast_point
@@ -53,7 +54,6 @@ func _physics_process(delta):
 func appear():
 	var tween = create_tween()
 	tween.tween_property($Line2D, "width", width, 0.2)
-	print(shape.get_rect().size.x)
 	
 func disappear():
 	var tween = create_tween()

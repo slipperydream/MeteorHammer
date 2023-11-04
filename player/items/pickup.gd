@@ -24,10 +24,10 @@ func _process(delta):
 func start(pos):
 	position = pos
 	
-func execute(_pos):
-	super.execute(_pos)
-
-
+func execute():
+	super.execute()
+	# need to rework so this works in multiplayer
+	
 func _on_area_entered(area):
-	if area in get_tree().get_nodes_in_group("player"):
-		drifting = false
+	if area is Player:
+		execute()

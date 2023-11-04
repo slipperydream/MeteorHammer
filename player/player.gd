@@ -11,6 +11,7 @@ signal bomb_used
 signal special_selected
 signal ammo_count
 signal no_ammo_error
+signal bullet_cancelled
 
 @export var base_speed : int = 2
 @export var cooldown : float = 0.1
@@ -234,8 +235,8 @@ func use_bomb():
 		# debugger compalins about not using call_deferred,
 		# but that breaks for me
 		get_tree().root.add_child(bomb)
-		
-		bomb.execute(position)
+		bomb.position = position
+		bomb.execute()
 		emit_signal("bomb_used")
 		bomb_timer.wait_time = bomb_config.recharge_time
 		bomb_timer.start()
@@ -249,9 +250,13 @@ func _on_gun_cooldown_timeout():
 	can_shoot = true
 	
 func _on_area_entered(area):
+	# no cheap kills for now
+	if health_component.invulnerable:
+		return
+		
 	if area is Enemy:
 		area.take_damage(50, DamageConstants.DamageTypes.COLLISION)
-		health_component.take_damage(1)
+		health_component.take_damage(1, DamageConstants.DamageTypes.COLLISION)
 		
 func _on_main_set_lives(num_lives):
 	remove_bullets()
@@ -280,5 +285,14 @@ func _on_health_component_killed(_source):
 	lives = max(0, lives -1)
 	if lives > 0:
 		health_component.health = 1
+		health_component.is_dead = false
 	else:
 		out_of_lives.emit()
+
+func _on_pickup_area_area_entered(area):
+	if area is Pickup:
+		print("got an item")
+		area.drifting = false
+	elif area is Enemy_weapon and area.is_cancelled:
+		emit_signal("bullet_cancelled")
+		area.remove()

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/title_screen/title_screen.gd" id="1_e7kcj"]
 [ext_resource type="Texture2D" uid="uid://7xdoxqs0d5mo" path="res://assets/planet_background_final.png" id="2_1jrv7"]
 [ext_resource type="Texture2D" uid="uid://yvpoqnsnhp20" path="res://ui/title_screen/title.png" id="3_1eu7u"]
-[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/fonts/PixelMecha.ttf" id="3_vfonr"]
+[ext_resource type="FontFile" uid="uid://dv3201q5d4liu" path="res://ui/fonts/PixelMecha.ttf" id="3_vfonr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjcqh"]
 bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
@@ -64,22 +64,23 @@ texture = ExtResource("3_1eu7u")
 expand_mode = 1
 
 [node name="TitleMenu" type="GridContainer" parent="Panel"]
-z_index = 1
+custom_minimum_size = Vector2(145, 150)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.5
-offset_top = -60.0
-offset_right = 64.5
-offset_bottom = 111.0
+offset_left = -72.5
+offset_top = -57.0
+offset_right = 72.5
+offset_bottom = 93.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="StartGameButton" type="Button" parent="Panel/TitleMenu"]
 layout_mode = 2
+size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../ExitGameButton")
 focus_neighbor_bottom = NodePath("../AttackModeButton")
 theme_override_colors/font_color = Color(0.752941, 0.796078, 0.862745, 1)

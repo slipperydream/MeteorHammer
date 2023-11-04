@@ -2,7 +2,7 @@ extends "res://player/items/base_item.gd"
 
 @export var blast_radius : int = 300
 @export var power : int = 15
-var targets = []
+@onready var damage_type = DamageConstants.DamageTypes.BOMB
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,16 +12,22 @@ func _ready():
 func _process(_delta):
 	pass
 
-func execute(pos):
-	super.execute(pos)
+func execute():
+	super.execute()
 	self.visible = true
-	position = pos
 	$AnimationPlayer.play("explode")
 	var potential_targets = get_tree().get_nodes_in_group("enemy")
 	for tgt in potential_targets:
 		var tgt_pos = tgt.position
 		var dis = tgt_pos.distance_to(position) 
 		if dis < blast_radius:
-			tgt.take_damage(power)
+			tgt.take_damage(power, damage_type)
+			
+	potential_targets = get_tree().get_nodes_in_group("enemy_weapon")
+	for tgt in potential_targets:
+		var tgt_pos = tgt.position
+		var dis = tgt_pos.distance_to(position) 
+		if dis < blast_radius:
+			tgt.cancel_bullet()
 	
 

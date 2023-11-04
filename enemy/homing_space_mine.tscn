@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://glp73e1wvqq8"]
+[gd_scene load_steps=13 format=3 uid="uid://glp73e1wvqq8"]
 
 [ext_resource type="Script" path="res://enemy/space_mine.gd" id="1_fhimk"]
 [ext_resource type="AudioStream" uid="uid://ddofjp0mt70pf" path="res://sound/sfx/Explosions/Explosion_8.wav" id="2_egdk7"]
 [ext_resource type="Texture2D" uid="uid://cck7wsjxldu6m" path="res://enemy/homing_space_mine.png" id="3_nwtac"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_mt7iv"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="5_gvawt"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="6_iosjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0drl"]
 size = Vector2(88, 110)
@@ -198,7 +199,12 @@ one_shot = true
 
 [node name="Stopwatch" parent="." instance=ExtResource("5_gvawt")]
 
+[node name="HealthComponent" parent="." instance=ExtResource("6_iosjc")]
+max_health = 10
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

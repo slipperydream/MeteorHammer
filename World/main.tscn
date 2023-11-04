@@ -95,6 +95,7 @@ visible = false
 [connection signal="ammo_count" from="Player" to="CanvasLayer/UI" method="_on_player_ammo_count"]
 [connection signal="bomb_charging" from="Player" to="CanvasLayer/UI" method="_on_player_bomb_charging"]
 [connection signal="bomb_used" from="Player" to="CanvasLayer/UI" method="_on_player_bomb_used"]
+[connection signal="bullet_cancelled" from="Player" to="." method="_on_player_bullet_cancelled"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="died" from="Player" to="CanvasLayer/UI" method="_on_player_died"]
 [connection signal="no_ammo_error" from="Player" to="CanvasLayer/UI" method="_on_player_no_ammo_error"]

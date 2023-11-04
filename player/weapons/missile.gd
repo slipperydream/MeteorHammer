@@ -8,6 +8,7 @@ extends Area2D
 
 var direction = Vector2(0,-1)
 var target = null
+@onready var damage_type = DamageConstants.DamageTypes.SPECIAL
 
 func start(_transform, tgt):
 	target = tgt
@@ -26,7 +27,7 @@ func _physics_process(delta):
 
 func _on_area_entered(area):
 	if area.is_in_group("enemy"):
-		area.take_damage(power)
+		area.take_damage(power, damage_type)
 		queue_free()
 
 # Possibly convert this to freeing shortly before leaving the screen

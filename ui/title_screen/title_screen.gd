@@ -31,8 +31,6 @@ func _input(_event):
 		# real hacky way to get around timer not triggering timeout when stopped
 		$MenuTimer.wait_time = 0.1
 		$MenuTimer.start()
-	elif Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_cancel"):
-		var control = get_viewport().gui_get_focus_owner()
 	if Input.is_action_just_pressed("ui_down"):
 		var control = get_viewport().gui_get_focus_owner()
 		if control:

@@ -5,6 +5,7 @@ extends Area2D
 @export var direction : Vector2 = Vector2(0, 1)
 @export var power : int = 1
 @export var firing_sound : AudioStreamWAV
+@onready var damage_type =  DamageConstants.DamageTypes.BULLET
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,8 +23,8 @@ func start(pos, dir, angle):
 	rotation_degrees = angle - 90
 	
 func _on_area_entered(area):
-	if area.is_in_group("enemy"):
-		area.take_damage(power)
+	if area is Enemy:
+		area.take_damage(power, damage_type)
 		queue_free()
 
 # Possibly convert this to freeing shortly before leaving the screen

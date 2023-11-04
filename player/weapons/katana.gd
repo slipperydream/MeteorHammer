@@ -6,17 +6,11 @@ extends Area2D
 @export var firing_sound : AudioStreamWAV
 
 var slice_right : bool = true
-var direction : Vector2 = Vector2(0, -1)
+@onready var damage_type =  DamageConstants.DamageTypes.SPECIAL
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#position = position + speed * delta * direction
-	pass
-
 
 func start(pos):
 	AudioStreamManager.play(firing_sound.resource_path, true)
@@ -34,8 +28,8 @@ func start(pos):
 	tween.tween_property(self, "position", end_pos, 1)
 	
 func _on_area_entered(area):
-	if area.is_in_group("enemy"):
-		area.take_damage(power)
+	if area is Enemy:
+		area.take_damage(power, damage_type)
 				
 # Possibly convert this to freeing shortly before leaving the screen
 func _on_visible_on_screen_notifier_2d_screen_exited():

@@ -90,7 +90,7 @@ func die(source):
 	set_deferred("monitoring", false)
 	var bonus = calculate_bonus()
 	show_points(bonus)
-	emit_signal("enemy_died", (points+bonus), source)
+	emit_signal("died", (points+bonus), source)
 	get_tree().call_group("enemy_weapon", "queue_free")
 	create_item(source)
 	explode()
@@ -109,13 +109,13 @@ func show_points(bonus):
 func create_item(source):
 	match source:
 		DamageConstants.DamageTypes.BULLET:
-			print("lilled by bullet")
+			print("killed by bullet")
 		DamageConstants.DamageTypes.LASER:
-			print("lilled by laser")
+			print("killed by laser")
 		DamageConstants.DamageTypes.BOMB:
-			print("lilled by bomb")
+			print("killed by bomb")
 		DamageConstants.DamageTypes.SPECIAL:
-			print("lilled by special")
+			print("killed by special")
 			
 func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)

@@ -48,6 +48,7 @@ var stage_results = {
 @export var continues = 0
 @export var scoring_timer : int = 5
 @export var high_scoring_multiplier : int = 30
+@export var bullet_value : int = 20
 
 @onready var player = $Player
 @onready var title_screen = $CanvasLayer/TitleScreen
@@ -137,12 +138,8 @@ func _on_enemy_died(value, source):
 		$ScoringTimer.start()
 		scoring_chain_active = true
 	
-	# update score and send out active multiplier	
-	score += value * scoring_multiplier	
-	stage_results.score = score
-	emit_signal("score_changed", score)
-	
 	emit_signal("score_multiplier", scoring_multiplier)
+	update_score(value * scoring_multiplier)
 	stage_results.enemies_killed += 1
 	
 	match source:
@@ -157,6 +154,12 @@ func _on_enemy_died(value, source):
 		DamageConstants.DamageTypes.COLLISION:
 			stage_results.collision_kills += 1
 
+func update_score(value):
+	# update score and send out active multiplier	
+	score += value
+	stage_results.score = score
+	emit_signal("score_changed", score)	
+	
 func _on_player_died():
 	stage_results.times_died += 1
 
@@ -255,3 +258,6 @@ func _on_mech_select_mech_select_cancelled():
 func _on_mech_select_mech_selected(mech, special, bomb):
 	player.configure(mech, special, bomb)
 	begin_game()
+
+func _on_player_bullet_cancelled():
+	update_score(bullet_value)

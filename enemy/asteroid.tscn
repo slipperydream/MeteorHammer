@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bsctabtw3j43n"]
+[gd_scene load_steps=17 format=3 uid="uid://bsctabtw3j43n"]
 
 [ext_resource type="Script" path="res://enemy/asteroid.gd" id="1_x8os1"]
 [ext_resource type="AudioStream" uid="uid://b4txmwe7jncxj" path="res://sound/sfx/Explosions/Explosion_5.wav" id="2_a1tck"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="3_n2esd"]
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://enemy/target_lock.tscn" id="4_6ka0i"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="5_mvenc"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="7_d6s5m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3qpc2"]
 radius = 27.0
@@ -322,4 +323,9 @@ libraries = {
 
 [node name="Stopwatch" parent="." instance=ExtResource("5_mvenc")]
 
+[node name="HealthComponent" parent="." instance=ExtResource("7_d6s5m")]
+max_health = 5
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

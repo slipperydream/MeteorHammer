@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=17 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://player/weapons/main_weapon.tscn" id="2_75g50"]
@@ -57,12 +57,16 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
 size = Vector2(34, 39)
 
-[node name="Player" type="Area2D" groups=["player"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_15otl"]
+radius = 199.063
+
+[node name="Player" type="Area2D" node_paths=PackedStringArray("firing_stations") groups=["player"]]
 collision_mask = 28
 script = ExtResource("1_ks4n4")
 main_weapon = ExtResource("2_75g50")
 bomb_scene = ExtResource("3_0duad")
 explosion_sound = ExtResource("4_pug3w")
+firing_stations = [NodePath("Mech/FiringStation"), NodePath("Mech/FiringStation2"), NodePath("Mech/FiringStation3"), NodePath("Mech/FiringStation4")]
 
 [node name="Mech" type="Sprite2D" parent="."]
 texture = ExtResource("5_saxex")
@@ -105,9 +109,17 @@ max_distance = 1600
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_oclx1")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2(3, -4.5)
 shape = SubResource("RectangleShape2D_pq5w0")
+debug_color = Color(0.937255, 0.141176, 0.529412, 0.419608)
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_mask = 20
+
+[node name="PickupBox" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_15otl")
+debug_color = Color(0.458824, 0.592157, 0.141176, 0.419608)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
@@ -115,3 +127,4 @@ shape = SubResource("RectangleShape2D_pq5w0")
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
 [connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

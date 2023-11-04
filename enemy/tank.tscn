@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c5vy5tww5so1i"]
+[gd_scene load_steps=29 format=3 uid="uid://c5vy5tww5so1i"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_0amy5"]
 [ext_resource type="AudioStream" uid="uid://cjfmy76pau61g" path="res://sound/sfx/Explosions/Explosion_3.wav" id="2_1c6ef"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://enemy/weapons/shooting_component.tscn" id="4_rwaqa"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_52fho"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="10_02n62"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="12_ipvc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(42.0416, 33.4706)
@@ -410,7 +411,6 @@ _data = {
 
 [sub_resource type="Resource" id="Resource_veynh"]
 script = ExtResource("2_rhuen")
-title = null
 
 [sub_resource type="Resource" id="Resource_4jl70"]
 script = ExtResource("4_6gfax")
@@ -480,6 +480,11 @@ position = Vector2(0, -5)
 
 [node name="Stopwatch" parent="." instance=ExtResource("10_02n62")]
 
+[node name="HealthComponent" parent="." instance=ExtResource("12_ipvc4")]
+max_health = 5
+
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

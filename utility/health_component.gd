@@ -12,6 +12,7 @@ signal hit
 @onready var parent = get_parent()
 
 var invulnerable : bool = false
+var is_dead : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,9 @@ func _ready():
 func take_damage(damage, source):
 	emit_signal("hit")
 	
+	if is_dead:
+		return
+		
 	if invulnerable: 
 		return
 	
@@ -32,6 +36,7 @@ func take_damage(damage, source):
 	
 	if health <= 0:
 		killed.emit(source)
+		is_dead = true
 
 func set_invulnerability(value):
 	invulnerable = value

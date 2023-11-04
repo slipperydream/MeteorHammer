@@ -1,11 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://dnd3jgl6lomdw"]
+[gd_scene load_steps=34 format=3 uid="uid://dnd3jgl6lomdw"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_w0iv7"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="2_775kc"]
 [ext_resource type="Script" path="res://enemy/weapons/patterns/flower_pattern.gd" id="2_lp7vw"]
-[ext_resource type="Texture2D" uid="uid://pecpuuqwvfbs" path="res://assets/Nairan/Designs-Base/Nairan-Battlecruiser-Base.png" id="2_w4oh3"]
+[ext_resource type="Texture2D" uid="uid://pecpuuqwvfbs" path="res://assets/Enemies/Designs-Base/Nairan-Battlecruiser-Base.png" id="2_w4oh3"]
 [ext_resource type="PackedScene" uid="uid://cb1wj37xtu7h0" path="res://enemy/weapons/bullet_shapes/screwhead.tscn" id="3_306p2"]
-[ext_resource type="Texture2D" uid="uid://dpc4j1it4lcpl" path="res://assets/Nairan/Engine_Effects/Nairan-Battlecruiser-Engine.png" id="3_m57je"]
+[ext_resource type="Texture2D" uid="uid://dpc4j1it4lcpl" path="res://assets/Enemies/Engine_Effects/Nairan-Battlecruiser-Engine.png" id="3_m57je"]
 [ext_resource type="Script" path="res://enemy/weapons/bullet.gd" id="4_ukxkn"]
 [ext_resource type="Script" path="res://enemy/weapons/attack.gd" id="5_4rkk6"]
 [ext_resource type="Script" path="res://enemy/Boosters.gd" id="5_jg5kb"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://enemy/target_lock.tscn" id="6_omhe3"]
 [ext_resource type="Texture2D" uid="uid://du2oumn8k17xg" path="res://ui/target_lock_medium.png" id="7_bubes"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_x1v44"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="15_5ubky"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjf61"]
 atlas = ExtResource("3_m57je")
@@ -360,6 +361,11 @@ scale = Vector2(6.3, 8.6)
 
 [node name="Stopwatch" parent="." instance=ExtResource("12_x1v44")]
 
+[node name="HealthComponent" parent="." instance=ExtResource("15_5ubky")]
+max_health = 50
+
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

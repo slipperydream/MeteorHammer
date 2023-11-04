@@ -52,13 +52,13 @@ func _on_finished():
 	else:
 		play_song(current_song, default_fade_time)
 
-func fade_in(fade_time):
+func fade_in(fade_time=default_fade_time):
 	if get_child_count() > 0:
 		var child = get_child(0)
 		var tween = create_tween()
 		tween.tween_property(child, "volume_db", -30, fade_time)
 
-func fade_out(fade_time):
+func fade_out(fade_time=default_fade_time):
 	if get_child_count() > 0:
 		var child= get_child(0)
 		var tween = create_tween()

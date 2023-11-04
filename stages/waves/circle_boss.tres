@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="1_lf72d"]
 [ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="2_xtlpm"]
-[ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://enemy/circle_boss.tscn" id="3_wop2w"]
+[ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://entities/enemy/circle_boss.tscn" id="3_wop2w"]
 
 [sub_resource type="Resource" id="Resource_pprep"]
 script = ExtResource("2_xtlpm")

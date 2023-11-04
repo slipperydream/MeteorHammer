@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Special_weapon" load_steps=4 format=3 uid="uid://chqt1efjggkuj"]
+
+[ext_resource type="Script" path="res://entities/player/weapons/special_weapon.gd" id="1_flkvo"]
+[ext_resource type="PackedScene" uid="uid://ptgwn0ioh0rq" path="res://entities/player/weapons/missile.tscn" id="2_gluyw"]
+[ext_resource type="Texture2D" uid="uid://cukwphuvmnq6c" path="res://entities/player/weapons/missile.png" id="2_ynspu"]
+
+[resource]
+script = ExtResource("1_flkvo")
+name = "Homing Missile"
+sprite = ExtResource("2_ynspu")
+weapon = ExtResource("2_gluyw")
+cost = 10
+description = "A missile burst of target seeking missiles"

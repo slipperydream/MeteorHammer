@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://hoymf6p32ra2"]
+
+[ext_resource type="Script" path="res://entities/player/items/pickup.gd" id="1_55okg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
+size = Vector2(25, 9)
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_55okg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_75uv4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

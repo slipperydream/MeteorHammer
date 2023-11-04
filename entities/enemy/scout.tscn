@@ -1,0 +1,296 @@
+[gd_scene load_steps=37 format=3 uid="uid://cob7rnhv2vc6s"]
+
+[ext_resource type="Script" path="res://entities/enemy/base_enemy.gd" id="1_vlnxj"]
+[ext_resource type="Script" path="res://entities/enemy/weapons/bullet.gd" id="2_7167e"]
+[ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="2_c36y7"]
+[ext_resource type="Script" path="res://entities/enemy/weapons/patterns/single_pattern.gd" id="2_n0eyg"]
+[ext_resource type="Texture2D" uid="uid://y1g4dn5c08hi" path="res://assets/Enemies/Designs-Base/Nautolan_Scout.png" id="3_h41bk"]
+[ext_resource type="Texture2D" uid="uid://uycoqqebdsdh" path="res://assets/Enemies/Engine_Effects/Nautolan-Scout_EngineEffect.png" id="4_83u8j"]
+[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_gbr6t"]
+[ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://entities/enemy/weapons/shooting_component.tscn" id="5_gygaj"]
+[ext_resource type="Script" path="res://entities/enemy/weapons/attack.gd" id="5_r0vnt"]
+[ext_resource type="Script" path="res://entities/enemy/Boosters.gd" id="5_y84sk"]
+[ext_resource type="PackedScene" uid="uid://cjsxyohvmi47w" path="res://entities/enemy/weapons/bullet_shapes/shell.tscn" id="10_yc1p3"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_cf853"]
+[ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://entities/enemy/target_lock.tscn" id="13_30731"]
+[ext_resource type="Script" path="res://entities/enemy/weapons/patterns/spread_pattern.gd" id="13_tk14c"]
+[ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://entities/enemy/weapons/bullet_shapes/spinning_ball.tscn" id="14_lhot0"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="15_1hefe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5ibo"]
+atlas = ExtResource("4_83u8j")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cmhm"]
+atlas = ExtResource("4_83u8j")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7wh0"]
+atlas = ExtResource("4_83u8j")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0pyf"]
+atlas = ExtResource("4_83u8j")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya0qp"]
+atlas = ExtResource("4_83u8j")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkhh4"]
+atlas = ExtResource("4_83u8j")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfw1j"]
+atlas = ExtResource("4_83u8j")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dk0j"]
+atlas = ExtResource("4_83u8j")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kw4s0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5ibo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cmhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7wh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0pyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya0qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkhh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfw1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dk0j")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
+size = Vector2(62, 55)
+
+[sub_resource type="Animation" id="Animation_41gh0"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_h41bk")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qni6s"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_gbr6t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_qg02f"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.360784), Color(1, 1, 1, 1), Color(1, 1, 1, 0.0823529), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h123k"]
+_data = {
+"RESET": SubResource("Animation_41gh0"),
+"explode": SubResource("Animation_qni6s"),
+"hit": SubResource("Animation_qg02f")
+}
+
+[sub_resource type="Resource" id="Resource_aoie2"]
+script = ExtResource("2_n0eyg")
+
+[sub_resource type="Resource" id="Resource_370c3"]
+script = ExtResource("2_7167e")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_aoie2")
+bullet_shape = ExtResource("10_yc1p3")
+speed = 70
+angle = 90.0
+shot_delay = 0.0
+aimed = true
+station = 0
+
+[sub_resource type="Resource" id="Resource_4nyni"]
+script = ExtResource("5_r0vnt")
+attack_name = "Attack"
+Firing_Sequence = Array[ExtResource("2_7167e")]([SubResource("Resource_370c3")])
+salvos = 1
+salvo_delay = 0.3
+
+[sub_resource type="Resource" id="Resource_huidf"]
+script = ExtResource("13_tk14c")
+firing_points = 3
+separation_angle = 10.0
+ripple = false
+ripple_delay = 0.0
+
+[sub_resource type="Resource" id="Resource_21hxo"]
+script = ExtResource("2_7167e")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_huidf")
+bullet_shape = ExtResource("14_lhot0")
+speed = 50
+angle = 90.0
+shot_delay = 0.0
+aimed = false
+station = 0
+
+[sub_resource type="Resource" id="Resource_qiq8r"]
+script = ExtResource("5_r0vnt")
+attack_name = "Attack"
+Firing_Sequence = Array[ExtResource("2_7167e")]([SubResource("Resource_21hxo")])
+salvos = 1
+salvo_delay = 0.3
+
+[node name="Scout" type="Area2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 3
+audio_bus_name = &"SFX"
+script = ExtResource("1_vlnxj")
+title = "Scout"
+speed = 70
+explosion_sound = ExtResource("2_c36y7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_h41bk")
+
+[node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_kw4s0")
+animation = &"forward"
+autoplay = "forward"
+frame_progress = 0.21759
+script = ExtResource("5_y84sk")
+
+[node name="TargetLock" parent="Sprite2D" instance=ExtResource("13_30731")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -82.0
+offset_right = -46.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_n0ywb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h123k")
+}
+
+[node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_gygaj")]
+stations = [NodePath("../Station1")]
+Attacks = Array[ExtResource("5_r0vnt")]([SubResource("Resource_4nyni"), SubResource("Resource_qiq8r")])
+
+[node name="HealthComponent" parent="." instance=ExtResource("15_1hefe")]
+max_health = 5
+
+[node name="Station1" type="Marker2D" parent="."]
+position = Vector2(-19, 10)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -3.5)
+scale = Vector2(2.3, 2.25)
+
+[node name="Stopwatch" parent="." instance=ExtResource("12_cf853")]
+
+[connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

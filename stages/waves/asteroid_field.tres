@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="1_7p1qk"]
 [ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="2_18po2"]
-[ext_resource type="PackedScene" uid="uid://bsctabtw3j43n" path="res://enemy/asteroid.tscn" id="3_t5jlc"]
+[ext_resource type="PackedScene" uid="uid://bsctabtw3j43n" path="res://entities/enemy/asteroid.tscn" id="3_t5jlc"]
 
 [sub_resource type="Resource" id="Resource_cs0xi"]
 script = ExtResource("2_18po2")

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Bomb_setting" load_steps=2 format=3 uid="uid://cga4ahkk4o4fq"]
-
-[ext_resource type="Script" path="res://player/items/bomb_setting.gd" id="1_nwgjj"]
-
-[resource]
-script = ExtResource("1_nwgjj")
-setting_name = "Bombs Away"
-recharge_time = 20
-max_options = 2

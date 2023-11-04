@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://clivlywn14dn5"]
+
+[ext_resource type="Script" path="res://entities/player/weapons/firing_station.gd" id="1_s0y3f"]
+
+[node name="FiringStation" type="Marker2D"]
+position = Vector2(18, -19)
+script = ExtResource("1_s0y3f")

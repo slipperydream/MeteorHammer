@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5gjata5tywxj"]
+
+[ext_resource type="Script" path="res://entities/player/weapons/Laser.gd" id="1_py5i5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6kxi"]
+size = Vector2(40, 20)
+
+[sub_resource type="Gradient" id="Gradient_rf1e2"]
+offsets = PackedFloat32Array(0.045045, 0.228228, 0.906907)
+colors = PackedColorArray(0, 0.278431, 0, 1, 0, 0.746068, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_qlliw"]
+offsets = PackedFloat32Array(0, 0.603175, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.457672, 0.457672, 0.457672, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_745r4"]
+gradient = SubResource("Gradient_qlliw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y7wu4"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0.894118, 0.231373, 0.266667, 1)
+color_ramp = SubResource("GradientTexture1D_745r4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ji1qt"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 60.0
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0.894118, 0.231373, 0.266667, 1)
+color_ramp = SubResource("GradientTexture1D_745r4")
+
+[node name="Laser" type="ShapeCast2D"]
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_o6kxi")
+target_position = Vector2(2.08165e-12, 650)
+collision_mask = 8
+collide_with_areas = true
+script = ExtResource("1_py5i5")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 50)
+gradient = SubResource("Gradient_rf1e2")
+end_cap_mode = 2
+
+[node name="ParticleOrigin" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_y7wu4")
+
+[node name="ParticleQuarter" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_y7wu4")
+
+[node name="ParticleMid" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_y7wu4")
+
+[node name="ParticleThirdQuarter" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_y7wu4")
+
+[node name="ParticleEnd" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_ji1qt")

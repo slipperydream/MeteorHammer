@@ -1,0 +1,130 @@
+[gd_scene load_steps=17 format=3 uid="uid://bhly1sn1nyugw"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_ks4n4"]
+[ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://entities/player/weapons/main_weapon.tscn" id="2_75g50"]
+[ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://entities/player/items/bomb.tscn" id="3_0duad"]
+[ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
+[ext_resource type="Texture2D" uid="uid://chi18jp2nblpu" path="res://assets/white_mech.png" id="5_saxex"]
+[ext_resource type="PackedScene" uid="uid://clivlywn14dn5" path="res://entities/player/weapons/firing_station.tscn" id="6_lwalq"]
+[ext_resource type="PackedScene" uid="uid://cx15eyjwpgg8f" path="res://entities/targeting_component.tscn" id="9_8ip5m"]
+[ext_resource type="PackedScene" uid="uid://cgapobxp7ck2" path="res://entities/player/option.tscn" id="10_ih0ln"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="10_oclx1"]
+[ext_resource type="PackedScene" uid="uid://c5gjata5tywxj" path="res://entities/player/weapons/laser.tscn" id="11_uo5o6"]
+
+[sub_resource type="Animation" id="Animation_awwn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mech:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_acr8n"]
+resource_name = "explode"
+length = 0.6
+
+[sub_resource type="Animation" id="Animation_uvkd3"]
+resource_name = "invlunerable"
+length = 3.0
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mech:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1), Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1), Color(1, 1, 1, 0.556863), Color(1, 1, 1, 1), Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1), Color(1, 1, 1, 0.572549), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qmkdq"]
+_data = {
+"RESET": SubResource("Animation_awwn7"),
+"explode": SubResource("Animation_acr8n"),
+"invlunerable": SubResource("Animation_uvkd3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
+size = Vector2(34, 39)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_15otl"]
+radius = 199.063
+
+[node name="Player" type="Area2D" node_paths=PackedStringArray("firing_stations") groups=["player"]]
+collision_mask = 28
+script = ExtResource("1_ks4n4")
+main_weapon = ExtResource("2_75g50")
+bomb_scene = ExtResource("3_0duad")
+explosion_sound = ExtResource("4_pug3w")
+firing_stations = [NodePath("Mech/FiringStation"), NodePath("Mech/FiringStation2"), NodePath("Mech/FiringStation3"), NodePath("Mech/FiringStation4")]
+
+[node name="Mech" type="Sprite2D" parent="."]
+texture = ExtResource("5_saxex")
+hframes = 4
+frame = 2
+
+[node name="LeftOption" parent="Mech" instance=ExtResource("10_ih0ln")]
+
+[node name="RightOption" parent="Mech" instance=ExtResource("10_ih0ln")]
+
+[node name="FiringStation" parent="Mech" instance=ExtResource("6_lwalq")]
+
+[node name="FiringStation2" parent="Mech" instance=ExtResource("6_lwalq")]
+
+[node name="FiringStation3" parent="Mech" instance=ExtResource("6_lwalq")]
+
+[node name="FiringStation4" parent="Mech" instance=ExtResource("6_lwalq")]
+
+[node name="GunCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BombTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qmkdq")
+}
+
+[node name="Laser" parent="." instance=ExtResource("11_uo5o6")]
+position = Vector2(0, -28)
+
+[node name="TargetingComponent" parent="." instance=ExtResource("9_8ip5m")]
+max_distance = 1600
+
+[node name="HealthComponent" parent="." instance=ExtResource("10_oclx1")]
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(3, -4.5)
+shape = SubResource("RectangleShape2D_pq5w0")
+debug_color = Color(0.937255, 0.141176, 0.529412, 0.419608)
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_mask = 20
+
+[node name="PickupBox" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_15otl")
+debug_color = Color(0.458824, 0.592157, 0.141176, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
+[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

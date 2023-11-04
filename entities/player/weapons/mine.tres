@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Special_weapon" load_steps=4 format=3 uid="uid://d0x51n0wgj6ah"]
+
+[ext_resource type="Script" path="res://entities/player/weapons/special_weapon.gd" id="1_add0e"]
+[ext_resource type="Texture2D" uid="uid://dpi8u4m0cw0i1" path="res://entities/player/weapons/mineA.png" id="2_lobli"]
+[ext_resource type="PackedScene" uid="uid://cqeh1mw7t26rb" path="res://entities/player/weapons/mine.tscn" id="3_f0md0"]
+
+[resource]
+script = ExtResource("1_add0e")
+name = "Mine"
+sprite = ExtResource("2_lobli")
+weapon = ExtResource("3_f0md0")
+wait_time = 2.0
+description = "Drop these nasty explosives behind you to kill unsuspecting enemies"

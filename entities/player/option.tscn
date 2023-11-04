@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://cgapobxp7ck2"]
+
+[ext_resource type="Texture2D" uid="uid://v1asm43f1vm7" path="res://entities/player/mechs/options.png" id="1_712ku"]
+[ext_resource type="Script" path="res://entities/player/option.gd" id="1_cbo4c"]
+[ext_resource type="Texture2D" uid="uid://dhejifd02ryj7" path="res://assets/Boosters.png" id="1_p5dbx"]
+[ext_resource type="Texture2D" uid="uid://dla4w1crjijvn" path="res://assets/Boosters_left.png" id="2_8frw1"]
+[ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://entities/player/weapons/main_weapon.tscn" id="2_v6brp"]
+[ext_resource type="Texture2D" uid="uid://c2o0ujdp8t2v5" path="res://assets/Boosters_right.png" id="3_f88ar"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cobv"]
+atlas = ExtResource("1_p5dbx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4x0l"]
+atlas = ExtResource("1_p5dbx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olj3y"]
+atlas = ExtResource("2_8frw1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mckoe"]
+atlas = ExtResource("2_8frw1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m42w5"]
+atlas = ExtResource("3_f88ar")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p6wr"]
+atlas = ExtResource("3_f88ar")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fxytk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cobv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4x0l")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olj3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mckoe")
+}],
+"loop": true,
+"name": &"left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m42w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p6wr")
+}],
+"loop": true,
+"name": &"right",
+"speed": 10.0
+}]
+
+[node name="Option" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_cbo4c")
+weapon = ExtResource("2_v6brp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_712ku")
+hframes = 3
+
+[node name="Booster" type="AnimatedSprite2D" parent="Sprite2D"]
+position = Vector2(2, 64)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fxytk")
+animation = &"forward"
+autoplay = "forward"
+frame_progress = 0.305553

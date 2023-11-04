@@ -1,5 +1,7 @@
 extends Button
 
+class_name StageButton
+
 @export_file var stage_path : String
 signal stage_selected
 

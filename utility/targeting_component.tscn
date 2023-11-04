@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx15eyjwpgg8f"]
-
-[ext_resource type="Script" path="res://utility/targeting_component.gd" id="1_jsnag"]
-
-[node name="TargetingComponent" type="Node2D"]
-script = ExtResource("1_jsnag")

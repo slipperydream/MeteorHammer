@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi3uketd7dy76"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_voxsg"]
-[ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://enemy/circle_boss.tscn" id="7_0jvp7"]
+[ext_resource type="PackedScene" uid="uid://cojkicds8uf8c" path="res://entities/enemy/circle_boss.tscn" id="7_0jvp7"]
 
 [node name="Stage_1" type="Area2D" groups=["boss_stage"]]
 script = ExtResource("1_voxsg")

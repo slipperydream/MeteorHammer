@@ -96,7 +96,6 @@ func play_stage():
 	if last_stage:
 		last_stage.queue_free()
 		
-	BackgroundMusic.fade_in()
 	BackgroundMusic.play_stage_theme(stage_num)
 	
 	var stage_instance = stage.instantiate()

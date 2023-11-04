@@ -47,7 +47,7 @@ func display_popup(text):
 
 func update_mech():
 	selected_mech_img.texture = mechs[mech_index].sprite
-	selected_mech_img.hframes = 3
+	selected_mech_img.hframes = 4
 	selected_mech_img.frame = 0
 	mech_name.text = mechs[mech_index].name
 	
@@ -63,8 +63,8 @@ func update_special_weapon():
 		selected_special_weapon_img.hframes = 4
 		selected_special_weapon_img.frame = 0
 	elif special_weapons[special_weapon_index].name.to_lower().contains("missile"):
-		selected_special_weapon_img.hframes = 16
-		selected_special_weapon_img.frame = 0
+		selected_special_weapon_img.hframes = 4
+		selected_special_weapon_img.frame = 3
 	
 	special_name.text = special_weapons[special_weapon_index].name
 	selected_special_weapon_img.texture = special_weapons[special_weapon_index].sprite

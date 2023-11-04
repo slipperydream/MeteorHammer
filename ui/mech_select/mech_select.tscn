@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://cga4ahkk4o4fq" path="res://player/items/bs_max_bombs.tres" id="6_mf4qx"]
 [ext_resource type="Texture2D" uid="uid://cef4mhh1bw6on" path="res://ui/right_arrow.png" id="6_tp3a0"]
 [ext_resource type="Resource" uid="uid://bky0kst2eax5q" path="res://player/items/bs_no_bombs.tres" id="7_6wn6n"]
-[ext_resource type="Resource" uid="uid://chqt1efjggkuj" path="res://player/weapons/homing_missile.tres" id="7_nddvx"]
+[ext_resource type="Resource" uid="uid://chqt1efjggkuj" path="res://player/weapons/missile.tres" id="7_bggw0"]
 [ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/FutureKid.ttf" id="8_mr15y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uixk"]
@@ -104,7 +104,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7nx0c")
 mechs = Array[Resource("res://player/mechs/mech_configuration.gd")]([ExtResource("2_kjrhv"), ExtResource("3_kcjrv"), ExtResource("4_fb8cj")])
-special_weapons = Array[Resource("res://player/weapons/special_weapon.gd")]([ExtResource("5_6n2b7"), ExtResource("6_km5v2"), ExtResource("7_nddvx")])
+special_weapons = Array[Resource("res://player/weapons/special_weapon.gd")]([ExtResource("5_6n2b7"), ExtResource("6_km5v2"), ExtResource("7_bggw0")])
 bomb_settings = Array[Resource("res://player/items/bomb_setting.gd")]([ExtResource("5_v0tyv"), ExtResource("6_mf4qx"), ExtResource("7_6wn6n")])
 
 [node name="Panel" type="Panel" parent="."]

@@ -145,7 +145,7 @@ func _on_shooting_component_shooting():
 	if $AnimationPlayer.has_animation("shooting"):
 		$AnimationPlayer.play("shooting")
 
-func _on_homing_missile_target_lock(target):
+func _on_player_target_lock(target):
 	if target == self:
 		targeted = true
 		$Sprite2D/TargetLock.show()

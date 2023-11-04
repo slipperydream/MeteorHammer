@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://borv5q636p3x1"]
+[gd_scene load_steps=8 format=3 uid="uid://borv5q636p3x1"]
 
 [ext_resource type="Script" path="res://ui/stage_select/stage_select.gd" id="1_ecuyr"]
-[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="2_4dqn1"]
+[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/fonts/PixelMecha.ttf" id="2_4dqn1"]
 [ext_resource type="Texture2D" uid="uid://dqk5cpl3h6p17" path="res://ui/stage_select/galaxy.png" id="2_fjdhx"]
+[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/fonts/FutureKid.ttf" id="3_w1b1o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd0wk"]
 bg_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
@@ -71,6 +72,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0.6, 0.858824, 1)
 theme_override_colors/font_shadow_color = Color(0.0705882, 0.305882, 0.537255, 1)
 theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("3_w1b1o")
 text = "Select stage to play
 "
 horizontal_alignment = 1

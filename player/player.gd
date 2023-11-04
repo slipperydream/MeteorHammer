@@ -1,17 +1,16 @@
 extends Area2D
 
+class_name Player 
+
+signal player_hit
 signal died
 signal out_of_lives
-signal gained_life
 signal bomb_charging
 signal bomb_recharged
 signal bomb_used
-signal weapon_changed
-signal player_hit
+signal special_selected
 signal ammo_count
 signal no_ammo_error
-
-var lives = 3
 
 @export var base_speed : int = 2
 @export var cooldown : float = 0.1
@@ -26,16 +25,6 @@ var lives = 3
 @onready var special_config : Special_weapon = load("res://player/weapons/katana.tres")
 @onready var bomb_config : Bomb_setting = load("res://player/items/bs_balance.tres")
 
-var station_offset_x : int = 15
-var station_offset_Y : int = 28
-var speed : int
-var ammo : int = 100
-var can_shoot : bool = true
-var invulnerable : bool = false
-var assist_mode_enabled = false
-enum Option_Formation { SPREAD, TAIL, SIDES, FRONT}
-var option_index = Option_Formation.FRONT
-
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var player_size : Vector2 = mech.texture.get_size()
 @onready var bomb_timer = $BombTimer
@@ -43,15 +32,27 @@ var option_index = Option_Formation.FRONT
 @onready var invuln_timer = $InvulnerabilityTimer
 @onready var left_option = $Mech/LeftOption
 @onready var right_option = $Mech/RightOption
+@onready var targeting_component = $TargetingComponent
+@onready var health_component : HealthComponent = $HealthComponent
+
+var station_offset_x : int = 15
+var station_offset_Y : int = 36
+var speed : int
+var ammo : int = 100
+var can_shoot : bool = true
+var assist_mode_enabled = false
+enum Option_Formation { SPREAD, TAIL, SIDES, FRONT}
+var option_index = Option_Formation.FRONT
+var default_health : int = 1
+var lives : int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	health_component.health = default_health
 
 func start():
 	reset()
 	position = Vector2(screensize.x / 2, screensize.y - (player_size.y * 4))
-	emit_signal("weapon_changed", special_config.name)
 	emit_signal("ammo_count", ammo)
 	bomb_timer.start()
 	emit_signal("bomb_charging", bomb_config.recharge_time)
@@ -70,6 +71,7 @@ func configure(in_mech_config, in_special_config, in_bomb_setting):
 	switch_option_formation()
 	
 	special_config = in_special_config
+	emit_signal("special_selected", special_config.name)
 	
 func set_firing_stations():
 	var i = 0
@@ -82,13 +84,13 @@ func set_firing_stations():
 func _process(delta):
 	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input.x > 0:
-		mech.frame = 1
+		mech.frame = 3
 		get_tree().call_group("option", "move", "right")
 	elif input.x < 0:
-		mech.frame = 2
+		mech.frame = 1
 		get_tree().call_group("option", "move", "left")
 	else:
-		mech.frame = 0
+		mech.frame = 2
 		get_tree().call_group("option", "move", "forward")
 	position += input * speed * delta
 	position = position.clamp(Vector2(64,64), screensize - Vector2(64,64))
@@ -115,8 +117,8 @@ func _input(event):
 	if event.is_action_pressed("switch_formation"):
 		switch_option_formation()
 		
-func make_invulnerable():
-	invulnerable = true
+func turn_invulnerable():
+	health_component.set_invulnerability(true)
 	$AnimationPlayer.play("invlunerable")
 	invuln_timer.start()	
 			
@@ -142,12 +144,15 @@ func special_weapon_fire():
 	elif weapon.title.to_lower().contains("katana"):
 		weapon.start(global_position + Vector2(0, -300))
 	elif weapon.title.to_lower().contains("missile"):
-		weapon.start(global_position + Vector2(0, -64))
-		
+		var target = targeting_component.acquire_target(global_position, "enemy")
+		weapon.start(global_transform, target)
+		await get_tree().create_timer(0.1).timeout
 		for i in range(3):
 			weapon = special_config.weapon.instantiate()
 			get_tree().root.add_child(weapon)
-			weapon.start(global_position + Vector2(0, -64))
+			target = targeting_component.acquire_target(global_position, "enemy")
+			weapon.start(global_transform, target)
+			await get_tree().create_timer(0.1).timeout
 		
 	if not assist_mode_enabled:
 		options_fire()
@@ -217,31 +222,13 @@ func switch_option_formation():
 			right_option.global_position.y = global_position.y
 			right_option.set_rotation_degrees(90)
 			right_option.firing_angle = 180
-			
-func take_damage(_value):
-	emit_signal("player_hit")
-	
-	if invulnerable: 
-		return
-		
-	# tie to autobombing
-	if bomb_timer.is_stopped():
-		use_bomb()
-		return
-		
-	lives = max(0, lives - 1)
-	if lives > 0:
-		died.emit()
-		remove_bullets()
-		AudioStreamManager.play(explosion_sound.resource_path)
-		make_invulnerable()	
-	else:
-		remove_bullets()
-		out_of_lives.emit()
+
+func take_damage(power, source=null):
+	health_component.take_damage(power, source)
 	
 func use_bomb():	
 	if bomb_timer.is_stopped():
-		make_invulnerable()
+		turn_invulnerable()
 		var bomb = bomb_scene.instantiate()
 		
 		# debugger compalins about not using call_deferred,
@@ -253,8 +240,10 @@ func use_bomb():
 		bomb_timer.wait_time = bomb_config.recharge_time
 		bomb_timer.start()
 		emit_signal("bomb_charging", bomb_config.recharge_time)
+		return true
 	else:
 		print("waiting on bomb timer to recharge")
+		return false
 		
 func _on_gun_cooldown_timeout():
 	can_shoot = true
@@ -262,16 +251,16 @@ func _on_gun_cooldown_timeout():
 func _on_area_entered(area):
 	if area.is_in_group("enemy"):
 		area.explode()
-		take_damage(1)
+		health_component.take_damage(1)
 		
-func _on_main_player_lives(num_lives):
+func _on_main_set_lives(num_lives):
 	remove_bullets()
 	lives = num_lives
 	reset()
 
 func _on_invulnerability_timer_timeout():
 	$AnimationPlayer.stop()
-	invulnerable = false
+	health_component.set_invulnerability(false)
 
 func _on_main_end_stage(_current, _results):
 	remove_bullets()
@@ -279,4 +268,20 @@ func _on_main_end_stage(_current, _results):
 
 func _on_bomb_timer_timeout():
 	emit_signal("bomb_recharged")
+
+func _on_health_component_died():
+	turn_invulnerable()
+	remove_bullets()
+	AudioStreamManager.play(explosion_sound.resource_path)
+	emit_signal("died")
+	lives = max(0, lives -1)
+	if lives > 0:
+		health_component.health = 1
+	else:
+		out_of_lives.emit()
+
+func _on_health_component_hit():
+	emit_signal("player_hit")
+
+	
 

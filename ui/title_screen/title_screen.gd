@@ -11,6 +11,7 @@ signal exit_game
 @onready var boss_select_button = $Panel/TitleMenu/BossSelectButton
 @onready var settings_button = $Panel/TitleMenu/SettingsButton
 @onready var high_scores_button = $Panel/TitleMenu/HighScoresButton
+@onready var exit_game_button = $Panel/TitleMenu/ExitGameButton
 @onready var screensize : Vector2 = get_viewport_rect().size
 @onready var background = $Panel/Background
 @onready var main = get_tree().get_first_node_in_group("main")
@@ -26,10 +27,25 @@ func _process(_delta):
 	pass
 
 func _input(_event):
-	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_cancel"):
+	if $MenuTimer.is_stopped() and Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_cancel"):
 		# real hacky way to get around timer not triggering timeout when stopped
 		$MenuTimer.wait_time = 0.1
 		$MenuTimer.start()
+	elif Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_cancel"):
+		var control = get_viewport().gui_get_focus_owner()
+	if Input.is_action_just_pressed("ui_down"):
+		var control = get_viewport().gui_get_focus_owner()
+		if control:
+			control.get_focus_neighbor(SIDE_BOTTOM)
+		else:
+			exit_game_button.grab_focus()
+	elif Input.is_action_just_pressed("ui_up"):
+		var control = get_viewport().gui_get_focus_owner()
+		if control:
+			control.get_focus_neighbor(SIDE_TOP)
+		else:
+			attack_mode_button.grab_focus()
+
 		
 func hide_everything():
 	title_menu.hide()
@@ -60,7 +76,8 @@ func _on_high_scores_button_pressed():
 
 func _on_menu_timer_timeout():
 	title_menu.show()
-	
+
+
 func _on_main_game_over():
 	await get_tree().create_timer(5).timeout
 	show()
@@ -73,3 +90,4 @@ func _on_exit_game_button_pressed():
 
 func _on_confirmation_dialog_confirmed():
 	emit_signal("exit_game")
+

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Special_weapon" load_steps=4 format=3 uid="uid://dh27gviiyc4wd"]
 
 [ext_resource type="Script" path="res://player/weapons/special_weapon.gd" id="1_ngb0n"]
-[ext_resource type="Texture2D" uid="uid://bangkqqwsxlu1" path="res://player/weapons/katana.png" id="2_oi8f5"]
+[ext_resource type="Texture2D" uid="uid://4kqx8nb2prvc" path="res://ui/icons/icon_katana.png" id="2_advbp"]
 [ext_resource type="PackedScene" uid="uid://bbvo37joshkmr" path="res://player/weapons/katana.tscn" id="3_fi2mp"]
 
 [resource]
 script = ExtResource("1_ngb0n")
 name = "Cosmic Katana"
-sprite = ExtResource("2_oi8f5")
+sprite = ExtResource("2_advbp")
 weapon = ExtResource("3_fi2mp")
 cost = 30
 description = "Slice through your foes with this devastating attack!"

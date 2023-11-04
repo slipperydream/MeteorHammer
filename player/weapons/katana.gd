@@ -21,17 +21,17 @@ func _process(delta):
 func start(pos):
 	AudioStreamManager.play(firing_sound.resource_path, true)
 	
-	var end_x = -25
+	var end_pos = Vector2(-25, -10)
 	slice_right = randi_range(0,1)
 	if slice_right == true:
 		global_position = Vector2(-10, pos.y)
-		end_x = 625
+		end_pos.x = 625
 	else:
 		global_position = Vector2(610, pos.y)
 		$Sprite2D.flip_h = true		
 		
 	var tween = create_tween()
-	tween.tween_property(self, "position:x", end_x, 1)
+	tween.tween_property(self, "position", end_pos, 1)
 	
 func _on_area_entered(area):
 	if area.is_in_group("enemy"):

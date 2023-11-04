@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ivewqdi4am8t"]
 
-[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/PixelMecha.ttf" id="1_mdr61"]
+[ext_resource type="FontFile" uid="uid://br72cjpfix62p" path="res://ui/fonts/PixelMecha.ttf" id="1_mdr61"]
 [ext_resource type="Script" path="res://ui/points_label.gd" id="2_860sj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6kkt"]

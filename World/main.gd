@@ -9,7 +9,7 @@ signal pause_game
 signal score_changed
 signal score_multiplier
 signal new_stage
-signal player_lives
+signal set_lives
 signal end_stage
 signal continue_earned
 
@@ -39,8 +39,8 @@ var stage_results = {
 	boss_kill_time = 0
 }
 
-@export var default_lives = 3
-@export var continues = 1
+@export var default_lives = 2
+@export var continues = 0
 @export var scoring_timer : int = 5
 @export var high_scoring_multiplier : int = 30
 
@@ -66,7 +66,7 @@ func begin_game():
 	emit_signal("score_changed", score)
 	kill_sfx()
 	player.start()
-	emit_signal("player_lives", default_lives)
+	emit_signal("set_lives", default_lives)
 	emit_signal("continue_earned")
 	current_game_state = game_state.RUNNING
 	print(stage)
@@ -147,7 +147,7 @@ func _on_player_out_of_lives():
 		emit_signal("end_stage", stage_num, stage_results)
 		current_game_state = game_state.GAME_OVER
 		emit_signal("game_over")
-	emit_signal("player_lives", default_lives)
+	emit_signal("set_lives", default_lives)
 	stage_results.continues_used += 1
 
 func _on_pause_game():

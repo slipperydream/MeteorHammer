@@ -39,7 +39,7 @@ func _process(delta):
 		$AnimationPlayer.play("moving")
 
 func _on_area_entered(area):
-	if area.name == "Player":
+	if area is Player:
 		area.take_damage(power)
 		queue_free()
 

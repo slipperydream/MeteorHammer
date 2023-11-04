@@ -24,8 +24,8 @@ is_boss_wave = false
 wave_start_time = 0
 start_pt = Vector2(300, -64)
 path = 0
-spawn_size = 64
-spawns = Array[ExtResource("5_06wck")]([SubResource("Resource_7p4sj"), SubResource("Resource_oxg8k"), SubResource("Resource_4phka")])
+spawn_size = 32
+spawns = Array[ExtResource("5_06wck")]([SubResource("Resource_7p4sj"), SubResource("Resource_oxg8k"), SubResource("Resource_4phka"), SubResource("Resource_4phka"), SubResource("Resource_4phka"), SubResource("Resource_4phka")])
 
 [sub_resource type="Curve2D" id="Curve2D_6tmit"]
 _data = {

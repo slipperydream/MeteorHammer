@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4jq7uwx2i4lh"
-path="res://.godot/imported/white_mech2.png-c5e4f9312d97bb47c60cd0475f35cc54.ctex"
+uid="uid://b6whmq6ajt7fh"
+path="res://.godot/imported/no_ammo.png-286427c32e9b38f802e8c8353527e854.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white_mech2.png"
-dest_files=["res://.godot/imported/white_mech2.png-c5e4f9312d97bb47c60cd0475f35cc54.ctex"]
+source_file="res://ui/ammo_bar/no_ammo.png"
+dest_files=["res://.godot/imported/no_ammo.png-286427c32e9b38f802e8c8353527e854.ctex"]
 
 [params]
 

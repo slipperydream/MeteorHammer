@@ -5,6 +5,7 @@ class_name HealthComponent
 
 signal killed
 signal hit
+signal use_bomb
 
 @export var max_health : int = 1
 @export var health : int = 1
@@ -13,6 +14,7 @@ signal hit
 
 var invulnerable : bool = false
 var is_dead : bool = false
+var bomb_available : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,10 +29,9 @@ func take_damage(damage, source):
 	if invulnerable: 
 		return
 	
-	if parent is Player: # and autobombing:
-		var success = parent.use_bomb()
-		if success:
-			return
+	if bomb_available: # and autobombing enabledd:
+		emit_signal("use_bomb")
+		return
 	
 	health -= damage
 	

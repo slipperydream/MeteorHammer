@@ -127,4 +127,5 @@ debug_color = Color(0.458824, 0.592157, 0.141176, 0.419608)
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
 [connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
+[connection signal="use_bomb" from="HealthComponent" to="." method="_on_health_component_use_bomb"]
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

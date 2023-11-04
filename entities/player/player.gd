@@ -238,6 +238,7 @@ func use_bomb():
 		bomb.position = position
 		bomb.execute()
 		emit_signal("bomb_used")
+		health_component.bomb_available = false
 		bomb_timer.wait_time = bomb_config.recharge_time
 		bomb_timer.start()
 		emit_signal("bomb_charging", bomb_config.recharge_time)
@@ -273,6 +274,7 @@ func _on_main_end_stage(_current, _results):
 
 func _on_bomb_timer_timeout():
 	emit_signal("bomb_recharged")
+	health_component.bomb_available = true
 
 func _on_health_component_hit():
 	emit_signal("player_hit")
@@ -296,3 +298,6 @@ func _on_pickup_area_area_entered(area):
 	elif area is Enemy_weapon and area.is_cancelled:
 		emit_signal("bullet_cancelled")
 		area.remove()
+
+func _on_health_component_use_bomb():
+	use_bomb()

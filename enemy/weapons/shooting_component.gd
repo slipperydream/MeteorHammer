@@ -16,7 +16,7 @@ var attack_index : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	player.died.connect(_on_player_died)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -150,7 +150,6 @@ func stop_shooting():
 	$ShootTimer.stop()
 	
 func _on_player_died():
-	print("player died. stopping shots")
 	$ShootTimer.wait_time = 3
 	$ShootTimer.start()
 	

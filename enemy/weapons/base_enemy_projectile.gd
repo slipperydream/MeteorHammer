@@ -40,7 +40,7 @@ func _process(delta):
 
 func _on_area_entered(area):
 	if area is Player:
-		area.take_damage(power)
+		area.take_damage(power, DamageConstants.DamageTypes.BULLET)
 		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

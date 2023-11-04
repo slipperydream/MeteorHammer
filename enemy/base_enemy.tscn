@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6vbsfqohldnn"]
+[gd_scene load_steps=12 format=3 uid="uid://c6vbsfqohldnn"]
 
 [ext_resource type="Script" path="res://enemy/base_enemy.gd" id="1_1lirv"]
 [ext_resource type="AudioStream" uid="uid://cjfmy76pau61g" path="res://sound/sfx/Explosions/Explosion_3.wav" id="2_er248"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_y5j0t"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="5_svyii"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="6_g2e6s"]
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://enemy/target_lock.tscn" id="6_wd1m6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
@@ -156,5 +157,9 @@ libraries = {
 
 [node name="Stopwatch" parent="." instance=ExtResource("5_svyii")]
 
+[node name="HealthComponent" parent="." instance=ExtResource("6_g2e6s")]
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

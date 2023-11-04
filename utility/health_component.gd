@@ -3,11 +3,9 @@ extends Node2D
 
 class_name HealthComponent
 
-signal died
-signal death_source
+signal killed
 signal hit
 
-@export var lives : int = 1
 @export var max_health : int = 1
 @export var health : int = 1
 
@@ -19,7 +17,7 @@ var invulnerable : bool = false
 func _ready():
 	health = max_health
 	
-func take_damage(damage, source=null):
+func take_damage(damage, source):
 	emit_signal("hit")
 	
 	if invulnerable: 
@@ -33,8 +31,7 @@ func take_damage(damage, source=null):
 	health -= damage
 	
 	if health <= 0:
-		died.emit()
-		emit_signal("death_source", source)
+		killed.emit(source)
 
 func set_invulnerability(value):
 	invulnerable = value

@@ -36,7 +36,12 @@ var stage_results = {
 	biggest_multiplier = 0,
 	progress = 0,
 	boss_killed = false,
-	boss_kill_time = 0
+	boss_kill_time = 0,
+	bullet_kills = 0,
+	laser_kills = 0,
+	bomb_kills = 0,
+	special_kills = 0,
+	collision_kills = 0
 }
 
 @export var default_lives = 2
@@ -116,7 +121,7 @@ func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		get_tree().quit() # default behavior
 		
-func _on_enemy_died(value):
+func _on_enemy_died(value, source):
 	if scoring_chain_active:
 		scoring_multiplier += 1
 		if scoring_multiplier > stage_results.biggest_multiplier:
@@ -131,11 +136,26 @@ func _on_enemy_died(value):
 		$ScoringTimer.wait_time = scoring_timer
 		$ScoringTimer.start()
 		scoring_chain_active = true
+	
+	# update score and send out active multiplier	
 	score += value * scoring_multiplier	
 	stage_results.score = score
+	emit_signal("score_changed", score)
+	
 	emit_signal("score_multiplier", scoring_multiplier)
 	stage_results.enemies_killed += 1
-	emit_signal("score_changed", score)
+	
+	match source:
+		DamageConstants.DamageTypes.BULLET:
+			stage_results.bullet_kills += 1
+		DamageConstants.DamageTypes.LASER:
+			stage_results.laser_kills += 1
+		DamageConstants.DamageTypes.BOMB:
+			stage_results.bomb_kills += 1
+		DamageConstants.DamageTypes.SPECIAL:
+			stage_results.special_kills += 1
+		DamageConstants.DamageTypes.COLLISION:
+			stage_results.collision_kills += 1
 
 func _on_player_died():
 	stage_results.times_died += 1

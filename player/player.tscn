@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
 [ext_resource type="Texture2D" uid="uid://chi18jp2nblpu" path="res://assets/white_mech.png" id="5_saxex"]
 [ext_resource type="PackedScene" uid="uid://clivlywn14dn5" path="res://player/weapons/firing_station.tscn" id="6_lwalq"]
-[ext_resource type="PackedScene" uid="uid://cx15eyjwpgg8f" path="res://targeting_component.tscn" id="9_o7d43"]
+[ext_resource type="PackedScene" uid="uid://cx15eyjwpgg8f" path="res://utility/targeting_component.tscn" id="9_8ip5m"]
 [ext_resource type="PackedScene" uid="uid://cgapobxp7ck2" path="res://player/option.tscn" id="10_ih0ln"]
 [ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="10_oclx1"]
 [ext_resource type="PackedScene" uid="uid://c5gjata5tywxj" path="res://player/weapons/laser.tscn" id="11_uo5o6"]
@@ -100,13 +100,10 @@ libraries = {
 [node name="Laser" parent="." instance=ExtResource("11_uo5o6")]
 position = Vector2(0, -28)
 
-[node name="TargetingComponent" parent="." instance=ExtResource("9_o7d43")]
+[node name="TargetingComponent" parent="." instance=ExtResource("9_8ip5m")]
 max_distance = 1600
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_oclx1")]
-lives = 1
-max_health = 1
-health = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, -4.5)
@@ -116,5 +113,5 @@ shape = SubResource("RectangleShape2D_pq5w0")
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
-[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

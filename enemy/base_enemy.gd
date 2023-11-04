@@ -7,7 +7,6 @@ signal died
 @export var title : String = "Enemy"
 @export var points : int = 100
 @export var speed : int = 30
-@export var hp : int = 5
 @export var faces_player : bool = false
 @export var direction : Vector2 = Vector2(0,1)
 @export var homing : bool = false
@@ -25,6 +24,7 @@ var targeted : bool = false
 @onready var ceasefire_line : float = screensize.y * 0.9
 @onready var stopwatch = $Stopwatch
 @onready var parent = get_parent()
+@onready var health_component : HealthComponent = $HealthComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -82,24 +82,17 @@ func get_facing_direction(vtp):
 func start(pos):
 	position = Vector2(pos.x, pos.y)
 
-func take_damage(value):
-	# need to include attacker so I can remove the target lock
-	if is_alive == false:
-		return
-	hp = max(0, hp - value)
-	if hp == 0:
-		is_alive = false
-		die()
-	else:
-		$AnimationPlayer.play("hit")
+func take_damage(value, source):
+	health_component.take_damage(value, source)
 				
-func die():
+func die(source):
 	speed = 0
+	set_deferred("monitoring", false)
 	var bonus = calculate_bonus()
 	show_points(bonus)
-	set_deferred("monitoring", false)
-	emit_signal("died", (points+bonus))
+	emit_signal("enemy_died", (points+bonus), source)
 	get_tree().call_group("enemy_weapon", "queue_free")
+	create_item(source)
 	explode()
 
 func calculate_bonus():
@@ -113,6 +106,17 @@ func show_points(bonus):
 	get_tree().get_first_node_in_group("stage").add_child(death_points)
 	death_points.display(global_position + Vector2(20, -32), points, bonus)
 
+func create_item(source):
+	match source:
+		DamageConstants.DamageTypes.BULLET:
+			print("lilled by bullet")
+		DamageConstants.DamageTypes.LASER:
+			print("lilled by laser")
+		DamageConstants.DamageTypes.BOMB:
+			print("lilled by bomb")
+		DamageConstants.DamageTypes.SPECIAL:
+			print("lilled by special")
+			
 func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)
 	$AnimationPlayer.stop()
@@ -130,9 +134,6 @@ func steer_towards_player(delta):
 			var desired = vec_to_player * speed
 			steer = (desired - direction).normalized() * steer_force * delta
 	return steer
-	
-func _on_player_died():
-	pass
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	stopwatch.start()
@@ -152,3 +153,9 @@ func _on_player_target_lock(target):
 				
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	is_offscreen = true
+
+func _on_health_component_hit():
+	$AnimationPlayer.play("hit")
+
+func _on_health_component_killed(source):
+	die(source)

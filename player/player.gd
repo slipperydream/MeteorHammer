@@ -249,8 +249,8 @@ func _on_gun_cooldown_timeout():
 	can_shoot = true
 	
 func _on_area_entered(area):
-	if area.is_in_group("enemy"):
-		area.explode()
+	if area is Enemy:
+		area.take_damage(50, DamageConstants.DamageTypes.COLLISION)
 		health_component.take_damage(1)
 		
 func _on_main_set_lives(num_lives):
@@ -269,7 +269,10 @@ func _on_main_end_stage(_current, _results):
 func _on_bomb_timer_timeout():
 	emit_signal("bomb_recharged")
 
-func _on_health_component_died():
+func _on_health_component_hit():
+	emit_signal("player_hit")
+
+func _on_health_component_killed(_source):
 	turn_invulnerable()
 	remove_bullets()
 	AudioStreamManager.play(explosion_sound.resource_path)
@@ -279,9 +282,3 @@ func _on_health_component_died():
 		health_component.health = 1
 	else:
 		out_of_lives.emit()
-
-func _on_health_component_hit():
-	emit_signal("player_hit")
-
-	
-

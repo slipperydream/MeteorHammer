@@ -6,8 +6,7 @@ enum BulletTypes{
 	STRAIGHT,
 	CURVED,
 	SPIRALING,
-	WAVY,
-	LASER
+	WAVY
 }
 
 enum Patterns{

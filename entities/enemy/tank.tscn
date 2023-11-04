@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://entities/enemy/weapons/shooting_component.tscn" id="4_rwaqa"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/attack.gd" id="5_52fho"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="10_02n62"]
-[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="12_ipvc4"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="12_ipvc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(42.0416, 33.4706)

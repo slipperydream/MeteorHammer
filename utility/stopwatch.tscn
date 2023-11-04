@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://kx061m0kpeni"]
 
-[ext_resource type="FontFile" uid="uid://qf2y7hd0xsdv" path="res://ui/fonts/FutureKid.ttf" id="1_6jpdw"]
+[ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="1_6jpdw"]
 [ext_resource type="Script" path="res://utility/stopwatch.gd" id="2_otght"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otlc7"]

@@ -45,6 +45,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_had4i")
+background_path = "res://ui/splash_screen_images"
 backgrounds = Array[Texture2D]([ExtResource("2_jy3ai"), ExtResource("3_itkcq"), ExtResource("4_g5w0h")])
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

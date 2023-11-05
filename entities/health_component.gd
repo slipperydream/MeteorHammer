@@ -11,7 +11,7 @@ signal use_bomb
 @export var health : int = 1
 
 @onready var parent = get_parent()
-
+@onready var autobomb = SettingsManager.get_autobomb()
 var invulnerable : bool = false
 var is_dead : bool = false
 var bomb_available : bool = false
@@ -29,7 +29,7 @@ func take_damage(damage, source):
 	if invulnerable: 
 		return
 	
-	if bomb_available: # and autobombing enabledd:
+	if autobomb and bomb_available:
 		emit_signal("use_bomb")
 		return
 	

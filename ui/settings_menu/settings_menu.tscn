@@ -1,0 +1,151 @@
+[gd_scene load_steps=7 format=3 uid="uid://ul83p2fq80e6"]
+
+[ext_resource type="Script" path="res://ui/settings_menu/settings_menu.gd" id="1_cv4q4"]
+[ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="1_s2m1p"]
+[ext_resource type="FontFile" uid="uid://dv3201q5d4liu" path="res://ui/fonts/PixelMecha.ttf" id="3_bcany"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uixk"]
+bg_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.6, 0.858824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ci84r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ikx"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.752941, 0.796078, 0.862745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="SettingsMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cv4q4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1uixk")
+
+[node name="InstructionLabel" type="Label" parent="Panel"]
+offset_top = 64.0
+offset_right = 600.0
+offset_bottom = 97.0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_shadow_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("1_s2m1p")
+theme_override_font_sizes/font_size = 32
+text = "Settings
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AutobombSetting" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -20.0
+offset_right = 97.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "When autobombing is on, if the player is hit and has a bomb fully charged the bomb will be used instead of the user taking a hit."
+
+[node name="Label" type="Label" parent="AutobombSetting"]
+layout_mode = 2
+text = "Enable Autobombing:"
+
+[node name="CheckBox" type="CheckBox" parent="AutobombSetting"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_ci84r")
+text = "On"
+
+[node name="CancelButton" type="Button" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -41.0
+offset_right = -135.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("3_bcany")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_p3ikx")
+action_mode = 0
+text = "CANCEL
+"
+
+[node name="AcceptButton" type="Button" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -41.0
+offset_right = 228.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("3_bcany")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_p3ikx")
+action_mode = 0
+text = "ACCEPT
+"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+
+[connection signal="toggled" from="AutobombSetting/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

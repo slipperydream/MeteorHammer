@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=15 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://World/main.gd" id="1_40pi7"]
 [ext_resource type="Script" path="res://World/Background.gd" id="2_egrtt"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://borv5q636p3x1" path="res://ui/stage_select/stage_select.tscn" id="8_4tp73"]
 [ext_resource type="PackedScene" uid="uid://dqrp2a1yyocuq" path="res://ui/mech_select/mech_select.tscn" id="9_aya4f"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="9_vmmdb"]
+[ext_resource type="PackedScene" uid="uid://ul83p2fq80e6" path="res://ui/settings_menu/settings_menu.tscn" id="10_3e1to"]
 
 [sub_resource type="Animation" id="Animation_7oex0"]
 length = 0.001
@@ -64,6 +65,9 @@ visible = false
 [node name="MechSelect" parent="CanvasLayer" instance=ExtResource("9_aya4f")]
 visible = false
 
+[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("10_3e1to")]
+visible = false
+
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -111,6 +115,7 @@ visible = false
 [connection signal="attack_mode" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_attack_mode"]
 [connection signal="boss_mode" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_boss_mode"]
 [connection signal="exit_game" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_exit_game"]
+[connection signal="settings_menu" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_settings_menu"]
 [connection signal="start_game" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_start_game"]
 [connection signal="results_closed" from="CanvasLayer/StageResults" to="." method="_on_stage_results_results_closed"]
 [connection signal="retry_level" from="CanvasLayer/StageResults" to="." method="_on_stage_results_retry_level"]
@@ -118,5 +123,6 @@ visible = false
 [connection signal="stage_selected" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_selected"]
 [connection signal="mech_select_cancelled" from="CanvasLayer/MechSelect" to="." method="_on_mech_select_mech_select_cancelled"]
 [connection signal="mech_selected" from="CanvasLayer/MechSelect" to="." method="_on_mech_select_mech_selected"]
+[connection signal="cancel_settings_change" from="CanvasLayer/SettingsMenu" to="." method="_on_settings_menu_cancel_settings_change"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="ScoringTimer" to="." method="_on_scoring_timer_timeout"]

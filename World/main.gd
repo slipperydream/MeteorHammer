@@ -56,6 +56,7 @@ var stage_results = {
 @onready var stage_select = $CanvasLayer/StageSelect
 @onready var results_screen = $CanvasLayer/StageResults
 @onready var mech_select = $CanvasLayer/MechSelect
+@onready var settings_menu = $CanvasLayer/SettingsMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -267,3 +268,9 @@ func _on_player_ammo_overstocked():
 
 func _on_score_item_collected(value):
 	update_score(value)
+
+func _on_title_screen_settings_menu():
+	settings_menu.show()
+
+func _on_settings_menu_cancel_settings_change():
+	title_screen.show()

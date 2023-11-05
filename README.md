@@ -3,13 +3,6 @@ Heavily modified now
 
 TODOs (rough priority order)
 -----
-- [x] create different player ships
- - speed + shot width differences seem to be standard
- - [x] fast + narrow
- - [x] average + 45 degree shot
- - [x] slow + 60-90 degree shot?
- - [x] add progress bars to show differences on the ship select screen
-
 - []ship customization
    - [] chaining_easier: more time between kills, but grows slower
    - [] chaining_higher: less time between kills, but grows faster
@@ -31,8 +24,8 @@ TODOs (rough priority order)
 - [] Increase sounda
 
 - [] Add game over screen
-- [] Add settings menu
-- [] Add high score saving
+- [\] Add settings menu
+- [\] Add high score saving
 
 - [x] add paths and prototyped moving an enemy with one. 
 - [] Add pathing (Path2D) for enemy waves that aren’t just flying directly south 
@@ -71,43 +64,40 @@ TODOs (rough priority order)
     - [] add complete boss scene 
       - [x] change music to boss theme
 
-- [] make/finish game modes: 
+- [] make game modes: 
    - [x] stage select: galaxy map with brief overview of mission when selected
+     - need to go to the stage select screen after stage results
    - [] boss select: just play the bosses you've seen before
    - [] attack mode: out to run through stages on after another.
+     - need to go to the next stage after stage results
    - [] attract mode: self playing 
 
 - Revisit scoring system. Think about the following:
- - collect items
  - item chaining 
- - bullet canceling 
  - Speed kill
  - Proximity based scoring
  - Hyper?
  - Bonus for lives not spent 
-- [x] add scoring triggers to generate items/powerups/1ups
+- [x] add triggers to generate items
+  - []powerups/1ups
 - [] Add corpse on screen for last death. Worth X points if "salvaged" i.e. picked up
 - [] add ghost path of last route?
 
-- [-] Replace credits with a continue meter that refills with score
-- [x] add focused shot for player with holding down the button
-    - doesn't seem possible with Godot, so adding laser as a default weapon instead
-    - [] slow player speed when firing laser
+- [\] Replace credits with a continue meter that refills with score
 - [] Add player shot limit. Forces closer attacks for higher damage
 - [] Possibly add a collision shield? Doesn’t stop bullets
-- [] update player weapon to better looking sprite
+- [x] update player weapon to better looking sprite
 
 - []Redo code to make components instead of inheritance.
     - Attack
-    - Hitbox 
     - Movement?
 
+- [] Add soundtrack mode, i.e., just play the music in a loop with simple play controls
+  - [] add song selection for stages and bosses?
 - [] Add a thorn aura around player?
 - [] On selection of stage allow user to turn off cutscenes 
 
 - []Start adding flags to different functionality that I eventually want to be able to turn off/change
-
-- [] display currently playing song title on a side panel
 
 - [] Add difficulty levels
    - [] Add more shot patterns to each enemy for difficulty increase
@@ -126,6 +116,7 @@ TODOs (rough priority order)
   - customize panels
   - [] art offerings
   - [] info offerings: music, score, multiplier
+- [] display currently playing song title on a side panel
 
 - [] Update ship select to show animation of ship firing arcs
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/player/weapons/main_weapon.gd" id="1_2elya"]
 [ext_resource type="AudioStream" uid="uid://df6fckelch2n" path="res://sound/sfx/lasers/Laser_3.wav" id="2_rhm08"]
-[ext_resource type="Texture2D" uid="uid://55eie1mmxk2o" path="res://entities/player/weapons/bullet.png" id="3_0u00l"]
+[ext_resource type="Texture2D" uid="uid://b52ycv54ia04o" path="res://entities/player/weapons/bullet.png" id="3_0u00l"]
 [ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="4_mm5qg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]

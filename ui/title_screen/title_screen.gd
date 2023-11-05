@@ -4,6 +4,7 @@ signal start_game
 signal attack_mode
 signal boss_mode
 signal exit_game
+signal settings_menu
 
 @onready var title_menu = $Panel/TitleMenu
 @onready var start_game_button = $Panel/TitleMenu/StartGameButton
@@ -65,8 +66,7 @@ func _on_boss_select_button_pressed():
 	hide()
 
 func _on_settings_button_pressed():
-	var text = "Sorry, the settings menu isn't implemented yet."
-	display_popup(text)
+	emit_signal("settings_menu")
 
 func _on_high_scores_button_pressed():
 	var text = "Sorry, the high scores menu isn't implemented yet."

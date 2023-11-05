@@ -42,7 +42,7 @@ func _ready():
 	load_settings()
 	print(settings)
 	
-func revert_settings():
+func save_settings():
 	for section in settings.keys():
 		for key in settings[section]:
 			config.set_value(section, key, settings[section][key])
@@ -69,8 +69,8 @@ func get_audio_bus_muted(bus):
 
 func set_audio_bus_muted(bus, value):
 	var key = "%s_muted" % bus.to_lower()
-	config.set_value("audio", key, value)
-	save()
+	settings["audio"][key] = value
+	save_settings()
 		
 func get_audio_bus_volume(bus):
 	var audio_bus = "%s_volume" % bus.to_lower()
@@ -78,24 +78,21 @@ func get_audio_bus_volume(bus):
 	
 func set_audio_bus_volume(bus, value):
 	var key = "%s_volume" % bus.to_lower()
-	config.set_value("audio", key, value)
-	save()
+	settings["audio"][key] = value
+	save_settings()
 	
 func get_autobomb():
 	return settings["gameplay"]["autobomb"]
 	
 func set_autobomb(value):
-	config.set_value("gameplay", "autobomb", value)
-	save()
+	settings["gameplay"]["autobomb"] = value
+	save_settings()
 
 func get_bullet_color():
 	return settings["visual"]["bullet_color"]
 
 func set_bullet_color(color):
-	config.set_value("visual", "bullet_color", color)
-	save()
-
-func save():
-	config.save(SETTINGS_FILE_PATH)
+	settings["visual"]["bullet_color"] = color
+	save_settings()
 
 	

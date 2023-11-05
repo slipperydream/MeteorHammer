@@ -6,11 +6,11 @@ extends Node2D
 @export var power : int = 1
 @export var firing_sound : AudioStreamWAV
 @onready var damage_type =  DamageConstants.DamageTypes.BULLET
-@onready var bullet_color = SettingsManager.get_bullet_color()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Sprite2D.modulate = bullet_color
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -18,6 +18,7 @@ func _process(delta):
 	look_at(position)
 
 func start(pos, dir, angle):
+	$Sprite2D.modulate = SettingsManager.get_bullet_color()
 	AudioStreamManager.play(firing_sound.resource_path, true)
 	position = pos
 	direction = dir

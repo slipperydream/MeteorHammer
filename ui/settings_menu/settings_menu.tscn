@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ul83p2fq80e6"]
+[gd_scene load_steps=12 format=3 uid="uid://ul83p2fq80e6"]
 
 [ext_resource type="Script" path="res://ui/settings_menu/settings_menu.gd" id="1_cv4q4"]
 [ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="1_s2m1p"]
@@ -30,6 +30,17 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucfnm"]
+bg_color = Color(0.14902, 0.168627, 0.266667, 1)
+border_width_left = 2
+border_width_top = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sinmy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucdgs"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="SettingsMenu" type="Control"]
 process_mode = 3
@@ -66,43 +77,7 @@ text = "Settings
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AutobombSetting" parent="." instance=ExtResource("3_fao3p")]
-layout_mode = 1
-
-[node name="BulletColorSetting" parent="." instance=ExtResource("4_qu7tu")]
-layout_mode = 1
-offset_left = -194.5
-offset_top = -284.0
-offset_right = 194.5
-offset_bottom = 284.0
-
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-
-[node name="MasterAudioControl" parent="." instance=ExtResource("4_omw64")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 194.0
-offset_top = 423.0
-offset_right = 408.0
-offset_bottom = 463.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="MusicControl" parent="." instance=ExtResource("4_omw64")]
-layout_mode = 1
-offset_top = 53.0
-offset_bottom = 93.0
-audio_bus_name = "Music"
-
-[node name="SFXControl" parent="." instance=ExtResource("4_omw64")]
-layout_mode = 1
-offset_top = 82.0
-offset_bottom = 122.0
-audio_bus_name = "SFX"
 
 [node name="DefaultButton" type="Button" parent="."]
 layout_mode = 2
@@ -139,6 +114,93 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_p3ikx")
 action_mode = 0
 text = "CLOSE
 "
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -268.0
+offset_bottom = 337.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_ucfnm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_sinmy")
+tab_alignment = 1
+
+[node name="Audio" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Audio"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 30.0
+offset_right = 226.0
+offset_bottom = 146.0
+
+[node name="MasterAudioControl" parent="TabContainer/Audio/GridContainer" instance=ExtResource("4_omw64")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="MusicControl" parent="TabContainer/Audio/GridContainer" instance=ExtResource("4_omw64")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+audio_bus_name = "Music"
+
+[node name="SFXControl" parent="TabContainer/Audio/GridContainer" instance=ExtResource("4_omw64")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+audio_bus_name = "SFX"
+
+[node name="Graphics" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[node name="BulletColorSetting" parent="TabContainer/Graphics" instance=ExtResource("4_qu7tu")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 64.0
+offset_top = -228.0
+offset_right = 291.0
+offset_bottom = -188.0
+grow_horizontal = 1
+
+[node name="Visual" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[node name="Gameplay" type="Panel" parent="TabContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[node name="AutobombSetting" parent="TabContainer/Gameplay" instance=ExtResource("3_fao3p")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 48.0
+offset_top = 27.0
+offset_right = 242.0
+offset_bottom = 67.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Controls" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
 
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="pressed" from="DefaultButton" to="." method="_on_default_button_pressed"]

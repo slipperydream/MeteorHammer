@@ -4,7 +4,6 @@ class SoundEffect:
 	var path: String
 	var randomize_pitch : bool
 
-@onready var sfx_volume : int = -30
 	
 var num_players = 12
 var bus = "SFX"
@@ -19,7 +18,7 @@ func _ready():
 	# Create pool of AudioStreamPlayer nodes.
 	for i in num_players:
 		var p = AudioStreamPlayer.new()
-		p.volume_db = sfx_volume
+		p.volume_db = SettingsManager.get_audio_bus_volume(bus)
 		add_child(p)
 		available_players.append(p)
 		p.finished.connect(_on_stream_finished.bind(p))

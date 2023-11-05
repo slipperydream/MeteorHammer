@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyqxqv1ayua2r"]
+[gd_scene load_steps=8 format=3 uid="uid://dyqxqv1ayua2r"]
 
 [ext_resource type="Script" path="res://ui/stage_results/stage_results.gd" id="1_had4i"]
-[ext_resource type="Texture2D" uid="uid://c032jnaue66l6" path="res://assets/spaceship.jpg" id="4_g5w0h"]
 [ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="5_h7r0f"]
 [ext_resource type="Texture2D" uid="uid://dxlap145yd7a0" path="res://ui/stage_results/star.png" id="6_boqdi"]
 [ext_resource type="FontFile" uid="uid://dv3201q5d4liu" path="res://ui/fonts/PixelMecha.ttf" id="7_rpfw1"]
@@ -55,7 +54,6 @@ grow_vertical = 2
 
 [node name="Sprite2D" type="TextureRect" parent="PanelContainer"]
 layout_mode = 2
-texture = ExtResource("4_g5w0h")
 expand_mode = 1
 
 [node name="Scorebar" type="VBoxContainer" parent="."]

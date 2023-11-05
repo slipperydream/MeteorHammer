@@ -11,3 +11,4 @@ func configure():
 	
 func _on_color_picker_button_color_changed(color):
 	SettingsManager.set_bullet_color(color)
+	emit_signal("bullet_color_changed", color)

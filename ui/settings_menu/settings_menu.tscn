@@ -130,7 +130,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_sinmy")
 tab_alignment = 1
 
 [node name="Audio" type="Panel" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
 
@@ -180,6 +179,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
 
 [node name="Gameplay" type="Panel" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
 

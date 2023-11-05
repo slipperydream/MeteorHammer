@@ -38,8 +38,9 @@ var settings = {
 }
 
 func _ready():
-	revert_settings()
+	#revert_settings()
 	load_settings()
+	print(settings)
 	
 func revert_settings():
 	for section in settings.keys():

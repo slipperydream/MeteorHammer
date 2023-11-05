@@ -3,6 +3,7 @@ extends Control
 signal results_closed
 signal retry_level
 
+@export var background_path : String
 @export var backgrounds : Array[Texture2D] = []
 @export_range(1000, 50000) var star_value : int = 5000
 @export var base_points : int = 1000
@@ -26,6 +27,19 @@ func _ready():
 	background.size.y = screensize.y
 	background.modulate = Color.AQUAMARINE
 
+func select_background():
+	var files = []
+	var dir = DirAccess.open(background_path)
+	if DirAccess.get_open_error() == OK:
+		dir.list_dir_begin()
+		var file = dir.get_next()
+		while file != "":
+			if file.get_extension() == 'png':
+				files.append(file)
+			file = dir.get_next()
+		dir.list_dir_end()
+	print(files)
+	
 func update_base(value):
 	base_counter.text = "%d" % value
 	

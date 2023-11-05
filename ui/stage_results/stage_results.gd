@@ -4,7 +4,7 @@ signal results_closed
 signal retry_level
 
 @export var background_path : String
-@export var backgrounds : Array[Texture2D] = []
+var backgrounds = []
 @export_range(1000, 50000) var star_value : int = 5000
 @export var base_points : int = 1000
 @onready var background = $PanelContainer/Sprite2D
@@ -22,12 +22,15 @@ signal retry_level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	background.texture = backgrounds[randi() % backgrounds.size()]
+	backgrounds = get_background()
+	var file = "%s/%s" % [background_path, backgrounds[randi() % backgrounds.size()]]
+	print(file)
+	background.texture = load(file)
 	background.size.x = screensize.x
 	background.size.y = screensize.y
-	background.modulate = Color.AQUAMARINE
+	background.modulate = Color.DIM_GRAY
 
-func select_background():
+func get_background():
 	var files = []
 	var dir = DirAccess.open(background_path)
 	if DirAccess.get_open_error() == OK:
@@ -38,7 +41,7 @@ func select_background():
 				files.append(file)
 			file = dir.get_next()
 		dir.list_dir_end()
-	print(files)
+	return files
 	
 func update_base(value):
 	base_counter.text = "%d" % value

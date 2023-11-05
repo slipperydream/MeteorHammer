@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyqxqv1ayua2r"]
+[gd_scene load_steps=9 format=3 uid="uid://dyqxqv1ayua2r"]
 
 [ext_resource type="Script" path="res://ui/stage_results/stage_results.gd" id="1_had4i"]
-[ext_resource type="Texture2D" uid="uid://b4pdc8li273br" path="res://assets/nerdy_girl.jpg" id="2_jy3ai"]
-[ext_resource type="Texture2D" uid="uid://cu7e0uycc4pqb" path="res://assets/pilot.jpg" id="3_itkcq"]
 [ext_resource type="Texture2D" uid="uid://c032jnaue66l6" path="res://assets/spaceship.jpg" id="4_g5w0h"]
 [ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="5_h7r0f"]
 [ext_resource type="Texture2D" uid="uid://dxlap145yd7a0" path="res://ui/stage_results/star.png" id="6_boqdi"]
@@ -46,7 +44,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_had4i")
 background_path = "res://ui/splash_screen_images"
-backgrounds = Array[Texture2D]([ExtResource("2_jy3ai"), ExtResource("3_itkcq"), ExtResource("4_g5w0h")])
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

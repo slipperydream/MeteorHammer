@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 @export var title : String = "Missile"
 @export var speed : int = 100
@@ -15,7 +15,6 @@ func start(_transform, tgt):
 	global_transform = _transform
 	$AnimationPlayer.play("flying")
 
-	
 func _physics_process(delta):	
 	if is_instance_valid(target):
 		direction = (target.global_transform.origin - global_transform.origin).normalized()
@@ -24,11 +23,12 @@ func _physics_process(delta):
 		direction = direction + Vector2(randf_range(-0.5,0.5),randf_range(-0.01, 0.01))
 	position += direction * speed * delta
 
-func _on_area_entered(area):
-	if area is HitboxComponent:
-		area.take_damage(power, damage_type)
-		queue_free()
 
 # Possibly convert this to freeing shortly before leaving the screen
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+func _on_hitbox_component_area_entered(area):
+	if area is HitboxComponent:
+		area.take_damage(power, damage_type)
+		queue_free()

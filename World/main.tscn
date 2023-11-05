@@ -27,6 +27,7 @@ _data = {
 
 [node name="Main" type="Node2D" groups=["main"]]
 script = ExtResource("1_40pi7")
+default_lives = 1
 
 [node name="Background" type="ParallaxBackground" parent="."]
 script = ExtResource("2_egrtt")
@@ -93,6 +94,7 @@ visible = false
 [connection signal="set_lives" from="." to="Player" method="_on_main_set_lives"]
 [connection signal="set_lives" from="." to="CanvasLayer/UI" method="_on_main_set_lives"]
 [connection signal="ammo_count" from="Player" to="CanvasLayer/UI" method="_on_player_ammo_count"]
+[connection signal="ammo_overstocked" from="Player" to="." method="_on_player_ammo_overstocked"]
 [connection signal="bomb_charging" from="Player" to="CanvasLayer/UI" method="_on_player_bomb_charging"]
 [connection signal="bomb_used" from="Player" to="CanvasLayer/UI" method="_on_player_bomb_used"]
 [connection signal="bullet_cancelled" from="Player" to="." method="_on_player_bullet_cancelled"]

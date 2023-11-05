@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfem0x37r3fr"]
+[gd_scene load_steps=8 format=3 uid="uid://bfem0x37r3fr"]
 
 [ext_resource type="Script" path="res://entities/enemy/weapons/base_enemy_projectile.gd" id="1_o75l5"]
 [ext_resource type="Texture2D" uid="uid://baqi7wleqyt33" path="res://entities/enemy/weapons/bullet_shapes/heart.png" id="2_k0pxv"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e6lcf"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="3_il127"]
 
 [sub_resource type="Animation" id="Animation_0pejl"]
 length = 0.001
@@ -44,9 +43,9 @@ _data = {
 "moving": SubResource("Animation_wyvdc")
 }
 
-[node name="Heart" type="Area2D" groups=["enemy_weapon"]]
-collision_layer = 16
-audio_bus_name = &"SFX"
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6lcf"]
+
+[node name="Heart" type="Node2D" groups=["enemy_weapon"]]
 script = ExtResource("1_o75l5")
 title = "Heart"
 animate = false
@@ -54,11 +53,6 @@ animate = false
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_k0pxv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(1, -2)
-shape = SubResource("CircleShape2D_e6lcf")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(3.8147e-06, -2)
@@ -69,5 +63,13 @@ libraries = {
 "": SubResource("AnimationLibrary_g0nyj")
 }
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." instance=ExtResource("3_il127")]
+collision_layer = 8
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+z_index = 1
+position = Vector2(1, -2)
+shape = SubResource("CircleShape2D_e6lcf")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

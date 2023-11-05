@@ -21,13 +21,15 @@ func execute():
 		var tgt_pos = tgt.position
 		var dis = tgt_pos.distance_to(position) 
 		if dis < blast_radius:
-			tgt.take_damage(power, damage_type)
+			if tgt.has_method("take_damage"):
+				tgt.take_damage(power, damage_type)
 			
 	potential_targets = get_tree().get_nodes_in_group("enemy_weapon")
 	for tgt in potential_targets:
 		var tgt_pos = tgt.position
 		var dis = tgt_pos.distance_to(position) 
 		if dis < blast_radius:
-			tgt.cancel_bullet()
+			if tgt.has_method("cancel_bullet"):
+				tgt.cancel_bullet()
 	
 

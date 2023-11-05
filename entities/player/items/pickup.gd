@@ -2,11 +2,11 @@ extends "res://entities/player/items/base_item.gd"
 
 class_name Pickup
 
-@export var direction : Vector2 = Vector2(0, 1)
 @export var speed : int = 30
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
+var direction : Vector2 = Vector2(0, 1)
 var drifting : bool = true
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +26,6 @@ func start(pos):
 	
 func execute():
 	super.execute()
-	# need to rework so this works in multiplayer
 	
 func _on_area_entered(area):
 	if area is HitboxComponent:

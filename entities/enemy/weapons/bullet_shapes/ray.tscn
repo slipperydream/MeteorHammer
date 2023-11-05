@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dur3i28t5idoy"]
+[gd_scene load_steps=8 format=3 uid="uid://dur3i28t5idoy"]
 
 [ext_resource type="Script" path="res://entities/enemy/weapons/base_enemy_projectile.gd" id="1_iuq62"]
 [ext_resource type="Texture2D" uid="uid://dhnsrsvvcjy73" path="res://entities/enemy/weapons/bullet_shapes/ray.png" id="2_7y7t0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
-size = Vector2(19, 64)
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="3_1fer4"]
 
 [sub_resource type="Animation" id="Animation_f07uj"]
 length = 0.001
@@ -45,10 +43,11 @@ _data = {
 "moving": SubResource("Animation_f28g8")
 }
 
-[node name="EnemyRay" type="Area2D" groups=["enemy_weapon"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4jb"]
+size = Vector2(19, 64)
+
+[node name="EnemyRay" type="Node2D" groups=["enemy_weapon"]]
 z_index = 1
-collision_layer = 16
-audio_bus_name = &"SFX"
 script = ExtResource("1_iuq62")
 title = "enemy ray"
 
@@ -56,10 +55,6 @@ title = "enemy ray"
 texture = ExtResource("2_7y7t0")
 hframes = 4
 frame = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_aq4jb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -69,5 +64,12 @@ libraries = {
 "": SubResource("AnimationLibrary_bctuv")
 }
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." instance=ExtResource("3_1fer4")]
+collision_layer = 8
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_aq4jb")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

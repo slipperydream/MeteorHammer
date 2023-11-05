@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgvlm78bigb4b"]
+[gd_scene load_steps=8 format=3 uid="uid://bgvlm78bigb4b"]
 
 [ext_resource type="Script" path="res://entities/enemy/weapons/base_enemy_projectile.gd" id="1_p8iuk"]
 [ext_resource type="Texture2D" uid="uid://buu18q3ekt4qo" path="res://entities/enemy/weapons/bullet_shapes/cross_shot.png" id="2_n03q4"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0t12t"]
-radius = 11.0
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="3_hohrd"]
 
 [sub_resource type="Animation" id="Animation_ffaud"]
 length = 0.001
@@ -45,9 +43,10 @@ _data = {
 "moving": SubResource("Animation_urh4c")
 }
 
-[node name="CrossShot" type="Area2D" groups=["enemy_weapon"]]
-collision_layer = 16
-audio_bus_name = &"SFX"
+[sub_resource type="CircleShape2D" id="CircleShape2D_0t12t"]
+radius = 11.0
+
+[node name="CrossShot" type="Node2D" groups=["enemy_weapon"]]
 script = ExtResource("1_p8iuk")
 title = "Cross Shot"
 
@@ -55,10 +54,6 @@ title = "Cross Shot"
 z_index = 1
 texture = ExtResource("2_n03q4")
 hframes = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-shape = SubResource("CircleShape2D_0t12t")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -68,5 +63,12 @@ libraries = {
 "": SubResource("AnimationLibrary_hdy1v")
 }
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." instance=ExtResource("3_hohrd")]
+collision_layer = 8
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+z_index = 1
+shape = SubResource("CircleShape2D_0t12t")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

@@ -44,11 +44,12 @@ var stage_results = {
 	collision_kills = 0
 }
 
-@export var default_lives = 2
-@export var continues = 0
+@export_range(1,5) var default_lives : int = 2
+@export_range(0,5) var continues : int = 0
 @export var scoring_timer : int = 5
 @export var high_scoring_multiplier : int = 30
-@export var bullet_value : int = 20
+@export_range(5,100) var bullet_value : int = 20
+@export_range(100,4000) var overstock_value : int = 1500
 
 @onready var player = $Player
 @onready var title_screen = $CanvasLayer/TitleScreen
@@ -260,3 +261,9 @@ func _on_mech_select_mech_selected(mech, special, bomb):
 
 func _on_player_bullet_cancelled():
 	update_score(bullet_value)
+
+func _on_player_ammo_overstocked():
+	update_score(overstock_value)
+
+func _on_score_item_collected(value):
+	update_score(value)

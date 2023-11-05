@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 @export var title : String = "mine"
 @export var speed : int = 10
@@ -23,12 +23,7 @@ func start(pos, dir):
 	direction = dir
 	$SelfDestructTimer.start()
 	$AnimationPlayer.play("moving")
-	
-func _on_area_entered(area):
-	if area is HitboxComponent:
-		await get_tree().create_timer(1).timeout
-		damage_targets()
-		explode()
+		
 
 func damage_targets():
 	var potential_targets = get_tree().get_nodes_in_group("enemy")
@@ -37,6 +32,13 @@ func damage_targets():
 		var dis = tgt_pos.distance_to(position) 
 		if dis < blast_radius:
 			tgt.take_damage(power, damage_type)
+	
+	potential_targets = get_tree().get_nodes_in_group("enemy_weapon")
+	for tgt in potential_targets:
+		var tgt_pos = tgt.position
+		var dis = tgt_pos.distance_to(position) 
+		if dis < blast_radius:
+			tgt.cancel_bullet()
 				
 # Possibly convert this to freeing shortly before leaving the screen
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -53,3 +55,14 @@ func _on_self_destruct_timer_timeout():
 	damage_targets()
 	explode()
 	
+
+func _on_trigger_area_entered(_area):
+	await get_tree().create_timer(1).timeout
+	damage_targets()
+	explode()
+
+
+func _on_hitbox_component_area_entered(area):
+	if area is HitboxComponent:
+		damage_targets()
+		explode()

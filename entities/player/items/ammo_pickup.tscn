@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1ivcdestr40l"]
+[gd_scene load_steps=8 format=3 uid="uid://d1ivcdestr40l"]
 
 [ext_resource type="Script" path="res://entities/player/items/ammo_pickup.gd" id="1_07fyq"]
 [ext_resource type="Texture2D" uid="uid://qdct453gxfl4" path="res://entities/player/items/ammo_pickup.png" id="2_s2471"]
+[ext_resource type="AudioStream" uid="uid://6521lhkvdgk3" path="res://sound/sfx/Soft chime_wobble.wav" id="2_yk811"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75uv4"]
 
@@ -71,6 +72,7 @@ _data = {
 [node name="Ammo" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_07fyq")
+activation_sound = ExtResource("2_yk811")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

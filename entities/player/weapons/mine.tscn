@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqeh1mw7t26rb"]
+[gd_scene load_steps=13 format=3 uid="uid://cqeh1mw7t26rb"]
 
 [ext_resource type="Script" path="res://entities/player/weapons/mine.gd" id="1_t6dp1"]
 [ext_resource type="AudioStream" uid="uid://cocrqag81vq8f" path="res://sound/sfx/lasers/Laser_5.wav" id="2_8b1ee"]
 [ext_resource type="AudioStream" uid="uid://gxabbu32l1eb" path="res://sound/sfx/Explosions/Explosion_7.wav" id="3_1l5il"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_7cgk3"]
 [ext_resource type="Texture2D" uid="uid://dpi8u4m0cw0i1" path="res://entities/player/weapons/mineA.png" id="4_i6xls"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4xqj4"]
-radius = 170.074
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="6_iyqgk"]
 
 [sub_resource type="Animation" id="Animation_x1hwl"]
 length = 0.001
@@ -99,9 +97,13 @@ _data = {
 "moving": SubResource("Animation_18y22")
 }
 
-[node name="Mine" type="Area2D"]
-collision_layer = 2
-collision_mask = 8
+[sub_resource type="CircleShape2D" id="CircleShape2D_icx1e"]
+radius = 17.8885
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xqj4"]
+radius = 170.074
+
+[node name="Mine" type="Node2D"]
 script = ExtResource("1_t6dp1")
 title = "Mine"
 power = 10
@@ -111,9 +113,6 @@ explosion_sound = ExtResource("3_1l5il")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_i6xls")
 hframes = 4
-
-[node name="TriggerShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4xqj4")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -126,6 +125,22 @@ libraries = {
 wait_time = 15.0
 one_shot = true
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." instance=ExtResource("6_iyqgk")]
+collision_layer = 2
+collision_mask = 24
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_icx1e")
+
+[node name="Trigger" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 24
+
+[node name="TriggerShape" type="CollisionShape2D" parent="Trigger"]
+shape = SubResource("CircleShape2D_4xqj4")
+debug_color = Color(0.941176, 0.14902, 0.478431, 0.419608)
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
+[connection signal="area_entered" from="Trigger" to="." method="_on_trigger_area_entered"]

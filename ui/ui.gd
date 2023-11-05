@@ -27,7 +27,7 @@ func update_extend_symbol(value):
 	if value:
 		extend_symbol.modulate = Color.WHITE
 	else:
-		extend_symbol.modulate.a = Color(0, 0, 0, 0)
+		extend_symbol.modulate = Color(0, 0, 0, 0)
 	
 func _on_main_score_changed(score):
 	update_score(score)

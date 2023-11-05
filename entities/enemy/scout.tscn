@@ -1,16 +1,20 @@
-[gd_scene load_steps=38 format=3 uid="uid://cob7rnhv2vc6s"]
+[gd_scene load_steps=42 format=3 uid="uid://cob7rnhv2vc6s"]
 
 [ext_resource type="Script" path="res://entities/enemy/base_enemy.gd" id="1_vlnxj"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/bullet.gd" id="2_7167e"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="2_c36y7"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/patterns/single_pattern.gd" id="2_n0eyg"]
 [ext_resource type="Texture2D" uid="uid://y1g4dn5c08hi" path="res://assets/Enemies/Designs-Base/Nautolan_Scout.png" id="3_h41bk"]
+[ext_resource type="PackedScene" uid="uid://d1ivcdestr40l" path="res://entities/player/items/ammo_pickup.tscn" id="3_kuljw"]
+[ext_resource type="PackedScene" uid="uid://yn5fn5wpd610" path="res://entities/player/items/small_score_item.tscn" id="4_6j4gb"]
 [ext_resource type="Texture2D" uid="uid://uycoqqebdsdh" path="res://assets/Enemies/Engine_Effects/Nautolan-Scout_EngineEffect.png" id="4_83u8j"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_gbr6t"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://entities/enemy/weapons/shooting_component.tscn" id="5_gygaj"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/attack.gd" id="5_r0vnt"]
+[ext_resource type="PackedScene" uid="uid://dmptibxtl6mmx" path="res://entities/player/items/med_score_item.tscn" id="5_rulc7"]
 [ext_resource type="Script" path="res://entities/enemy/Boosters.gd" id="5_y84sk"]
-[ext_resource type="PackedScene" uid="uid://cjsxyohvmi47w" path="res://entities/enemy/weapons/bullet_shapes/shell.tscn" id="10_yc1p3"]
+[ext_resource type="PackedScene" uid="uid://bmph72s2h5cnj" path="res://entities/player/items/large_score_item.tscn" id="6_6p1kl"]
+[ext_resource type="PackedScene" uid="uid://bs1kpoi5efod5" path="res://entities/enemy/weapons/bullet_shapes/elipse.tscn" id="10_ipdh7"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_cf853"]
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://entities/enemy/target_lock.tscn" id="13_30731"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/patterns/spread_pattern.gd" id="13_tk14c"]
@@ -189,7 +193,7 @@ script = ExtResource("2_n0eyg")
 script = ExtResource("2_7167e")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_aoie2")
-bullet_shape = ExtResource("10_yc1p3")
+bullet_shape = ExtResource("10_ipdh7")
 speed = 70
 angle = 90.0
 shot_delay = 0.0
@@ -236,6 +240,10 @@ script = ExtResource("1_vlnxj")
 title = "Scout"
 speed = 70
 explosion_sound = ExtResource("2_c36y7")
+bomb_death_item = ExtResource("3_kuljw")
+bullet_death_item = ExtResource("4_6j4gb")
+laser_death_item = ExtResource("5_rulc7")
+special_death_item = ExtResource("6_6p1kl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_h41bk")

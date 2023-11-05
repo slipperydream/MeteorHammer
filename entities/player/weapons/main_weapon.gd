@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 @export var title = "weapon"
 @export var speed = -250
@@ -21,12 +21,12 @@ func start(pos, dir, angle):
 	position = pos
 	direction = dir
 	rotation_degrees = angle - 90
-	
-func _on_area_entered(area):
-	if area is HitboxComponent:
-		area.take_damage(power, damage_type)
-		queue_free()
 
 # Possibly convert this to freeing shortly before leaving the screen
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+func _on_hitbox_component_area_entered(area):
+	if area is HitboxComponent:
+		area.take_damage(power, damage_type)
+		queue_free()

@@ -10,6 +10,11 @@ signal died
 @export var faces_player : bool = false
 @export var explosion_sound : AudioStreamWAV
 
+@export var bomb_death_item : PackedScene
+@export var bullet_death_item : PackedScene
+@export var laser_death_item : PackedScene
+@export var special_death_item : PackedScene
+
 var is_alive : bool = true
 var is_offscreen : bool = true
 var vec_to_player : Vector2 = Vector2(0,1)
@@ -82,7 +87,7 @@ func start(pos):
 
 func take_damage(value, source):
 	health_component.take_damage(value, source)
-				
+
 func die(source):
 	speed = 0
 	set_deferred("monitoring", false)
@@ -108,12 +113,28 @@ func create_item(source):
 	match source:
 		DamageConstants.DamageTypes.BULLET:
 			print("killed by bullet")
+			if bullet_death_item:
+				var item = bullet_death_item.instantiate()
+				get_tree().get_first_node_in_group("stage").call_deferred("add_child", item)
+				item.start(global_position)
 		DamageConstants.DamageTypes.LASER:
 			print("killed by laser")
+			if laser_death_item:
+				var item = laser_death_item.instantiate()
+				get_tree().get_first_node_in_group("stage").call_deferred("add_child", item)
+				item.start(global_position)
 		DamageConstants.DamageTypes.BOMB:
 			print("killed by bomb")
+			if bomb_death_item:
+				var item = bomb_death_item.instantiate()
+				get_tree().get_first_node_in_group("stage").call_deferred("add_child", item)
+				item.start(global_position)
 		DamageConstants.DamageTypes.SPECIAL:
 			print("killed by special")
+			if special_death_item:
+				var item = special_death_item.instantiate()
+				get_tree().get_first_node_in_group("stage").call_deferred("add_child", item)
+				item.start(global_position)
 			
 func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)

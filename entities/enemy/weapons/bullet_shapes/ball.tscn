@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cravdd1vvhaa4"]
+[gd_scene load_steps=8 format=3 uid="uid://cravdd1vvhaa4"]
 
 [ext_resource type="Script" path="res://entities/enemy/weapons/base_enemy_projectile.gd" id="1_emrkd"]
 [ext_resource type="Texture2D" uid="uid://lh0oyu184nf" path="res://entities/enemy/weapons/bullet_shapes/ball.png" id="2_lwkv8"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_thwgx"]
-radius = 13.0384
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="3_r12t3"]
 
 [sub_resource type="Animation" id="Animation_cjr2n"]
 length = 0.001
@@ -32,20 +30,16 @@ _data = {
 "moving": SubResource("Animation_evj7h")
 }
 
-[node name="Ball" type="Area2D"]
-collision_layer = 16
-audio_bus_override = true
-audio_bus_name = &"SFX"
+[sub_resource type="CircleShape2D" id="CircleShape2D_thwgx"]
+radius = 13.0384
+
+[node name="Ball" type="Node2D"]
 script = ExtResource("1_emrkd")
 title = "enemy bullet"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_lwkv8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-shape = SubResource("CircleShape2D_thwgx")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -54,5 +48,12 @@ libraries = {
 "": SubResource("AnimationLibrary_1hoq6")
 }
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." instance=ExtResource("3_r12t3")]
+collision_layer = 8
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+z_index = 1
+shape = SubResource("CircleShape2D_thwgx")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://6t7gq1rbqydp"]
+[gd_scene load_steps=8 format=3 uid="uid://6t7gq1rbqydp"]
 
 [ext_resource type="Script" path="res://entities/enemy/weapons/base_enemy_projectile.gd" id="1_i8snl"]
 [ext_resource type="Texture2D" uid="uid://6m1juh18lo61" path="res://entities/enemy/weapons/bullet_shapes/spinning_ball.png" id="2_3npsp"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_66sgq"]
-radius = 13.0
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="3_in4rw"]
 
 [sub_resource type="Animation" id="Animation_x4hx1"]
 length = 0.001
@@ -45,21 +43,18 @@ _data = {
 "moving": SubResource("Animation_18lte")
 }
 
-[node name="SpinningBullet" type="Area2D" groups=["enemy_weapon"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_66sgq"]
+radius = 13.0
+
+[node name="SpinningBullet" type="Node2D" groups=["enemy_weapon"]]
 z_index = 1
 rotation = 3.14159
-collision_layer = 16
-audio_bus_override = true
-audio_bus_name = &"SFX"
 script = ExtResource("1_i8snl")
 title = "spinning ball"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3npsp")
 hframes = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_66sgq")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -68,5 +63,11 @@ libraries = {
 "": SubResource("AnimationLibrary_k7h7y")
 }
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." instance=ExtResource("3_in4rw")]
+collision_layer = 8
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_66sgq")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

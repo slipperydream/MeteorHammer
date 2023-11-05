@@ -33,7 +33,7 @@ func start():
 func stop():
 	is_casting = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var cast_point = target_position
 	force_shapecast_update()
 	

@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 class_name Player 
 
@@ -10,6 +10,7 @@ signal bomb_recharged
 signal bomb_used
 signal special_selected
 signal ammo_count
+signal ammo_overstocked
 signal no_ammo_error
 signal bullet_cancelled
 
@@ -223,9 +224,6 @@ func switch_option_formation():
 			right_option.global_position.y = global_position.y
 			right_option.set_rotation_degrees(90)
 			right_option.firing_angle = 180
-
-func take_damage(power, source=null):
-	health_component.take_damage(power, source)
 	
 func use_bomb():	
 	if bomb_timer.is_stopped():
@@ -249,15 +247,6 @@ func use_bomb():
 		
 func _on_gun_cooldown_timeout():
 	can_shoot = true
-	
-func _on_area_entered(area):
-	# no cheap kills for now
-	if health_component.invulnerable:
-		return
-		
-	if area is Enemy:
-		area.take_damage(50, DamageConstants.DamageTypes.COLLISION)
-		health_component.take_damage(1, DamageConstants.DamageTypes.COLLISION)
 		
 func _on_main_set_lives(num_lives):
 	remove_bullets()
@@ -295,9 +284,33 @@ func _on_pickup_area_area_entered(area):
 	if area is Pickup:
 		print("got an item")
 		area.drifting = false
-	elif area is Enemy_weapon and area.is_cancelled:
-		emit_signal("bullet_cancelled")
-		area.remove()
 
 func _on_health_component_use_bomb():
 	use_bomb()
+
+func _on_hitbox_component_area_entered(area):
+	if area is HitboxComponent:
+		var parent = area.get_parent()
+		if parent is Enemy:
+			# no cheap kills for now
+			if health_component.invulnerable:
+				return
+			area.take_damage(50, DamageConstants.DamageTypes.COLLISION)
+			health_component.take_damage(1, DamageConstants.DamageTypes.COLLISION)
+		elif parent is Enemy_weapon and parent.is_cancelled:
+			emit_signal("bullet_cancelled")
+			parent.remove()
+	if area is Pickup:
+		area.execute()
+		
+func add_ammo(value):
+	if ammo < 100:
+		ammo += value
+		ammo = min(ammo, 100)
+		emit_signal("ammo_count", ammo)
+	else:
+		emit_signal("ammo_overstocked")
+
+func _on_ammo_resupply(value):
+	add_ammo(value)
+		

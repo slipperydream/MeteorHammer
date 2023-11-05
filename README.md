@@ -30,9 +30,6 @@ TODOs (rough priority order)
 - [] Add effects
 - [] Increase sounda
 
-- [X] finish ship select screen
-- [X] walk through title to stage end
-
 - [] Add game over screen
 - [] Add settings menu
 - [] Add high score saving
@@ -137,10 +134,6 @@ TODOs (rough priority order)
 
 
 ## Enemies
-- [x] Change score multiplier to time bonus for bosses
-- [-] Improve bullet cancelling 
-   - bullets fly to the player and become scoring items. Need to investigate who owns the bullets
-   
 - Enemy deaths
 - [] Increase explosion size to larger than enemy. 
 - [] Have multiple deaths. 

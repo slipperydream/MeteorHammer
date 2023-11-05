@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhly1sn1nyugw"]
+[gd_scene load_steps=18 format=3 uid="uid://bhly1sn1nyugw"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_ks4n4"]
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://entities/player/weapons/main_weapon.tscn" id="2_75g50"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cx15eyjwpgg8f" path="res://entities/targeting_component.tscn" id="9_8ip5m"]
 [ext_resource type="PackedScene" uid="uid://cgapobxp7ck2" path="res://entities/player/option.tscn" id="10_ih0ln"]
 [ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="10_oclx1"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="11_1okkn"]
 [ext_resource type="PackedScene" uid="uid://c5gjata5tywxj" path="res://entities/player/weapons/laser.tscn" id="11_uo5o6"]
 
 [sub_resource type="Animation" id="Animation_awwn7"]
@@ -54,14 +55,13 @@ _data = {
 "invlunerable": SubResource("Animation_uvkd3")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
-size = Vector2(34, 39)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_15otl"]
 radius = 199.063
 
-[node name="Player" type="Area2D" node_paths=PackedStringArray("firing_stations") groups=["player"]]
-collision_mask = 28
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
+size = Vector2(34, 39)
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("firing_stations") groups=["player"]]
 script = ExtResource("1_ks4n4")
 main_weapon = ExtResource("2_75g50")
 bomb_scene = ExtResource("3_0duad")
@@ -109,11 +109,6 @@ max_distance = 1600
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_oclx1")]
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(3, -4.5)
-shape = SubResource("RectangleShape2D_pq5w0")
-debug_color = Color(0.937255, 0.141176, 0.529412, 0.419608)
-
 [node name="PickupArea" type="Area2D" parent="."]
 collision_mask = 20
 
@@ -121,7 +116,15 @@ collision_mask = 20
 shape = SubResource("CircleShape2D_15otl")
 debug_color = Color(0.458824, 0.592157, 0.141176, 0.419608)
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_1okkn")]
+collision_mask = 28
+health_component = NodePath("../HealthComponent")
+
+[node name="HitBox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(3, -4.5)
+shape = SubResource("RectangleShape2D_pq5w0")
+debug_color = Color(0.937255, 0.141176, 0.529412, 0.419608)
+
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
@@ -129,3 +132,4 @@ debug_color = Color(0.458824, 0.592157, 0.141176, 0.419608)
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
 [connection signal="use_bomb" from="HealthComponent" to="." method="_on_health_component_use_bomb"]
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

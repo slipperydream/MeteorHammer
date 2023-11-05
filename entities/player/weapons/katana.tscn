@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbvo37joshkmr"]
+[gd_scene load_steps=6 format=3 uid="uid://bbvo37joshkmr"]
 
 [ext_resource type="Script" path="res://entities/player/weapons/katana.gd" id="1_62fyx"]
 [ext_resource type="AudioStream" uid="uid://i6ekra65r3fc" path="res://sound/sfx/Power ups and power downs/Power_up_7.wav" id="2_sws7p"]
 [ext_resource type="Texture2D" uid="uid://bangkqqwsxlu1" path="res://entities/player/weapons/katana.png" id="3_h2jyi"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="4_y73uj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ocwc"]
 size = Vector2(47, 198)
 
-[node name="Katana" type="Area2D"]
-collision_layer = 2
-collision_mask = 8
+[node name="Katana" type="Node2D"]
 script = ExtResource("1_62fyx")
 firing_sound = ExtResource("2_sws7p")
 
@@ -17,10 +16,6 @@ firing_sound = ExtResource("2_sws7p")
 position = Vector2(-4.59627, 1.54269)
 texture = ExtResource("3_h2jyi")
 centered = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.5, 103)
-shape = SubResource("RectangleShape2D_2ocwc")
 
 [node name="DistanceTimer" type="Timer" parent="."]
 one_shot = true
@@ -30,6 +25,14 @@ autostart = true
 position = Vector2(5.3941, 135)
 scale = Vector2(2.86059, 13)
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." instance=ExtResource("4_y73uj")]
+collision_layer = 2
+collision_mask = 8
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(7.5, 103)
+shape = SubResource("RectangleShape2D_2ocwc")
+
 [connection signal="timeout" from="DistanceTimer" to="." method="_on_distance_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

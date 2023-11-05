@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbvnds8k2ckcp"]
+[gd_scene load_steps=8 format=3 uid="uid://dbvnds8k2ckcp"]
 
 [ext_resource type="Script" path="res://entities/enemy/weapons/base_enemy_projectile.gd" id="1_3w1nx"]
 [ext_resource type="Texture2D" uid="uid://ccuyxpn2psb2q" path="res://entities/enemy/weapons/bullet_shapes/fireball.png" id="2_vu4g2"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e6lcf"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="3_1wtr6"]
 
 [sub_resource type="Animation" id="Animation_db4xv"]
 length = 0.001
@@ -44,9 +43,9 @@ _data = {
 "moving": SubResource("Animation_f5ji5")
 }
 
-[node name="Fireball" type="Area2D" groups=["enemy_weapon"]]
-collision_layer = 16
-audio_bus_name = &"SFX"
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6lcf"]
+
+[node name="Fireball" type="Node2D" groups=["enemy_weapon"]]
 script = ExtResource("1_3w1nx")
 title = "Heart"
 animate = false
@@ -55,11 +54,6 @@ animate = false
 z_index = 1
 texture = ExtResource("2_vu4g2")
 hframes = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(5, 2)
-shape = SubResource("CircleShape2D_e6lcf")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(5, 3)
@@ -70,5 +64,13 @@ libraries = {
 "": SubResource("AnimationLibrary_ypi20")
 }
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="HitboxComponent" parent="." instance=ExtResource("3_1wtr6")]
+collision_layer = 8
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+z_index = 1
+position = Vector2(5, 2)
+shape = SubResource("CircleShape2D_e6lcf")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

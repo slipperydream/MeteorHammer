@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 class_name Enemy_weapon
 
@@ -18,8 +18,6 @@ var is_cancelled : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	z_index = 2
-	audio_bus_override = true
-	audio_bus_name = 'SFX'
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -45,20 +43,12 @@ func _process(delta):
 		if animate and $AnimationPlayer.is_playing() == false:
 			$AnimationPlayer.play("moving")
 
-func _on_area_entered(area):
-	if area is Player:
-		if is_cancelled:
-			pass
-		else:
-			area.take_damage(power, DamageConstants.DamageTypes.BULLET)
-			remove()
-
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	remove()
 
 func set_size(size = Vector2(1, 1)):
 	$Sprite2D.apply_scale(size)
-	$CollisionShape2D.apply_scale(size)
+	$HitboxComponent/Hitbox.apply_scale(size)
 
 func set_type(type):
 	bullet_type = type
@@ -84,7 +74,16 @@ func start(pos, dir, angle):
 
 func cancel_bullet():
 	is_cancelled = true
+	speed = 100
 	animate = false
 	for child in get_children():
 		if child is AnimationPlayer:
 			$AnimationPlayer.stop()
+
+func _on_hitbox_component_area_entered(area):
+	if area is HitboxComponent:
+		if is_cancelled:
+			pass
+		else:
+			area.take_damage(power, DamageConstants.DamageTypes.BULLET)
+			remove()

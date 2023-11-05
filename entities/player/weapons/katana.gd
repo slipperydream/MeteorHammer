@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 @export var title : String = "Cosmic Katana"
 @export var speed : int = 450
@@ -26,11 +26,7 @@ func start(pos):
 		
 	var tween = create_tween()
 	tween.tween_property(self, "position", end_pos, 1)
-	
-func _on_area_entered(area):
-	if area is HitboxComponent:
-		area.take_damage(power, damage_type)
-				
+					
 # Possibly convert this to freeing shortly before leaving the screen
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
@@ -38,3 +34,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_distance_timer_timeout():
 	speed = 0
 	queue_free()
+
+
+func _on_hitbox_component_area_entered(area):
+	if area is HitboxComponent:
+		area.take_damage(power, damage_type)

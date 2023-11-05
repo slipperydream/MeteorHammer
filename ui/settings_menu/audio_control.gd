@@ -21,7 +21,7 @@ func change_volume(value):
 	var bus_index = AudioServer.get_bus_index(audio_bus_name)
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 	emit_signal("audio_bus_volume_changed", audio_bus_name, value)
-	SettingsManager.set_audio_bus_volume(audio_bus_name, value)
+	SettingsManager.set_audio_bus_volume(audio_bus_name,  linear_to_db(value))
 	
 func configure():
 	$AudioBusLabel.text = audio_bus_name

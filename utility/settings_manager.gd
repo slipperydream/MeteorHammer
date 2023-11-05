@@ -9,11 +9,11 @@ var config = ConfigFile.new()
 var settings = {
 	"audio" : {
 		"master_muted": false,
-		"master_volume": 0,
+		"master_volume": -6.0,
 		"music_muted": false,
-		"music_volume": 0,
+		"music_volume": -6.0,
 		"sfx_muted": false,
-		"sfx_volume": 0,
+		"sfx_volume": -6.0,
 	},
 	"gameplay": {
 		"autobomb": true,

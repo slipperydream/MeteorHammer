@@ -123,6 +123,6 @@ visible = false
 [connection signal="stage_selected" from="CanvasLayer/StageSelect" to="." method="_on_stage_select_stage_selected"]
 [connection signal="mech_select_cancelled" from="CanvasLayer/MechSelect" to="." method="_on_mech_select_mech_select_cancelled"]
 [connection signal="mech_selected" from="CanvasLayer/MechSelect" to="." method="_on_mech_select_mech_selected"]
-[connection signal="cancel_settings_change" from="CanvasLayer/SettingsMenu" to="." method="_on_settings_menu_cancel_settings_change"]
+[connection signal="settings_closed" from="CanvasLayer/SettingsMenu" to="." method="_on_settings_menu_settings_closed"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="ScoringTimer" to="." method="_on_scoring_timer_timeout"]

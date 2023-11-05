@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://7sru7obnf0uh"]
+
+[ext_resource type="Script" path="res://ui/settings_menu/bullet_color.gd" id="1_ocl0w"]
+
+[sub_resource type="Gradient" id="Gradient_7oy5g"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.388235, 0.780392, 0.301961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ax2xq"]
+gradient = SubResource("Gradient_7oy5g")
+width = 48
+
+[node name="BulletColorSetting" type="HBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -20.0
+offset_right = 97.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "When autobombing is on, if the player is hit and has a bomb fully charged the bomb will be used instead of the user taking a hit."
+script = ExtResource("1_ocl0w")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Bullet Color:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(64, 18)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "Green"
+popup/item_0/icon = SubResource("GradientTexture1D_ax2xq")
+popup/item_0/id = 0
+
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

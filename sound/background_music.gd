@@ -2,7 +2,8 @@ extends AudioStreamPlayer2D
 
 signal new_song
 
-@onready var bg_music_volume : int = -80
+@onready var music_volume : int = SettingsManager.get_audio_bus_volume("Music")
+
 @export var title_song = preload("res://sound/music/stg_noloop003.ogg")
 @export var stage_1_theme = preload("res://sound/music/stg_st001.ogg")
 @export var stage_2_theme = preload("res://sound/music/stg_st002.ogg")
@@ -28,7 +29,7 @@ var default_fade_time : float = 1.25
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_songs(song_dir)
-
+	
 func play_title_song():
 	current_song = title_song
 	play_song(title_song, 0.5)
@@ -56,7 +57,7 @@ func fade_in(fade_time=default_fade_time):
 	if get_child_count() > 0:
 		var child = get_child(0)
 		var tween = create_tween()
-		tween.tween_property(child, "volume_db", -30, fade_time)
+		tween.tween_property(child, "volume_db", music_volume, fade_time)
 
 func fade_out(fade_time=default_fade_time):
 	if get_child_count() > 0:
@@ -75,10 +76,13 @@ func play_song(song, fade_time):
 	await get_tree().create_timer(fade_time).timeout
 	for child in get_children():
 		remove_child(child)
+		
 	var bg_music = AudioStreamPlayer.new()
+	bg_music.bus = bus
+	print(bus)
 	bg_music.stream = load(song.resource_path)
 	bg_music.autoplay = true
-	bg_music.volume_db = bg_music_volume
+	bg_music.volume_db = music_volume
 	add_child(bg_music)
 	emit_signal("new_song", song.resource_name)
 	fade_in(fade_time)

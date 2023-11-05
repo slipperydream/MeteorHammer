@@ -4,7 +4,7 @@ class_name TargetingComponent
 
 signal target_lock
 
-@export var max_distance : int = INF
+@export var max_distance : float = INF
 
 func acquire_target(pos, group):
 	var closet_target = null

@@ -272,5 +272,5 @@ func _on_score_item_collected(value):
 func _on_title_screen_settings_menu():
 	settings_menu.show()
 
-func _on_settings_menu_cancel_settings_change():
-	title_screen.show()
+func _on_settings_menu_settings_closed():
+		title_screen.show()

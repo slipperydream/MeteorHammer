@@ -31,3 +31,10 @@ func _on_close_button_pressed():
 	emit_signal("settings_closed")
 	hide()
 
+func _on_color_demo_toggle_toggled(button_pressed):
+	if button_pressed:
+		$TabContainer/Graphics/DemoCover.hide()
+		$TabContainer/Graphics/BulletDemo.show()
+	else:
+		$TabContainer/Graphics/DemoCover.show()
+		$TabContainer/Graphics/BulletDemo.hide()

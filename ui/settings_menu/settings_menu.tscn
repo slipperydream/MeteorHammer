@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ul83p2fq80e6"]
+[gd_scene load_steps=14 format=3 uid="uid://ul83p2fq80e6"]
 
 [ext_resource type="Script" path="res://ui/settings_menu/settings_menu.gd" id="1_cv4q4"]
 [ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="1_s2m1p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dsyy8b2ufkdgq" path="res://ui/settings_menu/autobomb_setting.tscn" id="3_fao3p"]
 [ext_resource type="PackedScene" uid="uid://dg82idvwoxp7b" path="res://ui/settings_menu/audio_control.tscn" id="4_omw64"]
 [ext_resource type="PackedScene" uid="uid://7sru7obnf0uh" path="res://ui/settings_menu/bullet_color.tscn" id="4_qu7tu"]
+[ext_resource type="PackedScene" uid="uid://dq3racbx2eup" path="res://ui/settings_menu/bullet_demo.tscn" id="6_4qr72"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uixk"]
 bg_color = Color(0.0941176, 0.0784314, 0.145098, 1)
@@ -41,6 +42,14 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucdgs"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpqu4"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.74902, 1, 1)
 
 [node name="SettingsMenu" type="Control"]
 process_mode = 3
@@ -173,6 +182,42 @@ offset_right = 291.0
 offset_bottom = -188.0
 grow_horizontal = 1
 
+[node name="BulletDemo" parent="TabContainer/Graphics" instance=ExtResource("6_4qr72")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 13.0
+offset_right = -109.0
+offset_bottom = 213.0
+grow_horizontal = 0
+
+[node name="DemoCover" type="Panel" parent="TabContainer/Graphics"]
+layout_mode = 0
+offset_left = 405.0
+offset_top = 13.0
+offset_right = 491.0
+offset_bottom = 213.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cpqu4")
+
+[node name="ColorDemoToggle" type="CheckButton" parent="TabContainer/Graphics"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = -71.0
+offset_right = -103.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bcany")
+text = "Color
+Preview"
+
 [node name="Visual" type="Panel" parent="TabContainer"]
 visible = false
 layout_mode = 2
@@ -205,3 +250,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="pressed" from="DefaultButton" to="." method="_on_default_button_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="bullet_color_changed" from="TabContainer/Graphics/BulletColorSetting" to="TabContainer/Graphics/BulletDemo" method="_on_bullet_color_setting_bullet_color_changed"]
+[connection signal="toggled" from="TabContainer/Graphics/ColorDemoToggle" to="." method="_on_color_demo_toggle_toggled"]

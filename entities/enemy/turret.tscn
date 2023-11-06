@@ -1,0 +1,236 @@
+[gd_scene load_steps=25 format=3 uid="uid://vg7ouljnt4wa"]
+
+[ext_resource type="Script" path="res://entities/enemy/base_enemy.gd" id="1_xyoc2"]
+[ext_resource type="AudioStream" uid="uid://cjfmy76pau61g" path="res://sound/sfx/Explosions/Explosion_3.wav" id="2_64tvm"]
+[ext_resource type="PackedScene" uid="uid://d1ivcdestr40l" path="res://entities/player/items/ammo_pickup.tscn" id="3_7f23w"]
+[ext_resource type="PackedScene" uid="uid://yn5fn5wpd610" path="res://entities/player/items/small_score_item.tscn" id="4_5ne2c"]
+[ext_resource type="Texture2D" uid="uid://qriyinqol86t" path="res://entities/enemy/turret.png" id="5_176wc"]
+[ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://entities/enemy/target_lock.tscn" id="6_kmawa"]
+[ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="7_cmsaf"]
+[ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://entities/enemy/weapons/shooting_component.tscn" id="8_mi2go"]
+[ext_resource type="Script" path="res://entities/enemy/weapons/patterns/single_pattern.gd" id="9_33v1q"]
+[ext_resource type="PackedScene" uid="uid://cjsxyohvmi47w" path="res://entities/enemy/weapons/bullet_shapes/shell.tscn" id="10_phr6b"]
+[ext_resource type="Script" path="res://entities/enemy/weapons/bullet.gd" id="11_hyvh0"]
+[ext_resource type="Script" path="res://entities/enemy/weapons/attack.gd" id="12_oxr22"]
+[ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="13_boyyy"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="14_1cp4k"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="15_vr2fe"]
+
+[sub_resource type="Animation" id="Animation_hdjc4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_176wc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n5mec"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_cmsaf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_v6aud"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.207843), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o2iiw"]
+resource_name = "shooting"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axh05"]
+_data = {
+"RESET": SubResource("Animation_hdjc4"),
+"explode": SubResource("Animation_n5mec"),
+"hit": SubResource("Animation_v6aud"),
+"shooting": SubResource("Animation_o2iiw")
+}
+
+[sub_resource type="Resource" id="Resource_veynh"]
+script = ExtResource("9_33v1q")
+
+[sub_resource type="Resource" id="Resource_4jl70"]
+script = ExtResource("11_hyvh0")
+bullet_type = 0
+bullet_pattern = SubResource("Resource_veynh")
+bullet_shape = ExtResource("10_phr6b")
+speed = 75
+angle = 90.0
+shot_delay = 0.0
+aimed = true
+station = 0
+
+[sub_resource type="Resource" id="Resource_wiy8m"]
+script = ExtResource("12_oxr22")
+attack_name = "Attack"
+Firing_Sequence = Array[ExtResource("11_hyvh0")]([SubResource("Resource_4jl70")])
+salvos = 1
+salvo_delay = 0.4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
+size = Vector2(55.0002, 55.9998)
+
+[node name="Turret" type="Node2D" groups=["enemy"]]
+position = Vector2(0, -50)
+script = ExtResource("1_xyoc2")
+title = "Tank"
+explosion_sound = ExtResource("2_64tvm")
+bullet_death_item = ExtResource("4_5ne2c")
+laser_death_item = ExtResource("3_7f23w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_176wc")
+hframes = 4
+
+[node name="TargetLock" parent="Sprite2D" instance=ExtResource("6_kmawa")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -53.0
+offset_right = -14.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_axh05")
+}
+
+[node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("8_mi2go")]
+shot_timer = 1.5
+stations = [NodePath("../Turret")]
+Attacks = Array[ExtResource("12_oxr22")]([SubResource("Resource_wiy8m")])
+sealing_range = 100
+
+[node name="Turret" type="Marker2D" parent="."]
+position = Vector2(-11, -4)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="Stopwatch" parent="." instance=ExtResource("13_boyyy")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("14_1cp4k")]
+max_health = 5
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("15_vr2fe")]
+collision_layer = 8
+collision_mask = 3
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(1, 1.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_n0ywb")
+
+[connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

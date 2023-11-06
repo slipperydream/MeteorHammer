@@ -1,48 +1,69 @@
-[gd_scene load_steps=11 format=3 uid="uid://8bwqwxoxjr48"]
+[gd_scene load_steps=21 format=3 uid="uid://8bwqwxoxjr48"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_p1jaf"]
 [ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_5ewq5"]
+[ext_resource type="Resource" uid="uid://b2coswsl5nok6" path="res://stages/waves/tank_line1.tres" id="2_cvfau"]
+[ext_resource type="Resource" uid="uid://cj1vsuue53n36" path="res://stages/waves/tank_line2.tres" id="3_lxppq"]
+[ext_resource type="Resource" uid="uid://c140h21bjgppg" path="res://stages/waves/tank_line3.tres" id="4_ih487"]
 [ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="5_06wck"]
-[ext_resource type="PackedScene" uid="uid://cob7rnhv2vc6s" path="res://entities/enemy/scout.tscn" id="6_t3622"]
+[ext_resource type="Resource" uid="uid://clyis7b8kswft" path="res://stages/waves/scout_push.tres" id="5_vjghv"]
+[ext_resource type="Resource" uid="uid://bmehs4o2n8uxv" path="res://stages/waves/3turrets.tres" id="6_miq5c"]
+[ext_resource type="Resource" uid="uid://ca753lkrh1tue" path="res://stages/waves/scout_push2.tres" id="7_tth8q"]
+[ext_resource type="Resource" uid="uid://dmbaemldmb6sv" path="res://stages/waves/3turrets2.tres" id="8_s523u"]
+[ext_resource type="Resource" uid="uid://cdgubirlf647y" path="res://stages/waves/tanks_90_degrees.tres" id="9_4af27"]
+[ext_resource type="Resource" uid="uid://bbkfq73jfeimc" path="res://stages/waves/3turrets3.tres" id="10_7dvam"]
 [ext_resource type="Texture2D" uid="uid://byuby0ivr5gfv" path="res://World/space_background.png" id="10_st4v6"]
+[ext_resource type="Resource" uid="uid://crlf38o33c6k5" path="res://stages/waves/scout_push3.tres" id="11_fucss"]
+[ext_resource type="Resource" uid="uid://dyilgsl3kdcn" path="res://stages/waves/fighter_wall.tres" id="12_unlwy"]
+[ext_resource type="PackedScene" uid="uid://iv1q1152twqe" path="res://entities/enemy/fighter.tscn" id="14_uus2o"]
 
-[sub_resource type="Resource" id="Resource_7p4sj"]
+[sub_resource type="Resource" id="Resource_5m380"]
 script = ExtResource("5_06wck")
-spawn = ExtResource("6_t3622")
+spawn = ExtResource("14_uus2o")
 
-[sub_resource type="Resource" id="Resource_oxg8k"]
+[sub_resource type="Resource" id="Resource_41owl"]
 script = ExtResource("5_06wck")
-spawn = ExtResource("6_t3622")
+spawn = ExtResource("14_uus2o")
 
-[sub_resource type="Resource" id="Resource_4phka"]
+[sub_resource type="Resource" id="Resource_eu3fw"]
 script = ExtResource("5_06wck")
-spawn = ExtResource("6_t3622")
+spawn = ExtResource("14_uus2o")
 
-[sub_resource type="Resource" id="Resource_xj2bn"]
+[sub_resource type="Resource" id="Resource_w1sx7"]
 script = ExtResource("2_5ewq5")
 is_boss_wave = false
-wave_start_time = 0
-start_pt = Vector2(300, -64)
-path = 0
-spawn_size = 32
-spawns = Array[ExtResource("5_06wck")]([SubResource("Resource_7p4sj"), SubResource("Resource_oxg8k"), SubResource("Resource_4phka"), SubResource("Resource_4phka"), SubResource("Resource_4phka"), SubResource("Resource_4phka")])
+wave_start_time = 35
+start_pt = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(142, -36),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
 
-[sub_resource type="Curve2D" id="Curve2D_6tmit"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 63, -30, 0, 0, 0, 0, 94, 184, 0, 0, 0, 0, 169, 443)
-}
-point_count = 3
+offset_x = 72
+offset_y = 0
+direction = Vector2(0, 1)
+spawns = Array[ExtResource("5_06wck")]([SubResource("Resource_5m380"), SubResource("Resource_41owl"), SubResource("Resource_eu3fw")])
 
-[node name="Stage_1" type="Area2D" node_paths=PackedStringArray("paths") groups=["stage"]]
+[node name="Stage_1" type="Area2D" groups=["stage"]]
 script = ExtResource("1_p1jaf")
 title = "Attack on Yz"
-waves = Array[ExtResource("2_5ewq5")]([SubResource("Resource_xj2bn")])
-paths = [NodePath("Scout")]
+waves = Array[ExtResource("2_5ewq5")]([ExtResource("2_cvfau"), ExtResource("3_lxppq"), ExtResource("4_ih487"), ExtResource("5_vjghv"), ExtResource("6_miq5c"), ExtResource("7_tth8q"), ExtResource("8_s523u"), ExtResource("9_4af27"), ExtResource("10_7dvam"), ExtResource("11_fucss"), ExtResource("12_unlwy"), SubResource("Resource_w1sx7")])
 background = ExtResource("10_st4v6")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Scout" type="Path2D" parent="."]
-curve = SubResource("Curve2D_6tmit")
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(504, -43)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(460, -115)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(425, -180)
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(97, -25)
+
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(142, -36)
+
+[node name="Marker2D6" type="Marker2D" parent="."]
+position = Vector2(277, -42)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

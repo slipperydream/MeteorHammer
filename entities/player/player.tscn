@@ -59,7 +59,7 @@ _data = {
 radius = 199.063
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5w0"]
-size = Vector2(34, 39)
+size = Vector2(23, 31.5053)
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("firing_stations") groups=["player"]]
 script = ExtResource("1_ks4n4")
@@ -69,6 +69,7 @@ explosion_sound = ExtResource("4_pug3w")
 firing_stations = [NodePath("Mech/FiringStation"), NodePath("Mech/FiringStation2"), NodePath("Mech/FiringStation3"), NodePath("Mech/FiringStation4")]
 
 [node name="Mech" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_qfe5c")
 hframes = 3
 frame = 2
@@ -121,7 +122,7 @@ collision_mask = 28
 health_component = NodePath("../HealthComponent")
 
 [node name="HitBox" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(-1, 0.5)
+position = Vector2(-1.5, -3.4018)
 scale = Vector2(1, 1.04121)
 shape = SubResource("RectangleShape2D_pq5w0")
 debug_color = Color(0.937255, 0.141176, 0.529412, 0.419608)

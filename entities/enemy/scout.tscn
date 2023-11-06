@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cob7rnhv2vc6s"]
+[gd_scene load_steps=37 format=3 uid="uid://cob7rnhv2vc6s"]
 
 [ext_resource type="Script" path="res://entities/enemy/base_enemy.gd" id="1_vlnxj"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/bullet.gd" id="2_7167e"]
@@ -17,8 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://bs1kpoi5efod5" path="res://entities/enemy/weapons/bullet_shapes/elipse.tscn" id="10_ipdh7"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_cf853"]
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://entities/enemy/target_lock.tscn" id="13_30731"]
-[ext_resource type="Script" path="res://entities/enemy/weapons/patterns/spread_pattern.gd" id="13_tk14c"]
-[ext_resource type="PackedScene" uid="uid://6t7gq1rbqydp" path="res://entities/enemy/weapons/bullet_shapes/spinning_ball.tscn" id="14_lhot0"]
 [ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="15_1hefe"]
 [ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="17_s2iqh"]
 
@@ -194,7 +192,7 @@ script = ExtResource("2_7167e")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_aoie2")
 bullet_shape = ExtResource("10_ipdh7")
-speed = 70
+speed = 90
 angle = 90.0
 shot_delay = 0.0
 aimed = true
@@ -207,38 +205,13 @@ Firing_Sequence = Array[ExtResource("2_7167e")]([SubResource("Resource_370c3")])
 salvos = 1
 salvo_delay = 0.3
 
-[sub_resource type="Resource" id="Resource_huidf"]
-script = ExtResource("13_tk14c")
-firing_points = 3
-separation_angle = 10.0
-ripple = false
-ripple_delay = 0.0
-
-[sub_resource type="Resource" id="Resource_21hxo"]
-script = ExtResource("2_7167e")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_huidf")
-bullet_shape = ExtResource("14_lhot0")
-speed = 50
-angle = 90.0
-shot_delay = 0.0
-aimed = false
-station = 0
-
-[sub_resource type="Resource" id="Resource_qiq8r"]
-script = ExtResource("5_r0vnt")
-attack_name = "Attack"
-Firing_Sequence = Array[ExtResource("2_7167e")]([SubResource("Resource_21hxo")])
-salvos = 1
-salvo_delay = 0.3
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(62, 55)
 
 [node name="Scout" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_vlnxj")
 title = "Scout"
-speed = 70
+speed = 85
 explosion_sound = ExtResource("2_c36y7")
 bomb_death_item = ExtResource("3_kuljw")
 bullet_death_item = ExtResource("4_6j4gb")
@@ -277,7 +250,7 @@ libraries = {
 
 [node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_gygaj")]
 stations = [NodePath("../Station1")]
-Attacks = Array[ExtResource("5_r0vnt")]([SubResource("Resource_4nyni"), SubResource("Resource_qiq8r")])
+Attacks = Array[ExtResource("5_r0vnt")]([SubResource("Resource_4nyni")])
 
 [node name="HealthComponent" parent="." instance=ExtResource("15_1hefe")]
 max_health = 5

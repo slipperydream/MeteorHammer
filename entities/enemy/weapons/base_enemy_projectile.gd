@@ -39,9 +39,6 @@ func _process(delta):
 				var amplitude = 10
 				direction.x = cos(time * frequency * amplitude)
 				position = position + speed * delta * direction 
-	
-		if animate and $AnimationPlayer.is_playing() == false:
-			$AnimationPlayer.play("moving")
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	remove()
@@ -71,6 +68,8 @@ func start(pos, dir, angle):
 	position = pos
 	direction = dir
 	rotation_degrees = angle - 90
+	if animate and $AnimationPlayer.is_playing() == false:
+			$AnimationPlayer.play("moving")
 
 func cancel_bullet():
 	is_cancelled = true

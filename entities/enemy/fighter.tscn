@@ -1,8 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://iv1q1152twqe"]
+[gd_scene load_steps=33 format=3 uid="uid://iv1q1152twqe"]
 
 [ext_resource type="Script" path="res://entities/enemy/base_enemy.gd" id="1_cja1d"]
 [ext_resource type="AudioStream" uid="uid://b81ote4ejuuha" path="res://sound/sfx/Explosions/Explosion_4.wav" id="2_enotn"]
-[ext_resource type="Texture2D" uid="uid://cegot2yvfipbj" path="res://assets/Enemies/Designs-Base/Nairan-Fighter-Base.png" id="2_men5b"]
+[ext_resource type="Texture2D" uid="uid://cyxrkvimsss4n" path="res://assets/Enemies/Designs-Base/Nautolan_Fighter.png" id="3_mqe6r"]
 [ext_resource type="Texture2D" uid="uid://ca6qveh1xsyek" path="res://assets/Enemies/Engine_Effects/Nautolan_Fighter_EngineEffect.png" id="4_ppggd"]
 [ext_resource type="Script" path="res://entities/enemy/Boosters.gd" id="5_2emms"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://entities/enemy/weapons/shooting_component.tscn" id="5_66wlm"]
@@ -11,10 +11,10 @@
 [ext_resource type="Script" path="res://entities/enemy/weapons/patterns/spread_pattern.gd" id="9_dxwoy"]
 [ext_resource type="PackedScene" uid="uid://cb1wj37xtu7h0" path="res://entities/enemy/weapons/bullet_shapes/screwhead.tscn" id="10_fodu6"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/bullet.gd" id="11_dut8u"]
-[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://utility/health_component.tscn" id="11_tye1n"]
+[ext_resource type="PackedScene" uid="uid://d1q1sgwkt8wsv" path="res://entities/health_component.tscn" id="11_tye1n"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="12_1wv58"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/attack.gd" id="12_pohod"]
-[ext_resource type="PackedScene" uid="uid://cjsxyohvmi47w" path="res://entities/enemy/weapons/bullet_shapes/shell.tscn" id="13_ofot8"]
+[ext_resource type="PackedScene" uid="uid://b7o6u4xr12hnn" path="res://entities/hitbox_component.tscn" id="16_brt60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aiqci"]
 atlas = ExtResource("4_ppggd")
@@ -80,9 +80,6 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
-size = Vector2(60, 54)
-
 [sub_resource type="Animation" id="Animation_4pyvs"]
 length = 0.001
 tracks/0/type = "value"
@@ -95,7 +92,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_men5b")]
+"values": [ExtResource("3_mqe6r")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -186,7 +183,7 @@ _data = {
 
 [sub_resource type="Resource" id="Resource_qc2w6"]
 script = ExtResource("9_dxwoy")
-firing_points = 5
+firing_points = 4
 separation_angle = 10.0
 ripple = false
 ripple_delay = 0.0
@@ -196,10 +193,10 @@ script = ExtResource("11_dut8u")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_qc2w6")
 bullet_shape = ExtResource("10_fodu6")
-speed = 50
+speed = 75
 angle = 90.0
 shot_delay = 0.0
-aimed = false
+aimed = true
 station = 0
 
 [sub_resource type="Resource" id="Resource_5rrmd"]
@@ -209,42 +206,16 @@ Firing_Sequence = Array[ExtResource("11_dut8u")]([SubResource("Resource_sq3j0")]
 salvos = 1
 salvo_delay = 0.3
 
-[sub_resource type="Resource" id="Resource_bgll7"]
-script = ExtResource("9_dxwoy")
-firing_points = 5
-separation_angle = 10.0
-ripple = false
-ripple_delay = 0.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
+size = Vector2(59, 50)
 
-[sub_resource type="Resource" id="Resource_bc001"]
-script = ExtResource("11_dut8u")
-bullet_type = 0
-bullet_pattern = SubResource("Resource_bgll7")
-bullet_shape = ExtResource("13_ofot8")
-speed = 50
-angle = 90.0
-shot_delay = 0.0
-aimed = true
-station = 0
-
-[sub_resource type="Resource" id="Resource_m2jmd"]
-script = ExtResource("12_pohod")
-attack_name = "Attack"
-Firing_Sequence = Array[ExtResource("11_dut8u")]([SubResource("Resource_bc001")])
-salvos = 1
-salvo_delay = 0.3
-
-[node name="Fighter" type="Area2D" groups=["enemy"]]
-collision_layer = 8
-collision_mask = 3
-audio_bus_override = true
-audio_bus_name = &"SFX"
+[node name="Fighter" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_cja1d")
-speed = 45
+speed = 80
 explosion_sound = ExtResource("2_enotn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_men5b")
+texture = ExtResource("3_mqe6r")
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_0qgxf")
@@ -265,10 +236,6 @@ offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_n0ywb")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_h123k")
@@ -279,7 +246,7 @@ position = Vector2(0, 21)
 
 [node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("5_66wlm")]
 stations = [NodePath("../Station1")]
-Attacks = Array[ExtResource("12_pohod")]([SubResource("Resource_5rrmd"), SubResource("Resource_m2jmd")])
+Attacks = Array[ExtResource("12_pohod")]([SubResource("Resource_5rrmd")])
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, -2)
@@ -290,8 +257,28 @@ scale = Vector2(3, 2.7)
 [node name="HealthComponent" parent="." instance=ExtResource("11_tye1n")]
 max_health = 20
 
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("16_brt60")]
+collision_layer = 8
+collision_mask = 3
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_n0ywb")
+
+[node name="HaltTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="ReverseTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
+[connection signal="timeout" from="HaltTimer" to="." method="_on_halt_timer_timeout"]
+[connection signal="timeout" from="ReverseTimer" to="." method="_on_reverse_timer_timeout"]

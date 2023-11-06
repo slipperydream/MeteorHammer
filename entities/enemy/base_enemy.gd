@@ -35,26 +35,17 @@ func _ready():
 		z_index = 0
 	else:
 		z_index = 1
-	
-	if parent is PathFollow2D:
-		parent.progress = 0
 		
 	$Sprite2D/TargetLock.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
-	if parent is PathFollow2D:
-		parent.progress += speed * delta
-		if parent.progress_ratio >= 1:
-			if is_offscreen:
-				remove()
-	else:
-		position = position + speed * delta * direction
-	
-		# left the screen so remove
-		if position.y > screensize.y + enemy_size.y:
-			remove()
-	
+	position = position + speed * delta * direction
+
+	# left the screen so remove
+	if position.y > screensize.y + enemy_size.y:
+		remove()
+
 	# ceasefire once in the bottom 10% of the screen to prevent frustration
 	if position.y > ceasefire_line:
 		for child in get_children():
@@ -66,7 +57,7 @@ func _process(delta):
 		var anim_direction = get_facing_direction(vec_to_player)
 		if $AnimationPlayer.has_animation(anim_direction):
 			$AnimationPlayer.play(anim_direction)
-	
+		
 
 func get_facing_vector(vtp):
 	var min_angle = 360
@@ -112,25 +103,25 @@ func show_points(bonus):
 func create_item(source):
 	match source:
 		DamageConstants.DamageTypes.BULLET:
-			print("killed by bullet")
+			#print("killed by bullet")
 			if bullet_death_item:
 				var item = bullet_death_item.instantiate()
 				get_tree().get_first_node_in_group("stage").call_deferred("add_child", item)
 				item.start(global_position)
 		DamageConstants.DamageTypes.LASER:
-			print("killed by laser")
+			#print("killed by laser")
 			if laser_death_item:
 				var item = laser_death_item.instantiate()
 				get_tree().get_first_node_in_group("stage").call_deferred("add_child", item)
 				item.start(global_position)
 		DamageConstants.DamageTypes.BOMB:
-			print("killed by bomb")
+			#print("killed by bomb")
 			if bomb_death_item:
 				var item = bomb_death_item.instantiate()
 				get_tree().get_first_node_in_group("stage").call_deferred("add_child", item)
 				item.start(global_position)
 		DamageConstants.DamageTypes.SPECIAL:
-			print("killed by special")
+			#print("killed by special")
 			if special_death_item:
 				var item = special_death_item.instantiate()
 				get_tree().get_first_node_in_group("stage").call_deferred("add_child", item)
@@ -172,3 +163,11 @@ func _on_health_component_hit():
 func _on_health_component_killed(source):
 	die(source)
 
+func _on_halt_timer_timeout():
+	speed = 0
+	$ShootingComponent.shoot()
+	$ReverseTimer.start()
+
+func _on_reverse_timer_timeout():
+	speed = -85
+	direction = Vector2(0,-1)

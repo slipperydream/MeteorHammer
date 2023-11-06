@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Enemy_wave" load_steps=5 format=3 uid="uid://bbkfq73jfeimc"]
+
+[ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="1_gk8o2"]
+[ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="2_elovd"]
+[ext_resource type="PackedScene" uid="uid://vg7ouljnt4wa" path="res://entities/enemy/turret.tscn" id="3_c76b3"]
+
+[sub_resource type="Resource" id="Resource_ijuoe"]
+script = ExtResource("2_elovd")
+spawn = ExtResource("3_c76b3")
+
+[resource]
+script = ExtResource("1_gk8o2")
+is_boss_wave = false
+wave_start_time = 22
+start_pt = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(425, -180),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
+
+offset_x = 0
+offset_y = -72
+direction = Vector2(0, 1)
+spawns = Array[ExtResource("2_elovd")]([SubResource("Resource_ijuoe"), SubResource("Resource_ijuoe"), SubResource("Resource_ijuoe")])

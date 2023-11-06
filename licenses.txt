@@ -22,9 +22,6 @@ CC-BY 4.0
 Narian spaceships by Foozle www.foozle.io
 CC0
 
-Player space ship by GrafxKid grafxkid.itch.io
-CC0
-
 Palette
 Endesga 32by ENDESGA
 https://lospec.com/palette-list/endesga-32

@@ -1,13 +1,15 @@
-[gd_scene load_steps=30 format=3 uid="uid://c5vy5tww5so1i"]
+[gd_scene load_steps=32 format=3 uid="uid://c5vy5tww5so1i"]
 
 [ext_resource type="Script" path="res://entities/enemy/base_enemy.gd" id="1_0amy5"]
 [ext_resource type="AudioStream" uid="uid://cjfmy76pau61g" path="res://sound/sfx/Explosions/Explosion_3.wav" id="2_1c6ef"]
-[ext_resource type="Texture2D" uid="uid://dvpyci50syrwj" path="res://assets/tank.png" id="2_oryfj"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/patterns/single_pattern.gd" id="2_rhuen"]
+[ext_resource type="PackedScene" uid="uid://d1ivcdestr40l" path="res://entities/player/items/ammo_pickup.tscn" id="3_4j5x4"]
 [ext_resource type="PackedScene" uid="uid://cjsxyohvmi47w" path="res://entities/enemy/weapons/bullet_shapes/shell.tscn" id="3_c5ljc"]
+[ext_resource type="Texture2D" uid="uid://dvvhh83fd61c0" path="res://entities/enemy/tank.png" id="3_vax86"]
 [ext_resource type="PackedScene" uid="uid://m0kvusipjv6x" path="res://entities/enemy/target_lock.tscn" id="4_0b8mw"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/bullet.gd" id="4_6gfax"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="4_8fkfv"]
+[ext_resource type="PackedScene" uid="uid://yn5fn5wpd610" path="res://entities/player/items/small_score_item.tscn" id="4_g7ax2"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://entities/enemy/weapons/shooting_component.tscn" id="4_rwaqa"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/attack.gd" id="5_52fho"]
 [ext_resource type="PackedScene" uid="uid://kx061m0kpeni" path="res://utility/stopwatch.tscn" id="10_02n62"]
@@ -26,7 +28,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_oryfj")]
+"values": [ExtResource("3_vax86")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -43,38 +45,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitboxComponent/Hitbox:rotation")
+tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/path = NodePath("Sprite2D:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("HitboxComponent/Hitbox:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(4, -2)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rufyc"]
@@ -90,31 +80,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitboxComponent/Hitbox:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, -3)]
+"values": [4]
 }
 
 [sub_resource type="Animation" id="Animation_n5mec"]
@@ -162,14 +128,14 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HitboxComponent/Hitbox:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 0.443137), Color(1, 1, 1, 1), Color(1, 0, 0, 0.501961), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.129412), Color(1, 1, 1, 1), Color(1, 1, 1, 0.207843), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_j6riu"]
@@ -185,19 +151,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5708]
+"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_u1q4f"]
@@ -213,19 +167,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.35619]
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_vshff"]
@@ -241,31 +183,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.785398]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitboxComponent/Hitbox:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-9, 0)]
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_qihub"]
@@ -281,19 +199,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5708]
+"values": [6]
 }
 
 [sub_resource type="Animation" id="Animation_fhpdt"]
@@ -309,19 +215,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.785398]
+"values": [5]
 }
 
 [sub_resource type="Animation" id="Animation_4tc2a"]
@@ -337,19 +231,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.35619]
+"values": [7]
 }
 
 [sub_resource type="Animation" id="Animation_io8ha"]
@@ -366,30 +248,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitboxComponent/Hitbox:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_axh05"]
@@ -415,7 +273,7 @@ script = ExtResource("4_6gfax")
 bullet_type = 0
 bullet_pattern = SubResource("Resource_veynh")
 bullet_shape = ExtResource("3_c5ljc")
-speed = 50
+speed = 75
 angle = 90.0
 shot_delay = 0.0
 aimed = true
@@ -425,21 +283,25 @@ station = 0
 script = ExtResource("5_52fho")
 attack_name = "Attack"
 Firing_Sequence = Array[ExtResource("4_6gfax")]([SubResource("Resource_4jl70")])
-salvos = 3
+salvos = 1
 salvo_delay = 0.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
-size = Vector2(42.0416, 33.4706)
+size = Vector2(42, 67)
 
 [node name="Tank" type="Node2D" groups=["enemy"]]
 position = Vector2(0, -50)
 script = ExtResource("1_0amy5")
 title = "Tank"
+speed = 40
 faces_player = true
 explosion_sound = ExtResource("2_1c6ef")
+bomb_death_item = ExtResource("3_4j5x4")
+special_death_item = ExtResource("4_g7ax2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_oryfj")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_vax86")
 hframes = 8
 
 [node name="TargetLock" parent="Sprite2D" instance=ExtResource("4_0b8mw")]
@@ -462,6 +324,7 @@ libraries = {
 }
 
 [node name="ShootingComponent" parent="." node_paths=PackedStringArray("stations") instance=ExtResource("4_rwaqa")]
+shot_timer = 1.5
 stations = [NodePath("../Turret")]
 Attacks = Array[ExtResource("5_52fho")]([SubResource("Resource_wiy8m")])
 sealing_range = 100
@@ -483,7 +346,8 @@ collision_mask = 3
 health_component = NodePath("../HealthComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(4, -2)
+position = Vector2(0.500002, 0)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_n0ywb")
 
 [connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]

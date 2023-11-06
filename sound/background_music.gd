@@ -56,7 +56,6 @@ func fade_in(fade_time=default_fade_time):
 		var child = get_child(0)
 		var tween = create_tween()
 		tween.tween_property(child, "volume_db", SettingsManager.get_audio_bus_volume("Music"), fade_time)
-		print("fade in %f" % SettingsManager.get_audio_bus_volume("Music"))
 
 func fade_out(fade_time=default_fade_time):
 	if get_child_count() > 0:
@@ -78,11 +77,9 @@ func play_song(song, fade_time):
 		
 	var bg_music = AudioStreamPlayer.new()
 	bg_music.bus = bus
-	print(bus)
 	bg_music.stream = load(song.resource_path)
 	bg_music.autoplay = true
 	bg_music.volume_db = SettingsManager.get_audio_bus_volume("Music")
-	print("play song %f" % SettingsManager.get_audio_bus_volume("Music"))
 	add_child(bg_music)
 	emit_signal("new_song", song.resource_name)
 	fade_in(fade_time)

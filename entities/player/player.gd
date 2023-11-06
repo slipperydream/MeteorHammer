@@ -54,7 +54,7 @@ func _ready():
 
 func start():
 	reset()
-	position = Vector2(screensize.x / 2, screensize.y - (player_size.y * 4))
+	position = Vector2(screensize.x / 2, screensize.y - (player_size.y * 2))
 	emit_signal("ammo_count", ammo)
 	bomb_timer.start()
 	emit_signal("bomb_charging", bomb_config.recharge_time)
@@ -282,7 +282,6 @@ func _on_health_component_killed(_source):
 
 func _on_pickup_area_area_entered(area):
 	if area is Pickup:
-		print("got an item")
 		area.drifting = false
 
 func _on_health_component_use_bomb():

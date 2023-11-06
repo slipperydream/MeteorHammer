@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s3n5cpyqoha2"
-path="res://.godot/imported/red_mech.png-663f238b396dcc11aa8db9e435cf117b.ctex"
+uid="uid://djhxc5lnl5oua"
+path="res://.godot/imported/mech_base.png-dbb0b38b6e072d395312993e09ad6181.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/red_mech.png"
-dest_files=["res://.godot/imported/red_mech.png-663f238b396dcc11aa8db9e435cf117b.ctex"]
+source_file="res://entities/player/mechs/mech_base.png"
+dest_files=["res://.godot/imported/mech_base.png-dbb0b38b6e072d395312993e09ad6181.ctex"]
 
 [params]
 

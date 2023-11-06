@@ -3,7 +3,7 @@ extends Resource
 class_name Mech_configuration
 
 @export var name : String
-@export var sprite : Texture2D
+@export var color : Color
 @export_range(50, 100) var speed : int = 75
 @export_range(50, 100) var shot_width : float = 75
 @export_range(20, 60) var laser_width : float = 35

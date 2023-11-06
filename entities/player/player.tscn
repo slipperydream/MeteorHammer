@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://csxyutdsan0d7" path="res://entities/player/weapons/main_weapon.tscn" id="2_75g50"]
 [ext_resource type="PackedScene" uid="uid://brstvshbtnvk6" path="res://entities/player/items/bomb.tscn" id="3_0duad"]
 [ext_resource type="AudioStream" uid="uid://cl5g6l1kbbqyt" path="res://sound/sfx/Explosions/Explosion.wav" id="4_pug3w"]
-[ext_resource type="Texture2D" uid="uid://chi18jp2nblpu" path="res://assets/white_mech.png" id="5_saxex"]
+[ext_resource type="Texture2D" uid="uid://djhxc5lnl5oua" path="res://entities/player/mechs/mech_base.png" id="5_qfe5c"]
 [ext_resource type="PackedScene" uid="uid://clivlywn14dn5" path="res://entities/player/weapons/firing_station.tscn" id="6_lwalq"]
 [ext_resource type="PackedScene" uid="uid://cx15eyjwpgg8f" path="res://entities/targeting_component.tscn" id="9_8ip5m"]
 [ext_resource type="PackedScene" uid="uid://cgapobxp7ck2" path="res://entities/player/option.tscn" id="10_ih0ln"]
@@ -69,8 +69,8 @@ explosion_sound = ExtResource("4_pug3w")
 firing_stations = [NodePath("Mech/FiringStation"), NodePath("Mech/FiringStation2"), NodePath("Mech/FiringStation3"), NodePath("Mech/FiringStation4")]
 
 [node name="Mech" type="Sprite2D" parent="."]
-texture = ExtResource("5_saxex")
-hframes = 4
+texture = ExtResource("5_qfe5c")
+hframes = 3
 frame = 2
 
 [node name="LeftOption" parent="Mech" instance=ExtResource("10_ih0ln")]
@@ -121,7 +121,8 @@ collision_mask = 28
 health_component = NodePath("../HealthComponent")
 
 [node name="HitBox" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(3, -4.5)
+position = Vector2(-1, 0.5)
+scale = Vector2(1, 1.04121)
 shape = SubResource("RectangleShape2D_pq5w0")
 debug_color = Color(0.937255, 0.141176, 0.529412, 0.419608)
 

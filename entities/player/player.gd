@@ -61,7 +61,7 @@ func start():
 
 func configure(in_mech_config, in_special_config, in_bomb_setting):
 	mech_config = in_mech_config
-	mech.texture = mech_config.sprite
+	mech.modulate = mech_config.color
 	speed = base_speed * mech_config.speed 
 	laser.width = mech_config.laser_width
 	laser.power = mech_config.laser_power
@@ -86,7 +86,7 @@ func set_firing_stations():
 func _process(delta):
 	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input.x > 0:
-		mech.frame = 3
+		mech.frame = 0
 		get_tree().call_group("option", "move", "right")
 	elif input.x < 0:
 		mech.frame = 1

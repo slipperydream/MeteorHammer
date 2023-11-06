@@ -1,12 +1,11 @@
-[gd_resource type="Resource" script_class="Mech_configuration" load_steps=3 format=3 uid="uid://sg1jttj0fwhq"]
+[gd_resource type="Resource" script_class="Mech_configuration" load_steps=2 format=3 uid="uid://sg1jttj0fwhq"]
 
 [ext_resource type="Script" path="res://entities/player/mechs/mech_configuration.gd" id="1_1e8r3"]
-[ext_resource type="Texture2D" uid="uid://s3n5cpyqoha2" path="res://assets/red_mech.png" id="2_sg2ip"]
 
 [resource]
 script = ExtResource("1_1e8r3")
 name = "Type C"
-sprite = ExtResource("2_sg2ip")
+color = Color(1, 0, 0, 1)
 speed = 75
 shot_width = 100.0
 laser_width = 60.0

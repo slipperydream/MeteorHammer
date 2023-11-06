@@ -46,9 +46,9 @@ func display_popup(text):
 	$AcceptDialog.popup_centered()
 
 func update_mech():
-	selected_mech_img.texture = mechs[mech_index].sprite
-	selected_mech_img.hframes = 4
-	selected_mech_img.frame = 0
+	selected_mech_img.modulate = mechs[mech_index].color
+	selected_mech_img.hframes = 3
+	selected_mech_img.frame = 2
 	mech_name.text = mechs[mech_index].name
 	
 	mech_speed.value = mechs[mech_index].speed

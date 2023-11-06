@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqrp2a1yyocuq"]
+[gd_scene load_steps=24 format=3 uid="uid://dqrp2a1yyocuq"]
 
 [ext_resource type="Script" path="res://ui/mech_select/mech_select.gd" id="1_7nx0c"]
 [ext_resource type="Resource" uid="uid://celc63e446bf5" path="res://entities/player/mechs/typeA.tres" id="2_kjrhv"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://bky0kst2eax5q" path="res://entities/player/items/bs_no_bombs.tres" id="7_6wn6n"]
 [ext_resource type="Resource" uid="uid://chqt1efjggkuj" path="res://entities/player/weapons/missile.tres" id="7_bggw0"]
 [ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="11_eg7h0"]
+[ext_resource type="Texture2D" uid="uid://djhxc5lnl5oua" path="res://entities/player/mechs/mech_base.png" id="12_iq5yd"]
 [ext_resource type="FontFile" uid="uid://dv3201q5d4liu" path="res://ui/fonts/PixelMecha.ttf" id="13_hlewj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uixk"]
@@ -150,6 +151,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel/Mech/Control"]
+texture = ExtResource("12_iq5yd")
 centered = false
 offset = Vector2(32, 32)
 hframes = 3

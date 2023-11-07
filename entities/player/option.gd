@@ -25,7 +25,6 @@ func move(dir):
 			$Sprite2D.frame = 0
 
 func change_formation(formation, player_pos):	
-	print(Option_Formation.keys()[formation])
 	global_position = get_formation_location(formation, player_pos)
 	rotation_degrees = get_option_rotation(formation)
 	firing_angle = get_firing_angle(formation)

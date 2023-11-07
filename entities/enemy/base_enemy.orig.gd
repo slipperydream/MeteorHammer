@@ -37,19 +37,10 @@ func _ready():
 		z_index = 1
 		
 	$Sprite2D/TargetLock.hide()
-	
-	if parent is PathFollow2D:
-		parent.progress = 0
-		rotate(90)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
-	if parent is PathFollow2D:
-		parent.progress += speed * delta
-		if parent.progress_ratio >= 1:
-			remove()
-	else:
-		position = position + speed * delta * direction
+	position = position + speed * delta * direction
 
 	# left the screen so remove
 	if position.y > screensize.y + enemy_size.y:
@@ -171,3 +162,13 @@ func _on_health_component_hit():
 
 func _on_health_component_killed(source):
 	die(source)
+
+func _on_halt_timer_timeout():
+	speed = 0
+	$ShootingComponent.shoot()
+	$ReverseTimer.start()
+
+func _on_reverse_timer_timeout():
+	speed = -85
+	set_rotation_degrees(180)
+	direction = Vector2(0,1)

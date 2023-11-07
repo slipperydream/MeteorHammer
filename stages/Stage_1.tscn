@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://8bwqwxoxjr48"]
+[gd_scene load_steps=22 format=3 uid="uid://8bwqwxoxjr48"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_p1jaf"]
 [ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_5ewq5"]
@@ -38,12 +38,20 @@ start_pt = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":fa
 offset_x = 72
 offset_y = 0
 direction = Vector2(0, 1)
+path = -1
 spawns = Array[ExtResource("5_06wck")]([SubResource("Resource_5m380"), SubResource("Resource_41owl"), SubResource("Resource_eu3fw")])
 
-[node name="Stage_1" type="Area2D" groups=["stage"]]
+[sub_resource type="Curve2D" id="Curve2D_hjpjh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 142, -29, -9.34388, -12.0136, 9.34388, 12.0136, 149, 556, -20.0226, 40.0452, 20.0226, -40.0452, 235, 556, 0, 0, 0, 0, 233, -25)
+}
+point_count = 4
+
+[node name="Stage_1" type="Area2D" node_paths=PackedStringArray("paths") groups=["stage"]]
 script = ExtResource("1_p1jaf")
 title = "Attack on Yz"
 waves = Array[ExtResource("2_5ewq5")]([ExtResource("2_cvfau"), ExtResource("3_lxppq"), ExtResource("4_ih487"), ExtResource("5_vjghv"), ExtResource("6_miq5c"), ExtResource("7_tth8q"), ExtResource("8_s523u"), ExtResource("9_4af27"), ExtResource("10_7dvam"), ExtResource("11_fucss"), ExtResource("12_unlwy"), SubResource("Resource_w1sx7")])
+paths = [NodePath("U_turn")]
 background = ExtResource("10_st4v6")
 
 [node name="Timer" type="Timer" parent="."]
@@ -65,5 +73,8 @@ position = Vector2(142, -36)
 
 [node name="Marker2D6" type="Marker2D" parent="."]
 position = Vector2(277, -42)
+
+[node name="U_turn" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hjpjh")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

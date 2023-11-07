@@ -57,6 +57,7 @@ var stage_results = {
 @onready var results_screen = $CanvasLayer/StageResults
 @onready var mech_select = $CanvasLayer/MechSelect
 @onready var settings_menu = $CanvasLayer/SettingsMenu
+var last_menu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -201,10 +202,12 @@ func _on_center_container_game_unpaused():
 func _on_title_screen_boss_mode():
 	stage = load("res://stages/bosses/Stage_1Boss.tscn")
 	mech_select.show()
+	last_menu = title_screen
 
 func _on_title_screen_attack_mode():
 	stage = load("res://stages/Stage_1.tscn")
 	mech_select.show()
+	last_menu = title_screen
 
 func _on_player_player_hit():
 	stage_results.times_hit += 0
@@ -237,6 +240,7 @@ func _on_stage_select_stage_selected(stage_path):
 	stage_results.path = stage_path
 	stage_num = 1
 	mech_select.show()
+	last_menu = stage_select
 	
 func _on_title_screen_exit_game():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
@@ -245,16 +249,7 @@ func _on_stage_results_retry_level():
 	begin_game()
 
 func _on_mech_select_mech_select_cancelled():
-	# need to make this aware of last screen before mech selection
-	match current_game_mode:
-		game_mode.ATTACK:
-			current_game_mode = game_mode.NONE
-			title_screen.show()
-		game_mode.BOSS:
-			current_game_mode = game_mode.NONE
-			title_screen.show()
-		game_mode.STORY:
-			stage_select.show()
+	last_menu.show()
 
 func _on_mech_select_mech_selected(mech, special, bomb):
 	player.configure(mech, special, bomb)
@@ -271,6 +266,16 @@ func _on_score_item_collected(value):
 
 func _on_title_screen_settings_menu():
 	settings_menu.show()
+	last_menu = title_screen
 
 func _on_settings_menu_settings_closed():
-		title_screen.show()
+	last_menu.show()
+	last_menu = null
+
+func _on_mech_select_settings_menu():
+	settings_menu.show()
+	last_menu = mech_select
+
+func _on_stage_select_settings_menu():
+	settings_menu.show()
+	last_menu = stage_select

@@ -2,6 +2,7 @@ extends Panel
 
 signal stage_select_cancelled
 signal stage_selected
+signal settings_menu
 
 const stage_button = preload("res://ui/stage_select/stage_button.tscn")
 @export_dir var stages_dir
@@ -61,6 +62,6 @@ func _on_back_button_pressed():
 
 
 func _on_settings_pressed():
-	var text = "Sorry, the settings menu isn't implemented yet."
-	display_popup(text)
+	emit_signal("settings_menu")
+	hide()
 

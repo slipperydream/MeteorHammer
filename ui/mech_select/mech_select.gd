@@ -2,6 +2,7 @@ extends Control
 
 signal mech_select_cancelled
 signal mech_selected
+signal settings_menu
 
 @export var mechs : Array[Mech_configuration] = []
 var mech_index : int = 0
@@ -76,8 +77,8 @@ func update_bomb_settings():
 	max_options.text = str(bomb_settings[bomb_index].max_options)
 	
 func _on_settings_pressed():
-	var text = "Sorry, the settings menu isn't implemented yet."
-	display_popup(text)
+	emit_signal("settings_menu")
+	hide()
 
 func _on_mech_previous_button_pressed():
 	mech_index -= 1

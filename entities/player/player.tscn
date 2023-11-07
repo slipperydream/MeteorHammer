@@ -65,6 +65,7 @@ size = Vector2(23, 31.5053)
 script = ExtResource("1_ks4n4")
 main_weapon = ExtResource("2_75g50")
 bomb_scene = ExtResource("3_0duad")
+option_scene = ExtResource("10_ih0ln")
 explosion_sound = ExtResource("4_pug3w")
 firing_stations = [NodePath("Mech/FiringStation"), NodePath("Mech/FiringStation2"), NodePath("Mech/FiringStation3"), NodePath("Mech/FiringStation4")]
 
@@ -73,10 +74,6 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_qfe5c")
 hframes = 3
 frame = 2
-
-[node name="LeftOption" parent="Mech" instance=ExtResource("10_ih0ln")]
-
-[node name="RightOption" parent="Mech" instance=ExtResource("10_ih0ln")]
 
 [node name="FiringStation" parent="Mech" instance=ExtResource("6_lwalq")]
 

@@ -26,7 +26,7 @@ func execute():
 			
 	potential_targets = get_tree().get_nodes_in_group("enemy_weapon")
 	for tgt in potential_targets:
-		var tgt_pos = tgt.positionwwd
+		var tgt_pos = tgt.position
 		var dis = tgt_pos.distance_to(position) 
 		if dis < blast_radius:
 			if tgt.has_method("cancel_bullet"):

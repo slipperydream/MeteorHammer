@@ -18,7 +18,7 @@ func _process(delta):
 
 func execute():
 	super.execute()
-	if main.is_connected("score_item_collected", main._on_score_item_collected):
+	if self.is_connected("score_item_collected", main._on_score_item_collected):
 		emit_signal("score_item_collected", amount)
 	else:
 		self.connect("score_item_collected", main._on_score_item_collected)

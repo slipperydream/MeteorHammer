@@ -18,6 +18,7 @@ signal bullet_cancelled
 @export var cooldown : float = 0.1
 @export var main_weapon: PackedScene
 @export var bomb_scene : PackedScene
+@export var option_scene : PackedScene
 @export var explosion_sound : AudioStreamWAV
 @export var firing_stations : Array[Marker2D] = []
 
@@ -32,8 +33,6 @@ signal bullet_cancelled
 @onready var bomb_timer = $BombTimer
 @onready var gun_cooldown = $GunCooldown
 @onready var invuln_timer = $InvulnerabilityTimer
-@onready var left_option = $Mech/LeftOption
-@onready var right_option = $Mech/RightOption
 @onready var targeting_component = $TargetingComponent
 @onready var health_component : HealthComponent = $HealthComponent
 
@@ -43,8 +42,9 @@ var speed : int
 var ammo : int = 100
 var can_shoot : bool = true
 var assist_mode_enabled = false
-enum Option_Formation { SPREAD, TAIL, SIDES, FRONT}
-var option_index = Option_Formation.FRONT
+var options = []
+
+var option_index = Player_option.Option_Formation.FRONT
 var default_health : int = 1
 var lives : int = 1
 
@@ -70,11 +70,20 @@ func configure(in_mech_config, in_special_config, in_bomb_setting):
 	
 	bomb_config = in_bomb_setting
 	bomb_timer.wait_time = 0.1
+	var num_options = bomb_config.max_options
+	configure_options(num_options)
 	switch_option_formation()
 	
 	special_config = in_special_config
 	emit_signal("special_selected", special_config.name)
-	
+
+func configure_options(num):
+	for i in range(num):
+		var option = option_scene.instantiate()
+		option.option_num = i + 1
+		add_child(option)
+		options.append(option)
+		
 func set_firing_stations():
 	var i = 0
 	while i < firing_stations.size():
@@ -172,58 +181,22 @@ func main_weapon_fire():
 		options_fire()
 
 func options_fire():
-	left_option.shoot()
-	right_option.shoot()		
+	for child in get_children():
+		if child is Player_option:
+			child.shoot()
 
 func remove_bullets():
 	get_tree().call_group("bullets", "queue_free")
 
 func switch_option_formation():		
 	option_index += 1
-	if option_index >= Option_Formation.size():
-		option_index = Option_Formation.SPREAD
-
-	match option_index:
-		Option_Formation.SPREAD:
-			left_option.global_position.x = global_position.x - player_size.x/4
-			left_option.global_position.y = global_position.y + (player_size.y/8)
-			left_option.set_rotation_degrees(-15)
-			left_option.firing_angle = 75
-			
-			right_option.global_position.x = global_position.x + player_size.x/4
-			right_option.global_position.y = global_position.y + (player_size.y/8)
-			right_option.set_rotation_degrees(15)
-			right_option.firing_angle = 105
-		Option_Formation.TAIL:
-			left_option.global_position.x = global_position.x - (player_size.x/8)
-			left_option.global_position.y = global_position.y + player_size.y
-			left_option.set_rotation_degrees(-180)
-			left_option.firing_angle = 270
+	
+	if option_index >= Player_option.Option_Formation.size():
+		option_index = Player_option.Option_Formation.FRONT
 		
-			right_option.global_position.x = global_position.x + (player_size.x/8)
-			right_option.global_position.y = global_position.y + player_size.y
-			right_option.set_rotation_degrees(180)
-			right_option.firing_angle = 270
-		Option_Formation.FRONT:
-			left_option.global_position.x = global_position.x - (player_size.x/5)
-			left_option.global_position.y = global_position.y - (player_size.y/2)
-			left_option.set_rotation_degrees(0)
-			left_option.firing_angle = 90
-		
-			right_option.global_position.x = global_position.x + (player_size.x/5)
-			right_option.global_position.y = global_position.y - (player_size.y/2)
-			right_option.set_rotation_degrees(0)
-			right_option.firing_angle = 90
-		Option_Formation.SIDES:
-			left_option.global_position.x = global_position.x - (player_size.x/3)
-			left_option.global_position.y = global_position.y 
-			left_option.set_rotation_degrees(-90)
-			left_option.firing_angle = 0
-		
-			right_option.global_position.x = global_position.x + (player_size.x/3)
-			right_option.global_position.y = global_position.y
-			right_option.set_rotation_degrees(90)
-			right_option.firing_angle = 180
+	for child in get_children():
+		if child is Player_option:
+			child.change_formation(option_index, global_position)
 	
 func use_bomb():	
 	if bomb_timer.is_stopped():

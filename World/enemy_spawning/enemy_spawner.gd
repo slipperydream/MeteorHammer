@@ -37,7 +37,7 @@ func spawn_wave(wave):
 		spawn_info.spawn_pt.x += spawn_info.offset_x
 		spawn_info.spawn_pt.y += spawn_info.offset_y
 		spawn_info.direction = wave.direction
-		spawn_info.path = wave.path
+		
 		spawn_enemy(spawn_info)	
 		index += 1
 	
@@ -52,16 +52,8 @@ func spawn_enemy(spawn_info):
 		enemy_spawn.add_to_group("boss")
 		#emit_signal("stage_boss_spawned")
 						
-	if spawn_info.path >= 0:
-		var follow = PathFollow2D.new()
-		follow.loop = false
-		follow.rotates = true
-		paths[spawn_info.path].add_child(follow)
-		follow.v_offset = spawn_info.offset_y
-		follow.h_offset = spawn_info.offset_x
-		follow.add_child(enemy_spawn)
-	else:
-		add_child(enemy_spawn)	
+
+	add_child(enemy_spawn)	
 	enemy_spawn.start(spawn_info.spawn_pt)	
 
 func _on_main_end_stage():

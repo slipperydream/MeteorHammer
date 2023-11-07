@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 class_name Enemy
 
@@ -26,7 +26,6 @@ var direction : Vector2 = Vector2(0,1)
 @onready var enemy_size : Vector2 = $Sprite2D.get_rect().size
 @onready var ceasefire_line : float = screensize.y * 0.9
 @onready var stopwatch = $Stopwatch
-@onready var parent = get_parent()
 @onready var health_component : HealthComponent = $HealthComponent
 
 # Called when the node enters the scene tree for the first time.
@@ -37,20 +36,11 @@ func _ready():
 		z_index = 1
 		
 	$Sprite2D/TargetLock.hide()
-	
-	if parent is PathFollow2D:
-		parent.progress = 0
-		rotate(90)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
-	if parent is PathFollow2D:
-		parent.progress += speed * delta
-		if parent.progress_ratio >= 1:
-			remove()
-	else:
-		position = position + speed * delta * direction
-
+	move_and_slide()
+	
 	# left the screen so remove
 	if position.y > screensize.y + enemy_size.y:
 		remove()
@@ -84,6 +74,7 @@ func get_facing_direction(vtp):
 		
 func start(pos):
 	position = Vector2(pos.x, pos.y)
+	velocity = speed * direction
 
 func take_damage(value, source):
 	health_component.take_damage(value, source)

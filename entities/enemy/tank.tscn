@@ -289,7 +289,7 @@ salvo_delay = 0.4
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(42, 67)
 
-[node name="Tank" type="Node2D" groups=["enemy"]]
+[node name="Tank" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(0, -50)
 script = ExtResource("1_0amy5")
 title = "Tank"

@@ -209,7 +209,7 @@ salvo_delay = 0.3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
 size = Vector2(59, 50)
 
-[node name="Fighter" type="Node2D" groups=["enemy"]]
+[node name="Fighter" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_h1edq")
 speed = 80
 explosion_sound = ExtResource("2_qmqvm")
@@ -274,9 +274,3 @@ autostart = true
 [node name="ReverseTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
-[connection signal="shooting" from="ShootingComponent" to="." method="_on_shooting_component_shooting"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
-[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

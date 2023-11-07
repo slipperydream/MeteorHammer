@@ -124,7 +124,7 @@ _data = {
 "hit": SubResource("Animation_xi8h8")
 }
 
-[node name="BaseEnemy" type="Node2D" groups=["enemy"]]
+[node name="BaseEnemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_1lirv")
 explosion_sound = ExtResource("2_er248")
 
@@ -166,4 +166,3 @@ script = ExtResource("7_d50jc")
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
-[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

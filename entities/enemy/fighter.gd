@@ -9,6 +9,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
+
+func start(pos):
+	super.start(pos)	
+	$HaltTimer.start()
 		
 func _on_halt_timer_timeout():
 	speed = 0

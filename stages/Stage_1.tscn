@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://8bwqwxoxjr48"]
+[gd_scene load_steps=21 format=3 uid="uid://8bwqwxoxjr48"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_p1jaf"]
 [ext_resource type="Script" path="res://World/enemy_spawning/wave.gd" id="2_5ewq5"]
 [ext_resource type="Resource" uid="uid://b2coswsl5nok6" path="res://stages/waves/tank_line1.tres" id="2_cvfau"]
 [ext_resource type="Resource" uid="uid://cj1vsuue53n36" path="res://stages/waves/tank_line2.tres" id="3_lxppq"]
-[ext_resource type="Resource" uid="uid://c140h21bjgppg" path="res://stages/waves/tank_line3.tres" id="4_ih487"]
 [ext_resource type="Script" path="res://World/enemy_spawning/spawn_info.gd" id="5_06wck"]
 [ext_resource type="Resource" uid="uid://clyis7b8kswft" path="res://stages/waves/scout_push.tres" id="5_vjghv"]
 [ext_resource type="Resource" uid="uid://bmehs4o2n8uxv" path="res://stages/waves/3turrets.tres" id="6_miq5c"]
@@ -16,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://crlf38o33c6k5" path="res://stages/waves/scout_push3.tres" id="11_fucss"]
 [ext_resource type="Resource" uid="uid://dyilgsl3kdcn" path="res://stages/waves/fighter_wall.tres" id="12_unlwy"]
 [ext_resource type="PackedScene" uid="uid://iv1q1152twqe" path="res://entities/enemy/fighter.tscn" id="14_uus2o"]
+[ext_resource type="Script" path="res://World/Background.gd" id="16_uyt5n"]
 
 [sub_resource type="Resource" id="Resource_5m380"]
 script = ExtResource("5_06wck")
@@ -37,23 +37,18 @@ start_pt = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":fa
 
 offset_x = 72
 offset_y = 0
+offset_time = 0.0
 direction = Vector2(0, 1)
 spawns = Array[ExtResource("5_06wck")]([SubResource("Resource_5m380"), SubResource("Resource_41owl"), SubResource("Resource_eu3fw")])
-
-[sub_resource type="Curve2D" id="Curve2D_hjpjh"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 142, -29, -9.34388, -12.0136, 9.34388, 12.0136, 149, 556, -20.0226, 40.0452, 20.0226, -40.0452, 235, 556, 0, 0, 0, 0, 233, -25)
-}
-point_count = 4
 
 [node name="Stage_1" type="Area2D" node_paths=PackedStringArray("paths") groups=["stage"]]
 script = ExtResource("1_p1jaf")
 title = "Attack on Yz"
-waves = Array[ExtResource("2_5ewq5")]([ExtResource("2_cvfau"), ExtResource("3_lxppq"), ExtResource("4_ih487"), ExtResource("5_vjghv"), ExtResource("6_miq5c"), ExtResource("7_tth8q"), ExtResource("8_s523u"), ExtResource("9_4af27"), ExtResource("10_7dvam"), ExtResource("11_fucss"), ExtResource("12_unlwy"), SubResource("Resource_w1sx7")])
-paths = [NodePath("U_turn")]
-background = ExtResource("10_st4v6")
+waves = Array[ExtResource("2_5ewq5")]([ExtResource("2_cvfau"), ExtResource("3_lxppq"), ExtResource("5_vjghv"), ExtResource("6_miq5c"), ExtResource("7_tth8q"), ExtResource("8_s523u"), ExtResource("9_4af27"), ExtResource("10_7dvam"), ExtResource("11_fucss"), ExtResource("12_unlwy"), SubResource("Resource_w1sx7")])
+paths = [NodePath("")]
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(504, -43)
@@ -73,7 +68,17 @@ position = Vector2(142, -36)
 [node name="Marker2D6" type="Marker2D" parent="."]
 position = Vector2(277, -42)
 
-[node name="U_turn" type="Path2D" parent="."]
-curve = SubResource("Curve2D_hjpjh")
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource("16_uyt5n")
+speed = 50.0
 
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(0, 1600)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(0, -800)
+texture = ExtResource("10_st4v6")
+centered = false
+
+[connection signal="boss_spawned" from="." to="." method="_on_boss_spawned"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

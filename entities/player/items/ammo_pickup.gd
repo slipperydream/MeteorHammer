@@ -14,6 +14,7 @@ func _process(delta):
 
 func execute():
 	super.execute()
-	self.connect("ammo_resupply", player._on_ammo_resupply)
+	if self.is_connected("ammo_resupply", player._on_ammo_resupply) == false:
+		self.connect("ammo_resupply", player._on_ammo_resupply)
 	emit_signal("ammo_resupply", amount)
 	queue_free()

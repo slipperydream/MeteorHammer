@@ -7,6 +7,7 @@ signal died
 @export var title : String = "Enemy"
 @export var points : int = 100
 @export var speed : int = 30
+@export var steer_force = 100.0
 @export var faces_player : bool = false
 @export var explosion_sound : AudioStreamWAV
 
@@ -20,6 +21,8 @@ var is_offscreen : bool = true
 var vec_to_player : Vector2 = Vector2(0,1)
 var targeted : bool = false
 var direction : Vector2 = Vector2(0,1)
+var target_pt = null
+@export var friction = 0.5
 	
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var screensize : Vector2 = get_viewport_rect().size
@@ -27,6 +30,7 @@ var direction : Vector2 = Vector2(0,1)
 @onready var ceasefire_line : float = screensize.y * 0.9
 @onready var stopwatch = $Stopwatch
 @onready var health_component : HealthComponent = $HealthComponent
+@onready var parent = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,11 +40,11 @@ func _ready():
 		z_index = 1
 		
 	$Sprite2D/TargetLock.hide()
+	if parent is PathFollow2D:
+		parent.progress = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):	
-	move_and_slide()
-	
+func _process(delta):		
 	# left the screen so remove
 	if position.y > screensize.y + enemy_size.y:
 		remove()
@@ -49,14 +53,22 @@ func _process(delta):
 	if position.y > ceasefire_line:
 		for child in get_children():
 			if child is Shooting_component:
-				child.stop_shooting()
+				child.stop_shooting()				
 			
 	if faces_player:
 		vec_to_player = (player.global_position - global_position).normalized()
 		var anim_direction = get_facing_direction(vec_to_player)
 		if $AnimationPlayer.has_animation(anim_direction):
 			$AnimationPlayer.play(anim_direction)
-		
+	
+	if parent is PathFollow2D:
+		parent.progress_ratio += speed * delta
+		if parent.progress >= 1.0:
+			remove()
+	else:
+		var target_velocity = direction * speed
+		velocity += (target_velocity - velocity) * friction
+		move_and_slide()
 
 func get_facing_vector(vtp):
 	var min_angle = 360
@@ -75,6 +87,7 @@ func get_facing_direction(vtp):
 func start(pos):
 	position = Vector2(pos.x, pos.y)
 	velocity = speed * direction
+	target_pt = direction * 800
 
 func take_damage(value, source):
 	health_component.take_damage(value, source)
@@ -162,3 +175,4 @@ func _on_health_component_hit():
 
 func _on_health_component_killed(source):
 	die(source)
+		

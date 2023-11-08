@@ -188,7 +188,6 @@ func _on_scoring_timer_timeout():
 
 func _on_boss_spawned():
 	boss_spawned = true
-	$Background.stop()
 	await get_tree().create_timer(0.5).timeout
 	$Stopwatch.reset()
 	$Stopwatch.start()
@@ -211,9 +210,6 @@ func _on_title_screen_attack_mode():
 
 func _on_player_player_hit():
 	stage_results.times_hit += 0
-
-func _on_new_background(file):
-	$Background/ParallaxLayer/Sprite2D.texture = file
 
 func _on_beat_game():
 	_on_game_over()

@@ -1,9 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://cob7rnhv2vc6s"]
+[gd_scene load_steps=40 format=3 uid="uid://cob7rnhv2vc6s"]
 
 [ext_resource type="Script" path="res://entities/enemy/scout.gd" id="1_ci186"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/bullet.gd" id="2_7167e"]
 [ext_resource type="Script" path="res://entities/enemy/weapons/patterns/single_pattern.gd" id="2_n0eyg"]
-[ext_resource type="AudioStream" uid="uid://dgqsqufwnerkc" path="res://sound/sfx/Explosions/Explosion_2.wav" id="2_ywkbp"]
 [ext_resource type="Texture2D" uid="uid://uycoqqebdsdh" path="res://assets/Enemies/Engine_Effects/Nautolan-Scout_EngineEffect.png" id="4_83u8j"]
 [ext_resource type="Texture2D" uid="uid://c4865weyxw0ji" path="res://assets/Effects/Explosion.png" id="5_gbr6t"]
 [ext_resource type="PackedScene" uid="uid://bbtps6a6vw6vw" path="res://entities/enemy/weapons/shooting_component.tscn" id="5_gygaj"]
@@ -329,21 +328,21 @@ salvos = 1
 salvo_delay = 0.3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0ywb"]
-size = Vector2(84, 79)
+size = Vector2(48, 41)
 
 [node name="Scout" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_ci186")
 title = "Scout"
 speed = 85
-explosion_sound = ExtResource("2_ywkbp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("6_x6ah5")
 hframes = 8
 
 [node name="Boosters" type="AnimatedSprite2D" parent="Sprite2D"]
 z_index = -1
+position = Vector2(0, -28)
 sprite_frames = SubResource("SpriteFrames_kw4s0")
 animation = &"forward"
 autoplay = "forward"
@@ -383,7 +382,7 @@ collision_mask = 3
 health_component = NodePath("../HealthComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(2, 3.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_n0ywb")
 
 [node name="Station1" type="Marker2D" parent="."]
@@ -398,6 +397,5 @@ scale = Vector2(2.3, 2.25)
 [node name="TurnTimer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
-autostart = true
 
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]

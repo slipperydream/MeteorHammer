@@ -4,7 +4,6 @@ extends Node2D
 @export var speed : int = 100
 @export var power : int = 5
 @export var firing_sound : AudioStreamWAV
-@export var steer_force = 100.0
 
 var direction = Vector2(0,-1)
 var target = null

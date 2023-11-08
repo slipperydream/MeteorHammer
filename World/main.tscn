@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://ds1srgc15xh70"]
+[gd_scene load_steps=14 format=3 uid="uid://ds1srgc15xh70"]
 
 [ext_resource type="Script" path="res://World/main.gd" id="1_40pi7"]
-[ext_resource type="Script" path="res://World/Background.gd" id="2_egrtt"]
 [ext_resource type="PackedScene" uid="uid://bhly1sn1nyugw" path="res://entities/player/player.tscn" id="4_kjngg"]
 [ext_resource type="PackedScene" uid="uid://du6kybeyrcmf2" path="res://ui/ui.tscn" id="5_r43jo"]
 [ext_resource type="PackedScene" uid="uid://d2fwlf8gf57ym" path="res://ui/center_container.tscn" id="6_5jg3u"]
@@ -29,16 +28,6 @@ _data = {
 [node name="Main" type="Node2D" groups=["main"]]
 script = ExtResource("1_40pi7")
 default_lives = 1
-
-[node name="Background" type="ParallaxBackground" parent="."]
-script = ExtResource("2_egrtt")
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
-motion_mirroring = Vector2(0, 1600)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
-position = Vector2(0, -800)
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("4_kjngg")]
 
@@ -81,7 +70,6 @@ visible = false
 [connection signal="beat_game" from="." to="CanvasLayer/CenterContainer" method="_on_main_beat_game"]
 [connection signal="continue_earned" from="." to="CanvasLayer/UI" method="_on_main_continue_earned"]
 [connection signal="end_stage" from="." to="." method="_on_end_stage"]
-[connection signal="end_stage" from="." to="Background" method="_on_main_end_stage"]
 [connection signal="end_stage" from="." to="Player" method="_on_main_end_stage"]
 [connection signal="end_stage" from="." to="CanvasLayer/UI" method="_on_main_end_stage"]
 [connection signal="end_stage" from="." to="CanvasLayer/StageResults" method="_on_main_end_stage"]

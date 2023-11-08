@@ -267,7 +267,7 @@ position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_n0ywb")
 
 [node name="HaltTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true
 autostart = true
 

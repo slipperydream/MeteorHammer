@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq0qbts2mi4lh"]
+[gd_scene load_steps=3 format=3 uid="uid://cq0qbts2mi4lh"]
 
 [ext_resource type="Script" path="res://World/enemy_spawning/enemy_spawner.gd" id="1_8257j"]
+[ext_resource type="Script" path="res://World/Background.gd" id="2_ecrbp"]
 
 [node name="EnemySpawner" type="Area2D" groups=["stage"]]
 script = ExtResource("1_8257j")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource("2_ecrbp")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(0, 1600)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(0, -800)
+centered = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
